@@ -14,14 +14,8 @@ class AbstractTerminationCriterion(ABC):
         super().__init__()
 
     @abstractmethod
-    def keep_running(self, data):
+    def keep_running(self):
         """function to determine if the algorithm needs to continue running
-
-        Parameters
-        ----------
-        data
-            The data needed to determine whether the algorithm should continue
-            running.
 
         Returns
         -------
