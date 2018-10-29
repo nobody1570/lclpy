@@ -3,7 +3,7 @@ import time
 
 
 class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
-    """Termination criterion that terminates after a set amount of iterations.
+    """Termination criterion to terminate after a set amount of seconds.
 
     Attributes
     ----------
@@ -11,10 +11,8 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
         The maximal amount of seconds passed. Is normally set to 60 seconds,
         if you need it to be more or less simply change this after
         constructing the criterion.
-
     _seconds : float
         The amount of seconds passed since the start of the iterations
-
     _start : float
         The moment when the time starts to be measured in seconds measured
         from the epoch.
@@ -44,6 +42,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
         """function to be called before the iterations
 
         Sets _start to the current time in seconds from the epoch.
+        
         """
         self._start = time.time()
 
@@ -52,5 +51,6 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
 
         Sets _seconds to be the difference between the current time and the
         start time.
+
         """
         self._seconds = time.time() - self._start

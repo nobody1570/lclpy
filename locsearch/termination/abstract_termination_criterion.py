@@ -8,6 +8,7 @@ class AbstractTerminationCriterion(ABC):
     multiple criterions at once. If the criterions use data that's different,
     it's better to not combine them, simply implement them as seperate
     termination criterions.
+    
     """
 
     def __init__(self):
