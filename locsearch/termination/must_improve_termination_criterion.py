@@ -2,13 +2,13 @@ from locsearch.termination.abstract_termination_criterion import AbstractTermina
 
 
 class MustImproveTerminationCriterion(AbstractTerminationCriterion):
-    """Criterion to terminate after a set amount of iterations without improvement.
+    """Criterion to terminate after an iteration without improvement.
 
 
     Attributes
     ----------
     _old_best_value: int
-        The last best value. Is initialised as -1.
+        The last value. Is initialised as -1.
 
     Examples
     --------
