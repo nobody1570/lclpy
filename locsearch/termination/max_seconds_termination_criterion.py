@@ -28,30 +28,38 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
     Examples
     --------
     Running for 60 seconds (default):
-    >>> import time
-    >>> from locsearch.termination.max_seconds_termination_criterion import MaxSecondsTerminationCriterion
-    >>> test = MaxSecondsTerminationCriterion()
-    >>> start = time.time()
-    >>> test.start_timing()
-    >>> while test.keep_running():
-    ...     test.iteration_done()
-    >>> end = time.time()
-    >>> time_passed = end - start
-    >>> time_passed < 61
-    True
+
+    .. doctest::
+
+        >>> import time
+        >>> from locsearch.termination.max_seconds_termination_criterion import MaxSecondsTerminationCriterion
+        >>> test = MaxSecondsTerminationCriterion()
+        >>> start = time.time()
+        >>> test.start_timing()
+        >>> while test.keep_running():
+        ...     pass # code to execute
+        ...     test.iteration_done()
+        >>> end = time.time()
+        >>> time_passed = end - start
+        >>> time_passed < 61
+        True
 
     Running for 3 seconds:
-    >>> import time
-    >>> from locsearch.termination.max_seconds_termination_criterion import MaxSecondsTerminationCriterion
-    >>> test = MaxSecondsTerminationCriterion(3)
-    >>> start = time.time()
-    >>> test.start_timing()
-    >>> while test.keep_running():
-    ...     test.iteration_done()
-    >>> end = time.time()
-    >>> time_passed = end - start
-    >>> time_passed < 4
-    True
+
+    .. doctest::
+
+        >>> import time
+        >>> from locsearch.termination.max_seconds_termination_criterion import MaxSecondsTerminationCriterion
+        >>> test = MaxSecondsTerminationCriterion(3)
+        >>> start = time.time()
+        >>> test.start_timing()
+        >>> while test.keep_running():
+        ...     pass # code to execute
+        ...     test.iteration_done()
+        >>> end = time.time()
+        >>> time_passed = end - start
+        >>> time_passed < 4
+        True
 
     """
 

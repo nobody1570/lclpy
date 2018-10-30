@@ -1,0 +1,264 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>locsearch.solution package &#8212; locsearch  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="locsearch.termination package" href="locsearch.termination.html" />
+    <link rel="prev" title="locsearch.runner package" href="locsearch.runner.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="locsearch-solution-package">
+<h1>locsearch.solution package<a class="headerlink" href="#locsearch-solution-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-locsearch.solution.abstract_local_search_solution">
+<span id="locsearch-solution-abstract-local-search-solution-module"></span><h2>locsearch.solution.abstract_local_search_solution module<a class="headerlink" href="#module-locsearch.solution.abstract_local_search_solution" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">
+<em class="property">class </em><code class="descclassname">locsearch.solution.abstract_local_search_solution.</code><code class="descname">AbstractLocalSearchSolution</code><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Template to create Solution-classes for localsearch implemenatations.</p>
+<p>This Class is meant to be used as a template.
+It is supposed to be used when constructing a heuristic to solve
+localsearch problems.</p>
+<dl class="attribute">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.data">
+<code class="descname">data</code><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the main datastructure needed to find the solution.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.best_solution">
+<code class="descname">best_solution</code><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.best_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is used to remember the best solution found.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">AbstractLocalsearchSolution`</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.move_function">
+<code class="descname">move_function</code><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.move_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the move function used for the problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove">AbstractMove</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluation_function">
+<code class="descname">evaluation_function</code><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluation_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the evaluation function used for the problem</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">AbstractEvaluation</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">best_solution</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy method</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">deep copy of the object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">data</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the current solution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The value of the evaluation function for the current solution.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">evaluation_function</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.move">
+<code class="descname">move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a move on data.</p>
+<p>The neighbourhood is explored and the current solution is changed to a
+new solution. move_function is used and the data variable is changed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">move_function</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.solution">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.solution" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">locsearch</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.solution package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.solution.abstract_local_search_solution">locsearch.solution.abstract_local_search_solution module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.solution">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="locsearch.html#module-locsearch">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">locsearch</a><ul>
+  <li><a href="locsearch.html">locsearch package</a><ul>
+      <li>Previous: <a href="locsearch.runner.html" title="previous chapter">locsearch.runner package</a></li>
+      <li>Next: <a href="locsearch.termination.html" title="next chapter">locsearch.termination package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/locsearch.solution.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

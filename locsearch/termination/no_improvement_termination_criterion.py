@@ -73,34 +73,44 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         the new value. The dataset eval_values is generated. (1 improvement,
         99 cases without improvement, 1 improvement, 110 cases without
         improvement) After this the iterations start:
-        >>> import numpy
-        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
-        >>> eval_values = numpy.concatenate((numpy.array([2]), numpy.random.randint(3, size=98), numpy.array([5]), numpy.random.randint(6, size=110)))
-        >>> index=0
-        >>> test = NoImprovementTerminationCriterion()
-        >>> while test.keep_running():
-        ...     test.check_new_value(eval_values[index])
-        ...     index += 1
-        ...     test.iteration_done()
-        >>> index # Amount of iterations. There should be 200.
-        200
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
+            >>> eval_values = numpy.concatenate((numpy.array([2]), numpy.random.randint(3, size=98), numpy.array([5]), numpy.random.randint(6, size=110)))
+            >>> index=0
+            >>> test = NoImprovementTerminationCriterion()
+            >>> while test.keep_running():
+            ...     pass # code to execute
+            ...     test.check_new_value(eval_values[index])
+            ...     pass # more code to execute
+            ...     index += 1 # counting iterations + index
+            ...     test.iteration_done()
+            >>> index # Amount of iterations.
+            200
 
         3 iterations without improvement, only checking improved values. The
         dataset eval_values is hardcoded:
-        >>> import numpy
-        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
-        >>> eval_values = numpy.array([0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
-        >>> index = 0
-        >>> old_value = -1
-        >>> test = NoImprovementTerminationCriterion(3)
-        >>> while test.keep_running():
-        ...     if eval_values[index] > old_value:
-        ...         old_value = eval_values[index]
-        ...         test.check_new_value(eval_values[index])
-        ...     index += 1
-        ...     test.iteration_done()
-        >>> index # Amount of iterations. There should be 11.
-        11
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
+            >>> eval_values = numpy.array([0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
+            >>> index = 0
+            >>> old_value = -1
+            >>> test = NoImprovementTerminationCriterion(3)
+            >>> while test.keep_running():
+            ...     pass # code to execute
+            ...     if eval_values[index] > old_value:
+            ...         old_value = eval_values[index]
+            ...         test.check_new_value(eval_values[index])
+            ...     pass # more code to execute
+            ...     index += 1 # counting iterations + index
+            ...     test.iteration_done()
+            >>> index # Amount of iterations.
+            11
 
         """
         if value > self._old_best_value:

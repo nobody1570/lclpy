@@ -19,24 +19,32 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
     Examples
     --------
     Default amount of iterations:
-    >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
-    >>> iterations = 0
-    >>> test = MaxIterationsTerminationCriterion()
-    >>> while test.keep_running():
-    ...     iterations += 1
-    ...     test.iteration_done()
-    >>> iterations
-    1000
+
+    .. doctest::
+
+        >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
+        >>> iterations = 0
+        >>> test = MaxIterationsTerminationCriterion()
+        >>> while test.keep_running():
+        ...     pass # code to execute
+        ...     iterations += 1 # counting amount of iterations
+        ...     test.iteration_done()
+        >>> iterations
+        1000
 
     50 iterations:
-    >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
-    >>> iterations = 0
-    >>> test = MaxIterationsTerminationCriterion(50)
-    >>> while test.keep_running():
-    ...     iterations += 1
-    ...     test.iteration_done()
-    >>> iterations
-    50
+
+    .. doctest::
+
+        >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
+        >>> iterations = 0
+        >>> test = MaxIterationsTerminationCriterion(50)
+        >>> while test.keep_running():
+        ...     pass # code to execute
+        ...     iterations += 1 # counting amount of iterations
+        ...     test.iteration_done()
+        >>> iterations
+        50
 
     """
 
