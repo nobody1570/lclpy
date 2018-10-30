@@ -4,24 +4,33 @@ from locsearch.termination.abstract_termination_criterion import AbstractTermina
 class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     """Criterion to terminate after a set amount of iterations without improvement.
 
+    Parameters
+    ----------
+    max_iterations : int
+        The maximal amount of iterations without improvement. The default is
+        100 iterations.
+
     Attributes
     ----------
     max_iterations : int
-        The maximal amount of iterations. Is normally set to 100, if you
-        need it to be more or less simply change this after constructing
-        the criterion.
+        The maximal amount of iterations without improvement.
     _iterations : int
         The amount of iterations with no improvement.
     _old_best_value: int
-        The last best value.
+        The last best value. Is initialised as -1.
+
+    Examples
+    --------
+
+
 
     """
 
-    def __init__(self):
+    def __init__(self, max_iterations=100):
         super().__init__()
-        self.max_iterations = 100
+        self.max_iterations = max_iterations
         self._iterations = 0
-        self._old_best_value = 0
+        self._old_best_value = -1
 
     def keep_running(self):
         """function to determine if the algorithm needs to continue running
@@ -46,6 +55,54 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         self._iterations += 1
 
     def check_new_value(self, value):
+        """function to be called after every improvement of the evaluation function.
+
+        It's also possible to call this function every time when the
+        evaluation value is calculated without ill effects.
+
+        Parameters
+        ----------
+        value : int or long or float
+            Is the best evaluation value found for a solution or the new
+            evaluation value of a solution. It does not matter which one is
+            used. Value must be positive.
+
+        Examples
+        --------
+        Default amount of iterations without improvement (100), always checking
+        the new value. The dataset eval_values is generated. (1 improvement,
+        99 cases without improvement, 1 improvement, 110 cases without
+        improvement) After this the iterations start:
+        >>> import numpy
+        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
+        >>> eval_values = numpy.concatenate((numpy.array([2]), numpy.random.randint(3, size=98), numpy.array([5]), numpy.random.randint(6, size=110)))
+        >>> index=0
+        >>> test = NoImprovementTerminationCriterion()
+        >>> while test.keep_running():
+        ...     test.check_new_value(eval_values[index])
+        ...     index += 1
+        ...     test.iteration_done()
+        >>> index # Amount of iterations. There should be 200.
+        200
+
+        3 iterations without improvement, only checking improved values. The
+        dataset eval_values is hardcoded:
+        >>> import numpy
+        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
+        >>> eval_values = numpy.array([0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
+        >>> index = 0
+        >>> old_value = -1
+        >>> test = NoImprovementTerminationCriterion(3)
+        >>> while test.keep_running():
+        ...     if eval_values[index] > old_value:
+        ...         old_value = eval_values[index]
+        ...         test.check_new_value(eval_values[index])
+        ...     index += 1
+        ...     test.iteration_done()
+        >>> index # Amount of iterations. There should be 11.
+        11
+
+        """
         if value > self._old_best_value:
-            self._iterations = 0
+            self._iterations = -1
             self._old_best_value = value

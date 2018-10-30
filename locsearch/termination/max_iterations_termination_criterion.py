@@ -4,20 +4,45 @@ from locsearch.termination.abstract_termination_criterion import AbstractTermina
 class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
     """Termination criterion to terminate after a set amount of iterations.
 
+    Parameters
+    ----------
+    max_iterations : int
+        The maximal amount of iterations. The default is 1000 iterations.
+
     Attributes
     ----------
     max_iterations : int
-        The maximal amount of iterations. Is normally set to 1000, if you
-        need it to be more or less simply change this after constructing
-        the criterion.
+        The maximal amount of iterations.
     _iterations : int
         The amount of iterations.
 
+    Examples
+    --------
+    Default amount of iterations:
+    >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
+    >>> iterations = 0
+    >>> test = MaxIterationsTerminationCriterion()
+    >>> while test.keep_running():
+    ...     iterations += 1
+    ...     test.iteration_done()
+    >>> iterations
+    1000
+
+    50 iterations:
+    >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
+    >>> iterations = 0
+    >>> test = MaxIterationsTerminationCriterion(50)
+    >>> while test.keep_running():
+    ...     iterations += 1
+    ...     test.iteration_done()
+    >>> iterations
+    50
+
     """
 
-    def __init__(self):
+    def __init__(self, max_iterations=1000):
         super().__init__()
-        self.max_iterations = 1000
+        self.max_iterations = max_iterations
         self._iterations = 0
 
     def keep_running(self):
@@ -37,6 +62,6 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
         """function to be called after every iteration
 
         Increments _iterations by 1.
-        
+
         """
         self._iterations += 1
