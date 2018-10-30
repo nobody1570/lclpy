@@ -19,6 +19,7 @@ class AbstractEvaluationFunction(ABC):
         -------
         int or float
             an indication of the quality of current_solution
+
         """
         pass
 
