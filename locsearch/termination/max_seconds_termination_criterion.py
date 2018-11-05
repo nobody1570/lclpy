@@ -12,7 +12,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
 
     Parameters
     ----------
-    max_seconds : float
+    max_seconds : int, float, optional
         The maximal amount of seconds passed. The default is 60 seconds.
 
     Attributes

@@ -6,7 +6,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
 
     Parameters
     ----------
-    max_iterations : int
+    max_iterations : int, optional
         The maximal amount of iterations without improvement. The default is
         100 iterations.
 

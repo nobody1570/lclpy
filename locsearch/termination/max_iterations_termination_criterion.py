@@ -6,7 +6,7 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
 
     Parameters
     ----------
-    max_iterations : int
+    max_iterations : int, optional
         The maximal amount of iterations. The default is 1000 iterations.
 
     Attributes
