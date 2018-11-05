@@ -28,6 +28,14 @@ locsearch.termination.max\_seconds\_termination\_criterion module
     :undoc-members:
     :show-inheritance:
 
+locsearch.termination.must\_improve\_termination\_criterion module
+------------------------------------------------------------------
+
+.. automodule:: locsearch.termination.must_improve_termination_criterion
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 locsearch.termination.no\_improvement\_termination\_criterion module
 --------------------------------------------------------------------
 
