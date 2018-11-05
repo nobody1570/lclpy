@@ -118,7 +118,7 @@ def _default_processing(data, dist_func, type=numpy.float_):
     size = len(data)
 
     # dist_matrix [from] [to]
-    dist_matrix = numpy.full((size, size), numpy.inf, dtype=numpy.float_)
+    dist_matrix = numpy.full((size, size), numpy.inf, dtype=type)
 
     for i in range(size):
 
