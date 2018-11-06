@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class AbstractMove(ABC):
     """Template to create Move-objects.def
 
-    This object is used to explore new Solutons in a neighbourhood.
+    This object is used to explore new Solutions in a neighbourhood.
     """
 
     def __init__(self):
@@ -17,7 +17,7 @@ class AbstractMove(ABC):
         Parameters
         ----------
         data
-            The dataset that is being explored. =It will be altered after the
+            The dataset that is being explored. It will be altered after the
             method call.
 
         """
