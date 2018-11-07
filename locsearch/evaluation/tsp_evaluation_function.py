@@ -4,14 +4,15 @@ from locsearch.evaluation.abstract_evaluation_function import AbstractEvaluation
 class TspEvaluationFunction(AbstractEvaluationFunction):
     """This class contains the methods to evaluate the quality of a tsp-solution
 
+
     Parameters
     ----------
     distance_matrix : numpy.ndarray
         The distance matrix of the tsp-problem. The weight from A to B does
         not need to be equal to the weight from B to A.
 
-    Atributes
-    ---------
+    Attributes
+    ----------
     distance_matrix : numpy.ndarray
         The distance matrix of the tsp-problem.
     size : int

@@ -59,12 +59,20 @@ with existing code.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the difference in quality between other_solution
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>other_solution</strong> (<em>AbstractSolution</em>) – The Solution that is evaluated.</li>
+<li><strong>current_solution</strong> (<em>AbstractSolution</em>) – The Solution that other_solution is compared to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the difference in quality between other_solution
 and current_solution.
 Note that this is equivalent to
-evaluate(other_solution)-evaluate(current_solution).</td>
+evaluate(other_solution)-evaluate(current_solution).</p>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int or float</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -78,9 +86,125 @@ evaluate(other_solution)-evaluate(current_solution).</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">an indication of the quality of current_solution</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>current_solution</strong> (<em>AbstractSolution</em>) – The Solution to be evaluated</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an indication of the quality of current_solution</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.evaluation.tsp_evaluation_function">
+<span id="locsearch-evaluation-tsp-evaluation-function-module"></span><h2>locsearch.evaluation.tsp_evaluation_function module<a class="headerlink" href="#module-locsearch.evaluation.tsp_evaluation_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction">
+<em class="property">class </em><code class="descclassname">locsearch.evaluation.tsp_evaluation_function.</code><code class="descname">TspEvaluationFunction</code><span class="sig-paren">(</span><em>distance_matrix</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction</span></code></a></p>
+<p>This class contains the methods to evaluate the quality of a tsp-solution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix of the tsp-problem. The weight from A to B does
+not need to be equal to the weight from B to A.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.distance_matrix">
+<code class="descname">distance_matrix</code><a class="headerlink" href="#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.distance_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>The distance matrix of the tsp-problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.size">
+<code class="descname">size</code><a class="headerlink" href="#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>the amount of points to visit</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">dist_matrix</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+<span class="go">14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+<span class="go">24</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate">
+<code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>other_solution</em>, <em>current_solution</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the difference in quality between two solutions.</p>
+<p>This function does not need to be implemented. One should only
+consider to implement and use it if a delta evaluation is faster than
+the regular evaluate function or if it needs to be implemented to work
+with existing code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>other_solution</strong> (<em>AbstractSolution</em>) – The Solution that is evaluated.</li>
+<li><strong>current_solution</strong> (<em>AbstractSolution</em>) – The Solution that other_solution is compared to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the difference in quality between other_solution
+and current_solution.
+Note that this is equivalent to
+evaluate(other_solution)-evaluate(current_solution).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int or float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>order</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates an evaluation value for the function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
+visit. All values are unique and are within the interval [0,size[.</td>
 </tr>
 </tbody>
 </table>
@@ -119,6 +243,7 @@ evaluate(other_solution)-evaluate(current_solution).</td>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.evaluation package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation.abstract_evaluation_function">locsearch.evaluation.abstract_evaluation_function module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation.tsp_evaluation_function">locsearch.evaluation.tsp_evaluation_function module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation">Module contents</a></li>
 </ul>
 </li>

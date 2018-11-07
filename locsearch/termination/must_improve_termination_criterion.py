@@ -4,6 +4,12 @@ from locsearch.termination.abstract_termination_criterion import AbstractTermina
 class MustImproveTerminationCriterion(AbstractTerminationCriterion):
     """Criterion to terminate after an iteration without improvement.
 
+    Parameters
+    ----------
+    improvement_is_bigger : bool
+        If the improvement_is_bigger is True, bigger values will be considered
+        improvements. If the improvement_is_bigger is False, smaller values
+        will be considered improvements. The default is True.
 
     Attributes
     ----------
@@ -13,6 +19,9 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         or infinite (improvement_is_bigger = False)
     _function : function
         The function used to judge if a value is an improvement.
+    _run : bool
+        True if no worse value has been encountered, False if this isn't the
+        case.
 
     Examples
     --------
@@ -95,7 +104,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
     def __init__(self, improvement_is_bigger=True):
         super().__init__()
 
-        self.run = True
+        self._run = True
 
         if improvement_is_bigger:
             self._function = self._bigger_is_improvement
@@ -114,7 +123,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
             non-improving value. The function returns False if a non-improving
             value is encountered.
         """
-        return self.run
+        return self._run
 
     def check_new_value(self, value):
         """function to be called after every calculation of the evaluation function.
@@ -128,4 +137,4 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         if self._function(value):
             self._old_best_value = value
         else:
-            self.run = False
+            self._run = False

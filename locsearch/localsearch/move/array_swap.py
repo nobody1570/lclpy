@@ -12,10 +12,10 @@ class ArraySwap(object):
 
     Attributes
     ----------
-    _possible_swaps : numpy.ndarray
+    possible_swaps : numpy.ndarray
         This 2 dimensional array contains all possible swaps. The 2 points
         that are swapped in a single swap are saved as
-        _possible_swaps[index][0] and _possible_swaps[index][1].
+        possible_swaps[index][0] and possible_swaps[index][1].
         It contains the neighbourhood; all possible swaps are represented.
     neighbourhood_size : int
         The size of the neighboorhood.
@@ -51,7 +51,7 @@ class ArraySwap(object):
             for j in range(i + 1, size):
                 possible_swaps.append([i, j])
 
-        self._possible_swaps = numpy.array(possible_swaps)
+        self.possible_swaps = numpy.array(possible_swaps)
 
         self.neighbourhood_size = len(possible_swaps)
 
@@ -70,8 +70,8 @@ class ArraySwap(object):
         """
         self._swap(
             array,
-            self._possible_swaps[move_number][0],
-            self._possible_swaps[move_number][1])
+            self.possible_swaps[move_number][0],
+            self.possible_swaps[move_number][1])
 
     def _swap(self, array, index_1, index_2):
         """swaps the values of index_1 and index_2 in the array.

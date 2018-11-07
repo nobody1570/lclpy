@@ -17,7 +17,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
 
     Attributes
     ----------
-    max_seconds : float
+    _max_seconds : int, float
         The maximal amount of seconds passed.
     _seconds : float
         The amount of seconds passed since the start of the iterations
@@ -66,7 +66,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
     def __init__(self, max_seconds=60):
         super().__init__()
         self._start = 0
-        self.max_seconds = max_seconds
+        self._max_seconds = max_seconds
         self._seconds = 0
 
     def keep_running(self):
@@ -80,7 +80,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
             time passed is bigger than max_seconds
 
         """
-        return self._seconds < self.max_seconds
+        return self._seconds < self._max_seconds
 
     def start_timing(self):
         """function to be called before the iterations

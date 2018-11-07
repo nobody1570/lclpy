@@ -18,7 +18,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
 
     Attributes
     ----------
-    max_iterations : int
+    _max_iterations : int
         The maximal amount of iterations without improvement.
     _iterations : int
         The amount of iterations with no improvement.
@@ -159,7 +159,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     def __init__(self, max_iterations=100, improvement_is_bigger=True):
         super().__init__()
 
-        self.max_iterations = max_iterations
+        self._max_iterations = max_iterations
         self._iterations = 0
 
         if improvement_is_bigger:
@@ -176,11 +176,11 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         -------
         bool
             The function returns true if the amount of iterations is smaller
-            than max_iterations, if the function returns false the amount of
+            than _max_iterations, if the function returns false the amount of
             iterations is bigger than max_iterations
 
         """
-        return self._iterations < self.max_iterations
+        return self._iterations < self._max_iterations
 
     def iteration_done(self):
         """function to be called after every iteration

@@ -16,21 +16,22 @@ class TspSolution(AbstractLocalSearchSolution):
         The size of the neighbourhood.
     order : numpy.ndarray, optional
         A 1 dimensional array that contains the order of the points to start
-        with. All values are unique and are within the interval [0,size[. The
-        default value is None. In this case a numpy array will be generated.
-        The generated array will always be ordered from small to big.
+        with. All values are int, unique and are within the interval [0,size[.
+        The default value is None. In this case a numpy array will be
+        generated. The generated array will always be ordered from small to
+        big.
 
     Attributes
     ----------
-    evaluation_function : AbstractEvaluationFunction
-        The evaluation function that needs to be used for the problem
-    move_function : AbstractMove
-        The move function that needs to be used for the problem
+    _evaluation_function : AbstractEvaluationFunction
+        The evaluation function that is used for the problem
+    _move_function : AbstractMove
+        The move function that is used for the problem
     neighbourhood_size : int
         The size of the neighbourhood.
-    order : numpy.ndarray, optional
-        A 1 dimensional array that contains the order of the points to start
-        with. All values are unique and are within the interval [0,size[.
+    _order : numpy.ndarray
+        A 1 dimensional array that contains the order of the points. All
+        values are int, unique and are within the interval [0,size[.
     best_order : numpy.ndarray
         Contains the order of the best found solution
     best_order_value: int or float
@@ -58,7 +59,7 @@ class TspSolution(AbstractLocalSearchSolution):
         >>> move_func = TspArraySwap(size)
         >>> evaluation_func = TspEvaluationFunction(distance_matrix)
         >>> solution = TspSolution(evaluation_func, move_func, size)
-        >>> solution.order
+        >>> solution._order
         array([0, 1, 2, 3])
         >>> value = solution.evaluate()
         >>> value
@@ -71,7 +72,7 @@ class TspSolution(AbstractLocalSearchSolution):
         >>> solution.neighbourhood_size
         3
         >>> solution.move(2)
-        >>> solution.order
+        >>> solution._order
         array([0, 1, 3, 2])
         >>> value = solution.evaluate()
         >>> value
@@ -99,7 +100,7 @@ class TspSolution(AbstractLocalSearchSolution):
         >>> move_func = TspArraySwap(size)
         >>> evaluation_func = TspEvaluationFunction(distance_matrix)
         >>> solution = TspSolution(evaluation_func, move_func, size, wanted_order)
-        >>> solution.order
+        >>> solution._order
         array([0, 3, 2, 1])
 
     """
@@ -108,17 +109,17 @@ class TspSolution(AbstractLocalSearchSolution):
         super().__init__()
 
         # init variables
-        self.evaluation_function = evaluation_function
-        self.move_function = move_function
+        self._evaluation_function = evaluation_function
+        self._move_function = move_function
         self.neighbourhood_size = move_function.neighbourhood_size
 
         if order is None:
-            self.order = numpy.arange(size)
+            self._order = numpy.arange(size)
         else:
-            self.order = order
+            self._order = order
 
     def move(self, move_number):
-        """Performs a move on self.order .
+        """Performs a move on self._order .
 
         Parameters
         ----------
@@ -128,10 +129,10 @@ class TspSolution(AbstractLocalSearchSolution):
 
         """
 
-        self.move_function.move(self.order, move_number)
+        self._move_function.move(self._order, move_number)
 
     def undo_move(self, move_number):
-        """Undoes a move on self.order .
+        """Undoes a move on self._order .
 
         Parameters
         ----------
@@ -142,10 +143,10 @@ class TspSolution(AbstractLocalSearchSolution):
 
         """
 
-        self.move_function.move(self.order, move_number)
+        self._move_function.move(self._order, move_number)
 
     def evaluate(self):
-        """A function to evaluate the current order.
+        """A function to evaluate the current _order.
 
         Returns
         -------
@@ -154,10 +155,10 @@ class TspSolution(AbstractLocalSearchSolution):
 
         """
 
-        return self.evaluation_function.evaluate(self.order)
+        return self._evaluation_function.evaluate(self._order)
 
     def set_as_best_order(self, evaluation_value):
-        """Sets the current order as the new best_order
+        """Sets the current _order as the new best_order
 
         Parameters
         ----------
@@ -168,5 +169,5 @@ class TspSolution(AbstractLocalSearchSolution):
 
         """
 
-        self.best_order = numpy.copy(self.order)
+        self.best_order = numpy.copy(self._order)
         self.best_order_value = evaluation_value

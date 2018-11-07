@@ -2,7 +2,7 @@ from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
 
 
 class SteepestDescent(AbstractLocalSearch):
-    """Implementation of a steepest descent algorithm.descent
+    """Implementation of a steepest descent algorithm.
 
     """
 
@@ -10,7 +10,9 @@ class SteepestDescent(AbstractLocalSearch):
         super().__init__()
 
     def run():
-        # do stuff
+        
+
+
         pass
 
 

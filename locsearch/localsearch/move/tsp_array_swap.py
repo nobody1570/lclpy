@@ -16,15 +16,15 @@ class TspArraySwap(ArraySwap):
         The size of the numpy array that will be altered.
     Attributes
     ----------
-    _possible_swaps : numpy.ndarray
+    possible_swaps : numpy.ndarray
         This 2 dimensional array contains all possible swaps that aren't with
         the first item of the array. The 2 points that are swapped in a single
         swap are saved as
-        _possible_swaps[index][0] and _possible_swaps[index][1].
+        possible_swaps[index][0] and _possible_swaps[index][1].
         It contains the neighbourhood; all possible swaps are represented.
     neighbourhood_size : int
         The size of the neighboorhood. This is also the size of
-        _possible_swaps.
+        possible_swaps.
 
     Examples
     --------
@@ -54,11 +54,11 @@ class TspArraySwap(ArraySwap):
 
         to_delete = []
         for i in range(self.neighbourhood_size):
-            if self._possible_swaps[i][0] == 0 or \
-                    self._possible_swaps[i][1] == 0:
+            if self.possible_swaps[i][0] == 0 or \
+                    self.possible_swaps[i][1] == 0:
                 to_delete.append(i)
 
-        self._possible_swaps = numpy.delete(self._possible_swaps, to_delete, 0)
+        self.possible_swaps = numpy.delete(self.possible_swaps, to_delete, 0)
 
         # update neighbourhood_size
-        self.neighbourhood_size = self._possible_swaps.shape[0]
+        self.neighbourhood_size = self.possible_swaps.shape[0]

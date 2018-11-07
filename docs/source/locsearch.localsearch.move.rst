@@ -12,6 +12,22 @@ locsearch.localsearch.move.abstract\_move module
     :undoc-members:
     :show-inheritance:
 
+locsearch.localsearch.move.array\_swap module
+---------------------------------------------
+
+.. automodule:: locsearch.localsearch.move.array_swap
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+locsearch.localsearch.move.tsp\_array\_swap module
+--------------------------------------------------
+
+.. automodule:: locsearch.localsearch.move.tsp_array_swap
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

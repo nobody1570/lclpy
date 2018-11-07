@@ -86,8 +86,8 @@ stop running.</td>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.max_iterations">
-<code class="descname">max_iterations</code><a class="headerlink" href="#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.max_iterations" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations">
+<code class="descname">_max_iterations</code><a class="headerlink" href="#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximal amount of iterations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -186,14 +186,14 @@ length of the last iteration.</p>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.max_seconds">
-<code class="descname">max_seconds</code><a class="headerlink" href="#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.max_seconds" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">
+<code class="descname">_max_seconds</code><a class="headerlink" href="#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximal amount of seconds passed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int, float</td>
 </tr>
 </tbody>
 </table>
@@ -299,13 +299,25 @@ time passed is bigger than max_seconds</td>
 <span id="locsearch-termination-must-improve-termination-criterion-module"></span><h2>locsearch.termination.must_improve_termination_criterion module<a class="headerlink" href="#module-locsearch.termination.must_improve_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion">
-<em class="property">class </em><code class="descclassname">locsearch.termination.must_improve_termination_criterion.</code><code class="descname">MustImproveTerminationCriterion</code><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.termination.must_improve_termination_criterion.</code><code class="descname">MustImproveTerminationCriterion</code><span class="sig-paren">(</span><em>improvement_is_bigger=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Criterion to terminate after an iteration without improvement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>improvement_is_bigger</strong> (<em>bool</em>) – If the improvement_is_bigger is True, bigger values will be considered
+improvements. If the improvement_is_bigger is False, smaller values
+will be considered improvements. The default is True.</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value">
 <code class="descname">_old_best_value</code><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The last value. Is initialised as -1.</p>
+<dd><p>The last value. Is initialised as minus infinite
+(improvement_is_bigger = True)
+or infinite (improvement_is_bigger = False)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -316,9 +328,39 @@ time passed is bigger than max_seconds</td>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function">
+<code class="descname">_function</code><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function used to judge if a value is an improvement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run">
+<code class="descname">_run</code><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if no worse value has been encountered, False if this isn’t the
+case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <p class="rubric">Examples</p>
-<p>5 iterations with improvement. After that there are no more
-improvements.The dataset eval_values is hardcoded:</p>
+<p>Bigger values are considered improvements. (default) 5 iterations with
+improvement. After that there are no more improvements.The dataset
+eval_values is hardcoded:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.must_improve_termination_criterion</span> <span class="kn">import</span> <span class="n">MustImproveTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
@@ -333,6 +375,23 @@ improvements.The dataset eval_values is hardcoded:</p>
 <span class="go">6</span>
 </pre></div>
 </div>
+<p>Smaller values are considered improvements. 8 iterations with
+improvement. After that there are no more improvements.The dataset
+eval_values is hardcoded:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.must_improve_termination_criterion</span> <span class="kn">import</span> <span class="n">MustImproveTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MustImproveTerminationCriterion</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># more code to execute</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># counting iterations + index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># Amount of iterations.</span>
+<span class="go">9</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value">
 <code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
@@ -341,7 +400,7 @@ improvements.The dataset eval_values is hardcoded:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the new evaluation value of a solution. Value must be positive.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the new evaluation value of a solution.</td>
 </tr>
 </tbody>
 </table>
@@ -372,21 +431,28 @@ value is encountered.</td>
 <span id="locsearch-termination-no-improvement-termination-criterion-module"></span><h2>locsearch.termination.no_improvement_termination_criterion module<a class="headerlink" href="#module-locsearch.termination.no_improvement_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion">
-<em class="property">class </em><code class="descclassname">locsearch.termination.no_improvement_termination_criterion.</code><code class="descname">NoImprovementTerminationCriterion</code><span class="sig-paren">(</span><em>max_iterations=100</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.termination.no_improvement_termination_criterion.</code><code class="descname">NoImprovementTerminationCriterion</code><span class="sig-paren">(</span><em>max_iterations=100</em>, <em>improvement_is_bigger=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Criterion to terminate after a set amount of iterations without improvement.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. The default is
-100 iterations.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. The default is
+100 iterations.</li>
+<li><strong>improvement_is_bigger</strong> (<em>bool</em><em>, </em><em>optional</em>) – If this boolean is True, values that are bigger than the previous
+values will be considered as improvements. If it is False, values that
+are smaller than the previous values wil be considered improvements.
+The default is True.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.max_iterations">
-<code class="descname">max_iterations</code><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.max_iterations" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations">
+<code class="descname">_max_iterations</code><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximal amount of iterations without improvement.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -415,7 +481,9 @@ value is encountered.</td>
 <dl class="attribute">
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value">
 <code class="descname">_old_best_value</code><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The last best value. Is initialised as -1.</p>
+<dd><p>The last best value. Is initialised as minus infinite
+(improvement_is_bigger = True)
+or infinite (improvement_is_bigger = False)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -426,11 +494,26 @@ value is encountered.</td>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function">
+<code class="descname">_function</code><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function used to judge if a value is an improvement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <p class="rubric">Examples</p>
 <p>Default amount of iterations without improvement (100), always checking
-the new value. The dataset eval_values is generated. (1 improvement,
-99 cases without improvement, 1 improvement, 110 cases without
-improvement) After this the iterations start:</p>
+the new value. Bigger values are considered improvements. (default) The dataset
+eval_values is generated. (1 improvement, 99 cases without improvement,
+1 improvement, 110 cases without improvement) After this the iterations
+start:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">98</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">110</span><span class="p">)))</span>
@@ -446,8 +529,9 @@ improvement) After this the iterations start:</p>
 <span class="go">200</span>
 </pre></div>
 </div>
-<p>3 iterations without improvement, only checking improved values. The
-dataset eval_values is hardcoded:</p>
+<p>3 iterations without improvement, only checking improved values. Bigger
+values are considered improvements. (default) The dataset eval_values is
+hardcoded:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
@@ -466,6 +550,43 @@ dataset eval_values is hardcoded:</p>
 <span class="go">11</span>
 </pre></div>
 </div>
+<p>Default amount of iterations without improvement (100). Smaller values are
+considered improvements. The dataset eval_values is generated.
+(1 improvement, 99 cases without improvement, 1 improvement, 110 cases
+without improvement) After this the iterations start:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1000</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">98</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">110</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span><span class="o">=</span><span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="n">improvement_is_bigger</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># more code to execute</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># counting iterations + index</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># Amount of iterations.</span>
+<span class="go">200</span>
+</pre></div>
+</div>
+<p>3 iterations without improvement. Smaller values are considered
+improvements. The dataset eval_values is hardcoded:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">old_value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># more code to execute</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># counting iterations + index</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># Amount of iterations.</span>
+<span class="go">5</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value">
 <code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
@@ -478,7 +599,7 @@ evaluation value is calculated without ill effects.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the best evaluation value found for a solution or the new
 evaluation value of a solution. It does not matter which one is
-used. Value must be positive.</td>
+used.</td>
 </tr>
 </tbody>
 </table>
@@ -488,7 +609,7 @@ used. Value must be positive.</td>
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done">
 <code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called after every iteration</p>
-<p>Increments _iterations by 1 if no better value is found.</p>
+<p>Increments _iterations by 1.</p>
 </dd></dl>
 
 <dl class="method">
@@ -500,7 +621,7 @@ used. Value must be positive.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the amount of iterations is smaller
-than max_iterations, if the function returns false the amount of
+than _max_iterations, if the function returns false the amount of
 iterations is bigger than max_iterations</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>

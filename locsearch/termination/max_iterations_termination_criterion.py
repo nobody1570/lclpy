@@ -11,7 +11,7 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
 
     Attributes
     ----------
-    max_iterations : int
+    _max_iterations : int
         The maximal amount of iterations.
     _iterations : int
         The amount of iterations.
@@ -50,7 +50,7 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
 
     def __init__(self, max_iterations=1000):
         super().__init__()
-        self.max_iterations = max_iterations
+        self._max_iterations = max_iterations
         self._iterations = 0
 
     def keep_running(self):
@@ -64,7 +64,7 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
             iterations is bigger than max_iterations
 
         """
-        return self._iterations < self.max_iterations
+        return self._iterations < self._max_iterations
 
     def iteration_done(self):
         """function to be called after every iteration

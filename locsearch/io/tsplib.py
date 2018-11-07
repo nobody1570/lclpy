@@ -142,7 +142,9 @@ def _default_processing(data, dist_func, type=numpy.float_):
 
 
 def read_tsplib(filename):
-    """Converts tsplib file format to useable data structures.
+    """Converts the tsplib file format to useable data structures.
+
+    Currently this function works for the sub types EUC_2D, MAN_2D and CEIL_2D.
 
     Parameters
     ----------
@@ -155,9 +157,10 @@ def read_tsplib(filename):
         The distance matrix for the problem.
     dictionary : {int : int}
         A dictionary that can convert a position the distance matrix to the
-        name given in data.
+        name given in the data.
     metadata : list of str
-        Contains the metadata of the problem.
+        Contains the metadata of the problem. The last entry will always be
+        EOF.
 
     Examples
     --------
