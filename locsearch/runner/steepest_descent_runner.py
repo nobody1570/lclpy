@@ -32,7 +32,7 @@ class SteepestDescentRunner(AbstractRunner):
 
         # create evaluation function
 
-        evaluation = TspEvaluationFunction(distance_matrix)
+        evaluation = TspEvaluationFunction(distance_matrix, move)
 
         # create and initialize solution
 

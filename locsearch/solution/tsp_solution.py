@@ -145,6 +145,25 @@ class TspSolution(AbstractLocalSearchSolution):
 
         self._move_function.move(self._order, move_number)
 
+    def evaluate_move(self, move_number):
+        """Evaluates the quality gained or lost by a potential move.
+
+        Parameters
+        ----------
+        move : tuple of int
+            Contains the move one wishes to know the effects of.
+
+        Returns
+        -------
+        int or float
+            The change in value of the eval-function if the move is performed.
+        """
+
+        # TODO ugly way to get the move --> will need improvement
+        # will probably improve when moves are implemented as an iterable.
+        return self._evaluation_function.delta_evaluate(
+            self._order, self._move_function.possible_swaps[move_number])
+
     def evaluate(self):
         """A function to evaluate the current _order.
 

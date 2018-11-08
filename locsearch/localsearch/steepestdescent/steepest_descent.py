@@ -18,7 +18,7 @@ class SteepestDescent(AbstractLocalSearch):
     A simple example:
 
     .. doctest::
-    
+
         >>> import numpy
         >>> from locsearch.localsearch.steepestdescent.steepest_descent import SteepestDescent
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
@@ -31,7 +31,7 @@ class SteepestDescent(AbstractLocalSearch):
         ...  [8, 1, 7, 0]])
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
-        >>> evaluation = TspEvaluationFunction(distance_matrix)
+        >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> solution = TspSolution(evaluation, move, size)
         >>> steepest_descent = SteepestDescent(solution)
         >>> steepest_descent.run()
@@ -60,36 +60,33 @@ class SteepestDescent(AbstractLocalSearch):
 
         """
 
-        self._solution.set_as_best_order(self._solution.evaluate())
+        base_value = self._solution.evaluate()
+        self._solution.set_as_best_order(base_value)
 
         while self._termination_criterion.keep_running():
 
             # search the neighbourhood for the best move
 
-            best_found_value = math.inf
+            best_found_delta = math.inf
             best_found_move = None
 
             for i in range(self._neighbourhood_size):
 
-                # do move
-                self._solution.move(i)
-
-                # check quality
-                value = self._solution.evaluate()
+                # check quality move
+                delta = self._solution.evaluate_move(i)
 
                 # keep data best move
-                if value < best_found_value:
-                    best_found_value = value
+                if delta < best_found_delta:
+                    best_found_delta = delta
                     best_found_move = i
 
-                # undo move
-                self._solution.undo_move(i)
-
-            # check if the best_found_move improves the value, if this is the
+            # check if the best_found_move improves the delta, if this is the
             # case perform the move and set a new best solution
-            if self._termination_criterion.check_new_value(best_found_value):
+            base_value = base_value + best_found_delta
+
+            if self._termination_criterion.check_new_value(base_value):
                 self._solution.move(best_found_move)
-                self._solution.set_as_best_order(best_found_value)
+                self._solution.set_as_best_order(base_value)
 
         Results = namedtuple('Results', ['best_order', 'best_value'])
 
