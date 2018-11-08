@@ -45,10 +45,17 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
     """
 
-    def __init__(self, distance_matrix):
+    def __init__(self, distance_matrix, move_function=None):
         super().__init__()
         self.distance_matrix = distance_matrix
         self.size = distance_matrix.shape[0]
+
+        if move_function is not None:
+            self._changed_distances = move_function.changed_distances
+            self._transform_next_index_to_current_index = \
+                move_function.transform_next_index_to_current_index
+        else:
+            self.delta_evaluate = self._not_implemented
 
     def evaluate(self, order):
         """Calculates an evaluation value for the function
@@ -68,7 +75,94 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
         return value
 
-    def delta_evaluate(self, other_solution, current_solution):
-        # TODO: depends heavily on the move-type, might be better in the move
-        # class.
+    def delta_evaluate(self, current_solution, move):
+        """Calculates the difference in quality if the move would be performed.
+
+        Parameters
+        ----------
+        current_solution : numpy.ndarray
+            The order that will be compared against.
+        move : tuple of int
+            Contains the move one wishes to know the effects of.
+
+        Returns
+        -------
+        int or float
+            The difference in quality if the move would be performed.
+
+        Examples
+        --------
+        A simple example to demonstrate the use of delta_evaluate:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.evaluation.tsp_evaluation_function import TspEvaluationFunction
+            >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+            >>> dist_matrix = numpy.array(
+            ... [[0, 2, 9, 5],
+            ...  [2, 0, 4, 6],
+            ...  [9, 4, 0, 3],
+            ...  [5, 6, 3, 0]])
+            >>> move_func = TspArraySwap(4)
+            >>> eval_func = TspEvaluationFunction(dist_matrix, move_func)
+            >>> order = numpy.array([2, 0, 1, 3])
+            >>> eval_func.delta_evaluate(order, (1, 2))
+            -6
+            >>> eval_func.delta_evaluate(order, (1, 3))
+            0
+            >>> eval_func.delta_evaluate(order, (2, 3))
+            4
+
+        A more elaborate example:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.evaluation.tsp_evaluation_function import TspEvaluationFunction
+            >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+            >>> dist_matrix = numpy.array(
+            ... [[0, 2, 9, 5, 8, 1],
+            ...  [2, 0, 4, 6, 1, 2],
+            ...  [9, 4, 0, 3, 6, 3],
+            ...  [5, 6, 3, 0, 7, 4],
+            ...  [8, 1, 6, 7, 0, 5],
+            ...  [1, 2, 3, 4, 5, 0]])
+            >>> move_func = TspArraySwap(6)
+            >>> eval_func = TspEvaluationFunction(dist_matrix, move_func)
+            >>> order = numpy.array([0, 5, 2, 1, 3, 4])
+            >>> eval_func.delta_evaluate(order, (1, 4))
+            -2
+            >>> eval_func.delta_evaluate(order, (0, 1))
+            3
+            >>> eval_func.delta_evaluate(order, (2, 4))
+            0
+
+
+        """
+        changed = self._changed_distances(move)
+
+        next_solution_value = 0
+        current_solution_value = 0
+
+        for distances in changed:
+
+            frm = distances[0]
+            to = distances[1]
+
+            # add difference to current value
+            current_solution_value += self.distance_matrix[
+                current_solution[frm]][current_solution[to]]
+
+            # add difference to the "next" value
+
+            (frm, to) = \
+                self._transform_next_index_to_current_index(frm, to, move)
+
+            next_solution_value += self.distance_matrix[
+                current_solution[frm]][current_solution[to]]
+
+        return next_solution_value - current_solution_value
+
+    def _not_implemented(self, *not_used):
         raise NotImplementedError

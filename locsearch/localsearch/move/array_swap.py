@@ -12,6 +12,8 @@ class ArraySwap(object):
 
     Attributes
     ----------
+    size : int
+        The size of the numpy array that is altered.
     possible_swaps : numpy.ndarray
         This 2 dimensional array contains all possible swaps. The 2 points
         that are swapped in a single swap are saved as
@@ -43,6 +45,8 @@ class ArraySwap(object):
 
     def __init__(self, size):
         super().__init__()
+
+        self.size = size
 
         # generate all possible swaps --> this is the neighbourhood
         possible_swaps = []

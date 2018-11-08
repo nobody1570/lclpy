@@ -20,7 +20,7 @@ class SteepestDescentRunner(AbstractRunner):
         """
 
         # read data
-        data = read_tsplib('data/pr76.tsp')
+        data = read_tsplib('data/a280.tsp')
 
         distance_matrix = data.distance_matrix
 
@@ -40,6 +40,13 @@ class SteepestDescentRunner(AbstractRunner):
 
         # create instance of localsearch algorithm and set solution
 
+        steepest_descent = SteepestDescent(solution)
+
         # get results from localsearch algorithm
 
+        results = steepest_descent.run()
+
         # output
+
+        print(results)
+
