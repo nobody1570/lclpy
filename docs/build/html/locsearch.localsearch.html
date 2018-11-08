@@ -70,7 +70,7 @@
 <span id="locsearch-localsearch-abstract-local-search-module"></span><h2>locsearch.localsearch.abstract_local_search module<a class="headerlink" href="#module-locsearch.localsearch.abstract_local_search" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.localsearch.abstract_local_search.AbstractLocalSearch">
-<em class="property">class </em><code class="descclassname">locsearch.localsearch.abstract_local_search.</code><code class="descname">AbstractLocalSearch</code><span class="sig-paren">(</span><em>solution</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.abstract_local_search.</code><code class="descname">AbstractLocalSearch</code><a class="headerlink" href="#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template for the implementation of local search algorithms</p>
 <p>This class should only contain the logic needed to run the local search.
@@ -84,11 +84,10 @@ The localsearch should contain a working terminationCriterion.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The best found solution or a dictionary with the best found
-solution and optionally other information about the terminated
-localsearch.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>Results</strong> – Contains the best found case and the evaluation value for said
+case.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a> or dict</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">collections.namedtuple</td>
 </tr>
 </tbody>
 </table>

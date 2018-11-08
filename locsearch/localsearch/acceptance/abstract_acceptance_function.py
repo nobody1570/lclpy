@@ -16,7 +16,7 @@ class AbstractAcceptanceFunction(ABC):
     def accept(self, current_solution):
         """Checks if the current_solution will be accepted
 
-         Parameters
+        Parameters
         ----------
         current_solution : AbstractSolution
         The current solution.

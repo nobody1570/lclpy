@@ -368,7 +368,9 @@ eval_values is hardcoded:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MustImproveTerminationCriterion</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
-<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="c1"># not_used isn&#39;t necessary, it only suppresses the output</span>
+<span class="gp">... </span>    <span class="c1"># of test.check_new_value</span>
+<span class="gp">... </span>    <span class="n">not_used</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># more code to execute</span>
 <span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># counting iterations + index</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># Amount of iterations.</span>
@@ -385,7 +387,9 @@ eval_values is hardcoded:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MustImproveTerminationCriterion</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
-<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="c1"># not_used isn&#39;t necessary, it only suppresses the output</span>
+<span class="gp">... </span>    <span class="c1"># of test.check_new_value</span>
+<span class="gp">... </span>    <span class="n">not_used</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># more code to execute</span>
 <span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># counting iterations + index</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># Amount of iterations.</span>
@@ -401,6 +405,11 @@ eval_values is hardcoded:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the new evaluation value of a solution.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The function returns True if the value is an improvement, else it
+returns False.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
 </tr>
 </tbody>
 </table>

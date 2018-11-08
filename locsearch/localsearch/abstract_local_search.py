@@ -9,7 +9,7 @@ class AbstractLocalSearch(ABC):
     The localsearch should contain a working terminationCriterion.
     """
 
-    def __init__(self, solution):
+    def __init__(self):
         """__init__
 
         Parameters
@@ -21,7 +21,6 @@ class AbstractLocalSearch(ABC):
         """
 
         super().__init__()
-        self.solution = solution
 
     @abstractmethod
     def run():
@@ -29,10 +28,9 @@ class AbstractLocalSearch(ABC):
 
         Returns
         -------
-        AbstractLocalSearchSolution or dict
-            The best found solution or a dictionary with the best found
-            solution and optionally other information about the terminated
-            localsearch.
+        Results : collections.namedtuple
+            Contains the best found case and the evaluation value for said
+            case.
 
         """
 

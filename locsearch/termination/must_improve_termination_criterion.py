@@ -31,18 +31,20 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
     .. doctest::
 
-            >>> import numpy
-            >>> from locsearch.termination.must_improve_termination_criterion import MustImproveTerminationCriterion
-            >>> eval_values = numpy.array([0, 2, 14, 15, 20, 3, 3, 4, 2, 1, 0, 12])
-            >>> index = 0
-            >>> test = MustImproveTerminationCriterion()
-            >>> while test.keep_running():
-            ...     pass # code to execute
-            ...     test.check_new_value(eval_values[index])
-            ...     pass # more code to execute
-            ...     index += 1 # counting iterations + index
-            >>> index # Amount of iterations.
-            6
+        >>> import numpy
+        >>> from locsearch.termination.must_improve_termination_criterion import MustImproveTerminationCriterion
+        >>> eval_values = numpy.array([0, 2, 14, 15, 20, 3, 3, 4, 2, 1, 0, 12])
+        >>> index = 0
+        >>> test = MustImproveTerminationCriterion()
+        >>> while test.keep_running():
+        ...     pass # code to execute
+        ...     # not_used isn't necessary, it only suppresses the output
+        ...     # of test.check_new_value
+        ...     not_used = test.check_new_value(eval_values[index])
+        ...     pass # more code to execute
+        ...     index += 1 # counting iterations + index
+        >>> index # Amount of iterations.
+        6
 
     Smaller values are considered improvements. 8 iterations with
     improvement. After that there are no more improvements.The dataset
@@ -50,18 +52,20 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
     .. doctest::
 
-            >>> import numpy
-            >>> from locsearch.termination.must_improve_termination_criterion import MustImproveTerminationCriterion
-            >>> eval_values = numpy.array([10, 9, 8, 7, 6, 5, 4, 3, 4, 3, 5, 12])
-            >>> index = 0
-            >>> test = MustImproveTerminationCriterion(False)
-            >>> while test.keep_running():
-            ...     pass # code to execute
-            ...     test.check_new_value(eval_values[index])
-            ...     pass # more code to execute
-            ...     index += 1 # counting iterations + index
-            >>> index # Amount of iterations.
-            9
+        >>> import numpy
+        >>> from locsearch.termination.must_improve_termination_criterion import MustImproveTerminationCriterion
+        >>> eval_values = numpy.array([10, 9, 8, 7, 6, 5, 4, 3, 4, 3, 5, 12])
+        >>> index = 0
+        >>> test = MustImproveTerminationCriterion(False)
+        >>> while test.keep_running():
+        ...     pass # code to execute
+        ...     # not_used isn't necessary, it only suppresses the output
+        ...     # of test.check_new_value
+        ...     not_used = test.check_new_value(eval_values[index])
+        ...     pass # more code to execute
+        ...     index += 1 # counting iterations + index
+        >>> index # Amount of iterations.
+        9
 
 
 
@@ -133,8 +137,18 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         value : int or long or float
             Is the new evaluation value of a solution.
 
+        Returns
+        -------
+        bool
+            The function returns True if the value is an improvement, else it
+            returns False.
+
         """
-        if self._function(value):
+
+        check = self._function(value)
+        if check:
             self._old_best_value = value
         else:
             self._run = False
+
+        return check
