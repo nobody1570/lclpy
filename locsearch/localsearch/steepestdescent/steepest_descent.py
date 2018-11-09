@@ -60,7 +60,7 @@ class SteepestDescent(AbstractLocalSearch):
         """
 
         base_value = self._solution.evaluate()
-        self._solution.set_as_best_order(base_value)
+        self._solution.set_as_best(base_value)
 
         while self._termination_criterion.keep_running():
 
@@ -85,7 +85,7 @@ class SteepestDescent(AbstractLocalSearch):
 
             if self._termination_criterion.check_new_value(base_value):
                 self._solution.move(best_found_move)
-                self._solution.set_as_best_order(base_value)
+                self._solution.set_as_best(base_value)
 
         Results = namedtuple('Results', ['best_order', 'best_value'])
 

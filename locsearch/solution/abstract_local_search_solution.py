@@ -14,13 +14,85 @@ class AbstractLocalSearchSolution(ABC):
         super().__init__()
 
     @abstractmethod
-    def move(self):
-        """Performs a move on data.
+    def move(self, move):
+        """Performs a move.
 
-        The neighbourhood is explored and the current solution is changed to a
-        new solution. move_function is used and the data variable is changed.
+        Parameters
+        ----------
+        move
+            A representation of a move.
 
         """
+
         pass
 
+    @abstractmethod
+    def undo_move(self, move):
+        """Undoes a move.
 
+        Parameters
+        ----------
+        move
+            A representation of the move one wishes to undo.
+
+        """
+
+        pass
+
+    @abstractmethod
+    def get_moves(self):
+        """Iterable. Returns all valid moves in the neighbourhood.
+
+        Returns
+        -------
+        iterable
+            contains a representation of all valid moves in the neighbourhood.
+
+        """
+
+        pass
+
+    @abstractmethod
+    def get_random_move(self):
+        """Returns a random valid move from the neighbourhood.evaluate
+
+        Returns
+        -------
+        move
+            A representation of the move.
+
+        """
+
+        pass
+
+    @abstractmethod
+    def evaluate(self):
+        """Evaluates the current state of the solution.
+
+        Returns
+        -------
+        int or float
+            An indication of the quality of the current state.
+
+        """
+
+        pass
+
+    @abstractmethod
+    def set_as_best(self):
+        """Saves the current state as the best found state."""
+
+        pass
+
+    def evaluate_move(self, move):
+        """Calculates the effects a move would have on the evaluation of the state.
+
+        Returns
+        -------
+        int or float
+            An indication of the difference in quality that would be caused by
+            the move.
+
+        """
+
+        raise NotImplementedError

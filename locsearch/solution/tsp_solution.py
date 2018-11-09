@@ -59,7 +59,7 @@ class TspSolution(AbstractLocalSearchSolution):
         >>> value = solution.evaluate()
         >>> value
         21
-        >>> solution.set_as_best_order(value)
+        >>> solution.set_as_best(value)
         >>> solution.best_order
         array([0, 1, 2, 3])
         >>> solution.best_order_value
@@ -70,7 +70,7 @@ class TspSolution(AbstractLocalSearchSolution):
         >>> value = solution.evaluate()
         >>> value
         15
-        >>> solution.set_as_best_order(value)
+        >>> solution.set_as_best(value)
         >>> solution.best_order
         array([0, 1, 3, 2])
         >>> solution.undo_move((2,3))
@@ -143,8 +143,8 @@ class TspSolution(AbstractLocalSearchSolution):
 
         Returns
         -------
-        tuple of int
-            Represents one unique valid move in the neighbourhood.
+        iterable of tuple of int
+            All the moves in the neighbourhood.
 
         Examples
         --------
@@ -274,7 +274,7 @@ class TspSolution(AbstractLocalSearchSolution):
 
         return self._evaluation_function.evaluate(self._order)
 
-    def set_as_best_order(self, evaluation_value):
+    def set_as_best(self, evaluation_value):
         """Sets the current _order as the new best_order
 
         Parameters
