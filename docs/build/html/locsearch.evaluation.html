@@ -168,6 +168,10 @@ not need to be equal to the weight from B to A.</td>
 <dt id="locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate">
 <code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_solution</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the difference in quality if the move would be performed.</p>
+<p>Note that a move function needs to be passed to the constructor of
+evaluation function for the delta_evaluate to work. The move
+function also needs to have changed_distances and
+transform_next_index_to_current_index properly implemented:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

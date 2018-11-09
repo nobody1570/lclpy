@@ -78,6 +78,11 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
     def delta_evaluate(self, current_solution, move):
         """Calculates the difference in quality if the move would be performed.
 
+        Note that a move function needs to be passed to the constructor of
+        evaluation function for the delta_evaluate to work. The move
+        function also needs to have changed_distances and
+        transform_next_index_to_current_index properly implemented:
+
         Parameters
         ----------
         current_solution : numpy.ndarray
