@@ -43,7 +43,6 @@ class SteepestDescent(AbstractLocalSearch):
         super().__init__()
 
         self._solution = solution
-        self._neighbourhood_size = solution.neighbourhood_size
         self._termination_criterion = MustImproveTerminationCriterion(False)
 
     def run(self):
@@ -70,15 +69,15 @@ class SteepestDescent(AbstractLocalSearch):
             best_found_delta = math.inf
             best_found_move = None
 
-            for i in range(self._neighbourhood_size):
+            for move in self._solution.get_moves():
 
                 # check quality move
-                delta = self._solution.evaluate_move(i)
+                delta = self._solution.evaluate_move(move)
 
                 # keep data best move
                 if delta < best_found_delta:
                     best_found_delta = delta
-                    best_found_move = i
+                    best_found_move = move
 
             # check if the best_found_move improves the delta, if this is the
             # case perform the move and set a new best solution

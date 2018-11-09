@@ -1,5 +1,5 @@
 from locsearch.localsearch.move.array_swap import ArraySwap
-import numpy
+import random
 
 
 class TspArraySwap(ArraySwap):
@@ -18,52 +18,96 @@ class TspArraySwap(ArraySwap):
     ----------
     size : int
         The size of the numpy array that is altered.
-    possible_swaps : numpy.ndarray
-        This 2 dimensional array contains all possible swaps that aren't with
-        the first item of the array. The 2 points that are swapped in a single
-        swap are saved as
-        possible_swaps[index][0] and _possible_swaps[index][1].
-        It contains the neighbourhood; all possible swaps are represented.
-    neighbourhood_size : int
-        The size of the neighboorhood. This is also the size of
-        possible_swaps.
 
     Examples
     --------
-    A simple example:
+    Get all possible moves, you should NEVER do this. You should evaluate only
+    one move at a time. This example is simply to show the behaviour of
+    get_moves and how to perform and undo a move:
 
     ..doctest::
 
         >>> import numpy
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
-        >>> array = numpy.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        >>> array = numpy.array([0, 1, 2, 3, 4])
         >>> swap = TspArraySwap(len(array))
-        >>> swap.neighbourhood_size
-        36
-        >>> swap.move(array, 12)
+        >>> all_moves = []
+        >>> for move in swap.get_moves():
+        ...     all_moves.append(move)
+        >>> all_moves
+        [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+        >>> a_move = all_moves[1] # picking a move (don't do it like this)
+        >>> a_move
+        (1, 3)
+        >>> swap.move(array, a_move) # actually performing a move
         >>> array
-        array([0, 1, 7, 3, 4, 5, 6, 2, 8, 9])
-        >>> swap.move(array, 30)
+        array([0, 3, 2, 1, 4])
+        >>> swap.undo_move(array, a_move) # undoes the move
         >>> array
-        array([0, 1, 7, 3, 4, 5, 2, 6, 8, 9])
+        array([0, 1, 2, 3, 4])
+
+    An example of generating a random move with get_random_move:
+
+    .. doctest::
+
+        >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+        >>> swap = TspArraySwap(10)
+        >>> test = swap.get_random_move()
+        >>> 1 <= test[0] < 10 # checking if the move is valid
+        True
+        >>> 1 <= test[1] < 10 # checking if the move is valid
+        True
+        >>> test[0] != test[1] # checking if the move is valid
+        True
 
     """
 
     def __init__(self, size):
         super().__init__(size)
 
-        # remove swaps with the first item
+    def get_moves(self):
+        """This is a generator used to return all valid moves.
 
-        to_delete = []
-        for i in range(self.neighbourhood_size):
-            if self.possible_swaps[i][0] == 0 or \
-                    self.possible_swaps[i][1] == 0:
-                to_delete.append(i)
+        Note that the swaps with the first position aren't included. When
+        solving TSP problems, the start position doesn't matter, after all.
 
-        self.possible_swaps = numpy.delete(self.possible_swaps, to_delete, 0)
+        Returns
+        -------
+        tuple of int
+            The next valid move.
 
-        # update neighbourhood_size
-        self.neighbourhood_size = self.possible_swaps.shape[0]
+        """
+
+        for i in range(1, self.size):
+            for j in range(i + 1, self.size):
+                yield (i, j)
+
+    def get_random_move(self):
+        """This method is used to generate one random move.
+
+        Note that the swaps with the first position aren't included. When
+        solving TSP problems, the start position doesn't matter, after all.
+
+        Returns
+        -------
+        tuple of int
+            A random valid move.
+        """
+
+        # It's possible to simply generate an i and then generate a bigger j,
+        # but this wouldn't give us a proper distribution. Moves with a bigger
+        # i would have a higher chance to be chosen than those with a smaller
+        # i.
+        i = 0
+        j = 0
+        while i == j:
+            i = random.randrange(1, self.size)
+            j = random.randrange(1, self.size)
+
+        if j < i:
+            i, j = j, i
+
+        return (i, j)
 
     def changed_distances(self, move):
         """Aid function for delta evaluation.

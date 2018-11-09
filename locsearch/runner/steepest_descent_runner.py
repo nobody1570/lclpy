@@ -49,4 +49,3 @@ class SteepestDescentRunner(AbstractRunner):
         # output
 
         print(results)
-

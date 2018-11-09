@@ -1,5 +1,6 @@
 from locsearch.localsearch.move.abstract_move import AbstractMove
 import numpy
+import random
 
 
 class ArraySwap(object):
@@ -14,32 +15,47 @@ class ArraySwap(object):
     ----------
     size : int
         The size of the numpy array that is altered.
-    possible_swaps : numpy.ndarray
-        This 2 dimensional array contains all possible swaps. The 2 points
-        that are swapped in a single swap are saved as
-        possible_swaps[index][0] and possible_swaps[index][1].
-        It contains the neighbourhood; all possible swaps are represented.
-    neighbourhood_size : int
-        The size of the neighboorhood.
 
     Examples
     --------
-    A simple example:
+    Get all possible moves, you should NEVER do this. You should evaluate only
+    one move at a time. This example is simply to show the behaviour of
+    get_moves and how to perform and undo a move:
 
     ..doctest::
 
         >>> import numpy
         >>> from locsearch.localsearch.move.array_swap import ArraySwap
-        >>> array = numpy.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        >>> array = numpy.array([0, 1, 2, 3, 4])
         >>> swap = ArraySwap(len(array))
-        >>> swap.neighbourhood_size
-        45
-        >>> swap.move(array, 21)
+        >>> all_moves = []
+        >>> for move in swap.get_moves():
+        ...     all_moves.append(move)
+        >>> all_moves
+        [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+        >>> a_move = all_moves[5] # picking a move (don't do it like this)
+        >>> a_move
+        (1, 3)
+        >>> swap.move(array, a_move) # actually performing a move
         >>> array
-        array([0, 1, 7, 3, 4, 5, 6, 2, 8, 9])
-        >>> swap.move(array, 39)
+        array([0, 3, 2, 1, 4])
+        >>> swap.undo_move(array, a_move) # undoes the move
         >>> array
-        array([0, 1, 7, 3, 4, 5, 2, 6, 8, 9])
+        array([0, 1, 2, 3, 4])
+
+    An example of generating a random move with get_random_move:
+
+    .. doctest::
+
+        >>> from locsearch.localsearch.move.array_swap import ArraySwap
+        >>> swap = ArraySwap(10)
+        >>> test = swap.get_random_move()
+        >>> 0 <= test[0] < 10 # checking if the move is valid
+        True
+        >>> 0 <= test[1] < 10 # checking if the move is valid
+        True
+        >>> test[0] != test[1] # checking if the move is valid
+        True
 
     """
 
@@ -48,46 +64,72 @@ class ArraySwap(object):
 
         self.size = size
 
-        # generate all possible swaps --> this is the neighbourhood
-        possible_swaps = []
-
-        for i in range(size):
-            for j in range(i + 1, size):
-                possible_swaps.append([i, j])
-
-        self.possible_swaps = numpy.array(possible_swaps)
-
-        self.neighbourhood_size = len(possible_swaps)
-
-    def move(self, array, move_number):
+    def move(self, array, move):
         """Performs the move asked.
 
         Parameters
         ----------
         array : numpy.ndarray
             The array where items will be swapped.
-        move_number : int
-            Has no real meaning. For a certain value, it will always perform
-            the same move. The value needs to be in the interval
-            [0,neighbourhood_size[.
+        move : tuple of int
+            Represents 1 unique move. Valid moves can be retrieved by using
+            get_random_move and get_move.
 
         """
-        self._swap(
-            array,
-            self.possible_swaps[move_number][0],
-            self.possible_swaps[move_number][1])
 
-    def _swap(self, array, index_1, index_2):
-        """swaps the values of index_1 and index_2 in the array.
+        (index_1, index_2) = move
 
+        array[index_1], array[index_2] = array[index_2], array[index_1]
+
+    def undo_move(self, array, move):
+        """Undoes the move asked.
 
         Parameters
         ----------
         array : numpy.ndarray
-            The one-dimensional array where the swap move will be performed on.
-        index_1, index_2 : int
-            The indexes of the values of the array that need to be swapped.
+            The array where items will be swapped.
+        move : tuple of int
+            Represents 1 unique move. Valid moves can be retrieved by using
+            get_random_move and get_move.
 
         """
 
-        array[index_1], array[index_2] = array[index_2], array[index_1]
+        self.move(array, move)
+
+    def get_moves(self):
+        """This is a generator used to return all valid moves.
+
+        Returns
+        -------
+        tuple of int
+            The next valid move.
+
+        """
+
+        for i in range(self.size):
+            for j in range(i + 1, self.size):
+                yield (i, j)
+
+    def get_random_move(self):
+        """This method is used to generate one random move.
+
+        Returns
+        -------
+        tuple of int
+            A random valid move.
+        """
+
+        # It's possible to simply generate an i and then generate a bigger j,
+        # but this wouldn't give us a proper distribution. Moves with a bigger
+        # i would have a higher chance to be chosen than those with a smaller
+        # i.
+        i = 0
+        j = 0
+        while i == j:
+            i = random.randrange(self.size)
+            j = random.randrange(self.size)
+
+        if j < i:
+            i, j = j, i
+
+        return (i, j)
