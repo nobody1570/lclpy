@@ -123,10 +123,11 @@ class ArraySwap(object):
         # but this wouldn't give us a proper distribution. Moves with a bigger
         # i would have a higher chance to be chosen than those with a smaller
         # i.
-        i = 0
-        j = 0
+
+        i = random.randrange(self.size)
+        j = random.randrange(self.size)
+
         while i == j:
-            i = random.randrange(self.size)
             j = random.randrange(self.size)
 
         if j < i:

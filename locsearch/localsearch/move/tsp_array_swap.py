@@ -98,10 +98,11 @@ class TspArraySwap(ArraySwap):
         # but this wouldn't give us a proper distribution. Moves with a bigger
         # i would have a higher chance to be chosen than those with a smaller
         # i.
-        i = 0
-        j = 0
+
+        i = random.randrange(1, self.size)
+        j = random.randrange(1, self.size)
+
         while i == j:
-            i = random.randrange(1, self.size)
             j = random.randrange(1, self.size)
 
         if j < i:

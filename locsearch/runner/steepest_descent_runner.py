@@ -7,45 +7,85 @@ from locsearch.solution.tsp_solution import TspSolution
 
 
 class SteepestDescentRunner(AbstractRunner):
-    """Loads a tsp problem, etc.
+    """Loads a tsp problem and performs a steepestdescent on said problem.
+
+    Attributes
+    ---------
+    _data
+        The data read from a file.
+    _distance_matrix : numpy.ndarray
+        The distance matrix for the problem.
+    _size : int
+        The amount of points in the tsp problem.
+    _move_function : AbstractMove
+        The move function that needs to be used.
+    _evaluation_function : AbstractEvaluationFunction
+        The evaluation function used for the problem.
+    _solution : AbstractLocalSearchSolution
+        The solution object for the problem.
+    _algorithm : SteepestDescent
+        The steepest descent algorithm used.
+    results
+        The results from the localsearch.
+
+    Examples
+    --------
+    Default running:
+
+    .. code-block:: python
+
+        from locsearch.runner.steepest_descent_runner import SteepestDescentRunner
+        runner = SteepestDescentRunner()
+        runner.run()
+
 
     """
 
     def __init__(self):
         super().__init__()
 
-    def run(self):
-        """initializes and runs an instance of the SteepestDescent class
+    def read(self, path):
+        """Reads a file.
+
+        Parameters
+        ----------
+        path : str
+            The relative or absolute path to the file.
 
         """
 
-        # read data
-        data = read_tsplib('data/a280.tsp')
+        self._data = read_tsplib(path)
+        self._distance_matrix = self._data.distance_matrix
+        self._size = self._distance_matrix.shape[0]
 
-        distance_matrix = data.distance_matrix
+    def define_move_function(self):
+        """Creating and initialising a move function."""
 
-        size = distance_matrix.shape[0]
+        self._move_function = TspArraySwap(self._size)
 
-        # create move
+    def define_evaluation_function(self):
+        """Creating and initialising an evaluation function."""
 
-        move = TspArraySwap(size)
+        self._evaluation_function = TspEvaluationFunction(
+            self._distance_matrix, self._move_function)
 
-        # create evaluation function
+    def define_solution(self):
+        """Creating and initialising the solution object."""
 
-        evaluation = TspEvaluationFunction(distance_matrix, move)
+        self._solution = TspSolution(
+            self._evaluation_function, self._move_function, self._size)
 
-        # create and initialize solution
+    def define_algorithm(self):
+        """Creating and initialising a steepest descent algorithm."""
 
-        solution = TspSolution(evaluation, move, size)
+        self._algorithm = SteepestDescent(self._solution)
 
-        # create instance of localsearch algorithm and set solution
+    def run_algorithm(self):
+        """Starts running the algorithm."""
 
-        steepest_descent = SteepestDescent(solution)
+        return self._algorithm.run()
 
-        # get results from localsearch algorithm
+    def output(self):
+        """Handles the output."""
 
-        results = steepest_descent.run()
-
-        # output
-
-        print(results)
+        print(self.results)

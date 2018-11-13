@@ -48,15 +48,70 @@
 <p>Template to create Move-objects.def</p>
 <p>This object is used to explore new Solutions in a neighbourhood.</p>
 <dl class="method">
+<dt id="locsearch.localsearch.move.abstract_move.AbstractMove.get_moves">
+<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generator used to return all valid moves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The next valid move.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.move.abstract_move.AbstractMove.get_random_move">
+<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.get_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method used to generate a random move.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove.move">
-<code class="descname">move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.move" title="Permalink to this definition">¶</a></dt>
+<code class="descname">move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>performs a move</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> – The dataset that is being explored. It will be altered after the
-method call.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</li>
+<li><strong>move</strong> – A representation of a valid move.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.move.abstract_move.AbstractMove.undo_move">
+<code class="descname">undo_move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.undo_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs a move</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</li>
+<li><strong>move</strong> – A representation of the move one wishes to undo</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
