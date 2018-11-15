@@ -338,7 +338,8 @@ def _matrix_processing(data, dimension):
 def read_tsplib(filename):
     """Converts the tsplib file format to useable data structures.
 
-    Currently this function works for the sub types EUC_2D, MAN_2D and CEIL_2D.
+    Currently this function only works for TSP problems. The crystallography
+    problems don't work with this function.
 
     Parameters
     ----------
@@ -393,6 +394,7 @@ def read_tsplib(filename):
         solve = _default_processing
 
         if 'EUC_2D' in type_metadata[1]:
+            dtype = numpy.int_
             dist_func = _euclidian
         elif 'MAN_2D' in type_metadata[1]:
             dtype = numpy.int_
