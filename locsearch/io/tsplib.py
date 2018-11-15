@@ -2,6 +2,7 @@ import string
 import numpy
 import math
 import collections
+import itertools
 
 
 def _euclidian(from_x, from_y, to_x, to_y):
@@ -105,15 +106,6 @@ def _default_processing(data, dist_func, type=numpy.float_):
 
     """
 
-    # make dictionary
-    dictionary = {}
-
-    position = 0
-
-    for point in data:
-        dictionary[position] = int(point[0])
-        position += 1
-
     # make dist_matrix
     size = len(data)
 
@@ -135,10 +127,106 @@ def _default_processing(data, dist_func, type=numpy.float_):
             dist_matrix[i][j] = dist_func(
                 i_dist_x, i_dist_y, j_dist_x, j_dist_y)
 
-    DefaultProcessingResults = collections.namedtuple(
-        'DefaultProcessingResults', ['distance_matrix', 'dictionary'])
+    return dist_matrix
 
-    return DefaultProcessingResults(dist_matrix, dictionary)
+
+def _upper_row_processing(data, dimension):
+    """Creates a dict and initialises the distance matrix for a 2D tsp problem.
+
+    Parameters
+    ----------
+    data : list of string
+        The strings in the list contain the upper row of the distance matrix
+    dimension : int
+        The dimension of the distance matrix.
+    Returns
+    -------
+    dist_matrix : numpy.ndarray
+        The distance matrix for the problem.
+
+    """
+
+    # make distance matrix
+    dist_matrix = numpy.full((dimension, dimension), 0, dtype=numpy.int_)
+
+    iterator = itertools.chain.from_iterable(data)
+
+    for i in range(dimension):
+        for j in range(i, dimension):
+            if i != j:
+                value = int(next(iterator))
+
+                if value == 0:
+                    value = int(next(iterator))
+                dist_matrix[i][j] = int(value)
+                dist_matrix[j][i] = int(value)
+
+    return dist_matrix
+
+
+def _lower_row_processing(data, dimension):
+    """Creates a dict and initialises the distance matrix for a 2D tsp problem.
+
+    Parameters
+    ----------
+    data : list of string
+        The strings in the list contain the lower row of the distance matrix
+    dimension : int
+        The dimension of the distance matrix.
+    Returns
+    -------
+    dist_matrix : numpy.ndarray
+        The distance matrix for the problem.
+
+    """
+
+    # make distance matrix
+    dist_matrix = numpy.full((dimension, dimension), 0, dtype=numpy.int_)
+
+    iterator = itertools.chain.from_iterable(data)
+
+    for i in range(dimension):
+        for j in range(i + 1):
+            if i != j:
+                value = int(next(iterator))
+
+                if value == 0:
+                    value = int(next(iterator))
+                dist_matrix[i][j] = int(value)
+                dist_matrix[j][i] = int(value)
+
+    return dist_matrix
+
+
+def _matrix_processing(data, dimension):
+    """Creates a dict and initialises the distance matrix for a 2D tsp problem.
+
+    Parameters
+    ----------
+    data : list of string
+        The strings in the list contain the full distance matrix
+    dimension : int
+        The dimension of the distance matrix.
+    Returns
+    -------
+    dist_matrix : numpy.ndarray
+        The distance matrix for the problem.
+
+    """
+
+    # make distance matrix
+    dist_matrix = numpy.full((dimension, dimension), 0, dtype=numpy.int_)
+
+    iterator = itertools.chain.from_iterable(data)
+
+    for i in range(dimension):
+        for j in range(dimension):
+
+            value = int(next(iterator))
+            dist_matrix[i][j] = int(value)
+            dist_matrix[j][i] = int(value)
+
+    return dist_matrix
 
 
 def read_tsplib(filename):
@@ -194,25 +282,56 @@ def read_tsplib(filename):
     # choose problem type
 
     dtype = None
+    dist_func = None
     if 'TSP' in type_metadata[0]:
         solve = _default_processing
-    else:
-        raise NotImplementedError
 
-    if 'EUC_2D' in type_metadata[1]:
-        dist_func = _euclidian
-    elif 'MAN_2D' in type_metadata[1]:
-        dist_func = _manhattan
-    elif 'CEIL_2D' in type_metadata[1]:
-        dtype = numpy.int_
-        dist_func = _euclidian_rounded_up
-    else:
-        raise NotImplementedError
+        if 'EUC_2D' in type_metadata[1]:
+            dist_func = _euclidian
+        elif 'MAN_2D' in type_metadata[1]:
+            dist_func = _manhattan
+        elif 'CEIL_2D' in type_metadata[1]:
+            dtype = numpy.int_
+            dist_func = _euclidian_rounded_up
 
-    if dtype is None:
-        (dist_matrix, dictionary) = solve(data, dist_func)
+        elif any('EXPLICIT' in s for s in metadata):
+
+            if any('UPPER_ROW' in s for s in metadata) \
+                    or any('UPPER_DIAG_ROW' in s for s in metadata):
+                dtype = numpy.int_
+                solve = _upper_row_processing
+                dimension_metadata = [s for s in metadata if 'DIMENSION' in s]
+                dimension = int(dimension_metadata[0].split()[-1])
+
+            elif any('LOWER_ROW' in s for s in metadata) \
+                    or any('LOWER_DIAG_ROW' in s for s in metadata):
+                dtype = numpy.int_
+                solve = _lower_row_processing
+                dimension_metadata = [s for s in metadata if 'DIMENSION' in s]
+                dimension = int(dimension_metadata[0].split()[-1])
+
+            elif any('FULL_MATRIX' in s for s in metadata):
+                dtype = numpy.int_
+                solve = _matrix_processing
+                dimension_metadata = [s for s in metadata if 'DIMENSION' in s]
+                dimension = int(dimension_metadata[0].split()[-1])
+            else:
+                raise NotImplementedError
+        else:
+            raise NotImplementedError
+
+    if dist_func is None:
+        dist_matrix = solve(data, dimension)
+    elif dtype is None:
+        dist_matrix = solve(data, dist_func)
     else:
-        (dist_matrix, dictionary) = solve(data, dist_func, dtype)
+        dist_matrix = solve(data, dist_func, dtype)
+
+    # make dictionary, is the same in all cases
+    dictionary = {}
+
+    for i in range(dist_matrix.shape[0]):
+        dictionary[i] = i + 1
 
     TsplibData = collections.namedtuple(
         'TsplibData', ['distance_matrix', 'dictionary', 'metadata'])
