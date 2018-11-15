@@ -24,12 +24,13 @@ def _euclidian(from_x, from_y, to_x, to_y):
 
     Returns
     -------
-    float
-        The euclidian distance between the 2 points.
+    int
+        The euclidian distance between the 2 points. Rounded to the nearest
+        int.
 
 
     """
-    return math.sqrt((to_x - from_x)**2 + (to_y - from_y)**2)
+    return int(round(math.sqrt((to_x - from_x)**2 + (to_y - from_y)**2)))
 
 
 def _euclidian_rounded_up(from_x, from_y, to_x, to_y):
@@ -73,12 +74,13 @@ def _manhattan(from_x, from_y, to_x, to_y):
 
     Returns
     -------
-    int or float
-        The manhattan distance between the 2 points.
+    int
+        The manhattan distance between the 2 points. Rounded to the
+        nearest int.
 
 
     """
-    return abs(to_x - from_x) + abs(to_y - from_y)
+    return int(round(abs(to_x - from_x) + abs(to_y - from_y)))
 
 
 def _degrees_to_radian(angle_degrees):
@@ -121,8 +123,8 @@ def _geo(from_x, from_y, to_x, to_y):
 
     Returns
     -------
-    int or float
-        The distance between the 2 points.
+    int
+        The distance between the 2 points in km, rounded to the nearest int.
 
 
     """
@@ -137,11 +139,44 @@ def _geo(from_x, from_y, to_x, to_y):
 
     # calculate distance
 
-    q1 = math.cos(from_y_radian - to_y_radian)
-    q2 = math.cos(from_x_radian - to_x_radian)
-    q3 = math.cos(from_x_radian + to_x_radian)
+    q1 = math.cos(to_y_radian - from_y_radian)
+    q2 = math.cos(to_x_radian - from_x_radian)
+    q3 = math.cos(to_x_radian + from_x_radian)
     return int(
         RRR * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0)
+
+
+def _att(from_x, from_y, to_x, to_y):
+    """Calculates a special pseudo-euclidian distance between 2 points in 2D space.
+
+    Parameters
+    ----------
+    from_x : int or float
+        The x coordinate of the 1st point.
+    from_y : int or float
+        The y coordinate of the 1st point.
+    to_x : int or float
+        The x coordinate of the 2nd point.
+    to_y : int or float
+        The y coordinate of the 2nd point.
+
+    Returns
+    -------
+    int
+        The distance between the 2 points.
+
+
+    """
+
+    xd = to_x - from_x
+    yd = to_y - from_y
+    rij = math.sqrt((xd * xd + yd * yd) / 10.0)
+    tij = int(round(rij))
+
+    if tij < rij:
+        tij += 1
+
+    return tij
 
 
 def _default_processing(data, dist_func, type=numpy.float_):
@@ -360,6 +395,7 @@ def read_tsplib(filename):
         if 'EUC_2D' in type_metadata[1]:
             dist_func = _euclidian
         elif 'MAN_2D' in type_metadata[1]:
+            dtype = numpy.int_
             dist_func = _manhattan
         elif 'CEIL_2D' in type_metadata[1]:
             dtype = numpy.int_
@@ -367,6 +403,9 @@ def read_tsplib(filename):
         elif 'GEO' in type_metadata[1]:
             dtype = numpy.int_
             dist_func = _geo
+        elif 'ATT' in type_metadata[1]:
+            dtype = numpy.int_
+            dist_func = _att
 
         elif any('EXPLICIT' in s for s in metadata):
 
