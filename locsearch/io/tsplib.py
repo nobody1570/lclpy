@@ -4,6 +4,9 @@ import math
 import collections
 import itertools
 
+PI = 3.141592
+RRR = 6378.388
+
 
 def _euclidian(from_x, from_y, to_x, to_y):
     """Calculates the euclidian distance between 2 points in 2D space.
@@ -78,6 +81,69 @@ def _manhattan(from_x, from_y, to_x, to_y):
     return abs(to_x - from_x) + abs(to_y - from_y)
 
 
+def _degrees_to_radian(angle_degrees):
+    """Converts radian to degrees.
+
+    The numbers behind the point are minutes, not degrees. This is simply a
+    convention when of tsplib, don't worry about it.
+
+    Parameters
+    ----------
+    angle_degrees : float
+        An angle in degrees.
+
+    Returns
+    -------
+    float
+        The angle in radian.
+
+    """
+
+    degrees = int(angle_degrees)
+    minutes = angle_degrees - degrees
+
+    return PI * (degrees + 5.0 * minutes / 3.0) / 180.0
+
+
+def _geo(from_x, from_y, to_x, to_y):
+    """Calculates the manhattan distance between 2 points on the globe.
+
+    Parameters
+    ----------
+    from_x : int or float
+        Latitude of the 1st point.
+    from_y : int or float
+        Longitude of the 1st point.
+    to_x : int or float
+        Latitude of the 2nd point.
+    to_y : int or float
+        Longitude of the 2nd point.
+
+    Returns
+    -------
+    int or float
+        The distance between the 2 points.
+
+
+    """
+
+    # convert to radian
+
+    from_x_radian = _degrees_to_radian(from_x)
+    to_x_radian = _degrees_to_radian(to_x)
+
+    from_y_radian = _degrees_to_radian(from_y)
+    to_y_radian = _degrees_to_radian(to_y)
+
+    # calculate distance
+
+    q1 = math.cos(from_y_radian - to_y_radian)
+    q2 = math.cos(from_x_radian - to_x_radian)
+    q3 = math.cos(from_x_radian + to_x_radian)
+    return int(
+        RRR * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0)
+
+
 def _default_processing(data, dist_func, type=numpy.float_):
     """Creates a dict and calculates the distance matrix for a 2D tsp problem.
 
@@ -114,17 +180,22 @@ def _default_processing(data, dist_func, type=numpy.float_):
 
     for i in range(size):
 
+        # ditance between a point and itself is always zero.
+        dist_matrix[i][i] = 0
+
         # get coordinates point
         i_dist_x = data[i][1]
         i_dist_y = data[i][2]
 
-        for j in range(size):
+        for j in range(i + 1, size):
             # get coordinates all points
             j_dist_x = data[j][1]
             j_dist_y = data[j][2]
 
             # calculate distance
             dist_matrix[i][j] = dist_func(
+                i_dist_x, i_dist_y, j_dist_x, j_dist_y)
+            dist_matrix[j][i] = dist_func(
                 i_dist_x, i_dist_y, j_dist_x, j_dist_y)
 
     return dist_matrix
@@ -293,6 +364,9 @@ def read_tsplib(filename):
         elif 'CEIL_2D' in type_metadata[1]:
             dtype = numpy.int_
             dist_func = _euclidian_rounded_up
+        elif 'GEO' in type_metadata[1]:
+            dtype = numpy.int_
+            dist_func = _geo
 
         elif any('EXPLICIT' in s for s in metadata):
 
