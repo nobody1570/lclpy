@@ -1,5 +1,6 @@
 from locsearch.runner.abstract_runner import AbstractRunner
-from locsearch.localsearch.steepestdescent.steepest_descent import SteepestDescent
+from locsearch.localsearch.steepestdescent.steepest_descent \
+    import SteepestDescent
 from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
 from locsearch.evaluation.tsp_evaluation_function import TspEvaluationFunction
 from locsearch.io.tsplib import read_tsplib

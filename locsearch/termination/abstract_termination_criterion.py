@@ -5,9 +5,7 @@ class AbstractTerminationCriterion(ABC):
     """Template to create terminationcriterions.
 
     This is a template for termination criterions. It's possible to use
-    multiple criterions at once. If the criterions use data that's different,
-    it's better to not combine them, simply implement them as seperate
-    termination criterions.
+    multiple criterions at once.
 
     """
 
@@ -27,3 +25,50 @@ class AbstractTerminationCriterion(ABC):
 
         """
         pass
+
+    def iteration_done(self):
+        """function to be called after every iteration.
+
+        Does not need to be used or implemented.
+
+        """
+        pass
+
+    def check_new_value(self, value):
+        """Checks a value.
+
+        Does not need to be used or implemented.
+
+        Parameters
+        ----------
+        value : int, float
+            A value from the evaluation function.
+
+        """
+
+        pass
+
+    def check_variable(self, variable):
+        """Checks a variable specific to an implementation.
+
+        Does not need to be used or implemented
+
+        Parameters
+        ----------
+        variable
+            The value of a certain value of a specific algorithm.
+
+        """
+
+        pass
+
+    def start_timing(self):
+        """Starts an internal timer if needed.
+
+        Does not need to be used or implemented.
+
+        """
+
+        pass
+
+
