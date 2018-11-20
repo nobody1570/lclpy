@@ -55,10 +55,8 @@ class AbstractEvaluationFunction(ABC):
         Returns
         -------
         int or float
-            the difference in quality between other_solution
-            and current_solution.
-            Note that this is equivalent to
-            evaluate(other_solution)-evaluate(current_solution).
+            the difference in quality between the current state and the
+            potential next state.
 
         """
         raise NotImplementedError
