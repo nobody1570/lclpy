@@ -71,7 +71,7 @@ class AbstractRunner(ABC):
         pass
 
     def run(self, path):
-        """initializes and runs an instance of the SteepestDescent class.
+        """initializes and runs an instance of an AbstractLocalSearch class.
 
         Parameters
         ----------

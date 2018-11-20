@@ -8,7 +8,10 @@ from locsearch.solution.tsp_solution import TspSolution
 
 
 class SteepestDescentRunner(AbstractRunner):
-    """Loads a tsp problem and performs a steepestdescent on said problem.
+    """Loads a problem and performs a steepestdescent on said problem.
+
+    Note that the default implementation only works with tsp problems from
+    tsplib.
 
     Attributes
     ---------
