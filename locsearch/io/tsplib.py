@@ -30,11 +30,11 @@ def _euclidian(from_x, from_y, to_x, to_y):
 
 
     """
+
     return int(round(math.sqrt((to_x - from_x)**2 + (to_y - from_y)**2)))
 
 
 def _euclidian_rounded_up(from_x, from_y, to_x, to_y):
-    return int(math.ceil(math.sqrt((to_x - from_x)**2 + (to_y - from_y)**2)))
     """Calculates the euclidian distance between 2 points in 2D space.
 
     Parameters
@@ -56,6 +56,8 @@ def _euclidian_rounded_up(from_x, from_y, to_x, to_y):
 
 
     """
+
+    return int(math.ceil(math.sqrt((to_x - from_x)**2 + (to_y - from_y)**2)))
 
 
 def _manhattan(from_x, from_y, to_x, to_y):
@@ -80,6 +82,7 @@ def _manhattan(from_x, from_y, to_x, to_y):
 
 
     """
+
     return int(round(abs(to_x - from_x) + abs(to_y - from_y)))
 
 
@@ -87,7 +90,7 @@ def _degrees_to_radian(angle_degrees):
     """Converts radian to degrees.
 
     The numbers behind the point are minutes, not degrees. This is simply a
-    convention when of tsplib, don't worry about it.
+    convention of tsplib, don't worry about it.
 
     Parameters
     ----------
@@ -129,7 +132,7 @@ def _geo(from_x, from_y, to_x, to_y):
 
     """
 
-    # convert to radian
+    # convert degrees to radian
 
     from_x_radian = _degrees_to_radian(from_x)
     to_x_radian = _degrees_to_radian(to_x)
@@ -184,8 +187,8 @@ def _default_processing(data, dist_func, type=numpy.float_):
 
     Parameters
     ----------
-    data : list of string
-        The strings in the list always contain the name of a point,
+    data : list of list
+        The lists in the list always contain the name of a point,
         the x coordinate and the y coordinate in that order seperated by
         spaces.
     dist_func : function
@@ -241,8 +244,8 @@ def _upper_row_processing(data, dimension):
 
     Parameters
     ----------
-    data : list of string
-        The strings in the list contain the upper row of the distance matrix
+    data : list of list
+        The lists in the list contain the upper row of the distance matrix
     dimension : int
         The dimension of the distance matrix.
     Returns
@@ -253,17 +256,24 @@ def _upper_row_processing(data, dimension):
     """
 
     # make distance matrix
+    # all values of matrix are initialised as 0
     dist_matrix = numpy.full((dimension, dimension), 0, dtype=numpy.int_)
 
+    # create iterator to iterate over all ints in list
     iterator = itertools.chain.from_iterable(data)
 
+    # fill the distance matrix
     for i in range(dimension):
         for j in range(i, dimension):
+
+            # skip first diagonal --> will always be 0
             if i != j:
                 value = int(next(iterator))
 
+                # if values of the first diagonal are included, skip them.
                 if value == 0:
                     value = int(next(iterator))
+
                 dist_matrix[i][j] = int(value)
                 dist_matrix[j][i] = int(value)
 
@@ -287,17 +297,24 @@ def _lower_row_processing(data, dimension):
     """
 
     # make distance matrix
+    # all values of matrix are initialised as 0
     dist_matrix = numpy.full((dimension, dimension), 0, dtype=numpy.int_)
 
+    # create iterator to iterate over all ints in list
     iterator = itertools.chain.from_iterable(data)
 
+    # fill the distance matrix
     for i in range(dimension):
         for j in range(i + 1):
+
+            # skip first diagonal --> will always be 0
             if i != j:
                 value = int(next(iterator))
 
+                # if values of the first diagonal are included, skip them.
                 if value == 0:
                     value = int(next(iterator))
+
                 dist_matrix[i][j] = int(value)
                 dist_matrix[j][i] = int(value)
 
@@ -323,8 +340,10 @@ def _matrix_processing(data, dimension):
     # make distance matrix
     dist_matrix = numpy.full((dimension, dimension), 0, dtype=numpy.int_)
 
+    # create iterator to iterate over all ints in list
     iterator = itertools.chain.from_iterable(data)
 
+    # fill matrix
     for i in range(dimension):
         for j in range(dimension):
 
@@ -339,7 +358,7 @@ def read_tsplib(filename):
     """Converts the tsplib file format to useable data structures.
 
     Currently this function only works for TSP problems. The crystallography
-    problems don't work with this function.
+    problems can't be parsed with this function.
 
     Parameters
     ----------
@@ -352,7 +371,7 @@ def read_tsplib(filename):
         The distance matrix for the problem.
     dictionary : {int : int}
         A dictionary that can convert a position the distance matrix to the
-        name given in the data.
+        name given in the data. This dict can be useful when generating output.
     metadata : list of str
         Contains the metadata of the problem. The last entry will always be
         EOF.
@@ -368,6 +387,7 @@ def read_tsplib(filename):
 
     """
 
+    # init
     metadata = []
     data = []
 
@@ -443,11 +463,13 @@ def read_tsplib(filename):
         dist_matrix = solve(data, dist_func, dtype)
 
     # make dictionary, is the same in all cases
+    # tsplib files start counting from 1, not from 0
     dictionary = {}
 
     for i in range(dist_matrix.shape[0]):
         dictionary[i] = i + 1
 
+    # return results
     TsplibData = collections.namedtuple(
         'TsplibData', ['distance_matrix', 'dictionary', 'metadata'])
     return TsplibData(dist_matrix, dictionary, metadata)
