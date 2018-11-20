@@ -13,13 +13,16 @@ class AbstractAcceptanceFunction(ABC):
         super().__init__()
 
     @abstractmethod
-    def accept(self, current_solution):
+    def accept(self, delta_value):
         """Checks if the current_solution will be accepted
 
         Parameters
         ----------
-        current_solution : AbstractSolution
-        The current solution.
+        delta_value : int or float
+            The difference in quality between the current state and the
+            potential new state. This can be calculated by substracting the
+            quality of the current state from the quality of the potential new
+            state.
 
         Returns
         -------

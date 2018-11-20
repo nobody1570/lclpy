@@ -7,20 +7,22 @@ import math
 class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
     """An acceptance function for simulated annealing.
 
+    A smaller quality value is assumed to be better than a bigger one.
+
     Parameters
     ----------
-    diff_multiplier : int or float
+    diff_multiplier : int or float, optional
         The delta_value will be multiplied by this multiplier. A bigger value
         leads to more solutions being accepted, while a smaller value will
         lead to less solutions being accepted. Using a negative value is
         possible, but this should only be attempted when you know what you're
-        doing.
-    multiplier : int or float
-        Is multiplied with the whole probability. Must be positive. Should be
-        in the interval ]0,1[. This multiplier can be used to decrease the
-        odds of values being accepted. While it is possible to use a
-        multiplier greater than 1, don't do this if you don't know what you're
-        doing.
+        doing. The default value is 1.
+    multiplier : int or float, optional
+        Will be multiplied with the whole probability. Must be positive.
+        Should be in the interval ]0,1]. This multiplier can be used to
+        decrease the odds of values being accepted. While it is possible to use
+        a multiplier greater than 1, don't do this if you don't know what
+        you're doing. The default value is 1.
 
     Attributes
     ----------
@@ -28,6 +30,35 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
         The delta_value will be multiplied by this multiplier.
     _multiplier : int or float
         Is multiplied with the whole probability.
+
+    Examples
+    --------
+    A simple example of the default behaviour, delta (200) and
+    temperature (1000) are arbitrarily chosen, they have little meaning in
+    this example:
+
+    .. doctest::
+
+        >>> import random
+        >>> from locsearch.localsearch.acceptance.simulated_annealing_acceptance_function \\
+        ...     import SimulatedAnnealingAcceptanceFunction
+        ... # set seed of random
+        ... # this isn't needed, it's only used to make sure the results will
+        ... # always be the same.
+        >>> random.seed(2)
+        ... # init
+        >>> test = SimulatedAnnealingAcceptanceFunction()
+        ... # tests
+        >>> test.accept(200, 1000)
+        False
+        >>> test.accept(200, 1000)
+        False
+        >>> test.accept(200, 1000)
+        True
+        >>> test.accept(200, 1000)
+        True
+        >>> test.accept(200, 1000)
+        False
 
     """
 
@@ -38,10 +69,16 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
         self._multiplier = multiplier
 
     def accept(self, delta_value, temperature):
-        """Function to reject or accept certain solutions.
+        """Function to reject or accept certain potential solutions.
 
-        The chance of a solution being accepted is
-        _multiplier*e^(-(self._diff_multiplier*delta_value)/temperature).
+        The chance of a solution being accepted is equal to:
+
+        .. math::
+
+            \\_multiplier*e^{\\dfrac{\\_diff\\_multiplier*delta\\_value}{temperature}}
+
+        .. The formula:
+           _multiplier*e^(-(_diff_multiplier*delta_value)/temperature)
 
         Parameters
         ----------
@@ -49,8 +86,8 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
             The difference in quality between 2 possible solutions. This value
             should be positive. While working with negative numbers is
             possible, you'll probably will just be wasting processing power
-            when making normal use of this class; Solutions will be always
-            accepted after all. Only do it when you know what you're doing.
+            when making use of this class; Solutions will be always accepted
+            after all. Only do it when you know what you're doing.
         temperature : int or float
             A value that determines the chance of a solution being accepted.
             How bigger this value, how higher the chance of a solution being
@@ -64,6 +101,7 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
 
         """
 
+        # calculate probability
         probability = self._multiplier * \
             math.exp(-(self._diff_multiplier * delta_value) / temperature)
 
