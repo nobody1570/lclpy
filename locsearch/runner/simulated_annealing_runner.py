@@ -45,6 +45,17 @@ class SimulatedAnnealingRunner():
     results
         The results from the localsearch.
 
+    Examples
+    --------
+    Using the runner:
+
+    .. code-block:: python
+
+        from locsearch.runner.simulated_annealing_runner \\
+            import SimulatedAnnealingRunner
+        runner = SimulatedAnnealingRunner()
+        runner.run(path_to_file)
+
     """
 
     def __init__(self):

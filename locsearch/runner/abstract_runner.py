@@ -10,6 +10,11 @@ class AbstractRunner(ABC):
     instance variables for data that needs to be remembered for use in other
     methods.
 
+    Attributes
+    ----------
+    results : collections.namedtuple
+        The results from the execution of the algorithm.
+
     """
 
     def __init__(self):
@@ -42,13 +47,22 @@ class AbstractRunner(ABC):
 
     @abstractmethod
     def define_solution(self):
-        """Creating and initialising the solution object."""
+        """Creating and initialising a solution object."""
+
+        pass
+
+    def define_termination_criterion(self):
+        """Creating and initialising a termination criterion, if needed.
+
+        This function does not always need to be implemented.
+
+        """
 
         pass
 
     @abstractmethod
     def define_algorithm(self):
-        """Creating and initialising an AbstrctLocalSearchObject."""
+        """Creating and initialising an AbstractLocalSearch instance."""
 
         pass
 
@@ -58,11 +72,11 @@ class AbstractRunner(ABC):
 
         Returns
         -------
-        results
+        results : collections.namedtuple
             The results.
         """
 
-        return None
+        pass
 
     @abstractmethod
     def output(self):
@@ -99,6 +113,11 @@ class AbstractRunner(ABC):
 
         self.define_solution()
         print('--- solution object defined')
+
+        # if needed create and init termination criterion
+
+        self.define_termination_criterion()
+        print('--- termination criterion defined')
 
         # create instance of localsearch algorithm and set solution
 

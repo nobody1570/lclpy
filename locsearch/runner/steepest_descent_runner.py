@@ -34,13 +34,14 @@ class SteepestDescentRunner(AbstractRunner):
 
     Examples
     --------
-    Default running:
+    Using the runner:
 
     .. code-block:: python
 
-        from locsearch.runner.steepest_descent_runner import SteepestDescentRunner
+        from locsearch.runner.steepest_descent_runner \\
+            import SteepestDescentRunner
         runner = SteepestDescentRunner()
-        runner.run()
+        runner.run(path_to_file)
 
 
     """
