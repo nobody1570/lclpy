@@ -12,6 +12,14 @@ locsearch.runner.abstract\_runner module
     :undoc-members:
     :show-inheritance:
 
+locsearch.runner.simulated\_annealing\_runner module
+----------------------------------------------------
+
+.. automodule:: locsearch.runner.simulated_annealing_runner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 locsearch.runner.steepest\_descent\_runner module
 -------------------------------------------------
 

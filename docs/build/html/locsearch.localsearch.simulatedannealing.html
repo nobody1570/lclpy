@@ -1,0 +1,543 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>locsearch.localsearch.simulatedannealing package &#8212; locsearch  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="locsearch.localsearch.steepestdescent package" href="locsearch.localsearch.steepestdescent.html" />
+    <link rel="prev" title="locsearch.localsearch.move package" href="locsearch.localsearch.move.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="locsearch-localsearch-simulatedannealing-package">
+<h1>locsearch.localsearch.simulatedannealing package<a class="headerlink" href="#locsearch-localsearch-simulatedannealing-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function">
+<span id="locsearch-localsearch-simulatedannealing-abstr-iterations-temp-function-module"></span><h2>locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function module<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.</code><code class="descname">AbstrIterationsTempFunction</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Class for determining the number of iterations for a temperature.</p>
+<p>This class is meant to be used in a simulated annealing algorithm.
+It is used to determine the amount of iterations for a certain temperature.</p>
+<dl class="method">
+<dt id="locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations">
+<code class="descname">get_iterations</code><span class="sig-paren">(</span><em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of iterations for a certain temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>Temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.simulatedannealing.abstract_cooling_function">
+<span id="locsearch-localsearch-simulatedannealing-abstract-cooling-function-module"></span><h2>locsearch.localsearch.simulatedannealing.abstract_cooling_function module<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing.abstract_cooling_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.abstract_cooling_function.</code><code class="descname">AbstractCoolingFunction</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>A class that implements a cooling function for simulated annealing.</p>
+<dl class="method">
+<dt id="locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature">
+<code class="descname">next_temperature</code><span class="sig-paren">(</span><em>old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get the next temperature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The new temperature</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function">
+<span id="locsearch-localsearch-simulatedannealing-cnst-iterations-temp-function-module"></span><h2>locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function module<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.</code><code class="descname">CnstIterationsTempFunction</code><span class="sig-paren">(</span><em>iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction</span></code></a></p>
+<p>Class for determining the number of iterations for a temperature.</p>
+<p>This class is meant to be used in a simulated annealing algorithm.
+It is used to determine the amount of iterations for a certain temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>iterations</strong> (<em>int</em>) – The amount of iterations for all temperatures.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations">
+<code class="descname">_iterations</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of iterations for all temperatures. Default is 1000.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Default behaviour:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">get_iterations</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="go">1000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">get_iterations</span><span class="p">(</span><span class="mi">359</span><span class="p">)</span>
+<span class="go">1000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">get_iterations</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">1000</span>
+</pre></div>
+</div>
+<p>With 800 iterations:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">get_iterations</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="go">800</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">get_iterations</span><span class="p">(</span><span class="mi">359</span><span class="p">)</span>
+<span class="go">800</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">get_iterations</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">800</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations">
+<code class="descname">get_iterations</code><span class="sig-paren">(</span><em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of iterations for a certain temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The “temperature” in the simulated annealing algorithm.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The amount of iterations for the temperature. (Here always
+_iterations)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.simulatedannealing.geometric_cooling_function">
+<span id="locsearch-localsearch-simulatedannealing-geometric-cooling-function-module"></span><h2>locsearch.localsearch.simulatedannealing.geometric_cooling_function module<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing.geometric_cooling_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.geometric_cooling_function.</code><code class="descname">GeometricCoolingFunction</code><span class="sig-paren">(</span><em>alpha=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction</span></code></a></p>
+<p>Implements a geometric cooling function for simulated annealing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – A parameter that influences the cooling rate. Should be a positive
+number smaller than 1. Default is 0.75.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha">
+<code class="descname">_alpha</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>A parameter that influences the cooling rate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.geometric_cooling_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">next_temperature</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="go">750.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">next_temperature</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">75.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">next_temperature</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">7.5</span>
+</pre></div>
+</div>
+<p>An example with an alpha of 0.5:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.geometric_cooling_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">next_temperature</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="go">500.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">next_temperature</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">50.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">next_temperature</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature">
+<code class="descname">next_temperature</code><span class="sig-paren">(</span><em>old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get the next temperature</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The new temperature. This temperature is equal to:<div class="math notranslate nohighlight">
+\[\_alpha*old\_temperature\]</div>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.simulatedannealing.simulated_annealing">
+<span id="locsearch-localsearch-simulatedannealing-simulated-annealing-module"></span><h2>locsearch.localsearch.simulatedannealing.simulated_annealing module<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing.simulated_annealing" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.simulated_annealing.</code><code class="descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em>solution</em>, <em>termination_criterion</em>, <em>cooling_function</em>, <em>iterations_for_temp_f</em>, <em>start_temperature=2000</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
+<p>Performs a simulated annealing algorithm with the given parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>solution</strong> (<a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution"><em>AbstractLocalSearchSolution</em></a>) – Contains all the data needed for the specific problem.</li>
+<li><strong>termination_criterion</strong> (<a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</li>
+<li><strong>cooling_function</strong> (<a class="reference internal" href="#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><em>AbstractCoolingFunction</em></a>) – Implements the cooling function for the algorithm.</li>
+<li><strong>iterations_for_temp_f</strong> (<a class="reference internal" href="#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><em>AbstrIterationsTempFunction</em></a>) – Implements a function to determine the amount of iterations for a
+certain temperature.</li>
+<li><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The starting temperature for the simulated annealing. The default is
+2000.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._solution">
+<code class="descname">_solution</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all the data needed for the specific problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion">
+<code class="descname">_termination_criterion</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a termination criterion to terminate the algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function">
+<code class="descname">_cooling_function</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the cooling function for the algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">AbstractCoolingFunction</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f">
+<code class="descname">_iterations_for_temp_f</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a function to determine the amount of iterations for a
+certain temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">AbstrIterationsTempFunction</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature">
+<code class="descname">_temperature</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current “temperature”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function">
+<code class="descname">_acceptance_function</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The acceptance function used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.acceptance.html#locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction" title="locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.simulated_annealing</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">SimulatedAnnealing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.geometric_cooling_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.min_temperature_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># seed random</span>
+<span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
+<span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination_criterion</span> <span class="o">=</span> <span class="n">MinTemperatureTerminationCriterion</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># init cooling function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cooling_func</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># init CnstIterationsTempFunction</span>
+<span class="gp">... </span><span class="c1"># (determines amount of itertions in function of the temperature)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i_for_temp</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># init SimulatedAnnealing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SimulatedAnnealing</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">solution</span><span class="p">,</span> <span class="n">termination_criterion</span><span class="p">,</span> <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">Results(best_order=array([0, 2, 3, 1]), best_value=15)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts running the simulated annealing algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – A one dimensional numpy array that contains the order of the
+points for the best found solution.</li>
+<li><strong>best_value</strong> (<em>int or float</em>) – The best found value of the evaluation function. This should be
+the evaluation value of best_order.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.simulatedannealing">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">locsearch</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="locsearch.localsearch.html#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#module-locsearch.localsearch.abstract_local_search">locsearch.localsearch.abstract_local_search module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#module-locsearch.localsearch">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="locsearch.html#module-locsearch">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">locsearch</a><ul>
+  <li><a href="locsearch.html">locsearch package</a><ul>
+  <li><a href="locsearch.localsearch.html">locsearch.localsearch package</a><ul>
+      <li>Previous: <a href="locsearch.localsearch.move.html" title="previous chapter">locsearch.localsearch.move package</a></li>
+      <li>Next: <a href="locsearch.localsearch.steepestdescent.html" title="next chapter">locsearch.localsearch.steepestdescent package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/locsearch.localsearch.simulatedannealing.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

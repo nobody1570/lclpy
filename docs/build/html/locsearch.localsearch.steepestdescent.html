@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.random package" href="locsearch.random.html" />
-    <link rel="prev" title="locsearch.localsearch.move package" href="locsearch.localsearch.move.html" />
+    <link rel="prev" title="locsearch.localsearch.simulatedannealing package" href="locsearch.localsearch.simulatedannealing.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -43,25 +43,61 @@
 <span id="locsearch-localsearch-steepestdescent-steepest-descent-module"></span><h2>locsearch.localsearch.steepestdescent.steepest_descent module<a class="headerlink" href="#module-locsearch.localsearch.steepestdescent.steepest_descent" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent">
-<em class="property">class </em><code class="descclassname">locsearch.localsearch.steepestdescent.steepest_descent.</code><code class="descname">SteepestDescent</code><span class="sig-paren">(</span><em>solution</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.steepestdescent.steepest_descent.</code><code class="descname">SteepestDescent</code><span class="sig-paren">(</span><em>solution</em>, <em>improvement_is_bigger=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
-<p>Performs a steepest descent algorithm.</p>
+<p>Performs a steepest descent algorithm on the given solution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>solution</strong> (<a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution"><em>AbstractLocalSearchSolution</em></a>) – solution contains the data where the steepest descent algorithm will
-be performed on.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>solution</strong> (<a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution"><em>AbstractLocalSearchSolution</em></a>) – Contains all the data needed for the specific problem.</li>
+<li><strong>improvement_is_bigger</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if a bigger value is considered to be an improvement,
+should be False if a smaller value is considered to be an improvement.
+The default is True.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._solution">
+<code class="descname">_solution</code><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all the data needed for the specific problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._termination_criterion">
+<code class="descname">_termination_criterion</code><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ends the algorithm if no more improvements can be found.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.termination.html#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion">MustImproveTerminationCriterion</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.steepestdescent.steepest_descent</span> <span class="kn">import</span> <span class="n">SteepestDescent</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.steepestdescent.steepest_descent</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">SteepestDescent</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -71,7 +107,9 @@ be performed on.</td>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span> <span class="o">=</span> <span class="n">SteepestDescent</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init SteepestDescent</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span> <span class="o">=</span> <span class="n">SteepestDescent</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=15)</span>
 </pre></div>
@@ -155,7 +193,7 @@ the evaluation value of best_order.</li>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
   <li><a href="locsearch.localsearch.html">locsearch.localsearch package</a><ul>
-      <li>Previous: <a href="locsearch.localsearch.move.html" title="previous chapter">locsearch.localsearch.move package</a></li>
+      <li>Previous: <a href="locsearch.localsearch.simulatedannealing.html" title="previous chapter">locsearch.localsearch.simulatedannealing package</a></li>
       <li>Next: <a href="locsearch.random.html" title="next chapter">locsearch.random package</a></li>
   </ul></li>
   </ul></li>

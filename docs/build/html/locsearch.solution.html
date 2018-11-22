@@ -47,8 +47,8 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create Solution-classes for localsearch implemenatations.</p>
 <p>This Class is meant to be used as a template.
-It is supposed to be used when constructing a heuristic to solve
-localsearch problems.</p>
+It is supposed to be used when constructing your own solution objects for a
+specific problem.</p>
 <dl class="method">
 <dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate">
 <code class="descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate" title="Permalink to this definition">¶</a></dt>
@@ -69,14 +69,17 @@ localsearch problems.</p>
 <dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate_move">
 <code class="descname">evaluate_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the effects a move would have on the evaluation of the state.</p>
+<p>This function does not need to be implemented.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An indication of the difference in quality that would be caused by
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – The move one would like to know the effects of.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An indication of the difference in quality that would be caused by
 the move.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
 </tr>
 </tbody>
 </table>
@@ -90,9 +93,7 @@ the move.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">contains a representation of all valid moves in the neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">iterable</td>
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of the next move in the neighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -101,14 +102,14 @@ the move.</td>
 <dl class="method">
 <dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.get_random_move">
 <code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.get_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a random valid move from the neighbourhood.evaluate</p>
+<dd><p>Returns a random valid move from the neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A representation of the move.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">move</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
 </tr>
 </tbody>
 </table>
@@ -122,7 +123,7 @@ the move.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> – A representation of a move.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of a move.</td>
 </tr>
 </tbody>
 </table>
@@ -142,7 +143,7 @@ the move.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> – A representation of the move one wishes to undo.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</td>
 </tr>
 </tbody>
 </table>
@@ -163,13 +164,14 @@ the move.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>evaluation_function</strong> (<a class="reference internal" href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The evaluation function that needs to be used for the problem</li>
-<li><strong>move_function</strong> (<a class="reference internal" href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The move function that needs to be used for the problem</li>
-<li><strong>order</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – A 1 dimensional array that contains the order of the points to start
-with. All values are int, unique and are within the interval [0,size[.
-The default value is None. In this case a numpy array will be
-generated. The generated array will always be ordered from small to
-big.</li>
+<li><strong>evaluation_function</strong> (<a class="reference internal" href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The evaluation function that needs to be used for the problem.</li>
+<li><strong>move_function</strong> (<a class="reference internal" href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The move function that needs to be used for the problem.</li>
+<li><strong>order</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – A one dimensional array that contains the order of the points to start
+with. All values are int, unique and are within the interval
+[0,size[.
+The default value is None.
+In the default case a numpy array will be generated. The generated
+array’s values will always be ordered from small to big.</li>
 </ul>
 </td>
 </tr>
@@ -183,7 +185,7 @@ big.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">AbstractEvaluationFunction</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">AbstractEvaluationFunction.</td>
 </tr>
 </tbody>
 </table>
@@ -192,7 +194,7 @@ big.</li>
 <dl class="attribute">
 <dt id="locsearch.solution.tsp_solution.TspSolution._move_function">
 <code class="descname">_move_function</code><a class="headerlink" href="#locsearch.solution.tsp_solution.TspSolution._move_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>The move function that is used for the problem</p>
+<dd><p>The move function that is used for the problem.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -206,8 +208,8 @@ big.</li>
 <dl class="attribute">
 <dt id="locsearch.solution.tsp_solution.TspSolution._order">
 <code class="descname">_order</code><a class="headerlink" href="#locsearch.solution.tsp_solution.TspSolution._order" title="Permalink to this definition">¶</a></dt>
-<dd><p>A 1 dimensional array that contains the order of the points. All
-values are int, unique and are within the interval [0,size[.</p>
+<dd><p>A 1 dimensional array that contains the current order of the points.
+All values are int, unique and are within the interval [0,size[.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -221,7 +223,7 @@ values are int, unique and are within the interval [0,size[.</p>
 <dl class="attribute">
 <dt id="locsearch.solution.tsp_solution.TspSolution.best_order">
 <code class="descname">best_order</code><a class="headerlink" href="#locsearch.solution.tsp_solution.TspSolution.best_order" title="Permalink to this definition">¶</a></dt>
-<dd><p>Contains the order of the best found solution</p>
+<dd><p>Contains the order of the best found solution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -235,7 +237,7 @@ values are int, unique and are within the interval [0,size[.</p>
 <dl class="attribute">
 <dt id="locsearch.solution.tsp_solution.TspSolution.best_order_value">
 <code class="descname">best_order_value</code><a class="headerlink" href="#locsearch.solution.tsp_solution.TspSolution.best_order_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The evaluation value of the best found solution</p>
+<dd><p>The evaluation value of the best found solution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -247,63 +249,89 @@ values are int, unique and are within the interval [0,size[.</p>
 </dd></dl>
 
 <p class="rubric">Examples</p>
-<p>A simple example, note that solution.set_as_best_order does NOT check if
-the value is actually belongs to the order NOR does it check if the value
-is better than the previous best value:</p>
+<p>A simple example, demonstrates the use of move, undo_move, evaluate and
+set_as_best. Note that solution.set_as_best_order does NOT check if the
+value actually belongs to the order NOR does it check if the value is
+better than the previous best value:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># init move function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move_func</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># default generated order</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">_order</span>
 <span class="go">array([0, 1, 2, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># evaluating the current order</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">value</span>
 <span class="go">21</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># saving the current order as the best order.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">set_as_best</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># get the best order and it&#39;s value</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">best_order</span>
 <span class="go">array([0, 1, 2, 3])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">best_order_value</span>
 <span class="go">21</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># perform a move and evaluate the new order</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">move</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">_order</span>
 <span class="go">array([0, 1, 3, 2])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">value</span>
 <span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># saving the current order as the best order</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">set_as_best</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">best_order</span>
 <span class="go">array([0, 1, 3, 2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">best_order_value</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># undoing move and rechecking value.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Note that best_order and best_order_value don&#39;t change.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">undo_move</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">_order</span>
 <span class="go">array([0, 1, 2, 3])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">best_order</span>
 <span class="go">array([0, 1, 3, 2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">best_order_value</span>
+<span class="go">15</span>
 </pre></div>
 </div>
 <p>Initialising with a non-default order:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># wanted order is the order we want.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wanted_order</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init move function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move_func</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">wanted_order</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">evaluation_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">wanted_order</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># the order of the solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">_order</span>
 <span class="go">array([0, 3, 2, 1])</span>
 </pre></div>
@@ -330,7 +358,10 @@ is better than the previous best value:</p>
 <dd><p>Evaluates the quality gained or lost by a potential move.</p>
 <p>Does not need to be implemented, but can lead to considerable
 speedups. Is equivalent to a delta evaluation between _order and
-_order after the move is performed.</p>
+_order after the move is performed. The passed move function that is
+passed to the constructor needs to have changed_distances and
+transform_next_index_to_current_index properly implemented for this
+function to work.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -344,23 +375,28 @@ _order after the move is performed.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<p>A simple example, note that the move function needs to be passed to
-the evaluation function for the evaluation of moves to work. The move
-function also needs to have changed_distances and
-transform_next_index_to_current_index properly implemented:</p>
+<p>A simple example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># init move function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move_func</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move_func</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span>
+<span class="gp">... </span>                                        <span class="n">move_func</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># tests</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">evaluate_move</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="go">-3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="o">.</span><span class="n">evaluate_move</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -379,29 +415,34 @@ transform_next_index_to_current_index properly implemented:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">All the moves in the neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">iterable of tuple of int</td>
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – AThe next move in the neighbourhood.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<p>Get all moves from the neigbourhood, you should NEVER do this. You
+<p>Gets all moves from the neigbourhood, you should NEVER do this. You
 should evaluate only one move at a time. This example is simply to
 show the behaviour of get_moves.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># init move function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move_func</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># retrieve all moves with get_moves</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">solution</span><span class="o">.</span><span class="n">get_moves</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="n">all_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
@@ -428,18 +469,25 @@ show the behaviour of get_moves.</p>
 <p class="rubric">Examples</p>
 <p>Get a random valid move:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># init move function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move_func</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation_func</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># get a random move and check if it&#39;s in the neighboorhood.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
 <span class="go">True</span>
@@ -450,7 +498,7 @@ show the behaviour of get_moves.</p>
 <dl class="method">
 <dt id="locsearch.solution.tsp_solution.TspSolution.move">
 <code class="descname">move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.tsp_solution.TspSolution.move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Performs a move on self._order .</p>
+<dd><p>Performs a move on _order.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -480,7 +528,7 @@ evaluate(). The recalculation will take time, however.</td>
 <dl class="method">
 <dt id="locsearch.solution.tsp_solution.TspSolution.undo_move">
 <code class="descname">undo_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.tsp_solution.TspSolution.undo_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Undoes a move on self._order .</p>
+<dd><p>Undoes a move on _order .</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

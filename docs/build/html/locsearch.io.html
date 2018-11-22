@@ -45,7 +45,8 @@
 <dt id="locsearch.io.tsplib.read_tsplib">
 <code class="descclassname">locsearch.io.tsplib.</code><code class="descname">read_tsplib</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.io.tsplib.read_tsplib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the tsplib file format to useable data structures.</p>
-<p>Currently this function works for the sub types EUC_2D, MAN_2D and CEIL_2D.</p>
+<p>Currently this function only works for TSP problems. The crystallography
+problems can’t be parsed with this function.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -55,7 +56,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
 <li><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix for the problem.</li>
 <li><strong>dictionary</strong> (<em>{int : int}</em>) – A dictionary that can convert a position the distance matrix to the
-name given in the data.</li>
+name given in the data. This dict can be useful when generating output.</li>
 <li><strong>metadata</strong> (<em>list of str</em>) – Contains the metadata of the problem. The last entry will always be
 EOF.</li>
 </ul>

@@ -43,6 +43,7 @@
 <li class="toctree-l1"><a class="reference internal" href="locsearch.localsearch.acceptance.html">locsearch.localsearch.acceptance package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.acceptance.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.acceptance.html#module-locsearch.localsearch.acceptance.abstract_acceptance_function">locsearch.localsearch.acceptance.abstract_acceptance_function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.acceptance.html#module-locsearch.localsearch.acceptance.simulated_annealing_acceptance_function">locsearch.localsearch.acceptance.simulated_annealing_acceptance_function module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.acceptance.html#module-locsearch.localsearch.acceptance">Module contents</a></li>
 </ul>
 </li>
@@ -52,6 +53,16 @@
 <li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.array_swap">locsearch.localsearch.move.array_swap module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.tsp_array_swap">locsearch.localsearch.move.tsp_array_swap module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.move.html#module-locsearch.localsearch.move">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html">locsearch.localsearch.simulatedannealing package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#module-locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function">locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#module-locsearch.localsearch.simulatedannealing.abstract_cooling_function">locsearch.localsearch.simulatedannealing.abstract_cooling_function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#module-locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function">locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#module-locsearch.localsearch.simulatedannealing.geometric_cooling_function">locsearch.localsearch.simulatedannealing.geometric_cooling_function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#module-locsearch.localsearch.simulatedannealing.simulated_annealing">locsearch.localsearch.simulatedannealing.simulated_annealing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#module-locsearch.localsearch.simulatedannealing">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="locsearch.localsearch.steepestdescent.html">locsearch.localsearch.steepestdescent package</a><ul>
@@ -72,10 +83,9 @@
 <dt id="locsearch.localsearch.abstract_local_search.AbstractLocalSearch">
 <em class="property">class </em><code class="descclassname">locsearch.localsearch.abstract_local_search.</code><code class="descname">AbstractLocalSearch</code><a class="headerlink" href="#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>Template for the implementation of local search algorithms</p>
+<p>Template for the implementation of local search algorithms.</p>
 <p>This class should only contain the logic needed to run the local search.
-I/O and plotting should be handled by a runner.
-The localsearch should contain a working terminationCriterion.</p>
+I/O and plotting should be handled by an AbstractRunner.</p>
 <dl class="method">
 <dt id="locsearch.localsearch.abstract_local_search.AbstractLocalSearch.run">
 <code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.abstract_local_search.AbstractLocalSearch.run" title="Permalink to this definition">¶</a></dt>
@@ -84,7 +94,7 @@ The localsearch should contain a working terminationCriterion.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>Results</strong> – Contains the best found case and the evaluation value for said
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Contains the best found case and the evaluation value for said
 case.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">collections.namedtuple</td>

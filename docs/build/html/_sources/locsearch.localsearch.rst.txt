@@ -8,6 +8,7 @@ Subpackages
 
     locsearch.localsearch.acceptance
     locsearch.localsearch.move
+    locsearch.localsearch.simulatedannealing
     locsearch.localsearch.steepestdescent
 
 Submodules

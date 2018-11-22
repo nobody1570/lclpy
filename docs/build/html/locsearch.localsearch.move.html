@@ -16,7 +16,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="locsearch.localsearch.steepestdescent package" href="locsearch.localsearch.steepestdescent.html" />
+    <link rel="next" title="locsearch.localsearch.simulatedannealing package" href="locsearch.localsearch.simulatedannealing.html" />
     <link rel="prev" title="locsearch.localsearch.acceptance package" href="locsearch.localsearch.acceptance.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -45,19 +45,18 @@
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove">
 <em class="property">class </em><code class="descclassname">locsearch.localsearch.move.abstract_move.</code><code class="descname">AbstractMove</code><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>Template to create Move-objects.def</p>
-<p>This object is used to explore new Solutions in a neighbourhood.</p>
+<p>Template to create Move-objects.</p>
+<p>This object is used to explore a neighbourhood and alter the state of a
+solution.</p>
 <dl class="method">
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.get_moves" title="Permalink to this definition">¶</a></dt>
-<dd><p>A generator used to return all valid moves.</p>
+<dd><p>A generator used to return all valid moves in the neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The next valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
 </tr>
 </tbody>
 </table>
@@ -66,7 +65,7 @@
 <dl class="method">
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove.get_random_move">
 <code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.get_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method used to generate a random move.</p>
+<dd><p>A method used to generate a random move in the neighbourhood..</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -82,7 +81,7 @@
 <dl class="method">
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove.move">
 <code class="descname">move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.move" title="Permalink to this definition">¶</a></dt>
-<dd><p>performs a move</p>
+<dd><p>Performs a move.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -90,7 +89,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>data</strong> – The dataset that is being explored. It will be altered after the
 method call.</li>
-<li><strong>move</strong> – A representation of a valid move.</li>
+<li><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</li>
 </ul>
 </td>
 </tr>
@@ -101,7 +100,8 @@ method call.</li>
 <dl class="method">
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove.undo_move">
 <code class="descname">undo_move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.undo_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>performs a move</p>
+<dd><p>Undoes a move.</p>
+<p>Make sure you only undo a move after it’s has been performed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -109,7 +109,7 @@ method call.</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>data</strong> – The dataset that is being explored. It will be altered after the
 method call.</li>
-<li><strong>move</strong> – A representation of the move one wishes to undo</li>
+<li><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo</li>
 </ul>
 </td>
 </tr>
@@ -125,7 +125,7 @@ method call.</li>
 <dl class="class">
 <dt id="locsearch.localsearch.move.array_swap.ArraySwap">
 <em class="property">class </em><code class="descclassname">locsearch.localsearch.move.array_swap.</code><code class="descname">ArraySwap</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
 <p>Implements a swap move for 1 dimensional numpy arrays.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -136,8 +136,8 @@ method call.</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="locsearch.localsearch.move.array_swap.ArraySwap.size">
-<code class="descname">size</code><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.size" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.localsearch.move.array_swap.ArraySwap._size">
+<code class="descname">_size</code><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the numpy array that is altered.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -153,50 +153,105 @@ method call.</li>
 <p>Get all possible moves, you should NEVER do this. You should evaluate only
 one move at a time. This example is simply to show the behaviour of
 get_moves and how to perform and undo a move:</p>
-<p>..doctest:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">ArraySwap</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># get all possible moves in all_moves</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">swap</span><span class="o">.</span><span class="n">get_moves</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="n">all_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span>
 <span class="go">[(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span> <span class="o">=</span> <span class="n">all_moves</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># picking a move (don&#39;t do it like this)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># picking an arbitrary move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Never pick a move like this yourself. It only is done here for</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the sake of showing you a clear example.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span> <span class="o">=</span> <span class="n">all_moves</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span>
 <span class="go">(1, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span> <span class="c1"># actually performing a move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># performing the move on the array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span>
 <span class="go">array([0, 3, 2, 1, 4])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">undo_move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span> <span class="c1"># undoes the move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># undoing the move on the array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">undo_move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span>
 <span class="go">array([0, 1, 2, 3, 4])</span>
 </pre></div>
 </div>
-<p>An example of generating a random move with get_random_move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<p>An example of generating some random moves with get_random_move:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<span class="gp">... </span><span class="c1"># set seed random</span>
+<span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">ArraySwap</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1"># checking if the move is valid</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">test</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1"># checking if the move is valid</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">test</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># checking if the move is valid</span>
-<span class="go">True</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(0, 6)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(4, 8)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(6, 7)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(4, 7)</span>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="locsearch.localsearch.move.array_swap.ArraySwap.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is a generator used to return all valid moves.</p>
+<dt id="locsearch.localsearch.move.array_swap.ArraySwap.changed_distances">
+<code class="descname">changed_distances</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.changed_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aid function for delta evaluation.</p>
+<p>This function returns the pairs who would have an altered evaluation
+value due to the move.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The next valid move.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this set contains a tuple with every (from,to) pair that would have
+an altered evaluation value due to the move.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">set of tuple</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Some simple examples to demonstrate the behaviour:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">ArraySwap</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">... </span><span class="c1"># since the order of the items in a set might be different,</span>
+<span class="gp">... </span><span class="c1"># they are compared to an equivalent set.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">)}</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)}</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.move.array_swap.ArraySwap.get_moves">
+<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all valid moves.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
 </tr>
 </tbody>
 </table>
@@ -237,6 +292,55 @@ get_random_move and get_move.</li>
 </table>
 </dd></dl>
 
+<dl class="staticmethod">
+<dt id="locsearch.localsearch.move.array_swap.ArraySwap.transform_next_index_to_current_index">
+<em class="property">static </em><code class="descname">transform_next_index_to_current_index</code><span class="sig-paren">(</span><em>frm</em>, <em>to</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms frm and to depending on a move</p>
+<p>This function transforms the indices frm and to so that they can
+be used as indices in the unaltered array, yet return the value
+they would have had if the move was actually performed and they
+were used as indices.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>frm</strong> (<em>int</em>) – the from index that one wants to use in the array with if the
+move was performed.</li>
+<li><strong>to</strong> (<em>int</em>) – the to index that one wants to use in the array with if the
+move was performed.</li>
+<li><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>frm</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
+parameter frm in an array where the move was performed.</li>
+<li><strong>to</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
+parameter to in an array where the move was performed.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Some simple examples, the indices remain the same, but the move
+changes:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArraySwap</span> <span class="k">as</span> <span class="n">AS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">(5, 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">(3, 5)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">(1, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">(1, 5)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="method">
 <dt id="locsearch.localsearch.move.array_swap.ArraySwap.undo_move">
 <code class="descname">undo_move</code><span class="sig-paren">(</span><em>array</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.undo_move" title="Permalink to this definition">¶</a></dt>
@@ -268,8 +372,8 @@ get_random_move and get_move.</li>
 <p>Implements a swap move for 1 dimensional numpy arrays for tsp problems.</p>
 <p>In tsp swapping the first location for another is pointless. This class’
 constructor removes the swaps with the first location from the
-neighbourhood. In all other respects this class is identical to
-locsearch.localsearch.move.array_swap.ArraySwap .</p>
+neighbourhood. In all other respects this class is identical to it’s base
+class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -279,8 +383,8 @@ locsearch.localsearch.move.array_swap.ArraySwap .</p>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="locsearch.localsearch.move.tsp_array_swap.TspArraySwap.size">
-<code class="descname">size</code><a class="headerlink" href="#locsearch.localsearch.move.tsp_array_swap.TspArraySwap.size" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.localsearch.move.tsp_array_swap.TspArraySwap._size">
+<code class="descname">_size</code><a class="headerlink" href="#locsearch.localsearch.move.tsp_array_swap.TspArraySwap._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the numpy array that is altered.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -299,74 +403,51 @@ get_moves and how to perform and undo a move:</p>
 <p>..doctest:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># get all possible moves in all_moves</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">swap</span><span class="o">.</span><span class="n">get_moves</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="n">all_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span>
 <span class="go">[(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span> <span class="o">=</span> <span class="n">all_moves</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># picking a move (don&#39;t do it like this)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># picking an arbitrary move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Never pick a move like this yourself. It only is done here for</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the sake of showing you a clear example.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span> <span class="o">=</span> <span class="n">all_moves</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span>
 <span class="go">(1, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span> <span class="c1"># actually performing a move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># performing the move on the array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span>
 <span class="go">array([0, 3, 2, 1, 4])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># undoing the move on the array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">undo_move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span> <span class="c1"># undoes the move</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span>
 <span class="go">array([0, 1, 2, 3, 4])</span>
 </pre></div>
 </div>
-<p>An example of generating a random move with get_random_move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<p>An example of generating some random moves with get_random_move:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span><span class="c1"># set seed random</span>
+<span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1"># checking if the move is valid</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">test</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1"># checking if the move is valid</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">test</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># checking if the move is valid</span>
-<span class="go">True</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(1, 7)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(5, 9)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(7, 8)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">get_random_move</span><span class="p">()</span>
+<span class="go">(5, 8)</span>
 </pre></div>
 </div>
-<dl class="method">
-<dt id="locsearch.localsearch.move.tsp_array_swap.TspArraySwap.changed_distances">
-<code class="descname">changed_distances</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.tsp_array_swap.TspArraySwap.changed_distances" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aid function for delta evaluation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple</em>) – A tuple of 2 ints that represents a single unique move</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this set contains a tuple with every distance that will change
-because of the move. Note that this function only works properly
-when this move-class is used.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">set</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>Some simple examples to demonstrate the behaviour:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-</dd></dl>
-
 <dl class="method">
 <dt id="locsearch.localsearch.move.tsp_array_swap.TspArraySwap.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.tsp_array_swap.TspArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
@@ -377,9 +458,7 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The next valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
 </tr>
 </tbody>
 </table>
@@ -401,56 +480,6 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="locsearch.localsearch.move.tsp_array_swap.TspArraySwap.transform_next_index_to_current_index">
-<em class="property">static </em><code class="descname">transform_next_index_to_current_index</code><span class="sig-paren">(</span><em>frm</em>, <em>to</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.tsp_array_swap.TspArraySwap.transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transforms frm and to depending on a move</p>
-<p>This function transforms the indices frm and to so that they can
-be used as indices in the unaltered array, yet return the value
-they would have had if the move was actually performed and they
-were used as indices.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>frm</strong> (<em>int</em>) – the from index that one wants to use in the array with if the
-move was performed.</li>
-<li><strong>to</strong> (<em>int</em>) – the to index that one wants to use in the array with if the
-move was performed.array</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A tuple with 2 ints that represents a single, unique move.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>frm</strong> (<em>int</em>) – The index in the unaltered array that corresponds with the
-same value as the parameter from in an array where the move
-was performed.</li>
-<li><strong>to</strong> (<em>int</em>) – The index in the unaltered array that corresponds with the
-same value as the parameter to in an array where the move was
-performed.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>Some simple examples, the indices remain the same, but the move
-changes:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span> <span class="k">as</span> <span class="n">TAS</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">TAS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="go">(5, 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">TAS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="go">(3, 5)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">TAS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="go">(1, 0)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">TAS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="go">(1, 5)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </dd></dl>
@@ -513,7 +542,7 @@ changes:</p>
   <li><a href="locsearch.html">locsearch package</a><ul>
   <li><a href="locsearch.localsearch.html">locsearch.localsearch package</a><ul>
       <li>Previous: <a href="locsearch.localsearch.acceptance.html" title="previous chapter">locsearch.localsearch.acceptance package</a></li>
-      <li>Next: <a href="locsearch.localsearch.steepestdescent.html" title="next chapter">locsearch.localsearch.steepestdescent package</a></li>
+      <li>Next: <a href="locsearch.localsearch.simulatedannealing.html" title="next chapter">locsearch.localsearch.simulatedannealing package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
