@@ -3,7 +3,7 @@ from locsearch.termination.abstract_termination_criterion \
 
 
 class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
-    """A termination criterion for use with a simmulated annealing algorithm.
+    """A termination criterion for use with a simulated annealing algorithm.
 
     This termination criterion ends the algorithm if the current temperature
     is lower than the minimal temperature.
@@ -27,8 +27,11 @@ class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
 
     .. doctest::
 
-        >>> from locsearch.termination.min_temperature_termination_criterion import MinTemperatureTerminationCriterion
+        >>> from locsearch.termination.min_temperature_termination_criterion \\
+        ...     import MinTemperatureTerminationCriterion
+        ... # init
         >>> test = MinTemperatureTerminationCriterion()
+        ... # tests
         >>> test.keep_running()
         True
         >>> test.check_variable(1000.0)
@@ -47,8 +50,11 @@ class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
 
     .. doctest::
 
-        >>> from locsearch.termination.min_temperature_termination_criterion import MinTemperatureTerminationCriterion
+        >>> from locsearch.termination.min_temperature_termination_criterion \\
+        ...     import MinTemperatureTerminationCriterion
+        ... # init
         >>> test = MinTemperatureTerminationCriterion(100)
+        ... # tests
         >>> test.keep_running()
         True
         >>> test.check_variable(1000.0)
@@ -74,8 +80,8 @@ class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
         Returns
         -------
         bool
-            The function returns true if the current temperature is higher
-            than the minimal, else it returns false.
+            The function returns true if the current temperature is higher than
+            or equal to the minimal temperature, else it returns false.
 
         """
 
@@ -88,7 +94,7 @@ class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
 
         Parameters
         ----------
-        current_temperature : float
+        current_temperature : int or float
             The current temperature of the algorithm.
 
         """

@@ -1,4 +1,5 @@
-from locsearch.termination.abstract_termination_criterion import AbstractTerminationCriterion
+from locsearch.termination.abstract_termination_criterion \
+    import AbstractTerminationCriterion
 
 
 class MustImproveTerminationCriterion(AbstractTerminationCriterion):
@@ -25,46 +26,64 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
     Examples
     --------
-    Bigger values are considered improvements. (default) 5 iterations with
-    improvement. After that there are no more improvements.The dataset
+    Bigger values are considered improvements(default). 5 iterations with
+    improvement. After that there are no more improvements. The dataset
     eval_values is hardcoded:
 
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.termination.must_improve_termination_criterion import MustImproveTerminationCriterion
+        >>> from locsearch.termination.must_improve_termination_criterion \\
+        ...     import MustImproveTerminationCriterion
+        ... # creation of an array that contains the values that will be given
+        ... # to our termination criterion
         >>> eval_values = numpy.array([0, 2, 14, 15, 20, 3, 3, 4, 2, 1, 0, 12])
+        ... # index is used to get values from the array.
+        ... # index is also used to count the amount of iterations
         >>> index = 0
+        ... # init
         >>> test = MustImproveTerminationCriterion()
+        ... # loop
         >>> while test.keep_running():
-        ...     pass # code to execute
-        ...     # not_used isn't necessary, it only suppresses the output
-        ...     # of test.check_new_value
+        ...     pass # other code to execute
+        ...     # check the next value
+        ...     # not_used is only used to suppress the output of
+        ...     # check_new_value
         ...     not_used = test.check_new_value(eval_values[index])
-        ...     pass # more code to execute
-        ...     index += 1 # counting iterations + index
-        >>> index # Amount of iterations.
+        ...     pass # other code to execute
+        ...     # counting iterations + increment index
+        ...     index += 1
+        >>> index # == amount of iterations.
         6
 
     Smaller values are considered improvements. 8 iterations with
-    improvement. After that there are no more improvements.The dataset
+    improvement. After that there are no more improvements. The dataset
     eval_values is hardcoded:
 
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.termination.must_improve_termination_criterion import MustImproveTerminationCriterion
+        >>> from locsearch.termination.must_improve_termination_criterion \\
+        ...     import MustImproveTerminationCriterion
+        ... # creation of an array that contains the values that will be given
+        ... # to our termination criterion
         >>> eval_values = numpy.array([10, 9, 8, 7, 6, 5, 4, 3, 4, 3, 5, 12])
+        ... # index is used to get values from the array.
+        ... # index is also used to count the amount of iterations
         >>> index = 0
+        ... # init
         >>> test = MustImproveTerminationCriterion(False)
+        ... # loop
         >>> while test.keep_running():
-        ...     pass # code to execute
-        ...     # not_used isn't necessary, it only suppresses the output
-        ...     # of test.check_new_value
+        ...     pass # other code to execute
+        ...     # check the next value
+        ...     # not_used is only used to suppress the output of
+        ...     # check_new_value
         ...     not_used = test.check_new_value(eval_values[index])
         ...     pass # more code to execute
-        ...     index += 1 # counting iterations + index
-        >>> index # Amount of iterations.
+        ...     # counting iterations + increment index
+        ...     index += 1
+        >>> index # == amount of iterations.
         9
 
 
@@ -108,8 +127,10 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
     def __init__(self, improvement_is_bigger=True):
         super().__init__()
 
+        # init
         self._run = True
 
+        # choose intial _old_best_value value + pick judge function
         if improvement_is_bigger:
             self._function = self._bigger_is_improvement
             self._old_best_value = float("-inf")

@@ -1,4 +1,5 @@
-from locsearch.termination.abstract_termination_criterion import AbstractTerminationCriterion
+from locsearch.termination.abstract_termination_criterion \
+    import AbstractTerminationCriterion
 
 
 class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
@@ -22,12 +23,18 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
 
     .. doctest::
 
-        >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
+        >>> from locsearch.termination.max_iterations_termination_criterion \\
+        ...     import MaxIterationsTerminationCriterion
+        ... # the variable iterations will be used to count the amount of
+        ... # iterations.
         >>> iterations = 0
+        ... # init
         >>> test = MaxIterationsTerminationCriterion()
+        ... # test
         >>> while test.keep_running():
-        ...     pass # code to execute
-        ...     iterations += 1 # counting amount of iterations
+        ...     pass # other code to be executed
+        ...     # counting amount of iterations
+        ...     iterations += 1
         ...     test.iteration_done()
         >>> iterations
         1000
@@ -36,12 +43,18 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
 
     .. doctest::
 
-        >>> from locsearch.termination.max_iterations_termination_criterion import MaxIterationsTerminationCriterion
+        >>> from locsearch.termination.max_iterations_termination_criterion \\
+        ...     import MaxIterationsTerminationCriterion
+        ... # the variable iterations will be used to count the amount of
+        ... # iterations.
         >>> iterations = 0
+        ... # init
         >>> test = MaxIterationsTerminationCriterion(50)
+        ... # test
         >>> while test.keep_running():
-        ...     pass # code to execute
-        ...     iterations += 1 # counting amount of iterations
+        ...     pass # other code to be executed
+        ...     # counting amount of iterations
+        ...     iterations += 1
         ...     test.iteration_done()
         >>> iterations
         50

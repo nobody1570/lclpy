@@ -1,5 +1,6 @@
-from locsearch.termination.abstract_termination_criterion import AbstractTerminationCriterion
 import time
+from locsearch.termination.abstract_termination_criterion \
+    import AbstractTerminationCriterion
 
 
 class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
@@ -8,16 +9,16 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
     Note that this terminationcriterion isn't exact. It will only terminate
     the algorithm after iterating longer than the set time AND if an iteration
     is finished. The extra time that the algorithm will run depends on the
-    length of the last iteration.
+    duration of the last iteration.
 
     Parameters
     ----------
-    max_seconds : int, float, optional
+    max_seconds : int or float, optional
         The maximal amount of seconds passed. The default is 60 seconds.
 
     Attributes
     ----------
-    _max_seconds : int, float
+    _max_seconds : int or float
         The maximal amount of seconds passed.
     _seconds : float
         The amount of seconds passed since the start of the iterations
@@ -32,15 +33,21 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
     .. doctest::
 
         >>> import time
-        >>> from locsearch.termination.max_seconds_termination_criterion import MaxSecondsTerminationCriterion
+        >>> from locsearch.termination.max_seconds_termination_criterion \\
+        ...     import MaxSecondsTerminationCriterion
+        ... # init
         >>> test = MaxSecondsTerminationCriterion()
+        ... # start and stop will be used to measure the time passed.
         >>> start = time.time()
+        ... # start the timing of the termination criterion
         >>> test.start_timing()
+        ... # loop
         >>> while test.keep_running():
         ...     pass # code to execute
         ...     test.iteration_done()
-        >>> end = time.time()
-        >>> time_passed = end - start
+        ... # calculate and check the time passed
+        >>> stop = time.time()
+        >>> time_passed = stop - start
         >>> time_passed < 61
         True
 
@@ -49,15 +56,20 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
     .. doctest::
 
         >>> import time
-        >>> from locsearch.termination.max_seconds_termination_criterion import MaxSecondsTerminationCriterion
+        >>> from locsearch.termination.max_seconds_termination_criterion \\
+        ...     import MaxSecondsTerminationCriterion
+        ... # init
         >>> test = MaxSecondsTerminationCriterion(3)
+        ... # start and stop will be used to measure the time passed.
         >>> start = time.time()
+        ... # start the timing of the termination criterion
         >>> test.start_timing()
+        ... # loop
         >>> while test.keep_running():
         ...     pass # code to execute
         ...     test.iteration_done()
-        >>> end = time.time()
-        >>> time_passed = end - start
+        >>> stop = time.time()
+        >>> time_passed = stop - start
         >>> time_passed < 4
         True
 

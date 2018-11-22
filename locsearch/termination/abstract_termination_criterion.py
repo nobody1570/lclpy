@@ -2,12 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class AbstractTerminationCriterion(ABC):
-    """Template to create terminationcriterions.
-
-    This is a template for termination criterions. It's possible to use
-    multiple criterions at once.
-
-    """
+    """Template to create terminationcriterions."""
 
     def __init__(self):
         super().__init__()
@@ -41,7 +36,7 @@ class AbstractTerminationCriterion(ABC):
 
         Parameters
         ----------
-        value : int, float
+        value : int or float
             A value from the evaluation function.
 
         """
@@ -70,5 +65,3 @@ class AbstractTerminationCriterion(ABC):
         """
 
         pass
-
-

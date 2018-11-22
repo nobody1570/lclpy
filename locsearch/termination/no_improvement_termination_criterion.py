@@ -1,5 +1,5 @@
-from locsearch.termination.abstract_termination_criterion import AbstractTerminationCriterion
-import math
+from locsearch.termination.abstract_termination_criterion \
+    import AbstractTerminationCriterion
 
 
 class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
@@ -27,53 +27,74 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         (improvement_is_bigger = True)
         or infinite (improvement_is_bigger = False)
     _function : function
-        The function used to judge if a value is an improvement. 
+        The function used to judge if a value is an improvement.
 
     Examples
     --------
     Default amount of iterations without improvement (100), always checking
-    the new value. Bigger values are considered improvements. (default) The dataset 
-    eval_values is generated. (1 improvement, 99 cases without improvement,
-    1 improvement, 110 cases without improvement) After this the iterations
-    start:
+    the new value. Bigger values are considered improvements(default). The
+    dataset eval_values is generated. (1 improvement, 99 cases without
+    improvement, 1 improvement, 110 cases without improvement) After this the
+    iterations start:
 
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
-        >>> eval_values = numpy.concatenate((numpy.array([2]), numpy.random.randint(3, size=98), numpy.array([5]), numpy.random.randint(6, size=110)))
+        >>> from locsearch.termination.no_improvement_termination_criterion \\
+        ...     import NoImprovementTerminationCriterion
+        ... # creation of an array that contains the values that will be given
+        ... # to our termination criterion
+        >>> eval_values = numpy.concatenate(
+        ...     (numpy.array([2]), numpy.random.randint(3, size=98),
+        ...      numpy.array([5]), numpy.random.randint(6, size=110)))
+        ... # index is used to get values from the array.
+        ... # index is also used to count the amount of iterations
         >>> index=0
+        ... # init
         >>> test = NoImprovementTerminationCriterion()
+        ... # loop
         >>> while test.keep_running():
-        ...     pass # code to execute
+        ...     pass # other code to execute
+        ...     # check the next value
         ...     test.check_new_value(eval_values[index])
-        ...     pass # more code to execute
-        ...     index += 1 # counting iterations + index
+        ...     pass # other code to execute
+        ...     # counting iterations + increment index
+        ...     index += 1
         ...     test.iteration_done()
-        >>> index # Amount of iterations.
+        >>> index # == amount of iterations.
         200
 
     3 iterations without improvement, only checking improved values. Bigger
-    values are considered improvements. (default) The dataset eval_values is
+    values are considered improvements(default). The dataset eval_values is
     hardcoded:
 
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
+        >>> from locsearch.termination.no_improvement_termination_criterion \\
+        ...     import NoImprovementTerminationCriterion
+        ... # creation of an array that contains the values that will be given
+        ... # to our termination criterion
         >>> eval_values = numpy.array([0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
+        ... # index is used to get values from the array.
+        ... # index is also used to count the amount of iterations
         >>> index = 0
+        ... # old value is the last encountered best value
         >>> old_value = -1
+        ... # init
         >>> test = NoImprovementTerminationCriterion(3)
+        ... # loop
         >>> while test.keep_running():
-        ...     pass # code to execute
+        ...     pass # other code to execute
+        ...     # only check next value if it's better than the last best value
         ...     if eval_values[index] > old_value:
         ...         old_value = eval_values[index]
         ...         test.check_new_value(eval_values[index])
-        ...     pass # more code to execute
-        ...     index += 1 # counting iterations + index
+        ...     pass # other code to execute
+        ...     # counting iterations + increment index
+        ...     index += 1
         ...     test.iteration_done()
-        >>> index # Amount of iterations.
+        >>> index # == amount of iterations.
         11
 
     Default amount of iterations without improvement (100). Smaller values are
@@ -84,17 +105,29 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
-        >>> eval_values = numpy.concatenate((numpy.array([1000]), numpy.random.randint(1000,2000, size=98), numpy.array([20]), numpy.random.randint(20,40, size=110)))
+        >>> from locsearch.termination.no_improvement_termination_criterion \\
+        ...     import NoImprovementTerminationCriterion
+        ... # creation of an array that contains the values that will be given
+        ... # to our termination criterion
+        >>> eval_values = numpy.concatenate(
+        ...     (numpy.array([1000]), numpy.random.randint(1000,2000, size=98),
+        ...      numpy.array([20]), numpy.random.randint(20,40, size=110)))
+        ... # index is used to get values from the array.
+        ... # index is also used to count the amount of iterations
         >>> index=0
-        >>> test = NoImprovementTerminationCriterion(improvement_is_bigger=False)
+        ... # init
+        >>> test = NoImprovementTerminationCriterion(
+        ...     improvement_is_bigger=False)
+        ... # loop
         >>> while test.keep_running():
-        ...     pass # code to execute
+        ...     pass # other code to execute
+        ...     # check next value
         ...     test.check_new_value(eval_values[index])
-        ...     pass # more code to execute
-        ...     index += 1 # counting iterations + index
+        ...     pass # other code to execute
+        ...     # counting iterations + increment index
+        ...     index += 1
         ...     test.iteration_done()
-        >>> index # Amount of iterations.
+        >>> index # == amount of iterations.
         200
 
     3 iterations without improvement. Smaller values are considered
@@ -103,18 +136,26 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.termination.no_improvement_termination_criterion import NoImprovementTerminationCriterion
+        >>> from locsearch.termination.no_improvement_termination_criterion \\
+        ...     import NoImprovementTerminationCriterion
+        ... # creation of an array that contains the values that will be given
+        ... # to our termination criterion
         >>> eval_values = numpy.array([20, 19, 21, 22, 23, 3])
+        ... # index is used to get values from the array.
+        ... # index is also used to count the amount of iterations
         >>> index = 0
-        >>> old_value = -1
+        ... # init
         >>> test = NoImprovementTerminationCriterion(3, False)
+        ... # loop
         >>> while test.keep_running():
-        ...     pass # code to execute
+        ...     pass # other code to execute
+        ...     # check next value
         ...     test.check_new_value(eval_values[index])
-        ...     pass # more code to execute
-        ...     index += 1 # counting iterations + index
+        ...     pass # other code to execute
+        ...     # counting iterations + increment index
+        ...     index += 1
         ...     test.iteration_done()
-        >>> index # Amount of iterations.
+        >>> index # == amount of iterations.
         5
 
 
@@ -159,9 +200,11 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     def __init__(self, max_iterations=100, improvement_is_bigger=True):
         super().__init__()
 
+        # init
         self._max_iterations = max_iterations
         self._iterations = 0
 
+        # choose intial _old_best_value value + pick judge function
         if improvement_is_bigger:
             self._function = self._bigger_is_improvement
             self._old_best_value = float("-inf")
@@ -199,7 +242,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
 
         Parameters
         ----------
-        value : int or long or float
+        value : int or float
             Is the best evaluation value found for a solution or the new
             evaluation value of a solution. It does not matter which one is
             used.
