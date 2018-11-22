@@ -24,8 +24,11 @@ class CnstIterationsTempFunction(AbstrIterationsTempFunction):
 
     .. doctest::
 
-        >>> from locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function import CnstIterationsTempFunction
+        >>> from locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function \\
+        ...     import CnstIterationsTempFunction
+        ... # init
         >>> test = CnstIterationsTempFunction()
+        ... # tests
         >>> test.get_iterations(1000)
         1000
         >>> test.get_iterations(359)
@@ -37,8 +40,11 @@ class CnstIterationsTempFunction(AbstrIterationsTempFunction):
 
     .. doctest::
 
-        >>> from locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function import CnstIterationsTempFunction
+        >>> from locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function \\
+        ...     import CnstIterationsTempFunction
+        ... # init
         >>> test = CnstIterationsTempFunction(800)
+        ... # tests
         >>> test.get_iterations(1000)
         800
         >>> test.get_iterations(359)
@@ -57,8 +63,8 @@ class CnstIterationsTempFunction(AbstrIterationsTempFunction):
 
         Parameters
         ----------
-        temperature : float
-            The "temperature" in the simulated annealing algorithm.annealing
+        temperature : int or float
+            The "temperature" in the simulated annealing algorithm.
 
         Returns
         -------

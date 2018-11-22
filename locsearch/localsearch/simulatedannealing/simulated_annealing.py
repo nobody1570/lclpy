@@ -5,7 +5,7 @@ from collections import namedtuple
 
 
 class SimulatedAnnealing(AbstractLocalSearch):
-    """performs a simulated annealing algorithm.
+    """Performs a simulated annealing algorithm with the given parameters.
 
     Parameters
     ----------
@@ -14,7 +14,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
     termination_criterion : AbstractTerminationCriterion
         Implements a termination criterion to terminate the algorithm.
     cooling_function : AbstractCoolingFunction
-        Implements the cooling function for the simulated annealing.
+        Implements the cooling function for the algorithm.
     iterations_for_temp_f : AbstrIterationsTempFunction
         Implements a function to determine the amount of iterations for a
         certain temperature.
@@ -29,7 +29,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
     _termination_criterion : AbstractTerminationCriterion
         Implements a termination criterion to terminate the algorithm.
     _cooling_function : AbstractCoolingFunction
-        Implements the cooling function for the simulated annealing.
+        Implements the cooling function for the algorithm.
     _iterations_for_temp_f : AbstrIterationsTempFunction
         Implements a function to determine the amount of iterations for a
         certain temperature.
@@ -40,6 +40,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
 
     Examples
     --------
+    A simple example:
 
     .. doctest::
 

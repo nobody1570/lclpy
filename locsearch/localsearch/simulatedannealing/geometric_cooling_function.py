@@ -1,4 +1,5 @@
-from locsearch.localsearch.simulatedannealing.abstract_cooling_function import AbstractCoolingFunction
+from locsearch.localsearch.simulatedannealing.abstract_cooling_function \
+    import AbstractCoolingFunction
 
 
 class GeometricCoolingFunction(AbstractCoolingFunction):
@@ -6,9 +7,9 @@ class GeometricCoolingFunction(AbstractCoolingFunction):
 
     Parameters
     ----------
-    alpha : float
+    alpha : float, optional
         A parameter that influences the cooling rate. Should be a positive
-        number smaller than 1.
+        number smaller than 1. Default is 0.75.
 
     Attributes
     ----------
@@ -21,23 +22,35 @@ class GeometricCoolingFunction(AbstractCoolingFunction):
 
     .. doctest::
 
-        >>> from locsearch.localsearch.simulatedannealing.geometric_cooling_function import GeometricCoolingFunction
+        >>> from locsearch.localsearch.simulatedannealing.geometric_cooling_function \\
+        ...     import GeometricCoolingFunction
         >>> import math
+        ... # init
         >>> test = GeometricCoolingFunction()
-        >>> temperature = 1000
+        ... # tests
         >>> test.next_temperature(1000)
         750.0
+        >>> test.next_temperature(100)
+        75.0
+        >>> test.next_temperature(10)
+        7.5
 
     An example with an alpha of 0.5:
 
     .. doctest::
 
-        >>> from locsearch.localsearch.simulatedannealing.geometric_cooling_function import GeometricCoolingFunction
+        >>> from locsearch.localsearch.simulatedannealing.geometric_cooling_function \\
+        ...     import GeometricCoolingFunction
         >>> import math
+        ... # init
         >>> test = GeometricCoolingFunction(0.5)
-        >>> temperature = 1000
+        ... # tests
         >>> test.next_temperature(1000)
         500.0
+        >>> test.next_temperature(100)
+        50.0
+        >>> test.next_temperature(10)
+        5.0
 
     """
 
@@ -51,12 +64,19 @@ class GeometricCoolingFunction(AbstractCoolingFunction):
         Parameters
         ----------
         old_temperature : int or float
-            The old temperature
+            The old temperature.
 
         Returns
         -------
         float
-            The new temperature. This temperature is _alpha*old_temperature.
+            The new temperature. This temperature is equal to:
+
+            .. math::
+                \\_alpha*old\\_temperature
+
+            .. The formula:
+                _alpha*old_temperature
 
         """
-        return self._alpha*old_temperature
+
+        return self._alpha * old_temperature

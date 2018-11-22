@@ -12,7 +12,14 @@ class AbstrIterationsTempFunction(ABC):
         super().__init__()
 
     @abstractmethod
-    def get_iterations(self):
-        """Returns the amount of iterations for a certain temperature."""
+    def get_iterations(self, temperature):
+        """Returns the amount of iterations for a certain temperature.
+
+        Parameters
+        ----------
+        Temperature : int or float
+            The current temperature.
+
+        """
 
         pass
