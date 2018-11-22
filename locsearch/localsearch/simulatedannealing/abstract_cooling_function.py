@@ -22,4 +22,5 @@ class AbstractCoolingFunction(ABC):
             The new temperature
 
         """
+
         pass

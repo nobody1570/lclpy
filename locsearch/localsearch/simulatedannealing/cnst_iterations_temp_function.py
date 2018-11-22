@@ -73,4 +73,5 @@ class CnstIterationsTempFunction(AbstrIterationsTempFunction):
             _iterations)
 
         """
+
         return self._iterations
