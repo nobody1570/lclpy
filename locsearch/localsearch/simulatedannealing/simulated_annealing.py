@@ -101,7 +101,18 @@ class SimulatedAnnealing(AbstractLocalSearch):
         self._acceptance_function = SimulatedAnnealingAcceptanceFunction()
 
     def run(self):
-        """Starts running the simulated annealing algorithm."""
+        """Starts running the simulated annealing algorithm.
+
+        Returns
+        -------
+        best_order : numpy.ndarray
+            A one dimensional numpy array that contains the order of the
+            points for the best found solution.
+        best_value : int or float
+            The best found value of the evaluation function. This should be
+            the evaluation value of best_order.
+
+        """
 
         # init
         base_value = self._solution.evaluate()
