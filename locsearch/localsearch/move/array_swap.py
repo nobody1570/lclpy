@@ -1,9 +1,9 @@
-from locsearch.localsearch.move.abstract_move import AbstractMove
-import numpy
 import random
+from locsearch.localsearch.move.abstract_move \
+    import AbstractMove
 
 
-class ArraySwap(object):
+class ArraySwap(AbstractMove):
     """Implements a swap move for 1 dimensional numpy arrays.
 
     Parameters
@@ -13,7 +13,7 @@ class ArraySwap(object):
 
     Attributes
     ----------
-    size : int
+    _size : int
         The size of the numpy array that is altered.
 
     Examples
@@ -22,47 +22,62 @@ class ArraySwap(object):
     one move at a time. This example is simply to show the behaviour of
     get_moves and how to perform and undo a move:
 
-    ..doctest::
+    .. doctest::
 
         >>> import numpy
         >>> from locsearch.localsearch.move.array_swap import ArraySwap
+        ... # init array, a move will be performed on this array
         >>> array = numpy.array([0, 1, 2, 3, 4])
+        ... # init
         >>> swap = ArraySwap(len(array))
+        ... # get all possible moves in all_moves
         >>> all_moves = []
         >>> for move in swap.get_moves():
         ...     all_moves.append(move)
         >>> all_moves
         [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
-        >>> a_move = all_moves[5] # picking a move (don't do it like this)
+        >>> # picking an arbitrary move
+        >>> # Never pick a move like this yourself. It only is done here for
+        >>> # the sake of showing you a clear example.
+        >>> a_move = all_moves[5]
         >>> a_move
         (1, 3)
-        >>> swap.move(array, a_move) # actually performing a move
+        >>> # performing the move on the array
+        >>> swap.move(array, a_move)
         >>> array
         array([0, 3, 2, 1, 4])
-        >>> swap.undo_move(array, a_move) # undoes the move
+        >>> # undoing the move on the array
+        >>> swap.undo_move(array, a_move)
         >>> array
         array([0, 1, 2, 3, 4])
 
-    An example of generating a random move with get_random_move:
+    An example of generating some random moves with get_random_move:
 
     .. doctest::
 
+        >>> import random
         >>> from locsearch.localsearch.move.array_swap import ArraySwap
+        ... # set seed random
+        ... # not needed, is only used here to always get the same moves.
+        >>> random.seed(0)
+        ... # init
         >>> swap = ArraySwap(10)
-        >>> test = swap.get_random_move()
-        >>> 0 <= test[0] < 10 # checking if the move is valid
-        True
-        >>> 0 <= test[1] < 10 # checking if the move is valid
-        True
-        >>> test[0] != test[1] # checking if the move is valid
-        True
+        ... # tests
+        >>> swap.get_random_move()
+        (0, 6)
+        >>> swap.get_random_move()
+        (4, 8)
+        >>> swap.get_random_move()
+        (6, 7)
+        >>> swap.get_random_move()
+        (4, 7)
 
     """
 
     def __init__(self, size):
         super().__init__()
 
-        self.size = size
+        self._size = size
 
     def move(self, array, move):
         """Performs the move asked.
@@ -97,17 +112,17 @@ class ArraySwap(object):
         self.move(array, move)
 
     def get_moves(self):
-        """This is a generator used to return all valid moves.
+        """Iterate over all valid moves.
 
-        Returns
-        -------
+        Yields
+        ------
         tuple of int
             The next valid move.
 
         """
 
-        for i in range(self.size):
-            for j in range(i + 1, self.size):
+        for i in range(self._size):
+            for j in range(i + 1, self._size):
                 yield (i, j)
 
     def get_random_move(self):
@@ -124,12 +139,16 @@ class ArraySwap(object):
         # i would have a higher chance to be chosen than those with a smaller
         # i.
 
-        i = random.randrange(self.size)
-        j = random.randrange(self.size)
+        # generate random numbers
+        i = random.randrange(self._size)
+        j = random.randrange(self._size)
 
+        # ensure the number are different
         while i == j:
-            j = random.randrange(self.size)
+            j = random.randrange(self._size)
 
+        # Puts the smallest number first, not needed, but ensures that every
+        # move will have only 1 representation that will be used.
         if j < i:
             i, j = j, i
 
@@ -138,17 +157,19 @@ class ArraySwap(object):
     def changed_distances(self, move):
         """Aid function for delta evaluation.
 
+        This function returns the pairs who would have an altered evaluation
+        value due to the move.
+
         Parameters
         ----------
-        move : tuple
+        move : tuple of int
             A tuple of 2 ints that represents a single unique move
 
         Returns
         -------
-        set
-            this set contains a tuple with every distance that will change
-            because of the move. Note that this function only works properly
-            when this move-class is used.
+        set of tuple
+            this set contains a tuple with every (from,to) pair that would have
+            an altered evaluation value due to the move.
 
         Examples
         --------
@@ -157,7 +178,11 @@ class ArraySwap(object):
         .. doctest::
 
             >>> from locsearch.localsearch.move.array_swap import ArraySwap
+            ... # init
             >>> swap = ArraySwap(10)
+            ... # tests
+            ... # since the order of the items in a set might be different,
+            ... # they are compared to an equivalent set.
             >>> changed = swap.changed_distances((4, 8))
             >>> changed == {(3, 4), (4, 5), (7, 8), (8,9)}
             True
@@ -168,24 +193,30 @@ class ArraySwap(object):
             >>> changed == {(9, 0), (0, 1), (7, 8), (8, 9)}
             True
             >>> changed = swap.changed_distances((0, 9))
-            >>> changed == {(9, 0), (0, 1), (8, 9), (9, 0)}
+            >>> changed == {(0, 1), (8, 9), (9, 0)}
             True
 
         """
+
         changed_dist = []
 
+        # iterating over the 2 swapped indices
         for order_index in move:
-            # lower changed indices
+
+            # get the change in the lower indices
             if order_index != 0:
                 changed_dist.append((order_index - 1, order_index))
             else:
-                changed_dist.append((self.size - 1, 0))
 
-            # higher changed indices
-            if order_index != self.size - 1:
+                # between index 0 and index _size-1, the pair is
+                # (_size - 1, 0), this because we move from _size-1 to 0
+                changed_dist.append((self._size - 1, 0))
+
+            # get the change in the higher indices
+            if order_index != self._size - 1:
                 changed_dist.append((order_index, order_index + 1))
             else:
-                changed_dist.append((self.size - 1, 0))
+                changed_dist.append((self._size - 1, 0))
 
         return set(changed_dist)
 
@@ -205,20 +236,18 @@ class ArraySwap(object):
             move was performed.
         to : int
             the to index that one wants to use in the array with if the
-            move was performed.array
+            move was performed.
         move : tuple of int
-            A tuple with 2 ints that represents a single, unique move.
+            A tuple with that represents a single, unique move.
 
         Returns
         -------
         frm : int
-            The index in the unaltered array that corresponds with the
-            same value as the parameter from in an array where the move
-            was performed.
+            The index in the unaltered array that has the same value as the
+            parameter frm in an array where the move was performed.
         to : int
-            The index in the unaltered array that corresponds with the
-            same value as the parameter to in an array where the move was
-            performed.
+            The index in the unaltered array that has the same value as the
+            parameter to in an array where the move was performed.
 
         Examples
         --------
@@ -241,13 +270,20 @@ class ArraySwap(object):
 
         """
 
+        # check if the frm value is affected by the move
         if frm in move:
+
+            # transform frm so it returns the value that from would have if the
+            # move was performed.
             if frm == move[0]:
                 frm = move[1]
             else:
                 frm = move[0]
 
+        # check if the to value is affected by the move
         if to in move:
+            # transform to so it returns the value that from would have if the
+            # move was performed.
             if to == move[0]:
                 to = move[1]
             else:

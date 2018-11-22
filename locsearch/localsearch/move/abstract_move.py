@@ -2,9 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class AbstractMove(ABC):
-    """Template to create Move-objects.def
+    """Template to create Move-objects.
 
-    This object is used to explore new Solutions in a neighbourhood.
+    This object is used to explore a neighbourhood and alter the state of a
+    solution.
     """
 
     def __init__(self):
@@ -12,14 +13,14 @@ class AbstractMove(ABC):
 
     @abstractmethod
     def move(self, data, move):
-        """performs a move
+        """Performs a move.
 
         Parameters
         ----------
         data
             The dataset that is being explored. It will be altered after the
             method call.
-        move
+        move : tuple of int
             A representation of a valid move.
 
         """
@@ -28,14 +29,16 @@ class AbstractMove(ABC):
 
     @abstractmethod
     def undo_move(self, data, move):
-        """performs a move
+        """Undoes a move.
+
+        Make sure you only undo a move after it's has been performed.
 
         Parameters
         ----------
         data
             The dataset that is being explored. It will be altered after the
             method call.
-        move
+        move : tuple of int
             A representation of the move one wishes to undo
 
         """
@@ -44,10 +47,10 @@ class AbstractMove(ABC):
 
     @abstractmethod
     def get_moves(self):
-        """A generator used to return all valid moves.
+        """A generator used to return all valid moves in the neighbourhood.
 
-        Returns
-        -------
+        Yields
+        ------
         tuple of int
             The next valid move.
 
@@ -57,7 +60,7 @@ class AbstractMove(ABC):
 
     @abstractmethod
     def get_random_move(self):
-        """A method used to generate a random move.
+        """A method used to generate a random move in the neighbourhood..
 
         Returns
         -------
