@@ -5,8 +5,8 @@ class AbstractLocalSearchSolution(ABC):
     """Template to create Solution-classes for localsearch implemenatations.
 
     This Class is meant to be used as a template.
-    It is supposed to be used when constructing a heuristic to solve
-    localsearch problems.
+    It is supposed to be used when constructing your own solution objects for a
+    specific problem.
 
     """
 
@@ -19,7 +19,7 @@ class AbstractLocalSearchSolution(ABC):
 
         Parameters
         ----------
-        move
+        move : tuple of int
             A representation of a move.
 
         """
@@ -32,7 +32,7 @@ class AbstractLocalSearchSolution(ABC):
 
         Parameters
         ----------
-        move
+        move : tuple of int
             A representation of the move one wishes to undo.
 
         """
@@ -43,10 +43,10 @@ class AbstractLocalSearchSolution(ABC):
     def get_moves(self):
         """Iterable. Returns all valid moves in the neighbourhood.
 
-        Returns
-        -------
-        iterable
-            contains a representation of all valid moves in the neighbourhood.
+        Yields
+        ------
+        move : tuple of int
+            A representation of the next move in the neighbourhood.
 
         """
 
@@ -54,11 +54,11 @@ class AbstractLocalSearchSolution(ABC):
 
     @abstractmethod
     def get_random_move(self):
-        """Returns a random valid move from the neighbourhood.evaluate
+        """Returns a random valid move from the neighbourhood.
 
         Returns
         -------
-        move
+        tuple of int
             A representation of the move.
 
         """
@@ -86,6 +86,13 @@ class AbstractLocalSearchSolution(ABC):
 
     def evaluate_move(self, move):
         """Calculates the effects a move would have on the evaluation of the state.
+
+        This function does not need to be implemented.
+
+        Parameters
+        ----------
+        move : tuple of int
+            The move one would like to know the effects of.
 
         Returns
         -------
