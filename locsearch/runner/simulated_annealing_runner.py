@@ -14,7 +14,7 @@ from locsearch.solution.tsp_solution import TspSolution
 
 
 # TODO adapt to inherit from AbstractRunner
-class SimulatedAnnealingRunner():
+class SimulatedAnnealingRunner(AbstractRunner):
     """Loads a problem and performs simulated annealing on the problem.
 
     Note that the default implementation only works with tsp problems from
