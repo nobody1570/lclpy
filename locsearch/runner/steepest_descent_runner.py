@@ -83,7 +83,7 @@ class SteepestDescentRunner(AbstractRunner):
     def define_algorithm(self):
         """Creating and initialising a steepest descent algorithm."""
 
-        self._algorithm = SteepestDescent(self._solution)
+        self._algorithm = SteepestDescent(self._solution, False)
 
     def run_algorithm(self):
         """Starts running the algorithm."""
