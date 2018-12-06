@@ -12,10 +12,26 @@ locsearch.localsearch.move.abstract\_move module
     :undoc-members:
     :show-inheritance:
 
+locsearch.localsearch.move.array\_reverse\_order module
+-------------------------------------------------------
+
+.. automodule:: locsearch.localsearch.move.array_reverse_order
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 locsearch.localsearch.move.array\_swap module
 ---------------------------------------------
 
 .. automodule:: locsearch.localsearch.move.array_swap
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+locsearch.localsearch.move.multi\_neighbourhood module
+------------------------------------------------------
+
+.. automodule:: locsearch.localsearch.move.multi_neighbourhood
     :members:
     :undoc-members:
     :show-inheritance:

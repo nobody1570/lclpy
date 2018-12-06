@@ -5,10 +5,15 @@ import random
 class TspArraySwap(ArraySwap):
     """Implements a swap move for 1 dimensional numpy arrays for tsp problems.
 
-    In tsp swapping the first location for another is pointless. This class'
-    constructor removes the swaps with the first location from the
+    In TSP problems swapping the first location for another is pointless. This
+    class does not generate swaps with the first location from the
     neighbourhood. In all other respects this class is identical to it's base
-    class.
+    class Arrayswap.
+
+    The move function performs and generates moves that swap 2 values in a
+    one-dimensional array. Note that a move is represented as a tuple of int.
+    The move (x, y) represents the swap of the values from the indices x and y
+    of the array.
 
     Parameters
     ----------

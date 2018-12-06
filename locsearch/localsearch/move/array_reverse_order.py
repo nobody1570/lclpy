@@ -3,13 +3,13 @@ from locsearch.localsearch.move.abstract_move \
     import AbstractMove
 
 
-class ArraySwap(AbstractMove):
-    """Implements a swap move function for 1 dimensional numpy arrays.
+class ArrayReverseOrder(AbstractMove):
+    """Implements a reverse order move function for 1 dimensional numpy arrays.
 
-    The move function performs and generates moves that swap 2 values in a
-    one-dimensional array. Note that a move is represented as a tuple of int.
-    The move (x, y) represents the swap of the values from the indices x and y
-    of the array.
+    The move function performs and generates moves that reverses the order of
+    values in an interval of a one-dimensional array. Note that a move is
+    represented as a tuple of int. The move (x, y) represents reversing of the
+    order of the values in the interval of indices [x, y] of the array.
 
     Parameters
     ----------
@@ -30,29 +30,30 @@ class ArraySwap(AbstractMove):
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.localsearch.move.array_swap import ArraySwap
+        >>> from locsearch.localsearch.move.array_reverse_order \\
+        ...     import ArrayReverseOrder
         ... # init array, a move will be performed on this array
         >>> array = numpy.array([0, 1, 2, 3, 4])
         ... # init
-        >>> swap = ArraySwap(len(array))
+        >>> reverse = ArrayReverseOrder(len(array))
         ... # get all possible moves in all_moves
         >>> all_moves = []
-        >>> for move in swap.get_moves():
+        >>> for move in reverse.get_moves():
         ...     all_moves.append(move)
         >>> all_moves
         [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
         >>> # picking an arbitrary move
         >>> # Never pick a move like this yourself. It only is done here for
         >>> # the sake of showing you a clear example.
-        >>> a_move = all_moves[5]
+        >>> a_move = all_moves[2]
         >>> a_move
-        (1, 3)
+        (0, 3)
         >>> # performing the move on the array
-        >>> swap.move(array, a_move)
+        >>> reverse.move(array, a_move)
         >>> array
-        array([0, 3, 2, 1, 4])
+        array([3, 2, 1, 0, 4])
         >>> # undoing the move on the array
-        >>> swap.undo_move(array, a_move)
+        >>> reverse.undo_move(array, a_move)
         >>> array
         array([0, 1, 2, 3, 4])
 
@@ -61,27 +62,27 @@ class ArraySwap(AbstractMove):
     .. doctest::
 
         >>> import random
-        >>> from locsearch.localsearch.move.array_swap import ArraySwap
+        >>> from locsearch.localsearch.move.array_reverse_order \\
+        ...    import ArrayReverseOrder
         ... # set seed random
         ... # not needed, is only used here to always get the same moves.
         >>> random.seed(0)
         ... # init
-        >>> swap = ArraySwap(10)
+        >>> reverse = ArrayReverseOrder(10)
         ... # tests
-        >>> swap.get_random_move()
+        >>> reverse.get_random_move()
         (0, 6)
-        >>> swap.get_random_move()
+        >>> reverse.get_random_move()
         (4, 8)
-        >>> swap.get_random_move()
+        >>> reverse.get_random_move()
         (6, 7)
-        >>> swap.get_random_move()
+        >>> reverse.get_random_move()
         (4, 7)
 
     """
 
     def __init__(self, size):
         super().__init__()
-
         self._size = size
 
     def move(self, array, move):
@@ -99,7 +100,17 @@ class ArraySwap(AbstractMove):
 
         (index_1, index_2) = move
 
-        array[index_1], array[index_2] = array[index_2], array[index_1]
+        # calulate the mean of index_1 and index_2
+        middle = (index_1 + index_2) / 2
+
+        # swap all pairs in the range [index_1, index_2].
+        # This will change the order of the values in the range.
+        while(index_1 < middle):
+
+            array[index_1], array[index_2] = array[index_2], array[index_1]
+
+            index_1 += 1
+            index_2 -= 1
 
     def undo_move(self, array, move):
         """Undoes the move asked.
@@ -168,13 +179,15 @@ class ArraySwap(AbstractMove):
         Parameters
         ----------
         move : tuple of int
-            A tuple of 2 ints that represents a single unique move
+            A tuple of 2 ints that represents a single valid move.
 
         Returns
         -------
         set of tuple
             this set contains a tuple with every (from,to) pair that would have
             an altered evaluation value due to the move.
+            A pair (x, y) and a pair (y, x) are assumed to have different
+            evaluatio0n values.
 
         Examples
         --------
@@ -182,46 +195,50 @@ class ArraySwap(AbstractMove):
 
         .. doctest::
 
-            >>> from locsearch.localsearch.move.array_swap import ArraySwap
+            >>> from locsearch.localsearch.move.array_reverse_order \\
+            ...     import ArrayReverseOrder
             ... # init
-            >>> swap = ArraySwap(10)
+            >>> reverse = ArrayReverseOrder(10)
             ... # tests
             ... # since the order of the items in a set might be different,
             ... # they are compared to an equivalent set.
-            >>> changed = swap.changed_distances((4, 8))
-            >>> changed == {(3, 4), (4, 5), (7, 8), (8,9)}
+            >>> changed = reverse.changed_distances((4, 8))
+            >>> changed == {(3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9)}
             True
-            >>> changed = swap.changed_distances((4, 9))
-            >>> changed == {(3, 4), (4, 5), (8, 9), (9, 0)}
+            >>> changed = reverse.changed_distances((4, 9))
+            >>> changed == {(3, 4), (4, 5), (5, 6),
+            ...             (6, 7), (7, 8), (8, 9), (9, 0)}
             True
-            >>> changed = swap.changed_distances((0, 8))
-            >>> changed == {(9, 0), (0, 1), (7, 8), (8, 9)}
+            >>> changed = reverse.changed_distances((0, 4))
+            >>> changed == {(9, 0), (0, 1), (1, 2), (2, 3), (3, 4), (4, 5)}
             True
-            >>> changed = swap.changed_distances((0, 9))
-            >>> changed == {(0, 1), (8, 9), (9, 0)}
+            >>> changed = reverse.changed_distances((0, 9))
+            >>> changed == {(0, 1), (1, 2), (2, 3), (3, 4), (4, 5),
+            ...             (5, 6), (6, 7), (7, 8), (8, 9), (9, 0)}
             True
 
         """
 
         changed_dist = []
 
-        # iterating over the 2 swapped indices
-        for order_index in move:
+        # Calculating the distances that are always changed
 
-            # get the change in the lower indices
-            if order_index != 0:
-                changed_dist.append((order_index - 1, order_index))
-            else:
+        if (move[0] == 0):
+            changed_dist.append((self._size - 1, 0))
+        else:
+            changed_dist.append((move[0] - 1, move[0]))
 
-                # between index 0 and index _size-1, the pair is
-                # (_size - 1, 0), this because we move from _size-1 to 0
-                changed_dist.append((self._size - 1, 0))
+        if (move[1] == self._size - 1):
+            changed_dist.append((self._size - 1, 0))
+        else:
+            changed_dist.append((move[1], move[1] + 1))
 
-            # get the change in the higher indices
-            if order_index != self._size - 1:
-                changed_dist.append((order_index, order_index + 1))
-            else:
-                changed_dist.append((self._size - 1, 0))
+        # calculating the distance that are only changed if X -> Y causes a
+        # different evaluation value than Y -> X
+
+        for i in range(move[0], move[1]):
+
+            changed_dist.append((i, i + 1))
 
         return set(changed_dist)
 
@@ -256,42 +273,39 @@ class ArraySwap(AbstractMove):
 
         Examples
         --------
-        Some simple examples, the indices remain the same, but the move
-        changes:
+        Some simple examples, the move remains the same, but the indices
+        change:
 
         .. doctest::
 
-            >>> from locsearch.localsearch.move.array_swap \\
-            ...     import ArraySwap as AS
-            >>> AS.transform_next_index_to_current_index(1, 5, (1, 5))
-            (5, 1)
-            >>> AS.transform_next_index_to_current_index(1, 5, (1, 3))
-            (3, 5)
-            >>> AS.transform_next_index_to_current_index(1, 5, (0, 5))
-            (1, 0)
-            >>> AS.transform_next_index_to_current_index(1, 5, (2, 3))
-            (1, 5)
+            >>> from locsearch.localsearch.move.array_reverse_order \\
+            ...     import ArrayReverseOrder as ARO
+            >>> ARO.transform_next_index_to_current_index(0, 10, (1, 8))
+            (0, 10)
+            >>> ARO.transform_next_index_to_current_index(0, 6, (1, 8))
+            (0, 3)
+            >>> ARO.transform_next_index_to_current_index(2, 3, (1, 8))
+            (7, 6)
+            >>> ARO.transform_next_index_to_current_index(1, 8, (1, 8))
+            (8, 1)
+            >>> ARO.transform_next_index_to_current_index(5, 10, (1, 8))
+            (4, 10)
 
 
         """
 
         # check if the frm value is affected by the move
-        if frm in move:
+        if frm in range(move[0], move[1] + 1):
 
-            # transform frm so it returns the value that from would have if the
-            # move was performed.
-            if frm == move[0]:
-                frm = move[1]
-            else:
-                frm = move[0]
+            # alter the value as necessary
+            offset = frm - move[0]
+            frm = move[1] - offset
 
         # check if the to value is affected by the move
-        if to in move:
-            # transform to so it returns the value that from would have if the
-            # move was performed.
-            if to == move[0]:
-                to = move[1]
-            else:
-                to = move[0]
+        if to in range(move[0], move[1] + 1):
+
+            # alter the value as necessary
+            offset = to - move[0]
+            to = move[1] - offset
 
         return (frm, to)
