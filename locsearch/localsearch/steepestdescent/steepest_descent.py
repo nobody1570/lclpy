@@ -3,6 +3,7 @@ from locsearch.termination.must_improve_termination_criterion \
     import MustImproveTerminationCriterion
 import math
 from collections import namedtuple
+from locsearch.aidfunc.is_improvement_func import bigger, smaller
 
 
 class SteepestDescent(AbstractLocalSearch):
@@ -12,10 +13,10 @@ class SteepestDescent(AbstractLocalSearch):
     ----------
     solution : AbstractLocalSearchSolution
         Contains all the data needed for the specific problem.
-    improvement_is_bigger : bool, optional
-        Should be True if a bigger value is considered to be an improvement,
-        should be False if a smaller value is considered to be an improvement.
-        The default is True.
+    minimise : bool, optional
+        If the goal is to minimise the evaluation function, this should be
+        True. If the goal is to maximise the evlauation function, this should
+        be False. The default is True.
 
     Attributes
     ----------
@@ -23,10 +24,42 @@ class SteepestDescent(AbstractLocalSearch):
         Contains all the data needed for the specific problem.
     _termination_criterion : MustImproveTerminationCriterion
         Ends the algorithm if no more improvements can be found.
+    _function
+        The function used to determine if a delta value is better than another
+        delta value.
 
     Examples
     --------
-    A simple example:
+    An example of minimising:
+
+    .. doctest::
+
+        >>> import numpy
+        >>> from locsearch.localsearch.steepestdescent.steepest_descent \\
+        ...     import SteepestDescent
+        >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+        >>> from locsearch.evaluation.tsp_evaluation_function \\
+        ...     import TspEvaluationFunction
+        >>> from locsearch.solution.tsp_solution import TspSolution
+        ... # init solution
+        >>> distance_matrix = numpy.array(
+        ... [[0, 2, 5, 8],
+        ...  [2, 0, 4, 1],
+        ...  [5, 4, 0, 7],
+        ...  [8, 1, 7, 0]])
+        >>> size = distance_matrix.shape[0]
+        >>> move = TspArraySwap(size)
+        >>> evaluation = TspEvaluationFunction(distance_matrix, move)
+        >>> solution = TspSolution(evaluation, move, size)
+        ... # init SteepestDescent
+        >>> steepest_descent = SteepestDescent(solution)
+        ... # run algorithm
+        >>> steepest_descent.run()
+        Results(best_order=array([0, 1, 3, 2]), best_value=15)
+
+    An example of maximising:
+
+    WERKT NIET --> DEBUG!!!!!!
 
     .. doctest::
 
@@ -51,16 +84,22 @@ class SteepestDescent(AbstractLocalSearch):
         >>> steepest_descent = SteepestDescent(solution, False)
         ... # run algorithm
         >>> steepest_descent.run()
-        Results(best_order=array([0, 1, 3, 2]), best_value=15)
+
+
 
     """
 
-    def __init__(self, solution, improvement_is_bigger=True):
+    def __init__(self, solution, minimise=True):
         super().__init__()
 
         self._solution = solution
         self._termination_criterion = \
-            MustImproveTerminationCriterion(improvement_is_bigger)
+            MustImproveTerminationCriterion(minimise)
+
+        if minimise:
+            self._function = smaller
+        else:
+            self._function = bigger
 
     def run(self):
         """Starts running the steepest descent.
@@ -92,7 +131,7 @@ class SteepestDescent(AbstractLocalSearch):
                 delta = self._solution.evaluate_move(move)
 
                 # keep data best move
-                if delta < best_found_delta:
+                if self._function(best_found_delta, delta):
                     best_found_delta = delta
                     best_found_move = move
 

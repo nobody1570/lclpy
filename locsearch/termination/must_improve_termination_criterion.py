@@ -1,6 +1,6 @@
 from locsearch.termination.abstract_termination_criterion \
     import AbstractTerminationCriterion
-from aidfunc.is_improvement_func import bigger, smaller
+from locsearch.aidfunc.is_improvement_func import bigger, smaller
 
 
 class MustImproveTerminationCriterion(AbstractTerminationCriterion):
