@@ -1,7 +1,6 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
 from locsearch.termination.must_improve_termination_criterion \
     import MustImproveTerminationCriterion
-import math
 from collections import namedtuple
 from locsearch.aidfunc.is_improvement_func import bigger, smaller
 
@@ -57,9 +56,7 @@ class SteepestDescent(AbstractLocalSearch):
         >>> steepest_descent.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15)
 
-    An example of maximising:
-
-    WERKT NIET --> DEBUG!!!!!!
+    An example of maximising, note that the distance matrix is different:
 
     .. doctest::
 
@@ -72,10 +69,10 @@ class SteepestDescent(AbstractLocalSearch):
         >>> from locsearch.solution.tsp_solution import TspSolution
         ... # init solution
         >>> distance_matrix = numpy.array(
-        ... [[0, 2, 5, 8],
-        ...  [2, 0, 4, 1],
-        ...  [5, 4, 0, 7],
-        ...  [8, 1, 7, 0]])
+        ... [[0, 8, 5, 2],
+        ...  [8, 0, 4, 7],
+        ...  [5, 4, 0, 1],
+        ...  [2, 7, 1, 0]])
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
@@ -84,6 +81,7 @@ class SteepestDescent(AbstractLocalSearch):
         >>> steepest_descent = SteepestDescent(solution, False)
         ... # run algorithm
         >>> steepest_descent.run()
+        Results(best_order=array([0, 1, 3, 2]), best_value=21)
 
 
 
@@ -98,8 +96,10 @@ class SteepestDescent(AbstractLocalSearch):
 
         if minimise:
             self._function = smaller
+            self._best_found_delta_base_value = float("inf")
         else:
             self._function = bigger
+            self._best_found_delta_base_value = float("-inf")
 
     def run(self):
         """Starts running the steepest descent.
@@ -115,14 +115,17 @@ class SteepestDescent(AbstractLocalSearch):
 
         """
 
+        # init solution
         base_value = self._solution.evaluate()
         self._solution.set_as_best(base_value)
+
+        # init termination criterion
+        self._termination_criterion.check_new_value(base_value)
 
         while self._termination_criterion.keep_running():
 
             # search the neighbourhood for the best move
-
-            best_found_delta = math.inf
+            best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
             for move in self._solution.get_moves():
