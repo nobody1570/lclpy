@@ -11,11 +11,10 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     max_iterations : int, optional
         The maximal amount of iterations without improvement. The default is
         100 iterations.
-    improvement_is_bigger : bool, optional
-        If this boolean is True, values that are bigger than the previous
-        values will be considered as improvements. If it is False, values that
-        are smaller than the previous values wil be considered improvements.
-        The default is True.
+    minimise : bool, optional
+        If the goal is to minimise the evaluation function, this should be
+        True. If the goal is to maximise the evlauation function, this should
+        be False. The default is True.
 
     Attributes
     ----------
@@ -33,7 +32,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
     Examples
     --------
     Default amount of iterations without improvement (100), always checking
-    the new value. Bigger values are considered improvements(default). The
+    the new value. Smaller values are considered improvements(default). The
     dataset eval_values is generated. (1 improvement, 99 cases without
     improvement, 1 improvement, 110 cases without improvement) After this the
     iterations start:
@@ -46,8 +45,8 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         ... # creation of an array that contains the values that will be given
         ... # to our termination criterion
         >>> eval_values = numpy.concatenate(
-        ...     (numpy.array([2]), numpy.random.randint(3, size=98),
-        ...      numpy.array([5]), numpy.random.randint(6, size=110)))
+        ...     (numpy.array([1000]), numpy.random.randint(1000,2000, size=98),
+        ...      numpy.array([20]), numpy.random.randint(20,40, size=110)))
         ... # index is used to get values from the array.
         ... # index is also used to count the amount of iterations
         >>> index=0
@@ -65,7 +64,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         >>> index # == amount of iterations.
         200
 
-    3 iterations without improvement, only checking improved values. Bigger
+    3 iterations without improvement, only checking improved values. Smaller
     values are considered improvements(default). The dataset eval_values is
     hardcoded:
 
@@ -76,7 +75,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         ...     import NoImprovementTerminationCriterion
         ... # creation of an array that contains the values that will be given
         ... # to our termination criterion
-        >>> eval_values = numpy.array([0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
+        >>> eval_values = numpy.array([20, 19, 21, 22, 23, 3])
         ... # index is used to get values from the array.
         ... # index is also used to count the amount of iterations
         >>> index = 0
@@ -96,9 +95,9 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         ...     index += 1
         ...     test.iteration_done()
         >>> index # == amount of iterations.
-        11
+        4
 
-    Default amount of iterations without improvement (100). Smaller values are
+    Default amount of iterations without improvement (100). Bigger values are
     considered improvements. The dataset eval_values is generated.
     (1 improvement, 99 cases without improvement, 1 improvement, 110 cases
     without improvement) After this the iterations start:
@@ -111,14 +110,13 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         ... # creation of an array that contains the values that will be given
         ... # to our termination criterion
         >>> eval_values = numpy.concatenate(
-        ...     (numpy.array([1000]), numpy.random.randint(1000,2000, size=98),
-        ...      numpy.array([20]), numpy.random.randint(20,40, size=110)))
+        ...     (numpy.array([2]), numpy.random.randint(3, size=98),
+        ...      numpy.array([5]), numpy.random.randint(6, size=110)))
         ... # index is used to get values from the array.
         ... # index is also used to count the amount of iterations
         >>> index=0
         ... # init
-        >>> test = NoImprovementTerminationCriterion(
-        ...     improvement_is_bigger=False)
+        >>> test = NoImprovementTerminationCriterion(minimise=False)
         ... # loop
         >>> while test.keep_running():
         ...     pass # other code to execute
@@ -131,7 +129,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         >>> index # == amount of iterations.
         200
 
-    3 iterations without improvement. Smaller values are considered
+    3 iterations without improvement. Bigger values are considered
     improvements. The dataset eval_values is hardcoded:
 
     .. doctest::
@@ -141,7 +139,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         ...     import NoImprovementTerminationCriterion
         ... # creation of an array that contains the values that will be given
         ... # to our termination criterion
-        >>> eval_values = numpy.array([20, 19, 21, 22, 23, 3])
+        >>> eval_values = numpy.array([0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
         ... # index is used to get values from the array.
         ... # index is also used to count the amount of iterations
         >>> index = 0
@@ -157,15 +155,14 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         ...     index += 1
         ...     test.iteration_done()
         >>> index # == amount of iterations.
-        5
+        11
 
 
 
 
     """
 
-
-    def __init__(self, max_iterations=100, improvement_is_bigger=True):
+    def __init__(self, max_iterations=100, minimise=True):
         super().__init__()
 
         # init
@@ -173,12 +170,12 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         self._iterations = 0
 
         # choose intial _old_best_value value + pick judge function
-        if improvement_is_bigger:
-            self._function = bigger
-            self._old_best_value = float("-inf")
-        else:
+        if minimise:
             self._function = smaller
             self._old_best_value = float("inf")
+        else:
+            self._function = bigger
+            self._old_best_value = float("-inf")
 
     def keep_running(self):
         """function to determine if the algorithm needs to continue running

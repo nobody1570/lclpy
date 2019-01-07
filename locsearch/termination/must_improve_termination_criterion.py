@@ -8,17 +8,16 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
     Parameters
     ----------
-    improvement_is_bigger : bool
-        If the improvement_is_bigger is True, bigger values will be considered
-        improvements. If the improvement_is_bigger is False, smaller values
-        will be considered improvements. The default is True.
+    minimise : bool, optional
+        If the goal is to minimise the evaluation function, this should be
+        True. If the goal is to maximise the evlauation function, this should
+        be False. The default is True.
 
     Attributes
     ----------
     _old_best_value: int
-        The last value. Is initialised as minus infinite
-        (improvement_is_bigger = True)
-        or infinite (improvement_is_bigger = False)
+        The last value. Is initialised as infinite (minimise = True)
+        or minus infinite (minimise = False)
     _function : function
         The function used to judge if a value is an improvement.
     _run : bool
@@ -27,7 +26,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
     Examples
     --------
-    Bigger values are considered improvements(default). 5 iterations with
+    Smaller values are considered improvements(default). 8 iterations with
     improvement. After that there are no more improvements. The dataset
     eval_values is hardcoded:
 
@@ -38,7 +37,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         ...     import MustImproveTerminationCriterion
         ... # creation of an array that contains the values that will be given
         ... # to our termination criterion
-        >>> eval_values = numpy.array([0, 2, 14, 15, 20, 3, 3, 4, 2, 1, 0, 12])
+        >>> eval_values = numpy.array([10, 9, 8, 7, 6, 5, 4, 3, 4, 3, 5, 12])
         ... # index is used to get values from the array.
         ... # index is also used to count the amount of iterations
         >>> index = 0
@@ -55,9 +54,9 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         ...     # counting iterations + increment index
         ...     index += 1
         >>> index # == amount of iterations.
-        6
+        9
 
-    Smaller values are considered improvements. 8 iterations with
+    Bigger values are considered improvements. 5 iterations with
     improvement. After that there are no more improvements. The dataset
     eval_values is hardcoded:
 
@@ -68,7 +67,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         ...     import MustImproveTerminationCriterion
         ... # creation of an array that contains the values that will be given
         ... # to our termination criterion
-        >>> eval_values = numpy.array([10, 9, 8, 7, 6, 5, 4, 3, 4, 3, 5, 12])
+        >>> eval_values = numpy.array([0, 2, 14, 15, 20, 3, 3, 4, 2, 1, 0, 12])
         ... # index is used to get values from the array.
         ... # index is also used to count the amount of iterations
         >>> index = 0
@@ -85,25 +84,25 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         ...     # counting iterations + increment index
         ...     index += 1
         >>> index # == amount of iterations.
-        9
+        6
 
 
 
     """
 
-    def __init__(self, improvement_is_bigger=True):
+    def __init__(self, minimise=True):
         super().__init__()
 
         # init
         self._run = True
 
         # choose intial _old_best_value value + pick judge function
-        if improvement_is_bigger:
-            self._function = bigger
-            self._old_best_value = float("-inf")
-        else:
+        if minimise:
             self._function = smaller
             self._old_best_value = float("inf")
+        else:
+            self._function = bigger
+            self._old_best_value = float("-inf")
 
     def keep_running(self):
         """function to determine if the algorithm needs to continue running
