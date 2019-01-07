@@ -19,6 +19,7 @@ class AbstractTerminationCriterion(ABC):
             stop running.
 
         """
+
         pass
 
     def iteration_done(self):
@@ -27,6 +28,7 @@ class AbstractTerminationCriterion(ABC):
         Does not need to be used or implemented.
 
         """
+
         pass
 
     def check_new_value(self, value):

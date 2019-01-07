@@ -1,5 +1,6 @@
 from locsearch.termination.abstract_termination_criterion \
     import AbstractTerminationCriterion
+from aidfunc.is_improvement_func import bigger, smaller
 
 
 class MustImproveTerminationCriterion(AbstractTerminationCriterion):
@@ -90,40 +91,6 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
     """
 
-    def _bigger_is_improvement(self, value):
-        """Checks if a value is an improvement. Bigger values are improvements.
-
-        Parameters
-        ----------
-        value : int or float
-            The value that is checked.
-
-        Returns
-        -------
-        bool
-            Returns true if the current value is bigger than the best old
-            value, else returns false.
-
-        """
-        return value > self._old_best_value
-
-    def _smaller_is_improvement(self, value):
-        """Checks if a value is an improvement. Smaller values are improvements.
-
-        Parameters
-        ----------
-        value : int or float
-            The value that is checked.
-
-        Returns
-        -------
-        bool
-            Returns true if the current value is smaller than the best old
-            value, else returns false.
-
-        """
-        return value < self._old_best_value
-
     def __init__(self, improvement_is_bigger=True):
         super().__init__()
 
@@ -132,10 +99,10 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
         # choose intial _old_best_value value + pick judge function
         if improvement_is_bigger:
-            self._function = self._bigger_is_improvement
+            self._function = bigger
             self._old_best_value = float("-inf")
         else:
-            self._function = self._smaller_is_improvement
+            self._function = smaller
             self._old_best_value = float("inf")
 
     def keep_running(self):
@@ -166,7 +133,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
 
         """
 
-        check = self._function(value)
+        check = self._function(self._old_best_value, value)
         if check:
             self._old_best_value = value
         else:
