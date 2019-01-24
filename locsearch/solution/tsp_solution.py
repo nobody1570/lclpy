@@ -338,3 +338,14 @@ class TspSolution(AbstractLocalSearchSolution):
 
         self.best_order = numpy.copy(self._order)
         self.best_order_value = evaluation_value
+
+    def state(self):
+        """Returns an immutable hashable object that identifies the current state.
+
+        Returns
+        -------
+        tuple
+            A hashable object associated with the current state.
+        """
+
+        return tuple(self._order)

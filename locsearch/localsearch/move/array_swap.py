@@ -9,7 +9,8 @@ class ArraySwap(AbstractMove):
     The move function performs and generates moves that swap 2 values in a
     one-dimensional array. Note that a move is represented as a tuple of int.
     The move (x, y) represents the swap of the values from the indices x and y
-    of the array.
+    of the array. Equivalent to 2-opt when the array is used to keep the
+    visiting order of the items.
 
     Parameters
     ----------

@@ -84,6 +84,12 @@ class AbstractLocalSearchSolution(ABC):
 
         pass
 
+    @abstractmethod
+    def state(self):
+        """Returns an immutable hashable object that identifies the current state."""
+
+        pass
+
     def evaluate_move(self, move):
         """Calculates the effects a move would have on the evaluation of the state.
 
