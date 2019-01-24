@@ -28,6 +28,14 @@ locsearch.runner.steepest\_descent\_runner module
     :undoc-members:
     :show-inheritance:
 
+locsearch.runner.tabu\_search\_runner module
+--------------------------------------------
+
+.. automodule:: locsearch.runner.tabu_search_runner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

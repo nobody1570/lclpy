@@ -13,7 +13,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.solution package" href="locsearch.solution.html" />
@@ -555,6 +556,21 @@ tsplib.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-locsearch.runner.tabu_search_runner">
+<span id="locsearch-runner-tabu-search-runner-module"></span><h2>locsearch.runner.tabu_search_runner module<a class="headerlink" href="#module-locsearch.runner.tabu_search_runner" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.runner.tabu_search_runner.TabuSearchRunner">
+<em class="property">class </em><code class="descclassname">locsearch.runner.tabu_search_runner.</code><code class="descname">TabuSearchRunner</code><a class="headerlink" href="#locsearch.runner.tabu_search_runner.TabuSearchRunner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>docstring for TabuSearchRunner</p>
+<dl class="method">
+<dt id="locsearch.runner.tabu_search_runner.TabuSearchRunner.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.tabu_search_runner.TabuSearchRunner.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-locsearch.runner">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.runner" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -582,6 +598,7 @@ tsplib.</p>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
@@ -591,6 +608,7 @@ tsplib.</p>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.abstract_runner">locsearch.runner.abstract_runner module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.simulated_annealing_runner">locsearch.runner.simulated_annealing_runner module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.steepest_descent_runner">locsearch.runner.steepest_descent_runner module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.tabu_search_runner">locsearch.runner.tabu_search_runner module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner">Module contents</a></li>
 </ul>
 </li>
@@ -646,7 +664,7 @@ tsplib.</p>
       &copy;2018, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

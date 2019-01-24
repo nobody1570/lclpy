@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    locsearch.aidfunc
     locsearch.evaluation
     locsearch.io
     locsearch.localsearch

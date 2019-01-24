@@ -1,0 +1,440 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>locsearch.localsearch.tabusearch package &#8212; locsearch  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="locsearch.random package" href="locsearch.random.html" />
+    <link rel="prev" title="locsearch.localsearch.steepestdescent package" href="locsearch.localsearch.steepestdescent.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="locsearch-localsearch-tabusearch-package">
+<h1>locsearch.localsearch.tabusearch package<a class="headerlink" href="#locsearch-localsearch-tabusearch-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-locsearch.localsearch.tabusearch.tabu_list">
+<span id="locsearch-localsearch-tabusearch-tabu-list-module"></span><h2>locsearch.localsearch.tabusearch.tabu_list module<a class="headerlink" href="#module-locsearch.localsearch.tabusearch.tabu_list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.tabusearch.tabu_list.TabuList">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.tabusearch.tabu_list.</code><code class="descname">TabuList</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_list.TabuList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implements a tabu list for use with TabuSearch.</p>
+<p>Note that only hashes of the items are kept in the tabu list. This is done
+to save memory. This means that two different items with the same hash will
+be considered to be the same item.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>length</strong> (<em>int</em>) – The maximal amount of items in the tabu list.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_list.TabuList._list">
+<code class="descname">_list</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_list.TabuList._list" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list that contains hashes of all the items that are considered part
+of the tabu list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">deque</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example, the lists are converted to tuples, because they’re
+mutable objects and thus can’t be hashed with the default implementation of
+hash:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.tabusearch.tabu_list</span> <span class="kn">import</span> <span class="n">TabuList</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">TabuList</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.localsearch.tabusearch.tabu_list.TabuList.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_list.TabuList.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an item to the tabu list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> – A hashable, immutable object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.tabusearch.tabu_list.TabuList.contains">
+<code class="descname">contains</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_list.TabuList.contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that checks if an item is in the tabu list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> – A hashable, immutable object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Will return true if the item is in the tabu list, false if it
+isn’t in the tabu list.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.tabusearch.tabu_search">
+<span id="locsearch-localsearch-tabusearch-tabu-search-module"></span><h2>locsearch.localsearch.tabusearch.tabu_search module<a class="headerlink" href="#module-locsearch.localsearch.tabusearch.tabu_search" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch">
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.tabusearch.tabu_search.</code><code class="descname">TabuSearch</code><span class="sig-paren">(</span><em>solution</em>, <em>termination_criterion</em>, <em>list_size=7</em>, <em>minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
+<p>Performs a tabu search on the given solution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>solution</strong> (<a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution"><em>AbstractLocalSearchSolution</em></a>) – Contains all the data needed for the specific problem.</li>
+<li><strong>termination_criterion</strong> (<a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</li>
+<li><strong>list_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The size of the tabu list. The default is 7.</li>
+<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
+The default is True.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._solution">
+<code class="descname">_solution</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all the data needed for the specific problem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._termination_criterion">
+<code class="descname">_termination_criterion</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a termination criterion to terminate the algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._list_size">
+<code class="descname">_list_size</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._list_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of the tabu list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._tabu_list">
+<code class="descname">_tabu_list</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._tabu_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>The used tabu list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#locsearch.localsearch.tabusearch.tabu_list.TabuList" title="locsearch.localsearch.tabusearch.tabu_list.TabuList">TabuList</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._is_better">
+<code class="descname">_is_better</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._is_better" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to determine if a certain value is an improvement.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._minimise">
+<code class="descname">_minimise</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._minimise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Variable that indicates if the function is maximising or minimising.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._best_found_delta_base_value">
+<code class="descname">_best_found_delta_base_value</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._best_found_delta_base_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialisation value for the delta value of each iteration. It’s
+infinite when minimising or minus infinite when maximising.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>An example of minimising:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.tabusearch.tabu_search</span> <span class="kn">import</span> <span class="n">TabuSearch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># seed random</span>
+<span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
+<span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init TabuSearch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=15)</span>
+</pre></div>
+</div>
+<p>An example of maximising, note that the distance matrix is different:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.tabusearch.tabu_search</span> <span class="kn">import</span> <span class="n">TabuSearch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># seed random</span>
+<span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
+<span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init TabuSearch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=21)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts running the tabu search.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – A one dimensional numpy array that contains the order of the
+points for the best found solution.</li>
+<li><strong>best_value</strong> (<em>int or float</em>) – The best found value of the evaluation function. This should be
+the evaluation value of best_order.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.localsearch.tabusearch">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.localsearch.tabusearch" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">locsearch</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="locsearch.localsearch.html#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#module-locsearch.localsearch.abstract_local_search">locsearch.localsearch.abstract_local_search module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#module-locsearch.localsearch">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="locsearch.html#module-locsearch">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">locsearch</a><ul>
+  <li><a href="locsearch.html">locsearch package</a><ul>
+  <li><a href="locsearch.localsearch.html">locsearch.localsearch package</a><ul>
+      <li>Previous: <a href="locsearch.localsearch.steepestdescent.html" title="previous chapter">locsearch.localsearch.steepestdescent package</a></li>
+      <li>Next: <a href="locsearch.random.html" title="next chapter">locsearch.random package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/locsearch.localsearch.tabusearch.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

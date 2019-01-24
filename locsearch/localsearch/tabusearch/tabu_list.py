@@ -5,7 +5,8 @@ class TabuList(object):
     """Implements a tabu list for use with TabuSearch.
 
     Note that only hashes of the items are kept in the tabu list. This is done
-    to save memory.
+    to save memory. This means that two different items with the same hash will
+    be considered to be the same item.
 
     Parameters
     ----------
@@ -48,7 +49,30 @@ class TabuList(object):
         self._list = deque(maxlen=length)
 
     def add(self, item):
+        """Adds an item to the tabu list.
+
+        Parameters
+        ----------
+        item
+            A hashable, immutable object.
+
+        """
+
         self._list.append(hash(item))
 
     def contains(self, item):
+        """A method that checks if an item is in the tabu list.
+
+        Parameters
+        ----------
+        item
+            A hashable, immutable object.
+
+        Returns
+        -------
+        bool
+            Will return true if the item is in the tabu list, false if it
+            isn't in the tabu list.
+
+        """
         return hash(item) in self._list

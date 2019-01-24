@@ -13,7 +13,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.localsearch.steepestdescent package" href="locsearch.localsearch.steepestdescent.html" />
@@ -263,7 +264,7 @@ number smaller than 1. Default is 0.75.</td>
 <span id="locsearch-localsearch-simulatedannealing-simulated-annealing-module"></span><h2>locsearch.localsearch.simulatedannealing.simulated_annealing module<a class="headerlink" href="#module-locsearch.localsearch.simulatedannealing.simulated_annealing" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">
-<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.simulated_annealing.</code><code class="descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em>solution</em>, <em>termination_criterion</em>, <em>cooling_function</em>, <em>iterations_for_temp_f</em>, <em>start_temperature=2000</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.simulatedannealing.simulated_annealing.</code><code class="descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em>solution</em>, <em>termination_criterion</em>, <em>cooling_function</em>, <em>iterations_for_temp_f</em>, <em>start_temperature=2000</em>, <em>minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
 <p>Performs a simulated annealing algorithm with the given parameters.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -278,6 +279,8 @@ number smaller than 1. Default is 0.75.</td>
 certain temperature.</li>
 <li><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The starting temperature for the simulated annealing. The default is
 2000.</li>
+<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
+The default is True.</li>
 </ul>
 </td>
 </tr>
@@ -368,8 +371,21 @@ certain temperature.</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement">
+<code class="descname">_is_improvement</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to determine if a certain delta value is an improvement
+or equal to the current value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better">
+<code class="descname">_is_better</code><a class="headerlink" href="#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to determine if a certain value is an improvement.</p>
+</dd></dl>
+
 <p class="rubric">Examples</p>
-<p>A simple example:</p>
+<p>Minimising example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
@@ -411,6 +427,51 @@ certain temperature.</p>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 2, 3, 1]), best_value=15)</span>
+</pre></div>
+</div>
+<p>Maximising example, note that the distance matrix is different:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.simulated_annealing</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">SimulatedAnnealing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.geometric_cooling_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.min_temperature_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">... </span><span class="c1"># seed random</span>
+<span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
+<span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination_criterion</span> <span class="o">=</span> <span class="n">MinTemperatureTerminationCriterion</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># init cooling function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cooling_func</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># init CnstIterationsTempFunction</span>
+<span class="gp">... </span><span class="c1"># (determines amount of itertions in function of the temperature)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i_for_temp</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># init SimulatedAnnealing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SimulatedAnnealing</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">solution</span><span class="p">,</span> <span class="n">termination_criterion</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">minimise</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">Results(best_order=array([0, 2, 3, 1]), best_value=21)</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -463,6 +524,7 @@ the evaluation value of best_order.</li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a><ul class="current">
@@ -528,7 +590,7 @@ the evaluation value of best_order.</li>
       &copy;2018, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

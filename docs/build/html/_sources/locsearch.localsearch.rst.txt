@@ -10,6 +10,7 @@ Subpackages
     locsearch.localsearch.move
     locsearch.localsearch.simulatedannealing
     locsearch.localsearch.steepestdescent
+    locsearch.localsearch.tabusearch
 
 Submodules
 ----------

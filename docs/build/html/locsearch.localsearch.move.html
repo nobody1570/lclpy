@@ -13,7 +13,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.localsearch.simulatedannealing package" href="locsearch.localsearch.simulatedannealing.html" />
@@ -386,7 +387,8 @@ get_random_move and get_move.</li>
 <p>The move function performs and generates moves that swap 2 values in a
 one-dimensional array. Note that a move is represented as a tuple of int.
 The move (x, y) represents the swap of the values from the indices x and y
-of the array.</p>
+of the array. Equivalent to 2-opt when the array is used to keep the
+visiting order of the items.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1053,6 +1055,7 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a><ul class="current">
@@ -1118,7 +1121,7 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
       &copy;2018, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -3,11 +3,11 @@ def insert_in_sorted_deque(sorted_deque, function, item):
     """Inserts an item in the correct position of an existing sorted deque.
 
     The deque is supposed to be sorted from worst (left) to best (right).
-    Inserting item in an emptu deque is possible.
+    Inserting item in an empty deque is possible.
 
     Parameters
     ----------
-    sorted_deque : deque
+    sorted_deque : collections.deque
         The deque where an item will be inserted in.
     function
         A function that returns a bool that is used to sort the list.
@@ -19,6 +19,7 @@ def insert_in_sorted_deque(sorted_deque, function, item):
     An example of inserting in a "smaller is better" deque:
 
     .. doctest::
+
         >>> from collections import deque
         >>> from locsearch.aidfunc.is_improvement_func import smaller
         >>> from locsearch.aidfunc.aid_deque import insert_in_sorted_deque
@@ -32,6 +33,7 @@ def insert_in_sorted_deque(sorted_deque, function, item):
     An example of inserting in a "bigger is better" deque:
 
     .. doctest::
+
         >>> from collections import deque
         >>> from locsearch.aidfunc.is_improvement_func import bigger
         >>> from locsearch.aidfunc.aid_deque import insert_in_sorted_deque
@@ -54,4 +56,5 @@ def insert_in_sorted_deque(sorted_deque, function, item):
 
         insert_position += 1
 
+    # insert the item
     sorted_deque.insert(insert_position, item)

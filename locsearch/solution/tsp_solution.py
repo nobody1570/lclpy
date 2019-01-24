@@ -346,6 +346,39 @@ class TspSolution(AbstractLocalSearchSolution):
         -------
         tuple
             A hashable object associated with the current state.
+
+        Examples
+        --------
+        A simple example:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.localsearch.move.tsp_array_swap \\
+            ...     import TspArraySwap
+            >>> from locsearch.evaluation.tsp_evaluation_function \\
+            ...     import TspEvaluationFunction
+            >>> from locsearch.solution.tsp_solution import TspSolution
+            ... # init distance matrix
+            >>> distance_matrix = numpy.array(
+            ... [[0, 2, 5, 8],
+            ...  [2, 0, 4, 1],
+            ...  [5, 4, 0, 7],
+            ...  [8, 1, 7, 0]])
+            ... # init move function
+            >>> size = distance_matrix.shape[0]
+            >>> move_func = TspArraySwap(size)
+            ... # init evaluation function
+            >>> evaluation_func = TspEvaluationFunction(distance_matrix,
+            ...                                         move_func)
+            ... # init solution
+            >>> solution = TspSolution(evaluation_func, move_func, size)
+            >>> solution.state()
+            (0, 1, 2, 3)
+            >>> solution.move((1, 3))
+            >>> solution.state()
+            (0, 3, 2, 1)
+
         """
 
         return tuple(self._order)

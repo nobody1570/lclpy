@@ -13,11 +13,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.io package" href="locsearch.io.html" />
-    <link rel="prev" title="locsearch package" href="locsearch.html" />
+    <link rel="prev" title="locsearch.aidfunc package" href="locsearch.aidfunc.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -84,6 +85,70 @@ potential next state.</p>
 <dl class="method">
 <dt id="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.evaluate">
 <code class="descname">evaluate</code><span class="sig-paren">(</span><em>current_data</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates current_solution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>current_data</strong> – A datastructure that contains information about the current state
+of an AbstractLocalSearchSolution.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an indication of the quality of current_data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.evaluation.quadratic_assignment_evaluation_function">
+<span id="locsearch-evaluation-quadratic-assignment-evaluation-function-module"></span><h2>locsearch.evaluation.quadratic_assignment_evaluation_function module<a class="headerlink" href="#module-locsearch.evaluation.quadratic_assignment_evaluation_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction">
+<em class="property">class </em><code class="descclassname">locsearch.evaluation.quadratic_assignment_evaluation_function.</code><code class="descname">QuadraticAssignmentEvaluationFunction</code><a class="headerlink" href="#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction</span></code></a></p>
+<p>Template to create evaluation functions.</p>
+<p>Evaluationfunctions are used to determine the quality of a solution.</p>
+<dl class="method">
+<dt id="locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.delta_evaluate">
+<code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the difference in quality between two solutions.</p>
+<p>The two compared solutions are the current solution and the solution
+if the move was performed. The move is not actually performed.</p>
+<p>This function does not need to be implemented. One should only
+consider to implement and use it if a delta evaluation is faster than
+the regular evaluate function or if it needs to be implemented to work
+with existing code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>current_data</strong> – A datastructure that contains information about the current state
+of an AbstractLocalSearchSolution.</li>
+<li><strong>move</strong> – Represents a move. The potential result of this move is evaluated
+against the current state (current_data contains information about
+the current state.).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the difference in quality between the current state and the
+potential next state.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int or float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>flow_matrix</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates current_solution</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -315,9 +380,11 @@ value, the better the quality.</td>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.evaluation package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation.abstract_evaluation_function">locsearch.evaluation.abstract_evaluation_function module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation.quadratic_assignment_evaluation_function">locsearch.evaluation.quadratic_assignment_evaluation_function module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation.tsp_evaluation_function">locsearch.evaluation.tsp_evaluation_function module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.evaluation">Module contents</a></li>
 </ul>
@@ -343,7 +410,7 @@ value, the better the quality.</td>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
-      <li>Previous: <a href="locsearch.html" title="previous chapter">locsearch package</a></li>
+      <li>Previous: <a href="locsearch.aidfunc.html" title="previous chapter">locsearch.aidfunc package</a></li>
       <li>Next: <a href="locsearch.io.html" title="next chapter">locsearch.io package</a></li>
   </ul></li>
   </ul></li>
@@ -378,7 +445,7 @@ value, the better the quality.</td>
       &copy;2018, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

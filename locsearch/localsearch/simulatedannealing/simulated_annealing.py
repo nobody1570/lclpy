@@ -23,6 +23,9 @@ class SimulatedAnnealing(AbstractLocalSearch):
     start_temperature : int, optional
         The starting temperature for the simulated annealing. The default is
         2000.
+    minimise : bool, optional
+        Will minimise if this parameter is True, maximise if it is False.
+        The default is True.
 
     Attributes
     ----------

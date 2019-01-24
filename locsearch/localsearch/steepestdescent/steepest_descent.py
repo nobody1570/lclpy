@@ -26,6 +26,9 @@ class SteepestDescent(AbstractLocalSearch):
     _function
         The function used to determine if a delta value is better than another
         delta value.
+    _best_found_delta_base_value : float
+        Initialisation value for the delta value of each iteration. It's
+        infinite when minimising or minus infinite when maximising.
 
     Examples
     --------

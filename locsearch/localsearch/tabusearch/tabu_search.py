@@ -12,14 +12,31 @@ class TabuSearch(AbstractLocalSearch):
     ----------
     solution : AbstractLocalSearchSolution
         Contains all the data needed for the specific problem.
+    termination_criterion : AbstractTerminationCriterion
+        Implements a termination criterion to terminate the algorithm.
+    list_size : int, optional
+        The size of the tabu list. The default is 7.
     minimise : bool, optional
-        If the goal is to minimise the evaluation function, this should be
-        True. If the goal is to maximise the evlauation function, this should
-        be False. The default is True.
+        Will minimise if this parameter is True, maximise if it is False.
+        The default is True.
 
     Attributes
     ----------
-
+    _solution : AbstractLocalSearchSolution
+        Contains all the data needed for the specific problem.
+    _termination_criterion : AbstractTerminationCriterion
+        Implements a termination criterion to terminate the algorithm.
+    _list_size : int
+        Size of the tabu list.
+    _tabu_list : TabuList
+        The used tabu list.
+    _is_better
+        Function used to determine if a certain value is an improvement.
+    _minimise : bool
+        Variable that indicates if the function is maximising or minimising.
+    _best_found_delta_base_value : float
+        Initialisation value for the delta value of each iteration. It's
+        infinite when minimising or minus infinite when maximising.
 
     Examples
     --------
@@ -62,7 +79,7 @@ class TabuSearch(AbstractLocalSearch):
 
     .. doctest::
 
-                >>> import numpy
+        >>> import numpy
         >>> import random
         >>> from locsearch.localsearch.tabusearch.tabu_search import TabuSearch
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
@@ -107,10 +124,10 @@ class TabuSearch(AbstractLocalSearch):
         self._minimise = minimise
 
         if minimise:
-            self._function = smaller
+            self._is_better = smaller
             self._best_found_delta_base_value = float("inf")
         else:
-            self._function = bigger
+            self._is_better = bigger
             self._best_found_delta_base_value = float("-inf")
 
     def run(self):
@@ -161,16 +178,16 @@ class TabuSearch(AbstractLocalSearch):
 
                 if len(best_moves) <= self._list_size:
                     insert_in_sorted_deque(
-                        best_moves, self._function, delta_move)
+                        best_moves, self._is_better, delta_move)
 
-                elif any(self._function(item, delta_move)
+                elif any(self._is_better(item, delta_move)
                          for item in best_moves):
                     # remove the worst item (should be at the left)
                     best_moves.popleft()
 
                     # insert the item at the correct position
                     insert_in_sorted_deque(
-                        best_moves, self._function, delta_move)
+                        best_moves, self._is_better, delta_move)
 
             # pick the best move that doesn't lead to a state in the tabu list
 
@@ -196,7 +213,7 @@ class TabuSearch(AbstractLocalSearch):
                     self._tabu_list.add(self._solution.state())
                     # check if best found state
                     # --> if best found state set as new best state
-                    if self._function(
+                    if self._is_better(
                             self._solution.best_order_value, base_value):
                         self._solution.set_as_best(base_value)
 

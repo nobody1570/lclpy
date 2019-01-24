@@ -86,7 +86,12 @@ class AbstractLocalSearchSolution(ABC):
 
     @abstractmethod
     def state(self):
-        """Returns an immutable hashable object that identifies the current state."""
+        """Returns an immutable hashable object that identifies the current state.
+
+        Returns
+        -------
+        tuple
+            A representation of the current state."""
 
         pass
 

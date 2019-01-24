@@ -14,7 +14,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -50,6 +51,7 @@
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -69,6 +71,12 @@
       </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha">_alpha (locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction attribute)</a>
 </li>
+      <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._best_found_delta_base_value">_best_found_delta_base_value (locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent attribute)</a>
+
+      <ul>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._best_found_delta_base_value">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
+      </ul></li>
       <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._cooling_func">_cooling_func (locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function">_cooling_function (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
@@ -97,13 +105,23 @@
         <li><a href="locsearch.solution.html#locsearch.solution.tsp_solution.TspSolution._evaluation_function">(locsearch.solution.tsp_solution.TspSolution attribute)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.termination.html#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function">_function (locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion attribute)</a>
+      <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._function">_function (locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent attribute)</a>
 
       <ul>
+        <li><a href="locsearch.termination.html#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function">(locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion attribute)</a>
+</li>
         <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion attribute)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._i_for_temp">_i_for_temp (locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner attribute)</a>
+</li>
+      <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better">_is_better (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
+
+      <ul>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._is_better">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement">_is_improvement (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations">_iterations (locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction attribute)</a>
 
@@ -115,18 +133,24 @@
       </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f">_iterations_for_temp_f (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
 </li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList._list">_list (locsearch.localsearch.tabusearch.tabu_list.TabuList attribute)</a>
+</li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._list_size">_list_size (locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
       <li><a href="locsearch.termination.html#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations">_max_iterations (locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion attribute)</a>
 
       <ul>
         <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">_max_seconds (locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
+</li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._minimise">_minimise (locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list">_move_func_list (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._move_function">_move_function (locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner attribute)</a>
 
       <ul>
@@ -174,6 +198,8 @@
       <ul>
         <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._solution">(locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent attribute)</a>
 </li>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._solution">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
         <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._solution">(locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner attribute)</a>
 </li>
         <li><a href="locsearch.runner.html#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._solution">(locsearch.runner.steepest_descent_runner.SteepestDescentRunner attribute)</a>
@@ -181,12 +207,16 @@
       </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start">_start (locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
 </li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._tabu_list">_tabu_list (locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature">_temperature (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion">_termination_criterion (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
 
       <ul>
         <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._termination_criterion">(locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent attribute)</a>
+</li>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._termination_criterion">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
 </li>
         <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._termination_criterion">(locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner attribute)</a>
 </li>
@@ -211,10 +241,10 @@
 </li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove">AbstractMove (class in locsearch.localsearch.move.abstract_move)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.runner.html#locsearch.runner.abstract_runner.AbstractRunner">AbstractRunner (class in locsearch.runner.abstract_runner)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion (class in locsearch.termination.abstract_termination_criterion)</a>
 </li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">AbstrIterationsTempFunction (class in locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function)</a>
@@ -225,6 +255,8 @@
         <li><a href="locsearch.localsearch.acceptance.html#locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction.accept">(locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction method)</a>
 </li>
       </ul></li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList.add">add() (locsearch.localsearch.tabusearch.tabu_list.TabuList method)</a>
+</li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder">ArrayReverseOrder (class in locsearch.localsearch.move.array_reverse_order)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.array_swap.ArraySwap">ArraySwap (class in locsearch.localsearch.move.array_swap)</a>
@@ -237,9 +269,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.solution.html#locsearch.solution.tsp_solution.TspSolution.best_order">best_order (locsearch.solution.tsp_solution.TspSolution attribute)</a>
 </li>
+      <li><a href="locsearch.solution.html#locsearch.solution.tsp_solution.TspSolution.best_order_value">best_order_value (locsearch.solution.tsp_solution.TspSolution attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.tsp_solution.TspSolution.best_order_value">best_order_value (locsearch.solution.tsp_solution.TspSolution attribute)</a>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.bigger">bigger() (in module locsearch.aidfunc.is_improvement_func)</a>
+</li>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.bigger_or_equal">bigger_or_equal() (in module locsearch.aidfunc.is_improvement_func)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -270,6 +306,8 @@
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction">CnstIterationsTempFunction (class in locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function)</a>
+</li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList.contains">contains() (locsearch.localsearch.tabusearch.tabu_list.TabuList method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -324,6 +362,8 @@
       <li><a href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate">delta_evaluate() (locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction method)</a>
 
       <ul>
+        <li><a href="locsearch.evaluation.html#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.delta_evaluate">(locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction method)</a>
+</li>
         <li><a href="locsearch.evaluation.html#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate">(locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction method)</a>
 </li>
       </ul></li>
@@ -336,6 +376,8 @@
       <li><a href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.evaluate">evaluate() (locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction method)</a>
 
       <ul>
+        <li><a href="locsearch.evaluation.html#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.evaluate">(locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction method)</a>
+</li>
         <li><a href="locsearch.evaluation.html#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate">(locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction method)</a>
 </li>
         <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
@@ -405,6 +447,8 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.aid_deque.insert_in_sorted_deque">insert_in_sorted_deque() (in module locsearch.aidfunc.aid_deque)</a>
+</li>
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done">iteration_done() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
 
       <ul>
@@ -443,9 +487,17 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.html#module-locsearch">locsearch (module)</a>
 </li>
+      <li><a href="locsearch.aidfunc.html#module-locsearch.aidfunc">locsearch.aidfunc (module)</a>
+</li>
+      <li><a href="locsearch.aidfunc.html#module-locsearch.aidfunc.aid_deque">locsearch.aidfunc.aid_deque (module)</a>
+</li>
+      <li><a href="locsearch.aidfunc.html#module-locsearch.aidfunc.is_improvement_func">locsearch.aidfunc.is_improvement_func (module)</a>
+</li>
       <li><a href="locsearch.evaluation.html#module-locsearch.evaluation">locsearch.evaluation (module)</a>
 </li>
       <li><a href="locsearch.evaluation.html#module-locsearch.evaluation.abstract_evaluation_function">locsearch.evaluation.abstract_evaluation_function (module)</a>
+</li>
+      <li><a href="locsearch.evaluation.html#module-locsearch.evaluation.quadratic_assignment_evaluation_function">locsearch.evaluation.quadratic_assignment_evaluation_function (module)</a>
 </li>
       <li><a href="locsearch.evaluation.html#module-locsearch.evaluation.tsp_evaluation_function">locsearch.evaluation.tsp_evaluation_function (module)</a>
 </li>
@@ -493,6 +545,12 @@
 </li>
       <li><a href="locsearch.localsearch.steepestdescent.html#module-locsearch.localsearch.steepestdescent.steepest_descent">locsearch.localsearch.steepestdescent.steepest_descent (module)</a>
 </li>
+      <li><a href="locsearch.localsearch.tabusearch.html#module-locsearch.localsearch.tabusearch">locsearch.localsearch.tabusearch (module)</a>
+</li>
+      <li><a href="locsearch.localsearch.tabusearch.html#module-locsearch.localsearch.tabusearch.tabu_list">locsearch.localsearch.tabusearch.tabu_list (module)</a>
+</li>
+      <li><a href="locsearch.localsearch.tabusearch.html#module-locsearch.localsearch.tabusearch.tabu_search">locsearch.localsearch.tabusearch.tabu_search (module)</a>
+</li>
       <li><a href="locsearch.random.html#module-locsearch.random">locsearch.random (module)</a>
 </li>
       <li><a href="locsearch.runner.html#module-locsearch.runner">locsearch.runner (module)</a>
@@ -502,6 +560,8 @@
       <li><a href="locsearch.runner.html#module-locsearch.runner.simulated_annealing_runner">locsearch.runner.simulated_annealing_runner (module)</a>
 </li>
       <li><a href="locsearch.runner.html#module-locsearch.runner.steepest_descent_runner">locsearch.runner.steepest_descent_runner (module)</a>
+</li>
+      <li><a href="locsearch.runner.html#module-locsearch.runner.tabu_search_runner">locsearch.runner.tabu_search_runner (module)</a>
 </li>
       <li><a href="locsearch.solution.html#module-locsearch.solution">locsearch.solution (module)</a>
 </li>
@@ -590,6 +650,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.evaluation.html#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction">QuadraticAssignmentEvaluationFunction (class in locsearch.evaluation.quadratic_assignment_evaluation_function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -611,8 +679,6 @@
         <li><a href="locsearch.runner.html#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.results">(locsearch.runner.steepest_descent_runner.SteepestDescentRunner attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch.run">run() (locsearch.localsearch.abstract_local_search.AbstractLocalSearch method)</a>
 
       <ul>
@@ -620,11 +686,17 @@
 </li>
         <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent.run">(locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent method)</a>
 </li>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch.run">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch method)</a>
+</li>
         <li><a href="locsearch.runner.html#locsearch.runner.abstract_runner.AbstractRunner.run">(locsearch.runner.abstract_runner.AbstractRunner method)</a>
 </li>
         <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.run">(locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner method)</a>
 </li>
+        <li><a href="locsearch.runner.html#locsearch.runner.tabu_search_runner.TabuSearchRunner.run">(locsearch.runner.tabu_search_runner.TabuSearchRunner method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.runner.html#locsearch.runner.abstract_runner.AbstractRunner.run_algorithm">run_algorithm() (locsearch.runner.abstract_runner.AbstractRunner method)</a>
 
       <ul>
@@ -649,14 +721,24 @@
 </li>
       <li><a href="locsearch.localsearch.acceptance.html#locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction (class in locsearch.localsearch.acceptance.simulated_annealing_acceptance_function)</a>
 </li>
+      <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner">SimulatedAnnealingRunner (class in locsearch.runner.simulated_annealing_runner)</a>
+</li>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.smaller">smaller() (in module locsearch.aidfunc.is_improvement_func)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.runner.html#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner">SimulatedAnnealingRunner (class in locsearch.runner.simulated_annealing_runner)</a>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.smaller_or_equal">smaller_or_equal() (in module locsearch.aidfunc.is_improvement_func)</a>
 </li>
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing">start_timing() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
 
       <ul>
         <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing">(locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion method)</a>
+</li>
+      </ul></li>
+      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.state">state() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+
+      <ul>
+        <li><a href="locsearch.solution.html#locsearch.solution.tsp_solution.TspSolution.state">(locsearch.solution.tsp_solution.TspSolution method)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent">SteepestDescent (class in locsearch.localsearch.steepestdescent.steepest_descent)</a>
@@ -669,6 +751,12 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList">TabuList (class in locsearch.localsearch.tabusearch.tabu_list)</a>
+</li>
+      <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch">TabuSearch (class in locsearch.localsearch.tabusearch.tabu_search)</a>
+</li>
+      <li><a href="locsearch.runner.html#locsearch.runner.tabu_search_runner.TabuSearchRunner">TabuSearchRunner (class in locsearch.runner.tabu_search_runner)</a>
+</li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.transform_next_index_to_current_index">transform_next_index_to_current_index() (locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder static method)</a>
 
       <ul>
@@ -764,7 +852,7 @@
       &copy;2018, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
