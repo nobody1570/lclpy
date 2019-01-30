@@ -1,5 +1,6 @@
 from locsearch.evaluation.abstract_evaluation_function \
     import AbstractEvaluationFunction
+from locsearch.aidfunc.error_func import _not_implemented
 
 
 class TspEvaluationFunction(AbstractEvaluationFunction):
@@ -56,7 +57,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
     def __init__(self, distance_matrix, move_function=None):
         super().__init__()
-        self._distance_matrixx = distance_matrix
+        self._distance_matrix = distance_matrix
         self._size = distance_matrix.shape[0]
 
         if move_function is not None:
@@ -64,10 +65,10 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
             self._transform_next_index_to_current_index = \
                 move_function.transform_next_index_to_current_index
         else:
-            self.delta_evaluate = self._not_implemented
+            self.delta_evaluate = _not_implemented
 
     def evaluate(self, order):
-        """Calculates an evaluation value for the function
+        """Calculates an evaluation value for the function.
 
         Parameters
         ----------
@@ -87,9 +88,9 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
         # add all distances to value
         for index in range(self._size - 1):
-            value += self._distance_matrixx[order[index]][order[index + 1]]
+            value += self._distance_matrix[order[index]][order[index + 1]]
 
-        value += self._distance_matrixx[order[-1]][order[0]]
+        value += self._distance_matrix[order[-1]][order[0]]
 
         return value
 
@@ -199,7 +200,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
             to = distances[1]
 
             # add distance to current value
-            current_solution_value += self._distance_matrixx[
+            current_solution_value += self._distance_matrix[
                 current_order[frm]][current_order[to]]
 
             # add distance to the "next" value
@@ -209,11 +210,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
             (frm, to) = \
                 self._transform_next_index_to_current_index(frm, to, move)
 
-            next_solution_value += self._distance_matrixx[
+            next_solution_value += self._distance_matrix[
                 current_order[frm]][current_order[to]]
 
         return next_solution_value - current_solution_value
-
-    def _not_implemented(self, *not_used):
-        """An error raising function that can take any amount of parameters."""
-        raise NotImplementedError
