@@ -138,7 +138,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
         Examples
         --------
-        A simple example to demonstrate the use of delta_evaluate.
+        A simple example to demonstrate the working of delta_evaluate.
         Note that other move types than array_swap can be used:
 
         .. doctest::

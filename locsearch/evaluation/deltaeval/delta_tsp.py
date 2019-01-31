@@ -52,27 +52,27 @@ def array_swap_changed_distances(size, move):
 
     """
 
-    changed_dist = []
+    changed_dist = set()
 
     # iterating over the 2 swapped indices
     for order_index in move:
 
         # get the change in the lower indices
         if order_index != 0:
-            changed_dist.append((order_index - 1, order_index))
+            changed_dist.add((order_index - 1, order_index))
         else:
 
             # between index 0 and index _size-1, the pair is
             # (_size - 1, 0), this because we move from _size-1 to 0
-            changed_dist.append((size - 1, 0))
+            changed_dist.add((size - 1, 0))
 
         # get the change in the higher indices
         if order_index != size - 1:
-            changed_dist.append((order_index, order_index + 1))
+            changed_dist.add((order_index, order_index + 1))
         else:
-            changed_dist.append((size - 1, 0))
+            changed_dist.add((size - 1, 0))
 
-    return set(changed_dist)
+    return changed_dist
 
 
 def array_swap_transform_next_index_to_current_index(frm, to, move):
@@ -87,11 +87,11 @@ def array_swap_transform_next_index_to_current_index(frm, to, move):
     Parameters
     ----------
     frm : int
-        the from index that one wants to use in the array with if the
-        move was performed.
+        The from index that one wants to use in the array if the move was
+        performed.
     to : int
-        the to index that one wants to use in the array with if the
-        move was performed.
+        The to index that one wants to use in the array if the move was
+        performed.
     move : tuple of int
         A tuple with that represents a single, unique move.
 
@@ -126,24 +126,19 @@ def array_swap_transform_next_index_to_current_index(frm, to, move):
 
     """
 
-    # check if the frm value is affected by the move
-    if frm in move:
+    # transform frm so it returns the value that from would have if the
+    # move was performed.
+    if frm == move[0]:
+        frm = move[1]
+    elif frm == move[1]:
+        frm = move[0]
 
-        # transform frm so it returns the value that from would have if the
-        # move was performed.
-        if frm == move[0]:
-            frm = move[1]
-        else:
-            frm = move[0]
-
-    # check if the to value is affected by the move
-    if to in move:
-        # transform to so it returns the value that from would have if the
-        # move was performed.
-        if to == move[0]:
-            to = move[1]
-        else:
-            to = move[0]
+    # transform to so it returns the value that from would have if the
+    # move was performed.
+    if to == move[0]:
+        to = move[1]
+    elif to == move[1]:
+        to = move[0]
 
     return (frm, to)
 
@@ -203,28 +198,28 @@ def array_reverse_order_changed_distances(size, move):
 
     """
 
-    changed_dist = []
+    changed_dist = set()
 
     # Calculating the distances that are always changed
 
     if (move[0] == 0):
-        changed_dist.append((size - 1, 0))
+        changed_dist.add((size - 1, 0))
     else:
-        changed_dist.append((move[0] - 1, move[0]))
+        changed_dist.add((move[0] - 1, move[0]))
 
     if (move[1] == size - 1):
-        changed_dist.append((size - 1, 0))
+        changed_dist.add((size - 1, 0))
     else:
-        changed_dist.append((move[1], move[1] + 1))
+        changed_dist.add((move[1], move[1] + 1))
 
-    # calculating the distance that are only changed if X -> Y causes a
+    # calculating the distances that are only changed if X -> Y causes a
     # different evaluation value than Y -> X
 
     for i in range(move[0], move[1]):
 
-        changed_dist.append((i, i + 1))
+        changed_dist.add((i, i + 1))
 
-    return set(changed_dist)
+    return changed_dist
 
 
 def array_reverse_order_transform_next_index_to_current_index(frm, to, move):
@@ -239,11 +234,11 @@ def array_reverse_order_transform_next_index_to_current_index(frm, to, move):
     Parameters
     ----------
     frm : int
-        the from index that one wants to use in the array with if the
-        move was performed.
+        The from index that one wants to use in the array if the move was
+        performed.
     to : int
-        the to index that one wants to use in the array with if the
-        move was performed.
+        The to index that one wants to use in the array if the move was
+        performed.
     move : tuple of int
         A tuple with that represents a single, unique move.
 
@@ -302,11 +297,6 @@ def array_reverse_order_transform_next_index_to_current_index(frm, to, move):
 def delta_evaluate(eval_func, current_order, move):
     """Calculates the difference in quality if the move would be performed.
 
-    Note that a move function needs to be passed to the constructor of
-    evaluation function for the delta_evaluate to work. The move
-    function also needs to have changed_distances and
-    transform_next_index_to_current_index properly implemented:
-
     Parameters
     ----------
     eval_func : AbstractEvaluationFunction
@@ -326,7 +316,7 @@ def delta_evaluate(eval_func, current_order, move):
     """
 
     # get the changed distances
-    # these are represented as a list of tuples of 2 ints that represent
+    # these are represented as a set of tuples of 2 ints that represent
     # the 2 unique indices between which the distance is changed.
     changed = eval_func._changed_distances(eval_func._size, move)
 
@@ -363,7 +353,7 @@ def delta_evaluate(eval_func, current_order, move):
 # The method to return the other methods.
 
 def delta_tsp(move_type):
-    """Returns delta-eval-aid methods for a problem using ArraySwap move class.
+    """Returns delta-eval-aid methods for a TSP problem.
 
     Note that if no methods for the problem can be found, that a placeholder
     method will be used. This method will raise a NotImplementedError when
@@ -383,7 +373,9 @@ def delta_tsp(move_type):
     transform_next_index_to_current_index
         Aid function to determine the values that need to be used in the delta
         evaluation.
+
     """
+
     if move_type is 'array_swap':
         return (delta_evaluate, array_swap_changed_distances,
                 array_swap_transform_next_index_to_current_index)

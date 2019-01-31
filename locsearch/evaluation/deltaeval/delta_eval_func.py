@@ -1,4 +1,5 @@
 from locsearch.evaluation.deltaeval.delta_tsp import delta_tsp
+from locsearch.evaluation.deltaeval.delta_qap import delta_qap
 
 from locsearch.aidfunc.error_func import _not_implemented
 
@@ -27,5 +28,7 @@ def delta_eval_func(problem_type, move_type):
 
     if problem_type is 'TSP':
         return delta_tsp(move_type)
+    elif problem_type is 'QAP':
+        return delta_qap(move_type)
     else:
         return (_not_implemented, _not_implemented, _not_implemented)

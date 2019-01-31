@@ -1,6 +1,7 @@
 from locsearch.evaluation.abstract_evaluation_function \
     import AbstractEvaluationFunction
 from locsearch.aidfunc.error_func import _not_implemented
+from locsearch.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
 class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
@@ -35,12 +36,13 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
         >>> import numpy
         >>> from locsearch.evaluation.quadratic_assignment_evaluation_function \\
         ...     import QuadraticAssignmentEvaluationFunction
-        ... # init matrixes
+        ... # init distance matrix
         >>> dist_matrix = numpy.array(
         ... [[0, 2, 9, 5],
         ...  [2, 0, 4, 6],
         ...  [9, 4, 0, 3],
         ...  [5, 6, 3, 0]])
+        ... # init flow matrix
         >>> flow_matrix = numpy.array(
         ... [[0, 2, 0, 0],
         ...  [2, 0, 4, 0],
@@ -69,13 +71,26 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
         self._distance_matrix = distance_matrix
         self._flow_matrix = flow_matrix
 
-        # add functions from move_function
         if move_function is not None:
-            self._changed_distances = move_function.changed_distances
-            self._transform_next_index_to_current_index = \
-                move_function.transform_next_index_to_current_index
+
+            # get functions for delta evaluation
+            (self._delta_evaluate, self._changed_distances,
+                self._transform_next_index_to_current_index) = \
+                delta_eval_func(self.get_problem_type(),
+                                move_function.get_move_type())
         else:
             self.delta_evaluate = _not_implemented
+
+    def get_problem_type(self):
+        """Returns the problem type.
+
+        Returns
+        -------
+        str
+            The problem type.
+
+        """
+        return 'QAP'
 
     def evaluate(self, order):
         """Calculates an evaluation value for the function.
@@ -96,7 +111,7 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
 
         value = 0
 
-        # all distances need to be checked
+        # all distances need to be checked once
         for i in range(self._size):
             for j in range(i + 1, self._size):
                 value += self._distance_matrix[i][j] * \
@@ -131,5 +146,47 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
         int or float
             The difference in quality if the move would be performed.
 
+        Examples
+        --------
+        A simple example to demonstrate the working of delta_evaluate.
+        Note that other move types than array_swap can be used:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.evaluation.quadratic_assignment_evaluation_function \\
+            ...     import QuadraticAssignmentEvaluationFunction
+            >>> from locsearch.localsearch.move.array_swap \\
+            ...     import ArraySwap
+            ... # init distance matrix
+            >>> dist_matrix = numpy.array(
+            ... [[ 0, 22, 53, 53],
+            ...  [22,  0, 40, 62],
+            ...  [53, 40,  0, 55],
+            ...  [53, 62, 55,  0]])
+            ... # init flow matrix
+            >>> flow_matrix = numpy.array(
+            ... [[0, 3, 0, 2],
+            ...  [3, 0, 0, 1],
+            ...  [0, 0, 0, 4],
+            ...  [2, 1, 4, 0]])
+            ... # init move function
+            >>> move_func = ArraySwap(4)
+            ... # init evaluation function
+            >>> eval_func = QuadraticAssignmentEvaluationFunction(
+            ...     dist_matrix, flow_matrix, move_func)
+            ... # tests
+            >>> order = numpy.array([0, 1, 2, 3])
+            >>> eval_func.delta_evaluate(order, (0, 1))
+            9
+            >>> eval_func.delta_evaluate(order, (0, 2))
+            50
+            >>> eval_func.delta_evaluate(order, (0, 3))
+            72
+            >>> eval_func.delta_evaluate(order, (1, 2))
+            114
+            >>> eval_func.delta_evaluate(order, (2, 3))
+            -22
+
         """
-        raise NotImplementedError
+        return self._delta_evaluate(self, current_order, move)
