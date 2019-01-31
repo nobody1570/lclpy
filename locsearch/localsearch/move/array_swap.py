@@ -85,6 +85,18 @@ class ArraySwap(AbstractMove):
 
         self._size = size
 
+    def get_move_type(self):
+        """Returns the move type.
+
+        Returns
+        -------
+        str
+            The move type.
+
+        """
+
+        return 'array_swap'
+
     def move(self, array, move):
         """Performs the move asked.
 

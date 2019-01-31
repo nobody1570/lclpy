@@ -1,6 +1,7 @@
 from locsearch.evaluation.abstract_evaluation_function \
     import AbstractEvaluationFunction
-from locsearch.aidfunc.error_func import _not_implemented
+# from locsearch.aidfunc.error_func import _not_implemented
+from locsearch.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
 class TspEvaluationFunction(AbstractEvaluationFunction):
@@ -61,11 +62,22 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
         self._size = distance_matrix.shape[0]
 
         if move_function is not None:
-            self._changed_distances = move_function.changed_distances
-            self._transform_next_index_to_current_index = \
-                move_function.transform_next_index_to_current_index
-        else:
-            self.delta_evaluate = _not_implemented
+            (self._delta_evaluate, self._changed_distances,
+                self._transform_next_index_to_current_index) = \
+                delta_eval_func(self.get_problem_type(),
+                                move_function.get_move_type())
+
+    def get_problem_type(self):
+        """Returns the problem type.
+
+        Returns
+        -------
+        str
+            The problem type.
+
+        """
+
+        return 'TSP'
 
     def evaluate(self, order):
         """Calculates an evaluation value for the function.
@@ -115,6 +127,12 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
         -------
         int or float
             The difference in quality if the move would be performed.
+
+        Raises
+        ------
+        NotImplementedError
+            If there is no implementation found or if no move_function was
+            given in the constructor.
 
         Examples
         --------
@@ -181,36 +199,4 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
         """
 
-        # get the changed distances
-        # these are represented as a list of tuples of 2 ints that represent
-        # the 2 unique indices between which the distance is changed.
-        changed = self._changed_distances(move)
-
-        # init values
-        next_solution_value = 0
-        current_solution_value = 0
-
-        # for all changed distances:
-        # - add the original value to current_solution_value
-        # - add the "changed" value to next_solution_value
-        for distances in changed:
-
-            # get indices
-            frm = distances[0]
-            to = distances[1]
-
-            # add distance to current value
-            current_solution_value += self._distance_matrix[
-                current_order[frm]][current_order[to]]
-
-            # add distance to the "next" value
-
-            # transform the indices so the indices return the value if the
-            # move was performed
-            (frm, to) = \
-                self._transform_next_index_to_current_index(frm, to, move)
-
-            next_solution_value += self._distance_matrix[
-                current_order[frm]][current_order[to]]
-
-        return next_solution_value - current_solution_value
+        return self._delta_evaluate(self, current_order, move)
