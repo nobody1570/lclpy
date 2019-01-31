@@ -35,18 +35,14 @@ def array_swap_changed_distances(move):
         ... # tests
         ... # since the order of the items in a set might be different,
         ... # they are compared to an equivalent set.
-        >>> changed = changed_distances((4, 8))
-        >>> changed == {4, 8}
-        True
-        >>> changed = changed_distances((4, 9))
-        >>> changed == {4, 9}
-        True
-        >>> changed = changed_distances((0, 8))
-        >>> changed == {0, 8}
-        True
-        >>> changed = changed_distances((0, 9))
-        >>> changed == {0, 9}
-        True
+        >>> changed_distances((4, 8))
+        [4, 8]
+        >>> changed_distances((4, 9))
+        [4, 9]
+        >>> changed_distances((0, 8))
+        [0, 8]
+        >>> changed_distances((0, 9))
+        [0, 9]
 
     """
 
@@ -162,7 +158,7 @@ def delta_evaluate(eval_func, current_order, move):
             next_i = eval_func._transform_next_index_to_current_index(i, move)
 
             next_solution_value += \
-                eval_func._distance_matrix[next_location][next_i] * \
+                eval_func._distance_matrix[location][i] * \
                 eval_func._flow_matrix[
                     current_order[next_location]][current_order[next_i]]
 
