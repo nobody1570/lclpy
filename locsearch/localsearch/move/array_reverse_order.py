@@ -85,6 +85,18 @@ class ArrayReverseOrder(AbstractMove):
         super().__init__()
         self._size = size
 
+    def get_move_type(self):
+        """Returns the move type.
+
+        Returns
+        -------
+        str
+            The move type.
+
+        """
+
+        return 'array_reverse_order'
+
     def move(self, array, move):
         """Performs the move asked.
 
@@ -169,143 +181,3 @@ class ArrayReverseOrder(AbstractMove):
             i, j = j, i
 
         return (i, j)
-
-    def changed_distances(self, move):
-        """Aid function for delta evaluation.
-
-        This function returns the pairs who would have an altered evaluation
-        value due to the move.
-
-        Parameters
-        ----------
-        move : tuple of int
-            A tuple of 2 ints that represents a single valid move.
-
-        Returns
-        -------
-        set of tuple
-            this set contains a tuple with every (from,to) pair that would have
-            an altered evaluation value due to the move.
-            A pair (x, y) and a pair (y, x) are assumed to have different
-            evaluatio0n values.
-
-        Examples
-        --------
-        Some simple examples to demonstrate the behaviour:
-
-        .. doctest::
-
-            >>> from locsearch.localsearch.move.array_reverse_order \\
-            ...     import ArrayReverseOrder
-            ... # init
-            >>> reverse = ArrayReverseOrder(10)
-            ... # tests
-            ... # since the order of the items in a set might be different,
-            ... # they are compared to an equivalent set.
-            >>> changed = reverse.changed_distances((4, 8))
-            >>> changed == {(3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9)}
-            True
-            >>> changed = reverse.changed_distances((4, 9))
-            >>> changed == {(3, 4), (4, 5), (5, 6),
-            ...             (6, 7), (7, 8), (8, 9), (9, 0)}
-            True
-            >>> changed = reverse.changed_distances((0, 4))
-            >>> changed == {(9, 0), (0, 1), (1, 2), (2, 3), (3, 4), (4, 5)}
-            True
-            >>> changed = reverse.changed_distances((0, 9))
-            >>> changed == {(0, 1), (1, 2), (2, 3), (3, 4), (4, 5),
-            ...             (5, 6), (6, 7), (7, 8), (8, 9), (9, 0)}
-            True
-
-        """
-
-        changed_dist = []
-
-        # Calculating the distances that are always changed
-
-        if (move[0] == 0):
-            changed_dist.append((self._size - 1, 0))
-        else:
-            changed_dist.append((move[0] - 1, move[0]))
-
-        if (move[1] == self._size - 1):
-            changed_dist.append((self._size - 1, 0))
-        else:
-            changed_dist.append((move[1], move[1] + 1))
-
-        # calculating the distance that are only changed if X -> Y causes a
-        # different evaluation value than Y -> X
-
-        for i in range(move[0], move[1]):
-
-            changed_dist.append((i, i + 1))
-
-        return set(changed_dist)
-
-    @staticmethod
-    def transform_next_index_to_current_index(frm, to, move):
-        """Transforms frm and to depending on a move
-
-        This function transforms the indices frm and to so that they can
-        be used as indices in the unaltered array, yet return the value
-        they would have had if the move was actually performed and they
-        were used as indices.
-
-        Parameters
-        ----------
-        frm : int
-            the from index that one wants to use in the array with if the
-            move was performed.
-        to : int
-            the to index that one wants to use in the array with if the
-            move was performed.
-        move : tuple of int
-            A tuple with that represents a single, unique move.
-
-        Returns
-        -------
-        frm : int
-            The index in the unaltered array that has the same value as the
-            parameter frm in an array where the move was performed.
-        to : int
-            The index in the unaltered array that has the same value as the
-            parameter to in an array where the move was performed.
-
-        Examples
-        --------
-        Some simple examples, the move remains the same, but the indices
-        change:
-
-        .. doctest::
-
-            >>> from locsearch.localsearch.move.array_reverse_order \\
-            ...     import ArrayReverseOrder as ARO
-            >>> ARO.transform_next_index_to_current_index(0, 10, (1, 8))
-            (0, 10)
-            >>> ARO.transform_next_index_to_current_index(0, 6, (1, 8))
-            (0, 3)
-            >>> ARO.transform_next_index_to_current_index(2, 3, (1, 8))
-            (7, 6)
-            >>> ARO.transform_next_index_to_current_index(1, 8, (1, 8))
-            (8, 1)
-            >>> ARO.transform_next_index_to_current_index(5, 10, (1, 8))
-            (4, 10)
-
-
-        """
-
-        # check if the frm value is affected by the move
-        if frm in range(move[0], move[1] + 1):
-
-            # alter the value as necessary
-            offset = frm - move[0]
-            frm = move[1] - offset
-
-        # check if the to value is affected by the move
-        if to in range(move[0], move[1] + 1):
-
-            # alter the value as necessary
-            offset = to - move[0]
-            to = move[1] - offset
-
-        return (frm, to)

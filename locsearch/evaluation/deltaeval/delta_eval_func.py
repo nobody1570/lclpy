@@ -28,4 +28,4 @@ def delta_eval_func(problem_type, move_type):
     if problem_type is 'TSP':
         return delta_tsp(move_type)
     else:
-        return (_not_implemented, _not_implemented)
+        return (_not_implemented, _not_implemented, _not_implemented)

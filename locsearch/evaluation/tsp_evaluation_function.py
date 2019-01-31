@@ -1,6 +1,6 @@
 from locsearch.evaluation.abstract_evaluation_function \
     import AbstractEvaluationFunction
-# from locsearch.aidfunc.error_func import _not_implemented
+from locsearch.aidfunc.error_func import _not_implemented
 from locsearch.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
@@ -66,6 +66,8 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
                 self._transform_next_index_to_current_index) = \
                 delta_eval_func(self.get_problem_type(),
                                 move_function.get_move_type())
+        else:
+            self.delta_evaluate = _not_implemented
 
     def get_problem_type(self):
         """Returns the problem type.
@@ -136,7 +138,8 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
         Examples
         --------
-        A simple example to demonstrate the use of delta_evaluate:
+        A simple example to demonstrate the use of delta_evaluate.
+        Note that other move types than array_swap can be used:
 
         .. doctest::
 

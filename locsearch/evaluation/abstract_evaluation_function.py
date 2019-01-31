@@ -11,6 +11,17 @@ class AbstractEvaluationFunction(ABC):
     def __init__(self):
         super().__init__()
 
+    def get_problem_type(self):
+        """Returns the problem type.
+
+        Returns
+        -------
+        str
+            The problem type.
+
+        """
+        raise NotImplementedError
+
     @abstractmethod
     def evaluate(self, current_data):
         """Evaluates current_solution
@@ -35,10 +46,10 @@ class AbstractEvaluationFunction(ABC):
         The two compared solutions are the current solution and the solution
         if the move was performed. The move is not actually performed.
 
-        This function does not need to be implemented. One should only
-        consider to implement and use it if a delta evaluation is faster than
-        the regular evaluate function or if it needs to be implemented to work
-        with existing code.
+        For this function to work, get_problem_type needs to be implemented,
+        the move-object(s) need to have get_move_type implemented and the
+        delta evaluate methods need to be properly implemented in the deltaeval
+        package.
 
         Parameters
         ----------
