@@ -276,14 +276,14 @@ def array_reverse_order_transform_next_index_to_current_index(frm, to, move):
     """
 
     # check if the frm value is affected by the move
-    if frm in range(move[0], move[1] + 1):
+    if (frm >= move[0]) & (frm <= move[1]):
 
         # alter the value as necessary
         offset = frm - move[0]
         frm = move[1] - offset
 
     # check if the to value is affected by the move
-    if to in range(move[0], move[1] + 1):
+    if (to >= move[0]) & (to <= move[1]):
 
         # alter the value as necessary
         offset = to - move[0]
