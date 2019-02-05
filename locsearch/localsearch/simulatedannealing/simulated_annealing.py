@@ -192,15 +192,16 @@ class SimulatedAnnealing(AbstractLocalSearch):
         # main loop
         while self._termination_criterion.keep_running():
 
-            iterations = self._iterations_for_temp_f.get_iterations(
-                self._temperature)
-
             # performs iterations at the current temperature
             #
-            # it's basically a for loop that also terminates if the
+            # it's a for loop that also terminates if the
             # termination criterion says it should.
-            while iterations > 0 and \
-                    self._termination_criterion.keep_running():
+            for i in range(
+                    self._iterations_for_temp_f.get_iterations(
+                        self._temperature)):
+
+                if not self._termination_criterion.keep_running():
+                    break
 
                 # get and evaluate move
                 move = self._solution.get_random_move()
@@ -229,7 +230,6 @@ class SimulatedAnnealing(AbstractLocalSearch):
                 self._termination_criterion.check_new_value(base_value)
                 self._termination_criterion.iteration_done()
 
-                iterations -= 1
 
             # lowers the current temperature
             self._temperature = self._cooling_function.next_temperature(
