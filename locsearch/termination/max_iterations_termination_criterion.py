@@ -77,6 +77,7 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
             iterations is bigger than max_iterations
 
         """
+
         return self._iterations < self._max_iterations
 
     def iteration_done(self):
@@ -85,4 +86,5 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
         Increments _iterations by 1.
 
         """
+
         self._iterations += 1
