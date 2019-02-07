@@ -1,7 +1,11 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
 from collections import deque, namedtuple
+
 from locsearch.aidfunc.is_improvement_func import bigger, smaller
 from locsearch.aidfunc.aid_deque import insert_in_sorted_deque
+from locsearch.aidfunc.pass_func import pass_func
+from locsearch.aidfunc.add_to_data_func import add_to_data_func
+
 from locsearch.localsearch.tabusearch.tabu_list import TabuList
 
 
@@ -19,6 +23,9 @@ class TabuSearch(AbstractLocalSearch):
     minimise : bool, optional
         Will minimise if this parameter is True, maximise if it is False.
         The default is True.
+    benchmarking : bool, optional
+        Should be True if one wishes benchmarks to be kept, should be False if
+        one wishes no benchmarks to be made. Default is True.
 
     Attributes
     ----------
@@ -37,6 +44,23 @@ class TabuSearch(AbstractLocalSearch):
     _best_found_delta_base_value : float
         Initialisation value for the delta value of each iteration. It's
         infinite when minimising or minus infinite when maximising.
+    data : list of tuple
+        Data useable for benchmarking. Will be None if no benchmarks are made.
+    _data_append
+        Function to append new data-points to data. Will do nothing if no
+        benchmarks are made.
+
+    Returns
+    -------
+    best_order : numpy.ndarray
+        The best found order.
+    best_value : int or float
+        The evaluation value of the best found order.
+    data : list of tuple
+        Data useable for benchmarking. If no benchmarks were made, it will be
+        None. The tuples contain the following data:
+        timestamp, value of solution, best value found
+        Note that the timestamp's reference point is undefined.
 
     Examples
     --------
@@ -52,7 +76,7 @@ class TabuSearch(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from locsearch.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
-        >>> from locsearch.solution.tsp_solution import TspSolution
+        >>> from locsearch.solution.array_solution import ArraySolution
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
         ... #                                  needed in your implementation.)
@@ -66,14 +90,15 @@ class TabuSearch(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = TspSolution(evaluation, move, size)
+        >>> solution = ArraySolution(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(solution, termination, 5, True)
+        >>> tabu_search = TabuSearch(solution, termination, 5, True,
+        ...                          benchmarking=False)
         ... # run algorithm
         >>> tabu_search.run()
-        Results(best_order=array([0, 1, 3, 2]), best_value=15)
+        Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
 
     An example of maximising, note that the distance matrix is different:
 
@@ -87,7 +112,7 @@ class TabuSearch(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from locsearch.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
-        >>> from locsearch.solution.tsp_solution import TspSolution
+        >>> from locsearch.solution.array_solution import ArraySolution
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
         ... #                                  needed in your implementation.)
@@ -101,20 +126,22 @@ class TabuSearch(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = TspSolution(evaluation, move, size)
+        >>> solution = ArraySolution(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(solution, termination, 5, False)
+        >>> tabu_search = TabuSearch(solution, termination, 5, False,
+        ...                          benchmarking=False)
         ... # run algorithm
         >>> tabu_search.run()
-        Results(best_order=array([0, 1, 3, 2]), best_value=21)
+        Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
 
 
     """
 
-    def __init__(self, solution, termination_criterion,
-                 list_size=7, minimise=True):
+    def __init__(self, solution, termination_criterion, list_size=7,
+                 minimise=True, benchmarking=True):
+
         super().__init__()
 
         self._solution = solution
@@ -129,6 +156,13 @@ class TabuSearch(AbstractLocalSearch):
         else:
             self._is_better = bigger
             self._best_found_delta_base_value = float("-inf")
+
+        if benchmarking:
+            self.data = []
+            self._data_append = add_to_data_func
+        else:
+            self.data = None
+            self._data_append = pass_func
 
     def run(self):
         """Starts running the tabu search.
@@ -147,6 +181,9 @@ class TabuSearch(AbstractLocalSearch):
         # init
         base_value = self._solution.evaluate()
         self._solution.set_as_best(base_value)
+
+        # add to data
+        self._data_append(self.data, base_value, base_value)
 
         # init termination criterion
         self._termination_criterion.check_new_value(base_value)
@@ -217,6 +254,10 @@ class TabuSearch(AbstractLocalSearch):
                             self._solution.best_order_value, base_value):
                         self._solution.set_as_best(base_value)
 
+                    # add to data
+                    self._data_append(self.data, base_value,
+                                      self._solution.best_order_value)
+
                     # good move found --> terminate search loop
                     break
 
@@ -231,7 +272,8 @@ class TabuSearch(AbstractLocalSearch):
 
         # return results
 
-        Results = namedtuple('Results', ['best_order', 'best_value'])
+        Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
         return Results(self._solution.best_order,
-                       self._solution.best_order_value)
+                       self._solution.best_order_value,
+                       self.data)

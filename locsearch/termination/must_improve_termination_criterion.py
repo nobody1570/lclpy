@@ -124,18 +124,9 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         value : int or long or float
             Is the new evaluation value of a solution.
 
-        Returns
-        -------
-        bool
-            The function returns True if the value is an improvement, else it
-            returns False.
-
         """
 
-        check = self._function(self._old_best_value, value)
-        if check:
+        if self._function(self._old_best_value, value):
             self._old_best_value = value
         else:
             self._run = False
-
-        return check

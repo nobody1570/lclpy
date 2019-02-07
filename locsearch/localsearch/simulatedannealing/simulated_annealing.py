@@ -4,6 +4,8 @@ from locsearch.localsearch.acceptance.simulated_annealing_acceptance_function \
 from collections import namedtuple
 from locsearch.aidfunc.is_improvement_func \
     import bigger, bigger_or_equal, smaller, smaller_or_equal
+from locsearch.aidfunc.pass_func import pass_func
+from locsearch.aidfunc.add_to_data_func import add_to_data_func
 
 
 class SimulatedAnnealing(AbstractLocalSearch):
@@ -26,6 +28,9 @@ class SimulatedAnnealing(AbstractLocalSearch):
     minimise : bool, optional
         Will minimise if this parameter is True, maximise if it is False.
         The default is True.
+    benchmarking : bool, optional
+        Should be True if one wishes benchmarks to be kept, should be False if
+        one wishes no benchmarks to be made. Default is True.
 
     Attributes
     ----------
@@ -47,6 +52,23 @@ class SimulatedAnnealing(AbstractLocalSearch):
         or equal to the current value.
     _is_better
         Function used to determine if a certain value is an improvement.
+    data : list of tuple
+        Data useable for benchmarking. Will be None if no benchmarks are made.
+    _data_append
+        Function to append new data-points to data. Will do nothing if no
+        benchmarks are made.
+
+    Returns
+    -------
+    best_order : numpy.ndarray
+        The best found order.
+    best_value : int or float
+        The evaluation value of the best found order.
+    data : list of tuple
+        Data useable for benchmarking. If no benchmarks were made, it will be
+        None. The tuples contain the following data:
+        timestamp, value of solution, best value found
+        Note that the timestamp's reference point is undefined.
 
     Examples
     --------
@@ -67,7 +89,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from locsearch.termination.min_temperature_termination_criterion \\
         ...     import MinTemperatureTerminationCriterion
-        >>> from locsearch.solution.tsp_solution import TspSolution
+        >>> from locsearch.solution.array_solution import ArraySolution
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
         ... #                                  needed in your implementation.)
@@ -81,7 +103,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = TspSolution(evaluation, move, size)
+        >>> solution = ArraySolution(evaluation, move, size)
         ... # init termination criterion
         >>> termination_criterion = MinTemperatureTerminationCriterion()
         ... # init cooling function
@@ -90,11 +112,12 @@ class SimulatedAnnealing(AbstractLocalSearch):
         ... # (determines amount of itertions in function of the temperature)
         >>> i_for_temp = CnstIterationsTempFunction()
         ... # init SimulatedAnnealing
-        >>> algorithm = SimulatedAnnealing(
-        ...     solution, termination_criterion, cooling_func, i_for_temp)
+        >>> algorithm = SimulatedAnnealing(solution, termination_criterion,
+        ...                                cooling_func, i_for_temp,
+        ...                                benchmarking=False)
         ... # run algorithm
         >>> algorithm.run()
-        Results(best_order=array([0, 2, 3, 1]), best_value=15)
+        Results(best_order=array([0, 2, 3, 1]), best_value=15, data=None)
 
     Maximising example, note that the distance matrix is different:
 
@@ -113,7 +136,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from locsearch.termination.min_temperature_termination_criterion \\
         ...     import MinTemperatureTerminationCriterion
-        >>> from locsearch.solution.tsp_solution import TspSolution
+        >>> from locsearch.solution.array_solution import ArraySolution
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
         ... #                                  needed in your implementation.)
@@ -127,7 +150,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = TspSolution(evaluation, move, size)
+        >>> solution = ArraySolution(evaluation, move, size)
         ... # init termination criterion
         >>> termination_criterion = MinTemperatureTerminationCriterion()
         ... # init cooling function
@@ -138,16 +161,19 @@ class SimulatedAnnealing(AbstractLocalSearch):
         ... # init SimulatedAnnealing
         >>> algorithm = SimulatedAnnealing(
         ...     solution, termination_criterion,
-        ...     cooling_func, i_for_temp, minimise=False)
+        ...     cooling_func, i_for_temp, minimise=False,
+        ...     benchmarking=False)
         ... # run algorithm
         >>> algorithm.run()
-        Results(best_order=array([0, 2, 3, 1]), best_value=21)
+        Results(best_order=array([0, 2, 3, 1]), best_value=21, data=None)
 
     """
 
     def __init__(self, solution, termination_criterion,
                  cooling_function, iterations_for_temp_f,
-                 start_temperature=2000, minimise=True):
+                 start_temperature=2000, minimise=True,
+                 benchmarking=True):
+
         super().__init__()
 
         self._solution = solution
@@ -167,6 +193,13 @@ class SimulatedAnnealing(AbstractLocalSearch):
             self._acceptance_function = \
                 SimulatedAnnealingAcceptanceFunction(diff_multiplier=-1)
 
+        if benchmarking:
+            self.data = []
+            self._data_append = add_to_data_func
+        else:
+            self.data = None
+            self._data_append = pass_func
+
     def run(self):
         """Starts running the simulated annealing algorithm.
 
@@ -185,7 +218,10 @@ class SimulatedAnnealing(AbstractLocalSearch):
         base_value = self._solution.evaluate()
         self._solution.set_as_best(base_value)
 
-        # init terminitaion criterion
+        # add to data
+        self._data_append(self.data, base_value, base_value)
+
+        # init termination criterion
         self._termination_criterion.check_new_value(base_value)
         self._termination_criterion.start_timing()
 
@@ -219,6 +255,10 @@ class SimulatedAnnealing(AbstractLocalSearch):
                             self._solution.best_order_value, base_value):
                         self._solution.set_as_best(base_value)
 
+                    # add to data
+                    self._data_append(self.data, base_value,
+                                      self._solution.best_order_value)
+
                 else:
 
                     # worse than current state --> use acceptance function.
@@ -227,9 +267,12 @@ class SimulatedAnnealing(AbstractLocalSearch):
                         self._solution.move(move)
                         base_value = base_value + delta
 
+                        # add to data
+                        self._data_append(self.data, base_value,
+                                          self._solution.best_order_value)
+
                 self._termination_criterion.check_new_value(base_value)
                 self._termination_criterion.iteration_done()
-
 
             # lowers the current temperature
             self._temperature = self._cooling_function.next_temperature(
@@ -239,7 +282,8 @@ class SimulatedAnnealing(AbstractLocalSearch):
 
         # return results
 
-        Results = namedtuple('Results', ['best_order', 'best_value'])
+        Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
         return Results(self._solution.best_order,
-                       self._solution.best_order_value)
+                       self._solution.best_order_value,
+                       self.data)

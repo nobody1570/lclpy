@@ -1,12 +1,12 @@
 
-def _not_implemented(*not_used):
+def _not_implemented(*args):
     """An error raising function that can take any amount of parameters.
 
     Parameters
     ----------
-    *not_used
+    args
         Variable length argument list, it does not matter what or how many
-        parameters you use.
+        parameters you use. Does not accept keyword arguments.
 
     Raises
     ------

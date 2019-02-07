@@ -1,4 +1,4 @@
-import time
+from time import time
 from locsearch.termination.abstract_termination_criterion \
     import AbstractTerminationCriterion
 
@@ -100,7 +100,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
         Sets _start to the current time in seconds from the epoch.
 
         """
-        self._start = time.time()
+        self._start = time()
 
     def iteration_done(self):
         """function to be called after every iteration
@@ -109,4 +109,4 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
         start time.
 
         """
-        self._seconds = time.time() - self._start
+        self._seconds = time() - self._start
