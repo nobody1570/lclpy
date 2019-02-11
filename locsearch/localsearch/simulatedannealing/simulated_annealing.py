@@ -1,11 +1,15 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
+
 from locsearch.localsearch.acceptance.simulated_annealing_acceptance_function \
     import SimulatedAnnealingAcceptanceFunction
-from collections import namedtuple
+
 from locsearch.aidfunc.is_improvement_func \
     import bigger, bigger_or_equal, smaller, smaller_or_equal
 from locsearch.aidfunc.pass_func import pass_func
 from locsearch.aidfunc.add_to_data_func import add_to_data_func
+from locsearch.aidfunc.convert_data import convert_data
+
+from collections import namedtuple
 
 
 class SimulatedAnnealing(AbstractLocalSearch):
@@ -280,10 +284,17 @@ class SimulatedAnnealing(AbstractLocalSearch):
 
             self._termination_criterion.check_variable(self._temperature)
 
+        # if we have data:
+        # convert data to something easier to plot
+        if self.data is not None:
+            data = convert_data(self.data)
+        else:
+            data = None
+
         # return results
 
         Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
         return Results(self._solution.best_order,
                        self._solution.best_order_value,
-                       self.data)
+                       data)

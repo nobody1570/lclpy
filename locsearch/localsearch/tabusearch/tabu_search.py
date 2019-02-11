@@ -1,12 +1,14 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
-from collections import deque, namedtuple
 
 from locsearch.aidfunc.is_improvement_func import bigger, smaller
 from locsearch.aidfunc.aid_deque import insert_in_sorted_deque
 from locsearch.aidfunc.pass_func import pass_func
 from locsearch.aidfunc.add_to_data_func import add_to_data_func
+from locsearch.aidfunc.convert_data import convert_data
 
 from locsearch.localsearch.tabusearch.tabu_list import TabuList
+
+from collections import deque, namedtuple
 
 
 class TabuSearch(AbstractLocalSearch):
@@ -270,10 +272,17 @@ class TabuSearch(AbstractLocalSearch):
             self._termination_criterion.check_new_value(base_value)
             self._termination_criterion.iteration_done()
 
+        # if we have data:
+        # convert data to something easier to plot
+        if self.data is not None:
+            data = convert_data(self.data)
+        else:
+            data = None
+
         # return results
 
         Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
         return Results(self._solution.best_order,
                        self._solution.best_order_value,
-                       self.data)
+                       data)
