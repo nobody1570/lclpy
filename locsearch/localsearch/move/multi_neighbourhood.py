@@ -172,6 +172,62 @@ class MultiNeighbourhood(AbstractMove):
         >>> multi.get_random_move()
         (0, (1, 2))
 
+    Test of using delta evaluation with a multineighbourhood:
+
+    .. doctest::
+
+        >>> import numpy
+        >>> from locsearch.localsearch.move.array_swap import ArraySwap
+        >>> from locsearch.localsearch.move.array_reverse_order \\
+        ...     import ArrayReverseOrder
+        >>> from locsearch.localsearch.move.multi_neighbourhood \\
+        ...     import MultiNeighbourhood
+        >>> from locsearch.evaluation.quadratic_assignment_evaluation_function \\
+        ...     import QuadraticAssignmentEvaluationFunction
+        ... # init array, a move will be performed on this array
+        >>> array = numpy.array([0, 1, 2, 3])
+        ... # init multineighbourhood
+        >>> swap = ArraySwap(len(array))
+        >>> reverse = ArrayReverseOrder(len(array))
+        >>> move_func_list = [swap, reverse]
+        >>> multi = MultiNeighbourhood(move_func_list)
+        ... # init evaluation function
+        >>> dist_matrix = numpy.array(
+        ... [[0, 2, 9, 5],
+        ...  [2, 0, 4, 6],
+        ...  [9, 4, 0, 3],
+        ...  [5, 6, 3, 0]])
+        ... # init flow matrix
+        >>> flow_matrix = numpy.array(
+        ... [[0, 2, 0, 0],
+        ...  [2, 0, 4, 0],
+        ...  [0, 4, 0, 8],
+        ...  [0, 0, 8, 0]])
+        ... # init evaluation function
+        >>> eval_func = QuadraticAssignmentEvaluationFunction(dist_matrix,
+        ...                                                   flow_matrix,
+        ...                                                   multi)
+        ... # tests
+        >>> order = [0, 1, 2, 3]
+        >>> eval_func.evaluate([0, 1, 2, 3])
+        44
+        >>> eval_func.evaluate([0, 1, 3, 2])
+        52
+        >>> eval_func.delta_evaluate(order, (0, (2, 3)))
+        8
+        >>> eval_func.delta_evaluate(order, (1, (2, 3)))
+        8
+        >>> eval_func.evaluate([0, 3, 2, 1])
+        54
+        >>> eval_func.delta_evaluate(order, (0, (1, 3)))
+        10
+        >>> eval_func.delta_evaluate(order, (1, (1, 3)))
+        10
+        >>> eval_func.evaluate([3, 2, 1, 0])
+        38
+        >>> eval_func.delta_evaluate(order, (1, (0, 3)))
+        -6
+
     """
 
     def __init__(self, move_func_list, weights=None):
@@ -199,6 +255,18 @@ class MultiNeighbourhood(AbstractMove):
 
         self._tresholds = numpy.array(
             list(itertools.accumulate(probabilities)))
+
+    def get_move_type(self):
+        """Returns the move type.
+
+        Returns
+        -------
+        str
+            The move type.
+
+        """
+
+        return 'multi_neighbourhood'
 
     def move(self, data, move):
         """Performs a move.

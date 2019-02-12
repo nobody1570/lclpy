@@ -386,7 +386,7 @@ def array_reverse_order_transform_next_index_to_current_index(frm, to, move):
     return (frm, to)
 
 
-# The method to return the other methods.
+# The method to return the other stuff.
 
 def delta_tsp(eval_func, move_func):
     """Returns delta-eval class for a TSP problem.
@@ -398,9 +398,9 @@ def delta_tsp(eval_func, move_func):
     Parameters
     ----------
     eval_func : AbstractEvaluationFunction
-        The used evaluation function.
+        The used evaluation function object.
     move_func : AbstractMove
-        The used move function.
+        The used move object.
 
     Returns
     -------

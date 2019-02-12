@@ -364,10 +364,10 @@ def delta_evaluate(eval_func, current_order, move):
     return next_solution_value - current_solution_value
 
 
-# The method to return the other methods
+# The method to return the other stuff
 
 def delta_qap(eval_func, move_func):
-    """Returns delta-eval-aid methods for a QAP problem.
+    """Returns delta-eval class for a QAP problem.
 
     Note that if no methods for the problem can be found, that a placeholder
     method will be used. This method will raise a NotImplementedError when
@@ -375,18 +375,15 @@ def delta_qap(eval_func, move_func):
 
     Parameters
     ----------
-    problem_type : str
-        The name of the problem type.
+    eval_func : AbstractEvaluationFunction
+        The used evaluation function object.
+    move_func : AbstractMove
+        The used move object.
 
     Returns
     -------
-    delta_evaluate
-        A function that can be used for the delta evaluation
-    changed_distances
-        Aid function to determine what should be recalculated.
-    transform_next_index_to_current_index
-        Aid function to determine the values that need to be used in the delta
-        evaluation.
+    QAPDeltaEvaluate
+        Class useable for delta evaluation of TSP problems.
 
     """
 

@@ -1,3 +1,5 @@
+from locsearch.evaluation.deltaeval.delta_multi_neighbourhood \
+    import delta_multi_neighbourhood
 from locsearch.evaluation.deltaeval.delta_tsp import delta_tsp
 from locsearch.evaluation.deltaeval.delta_qap import delta_qap
 
@@ -8,18 +10,14 @@ def delta_eval_func(problem_eval_func, move_func):
     Parameters
     ----------
     problem_eval_func : AbstractEvaluationFunction
-        The used evaluation function.
+        The used evaluation function object.
     move_type : AbstractMove
-        The used move type.
+        The used move object.
 
     Returns
     -------
-    delta_evaluate
-        A function that can be used for the delta evaluation
-    changed_distances
-        Aid function to determine what should be recalculated.
-    transform_next_index_to_current_index
-        Aid function to determine the values that need to be used in the delta
+    delta_class
+        Class containing a function called delta_evaluate to perform delta
         evaluation.
 
     """
@@ -27,6 +25,8 @@ def delta_eval_func(problem_eval_func, move_func):
     problem_type = problem_eval_func.get_problem_type()
     move_type = move_func.get_move_type()
 
+    if move_type is 'multi_neighbourhood':
+        return delta_multi_neighbourhood(problem_eval_func, move_func)
     if problem_type is 'TSP':
         return delta_tsp(problem_eval_func, move_func)
     elif problem_type is 'QAP':
