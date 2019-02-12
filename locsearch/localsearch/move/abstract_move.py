@@ -11,6 +11,22 @@ class AbstractMove(ABC):
     def __init__(self):
         super(AbstractMove, self).__init__()
 
+    def get_move_type(self):
+        """Returns the move type.
+
+        This function is used in the implementation of delta evaluation. If
+        it's not implemented or wanted, this method does not need to be
+        implemented.
+
+        Returns
+        -------
+        str
+            The move type.
+
+        """
+
+        raise NotImplementedError
+
     @abstractmethod
     def move(self, data, move):
         """Performs a move.

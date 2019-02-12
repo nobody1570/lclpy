@@ -1,6 +1,100 @@
 from locsearch.aidfunc.error_func import _not_implemented
 
 
+# base class for the tsp delta evaluation
+
+class TSPDeltaEvaluate():
+    """Class to perform delta-evaluation for TSP problems.
+
+    Parameters
+    ----------
+    eval_func : AbstractEvaluationFunction
+        The used evaluation function
+    changed_distances
+        This function returns the pairs who would have an altered evaluation
+        value due to the move.
+    next_to_current
+        This function transforms the indices so that they can be used as
+        indices in the unaltered array, yet return the value they would have
+        had if the move was actually performed and they were used as indices.
+
+    Attributes
+    ----------
+    eval_func : AbstractEvaluationFunction
+        The used evaluation function
+    changed_distances
+        This function returns the pairs who would have an altered evaluation
+        value due to the move.
+    next_to_current
+        This function transforms the indices so that they can be used as
+        indices in the unaltered array, yet return the value they would have
+        had if the move was actually performed and they were used as indices.
+
+    Returns
+    -------
+    int or float
+        The difference in quality if the move would be performed.
+
+    """
+
+    def __init__(self, eval_func, changed_distances, next_to_current):
+        self.eval_func = eval_func
+        self.changed_distances = changed_distances
+        self.next_to_current = next_to_current
+
+    def delta_evaluate(self, current_order, move):
+        """Calculates the difference in quality if the move would be performed.
+
+        Parameters
+        ----------
+        current_order : numpy.ndarray
+            A 1 dimensional array that contains the order of the points to
+            visit. All values are unique and are within the interval [0,size[.
+            This is the current order.
+        move : tuple of int
+            Contains the move one wishes to know the effects on the quality of.
+
+        Returns
+        -------
+        int or float
+            The difference in quality if the move would be performed.
+
+        """
+
+        # get the changed distances
+        # these are represented as a set of tuples of 2 ints that represent
+        # the 2 unique indices between which the distance is changed.
+        changed = self.changed_distances(self.eval_func._size, move)
+
+        # init values
+        next_solution_value = 0
+        current_solution_value = 0
+
+        # for all changed distances:
+        # - add the original value to current_solution_value
+        # - add the "changed" value to next_solution_value
+        for distances in changed:
+
+            # get indices
+            frm = distances[0]
+            to = distances[1]
+
+            # add distance to current value
+            current_solution_value += self.eval_func._distance_matrix[
+                current_order[frm]][current_order[to]]
+
+            # add distance to the "next" value
+
+            # transform the indices so the indices return the value if the
+            # move was performed
+            (frm, to) = self.next_to_current(frm, to, move)
+
+            next_solution_value += self.eval_func._distance_matrix[
+                current_order[frm]][current_order[to]]
+
+        return next_solution_value - current_solution_value
+
+
 # functions for array_swap
 
 def array_swap_changed_distances(size, move):
@@ -292,95 +386,37 @@ def array_reverse_order_transform_next_index_to_current_index(frm, to, move):
     return (frm, to)
 
 
-# shared delta_evaluate function for TSP problems
+# The method to return the other methods.
 
-def delta_evaluate(eval_func, current_order, move):
-    """Calculates the difference in quality if the move would be performed.
+def delta_tsp(eval_func, move_func):
+    """Returns delta-eval class for a TSP problem.
+
+    Note that if no methods for the problem can be found, that a placeholder
+    method will be used. The placeholder methods will raise a
+    NotImplementedError when called.
 
     Parameters
     ----------
     eval_func : AbstractEvaluationFunction
-        The object the delta-evaluation is calculated for.
-    current_order : numpy.ndarray
-        A 1 dimensional array that contains the order of the points to
-        visit. All values are unique and are within the interval [0,size[.
-        This is the current order.
-    move : tuple of int
-        Contains the move one wishes to know the effects on the quality of.
+        The used evaluation function.
+    move_func : AbstractMove
+        The used move function.
 
     Returns
     -------
-    int or float
-        The difference in quality if the move would be performed.
+    TSPDeltaEvaluate
+        Class useable for delta evaluation of TSP problems.
 
     """
 
-    # get the changed distances
-    # these are represented as a set of tuples of 2 ints that represent
-    # the 2 unique indices between which the distance is changed.
-    changed = eval_func._changed_distances(eval_func._size, move)
-
-    # init values
-    next_solution_value = 0
-    current_solution_value = 0
-
-    # for all changed distances:
-    # - add the original value to current_solution_value
-    # - add the "changed" value to next_solution_value
-    for distances in changed:
-
-        # get indices
-        frm = distances[0]
-        to = distances[1]
-
-        # add distance to current value
-        current_solution_value += eval_func._distance_matrix[
-            current_order[frm]][current_order[to]]
-
-        # add distance to the "next" value
-
-        # transform the indices so the indices return the value if the
-        # move was performed
-        (frm, to) = \
-            eval_func._transform_next_index_to_current_index(frm, to, move)
-
-        next_solution_value += eval_func._distance_matrix[
-            current_order[frm]][current_order[to]]
-
-    return next_solution_value - current_solution_value
-
-
-# The method to return the other methods.
-
-def delta_tsp(move_type):
-    """Returns delta-eval-aid methods for a TSP problem.
-
-    Note that if no methods for the problem can be found, that a placeholder
-    method will be used. This method will raise a NotImplementedError when
-    called.
-
-    Parameters
-    ----------
-    problem_type : str
-        The name of the problem type.
-
-    Returns
-    -------
-    delta_evaluate
-        A function that can be used for the delta evaluation
-    changed_distances
-        Aid function to determine what should be recalculated.
-    transform_next_index_to_current_index
-        Aid function to determine the values that need to be used in the delta
-        evaluation.
-
-    """
+    move_type = move_func.get_move_type()
 
     if move_type is 'array_swap':
-        return (delta_evaluate, array_swap_changed_distances,
-                array_swap_transform_next_index_to_current_index)
+        return TSPDeltaEvaluate(eval_func, array_swap_changed_distances,
+                                array_swap_transform_next_index_to_current_index)
     if move_type is 'array_reverse_order':
-        return (delta_evaluate, array_reverse_order_changed_distances,
-                array_reverse_order_transform_next_index_to_current_index)
+        return TSPDeltaEvaluate(eval_func,
+                                array_reverse_order_changed_distances,
+                                array_reverse_order_transform_next_index_to_current_index)
     else:
-        return (delta_evaluate, _not_implemented, _not_implemented)
+        return TSPDeltaEvaluate(eval_func, _not_implemented, _not_implemented)

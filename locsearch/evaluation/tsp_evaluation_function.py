@@ -1,6 +1,5 @@
 from locsearch.evaluation.abstract_evaluation_function \
     import AbstractEvaluationFunction
-from locsearch.aidfunc.error_func import _not_implemented
 from locsearch.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
@@ -14,9 +13,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
         The distance matrix of the tsp-problem. The weight from A to B does
         not need to be equal to the weight from B to A.
     move_function : AbstractMove, optional
-        Only needs to be passed if one wishes to use delta evaluation. The
-        class needs to have changed_distances and
-        transform_next_index_to_current_index properly implemented.
+        Only needs to be passed if one wishes to use delta evaluation.
 
     Attributes
     ----------
@@ -62,12 +59,8 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
         self._size = distance_matrix.shape[0]
 
         if move_function is not None:
-            (self._delta_evaluate, self._changed_distances,
-                self._transform_next_index_to_current_index) = \
-                delta_eval_func(self.get_problem_type(),
-                                move_function.get_move_type())
-        else:
-            self.delta_evaluate = _not_implemented
+            self._delta_evaluate_object = delta_eval_func(self, move_function)
+            self.delta_evaluate = self._delta_evaluate_object.delta_evaluate
 
     def get_problem_type(self):
         """Returns the problem type.
@@ -133,8 +126,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
         Raises
         ------
         NotImplementedError
-            If there is no implementation found or if no move_function was
-            given in the constructor.
+            If no move_function was given in the constructor.
 
         Examples
         --------
@@ -202,4 +194,4 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
 
         """
 
-        return self._delta_evaluate(self, current_order, move)
+        raise NotImplementedError

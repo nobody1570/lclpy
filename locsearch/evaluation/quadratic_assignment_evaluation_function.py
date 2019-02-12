@@ -1,6 +1,5 @@
 from locsearch.evaluation.abstract_evaluation_function \
     import AbstractEvaluationFunction
-from locsearch.aidfunc.error_func import _not_implemented
 from locsearch.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
@@ -17,6 +16,8 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
         The distance matrix of the problem. Should be symmetric.
     flow_matrix : numpy.ndarray
         The flow matrix for the problem. Should ne symmetric.
+    move_function : AbstractMove, optional
+        Only needs to be passed if one wishes to use delta evaluation.
 
     Attributes
     ----------
@@ -72,14 +73,8 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
         self._flow_matrix = flow_matrix
 
         if move_function is not None:
-
-            # get functions for delta evaluation
-            (self._delta_evaluate, self._changed_distances,
-                self._transform_next_index_to_current_index) = \
-                delta_eval_func(self.get_problem_type(),
-                                move_function.get_move_type())
-        else:
-            self.delta_evaluate = _not_implemented
+            self._delta_evaluate_object = delta_eval_func(self, move_function)
+            self.delta_evaluate = self._delta_evaluate_object.delta_evaluate
 
     def get_problem_type(self):
         """Returns the problem type.
@@ -90,6 +85,7 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
             The problem type.
 
         """
+
         return 'QAP'
 
     def evaluate(self, order):
@@ -140,11 +136,15 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
         move : tuple of int
             Contains the move one wishes to know the effects on the quality of.
 
-
         Returns
         -------
         int or float
             The difference in quality if the move would be performed.
+
+        Raises
+        ------
+        NotImplementedError
+            If no move_function was given in the constructor.
 
         Examples
         --------
@@ -189,4 +189,5 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
             -22
 
         """
-        return self._delta_evaluate(self, current_order, move)
+
+        raise NotImplementedError

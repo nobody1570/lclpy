@@ -1,18 +1,16 @@
 from locsearch.evaluation.deltaeval.delta_tsp import delta_tsp
 from locsearch.evaluation.deltaeval.delta_qap import delta_qap
 
-from locsearch.aidfunc.error_func import _not_implemented
 
-
-def delta_eval_func(problem_type, move_type):
+def delta_eval_func(problem_eval_func, move_func):
     """A function to retrieve the functions needed for delta evaluation.
 
     Parameters
     ----------
-    problem_type : str
-        The problem type.
-    move_type : str
-        The move type.
+    problem_eval_func : AbstractEvaluationFunction
+        The used evaluation function.
+    move_type : AbstractMove
+        The used move type.
 
     Returns
     -------
@@ -26,9 +24,12 @@ def delta_eval_func(problem_type, move_type):
 
     """
 
+    problem_type = problem_eval_func.get_problem_type()
+    move_type = move_func.get_move_type()
+
     if problem_type is 'TSP':
-        return delta_tsp(move_type)
+        return delta_tsp(problem_eval_func, move_func)
     elif problem_type is 'QAP':
-        return delta_qap(move_type)
+        return delta_qap(problem_eval_func, move_func)
     else:
-        return (_not_implemented, _not_implemented, _not_implemented)
+        raise NotImplementedError
