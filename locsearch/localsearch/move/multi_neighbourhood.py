@@ -359,3 +359,52 @@ class MultiNeighbourhood(AbstractMove):
 
         return (self._size - 1,
                 self._move_func_list[self._size - 1].get_random_move())
+
+    def size(self):
+        """Function to get amount of neighbourhoods in the multi neighbourhood.
+
+        Returns
+        -------
+        int
+            The amount of neighbourhoods.
+
+        """
+
+        return len(self._move_func_list)
+
+    def select_get_moves(self, neighbourhood_nr):
+        """A generator used to return all moves from a specific neighbourhood.
+
+        Yields
+        ------
+        tuple of int
+            The next valid move from the specified neighbourhood.
+
+        """
+
+        # get the neighbourhood from the _move_func_list
+        neighbourhood = self._move_func_list[neighbourhood_nr].get_moves()
+
+        # yield all moves from said neighbourhood
+        for move in neighbourhood:
+            yield (neighbourhood_nr, move)
+
+    def select_random_move(self, neighbourhood_nr):
+        """A method used to generate a random move from a specific neighbourhood.
+
+        Parameters
+        ----------
+        neighbourhood_nr : int
+            Number of the neighbourhood. This number is the index of the
+            neighbourhood in the list of move functions given to the
+            constructor.
+
+        Returns
+        -------
+        tuple of int
+            A random valid move from the specified neighbourhood.
+
+        """
+
+        return (neighbourhood_nr,
+                self._move_func_list[neighbourhood_nr].get_random_move())

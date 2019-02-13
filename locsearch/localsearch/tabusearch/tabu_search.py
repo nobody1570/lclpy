@@ -52,18 +52,6 @@ class TabuSearch(AbstractLocalSearch):
         Function to append new data-points to data. Will do nothing if no
         benchmarks are made.
 
-    Returns
-    -------
-    best_order : numpy.ndarray
-        The best found order.
-    best_value : int or float
-        The evaluation value of the best found order.
-    data : list of tuple
-        Data useable for benchmarking. If no benchmarks were made, it will be
-        None. The tuples contain the following data:
-        timestamp, value of solution, best value found
-        Note that the timestamp's reference point is undefined.
-
     Examples
     --------
     An example of minimising:
@@ -172,11 +160,14 @@ class TabuSearch(AbstractLocalSearch):
         Returns
         -------
         best_order : numpy.ndarray
-            A one dimensional numpy array that contains the order of the
-            points for the best found solution.
+            The best found order.
         best_value : int or float
-            The best found value of the evaluation function. This should be
-            the evaluation value of best_order.
+            The evaluation value of the best found order.
+        data : list of tuple
+            Data useable for benchmarking. If no benchmarks were made, it will
+            be None. The tuples contain the following data:
+            timestamp, value of solution, best value found
+            Note that the timestamp's reference point is undefined.
 
         """
 

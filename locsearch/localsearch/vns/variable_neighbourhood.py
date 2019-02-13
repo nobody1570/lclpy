@@ -1,6 +1,4 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
-from locsearch.termination.must_improve_termination_criterion \
-    import MustImproveTerminationCriterion
 
 from locsearch.aidfunc.is_improvement_func import bigger, smaller
 from locsearch.aidfunc.pass_func import pass_func
@@ -10,25 +8,22 @@ from locsearch.aidfunc.convert_data import convert_data
 from collections import namedtuple
 
 
-class SteepestDescent(AbstractLocalSearch):
+class VariableNeighbourhood(AbstractLocalSearch):
     """Performs a steepest descent algorithm on the given solution.
 
     Parameters
     ----------
     solution : AbstractLocalSearchSolution
-        Contains all the data needed for the specific problem.
+        Contains all the data needed for the specific problem. This solution
+        must have been initialed a move_function class of the type
+        MultiNeighbourhood. This MultiNeighbourhood needs to contain multiple
+        move function classes.
     minimise : bool, optional
-        If the goal is to minimise the evaluation function, this should be
+        If the goal is to minimise the evaluation function, this  should be
         True. If the goal is to maximise the evlauation function, this should
         be False. The default is True.
     termination_criterion : AbstractTerminationCriterion, optional
         The termination criterion that is used.
-        If no termination criterion is given, this will an
-        MustImproveTerminationCriterion object will be used as the termination
-        criterion.
-        Note that if you specify a criterion, that it should be equivalent to
-        the default or more strict than the default. A less strict criterion
-        might cause the main loop to pointlessly iterate.
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
         one wishes no benchmarks to be made. Default is True.
@@ -58,26 +53,40 @@ class SteepestDescent(AbstractLocalSearch):
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.localsearch.steepestdescent.steepest_descent \\
-        ...     import SteepestDescent
+        >>> from locsearch.localsearch.vns.variable_neighbourhood \\
+        ...     import VariableNeighbourhood
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+        >>> from locsearch.localsearch.move.array_reverse_order \\
+        ...     import ArrayReverseOrder
+        >>> from locsearch.localsearch.move.multi_neighbourhood \\
+        ...     import MultiNeighbourhood
+        >>> from locsearch.localsearch.vns.variable_neighbourhood \\
+        ...     import VariableNeighbourhood
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
         >>> from locsearch.solution.array_solution import ArraySolution
-        ... # init solution
+        >>> from locsearch.termination.max_seconds_termination_criterion \\
+        ...     import MaxSecondsTerminationCriterion
+        ... # init distance matrix
         >>> distance_matrix = numpy.array(
         ... [[0, 2, 5, 8],
         ...  [2, 0, 4, 1],
         ...  [5, 4, 0, 7],
         ...  [8, 1, 7, 0]])
+        ... # init MultiNeighbourhood
         >>> size = distance_matrix.shape[0]
-        >>> move = TspArraySwap(size)
+        >>> move_1 = TspArraySwap(size)
+        >>> move_2 = ArrayReverseOrder(size)
+        >>> move = MultiNeighbourhood([move_1, move_2])
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> solution = ArraySolution(evaluation, move, size)
-        ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(solution, benchmarking=False)
+        ... # init termination criterion
+        >>> termination = MaxSecondsTerminationCriterion(2)
+        ... # init VariableNeighbourhood
+        >>> algorithm = VariableNeighbourhood(solution, termination,
+        ...                                   benchmarking=False)
         ... # run algorithm
-        >>> steepest_descent.run()
+        >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
 
     An example of maximising, note that the distance matrix is different:
@@ -85,44 +94,55 @@ class SteepestDescent(AbstractLocalSearch):
     .. doctest::
 
         >>> import numpy
-        >>> from locsearch.localsearch.steepestdescent.steepest_descent \\
-        ...     import SteepestDescent
+        >>> from locsearch.localsearch.vns.variable_neighbourhood \\
+        ...     import VariableNeighbourhood
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+        >>> from locsearch.localsearch.move.array_reverse_order \\
+        ...     import ArrayReverseOrder
+        >>> from locsearch.localsearch.move.multi_neighbourhood \\
+        ...     import MultiNeighbourhood
+        >>> from locsearch.localsearch.vns.variable_neighbourhood \\
+        ...     import VariableNeighbourhood
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
         >>> from locsearch.solution.array_solution import ArraySolution
-        ... # init solution
+        >>> from locsearch.termination.max_seconds_termination_criterion \\
+        ...     import MaxSecondsTerminationCriterion
+        ... # init distance matrix
         >>> distance_matrix = numpy.array(
         ... [[0, 8, 5, 2],
         ...  [8, 0, 4, 7],
         ...  [5, 4, 0, 1],
         ...  [2, 7, 1, 0]])
+        ... # init MultiNeighbourhood
         >>> size = distance_matrix.shape[0]
-        >>> move = TspArraySwap(size)
+        >>> move_1 = TspArraySwap(size)
+        >>> move_2 = ArrayReverseOrder(size)
+        >>> move = MultiNeighbourhood([move_1, move_2])
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> solution = ArraySolution(evaluation, move, size)
+        ... # init termination criterion
+        >>> termination = MaxSecondsTerminationCriterion(2)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(solution, False,
-        ...                                    benchmarking=False)
+        ... # init VariableNeighbourhood
+        >>> algorithm = VariableNeighbourhood(solution, termination, False,
+        ...                                   benchmarking=False)
         ... # run algorithm
-        >>> steepest_descent.run()
+        >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
 
 
 
     """
 
-    def __init__(self, solution, minimise=True, termination_criterion=None,
+    def __init__(self, solution, termination_criterion, minimise=True,
                  benchmarking=True):
+
         super().__init__()
 
         self._solution = solution
 
-        if termination_criterion is None:
-            self._termination_criterion = \
-                MustImproveTerminationCriterion(minimise)
-        else:
-            self._termination_criterion = termination_criterion
+        self._termination_criterion = termination_criterion
 
         if minimise:
             self._function = smaller
@@ -139,7 +159,7 @@ class SteepestDescent(AbstractLocalSearch):
             self._data_append = pass_func
 
     def run(self):
-        """Starts running the steepest descent.
+        """Starts running the variable neighbourhood search.
 
         Returns
         -------
@@ -154,6 +174,10 @@ class SteepestDescent(AbstractLocalSearch):
             Note that the timestamp's reference point is undefined.
 
         """
+
+        # get amount of neighbourhoods
+        neighbourhoods_amount = self._solution.multi_neighbourhood_size()
+        current_neighbourhood = 0
 
         # init solution
         base_value = self._solution.evaluate()
@@ -172,8 +196,7 @@ class SteepestDescent(AbstractLocalSearch):
             best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
-            for move in self._solution.get_moves():
-
+            for move in self._solution.select_get_moves(current_neighbourhood):
                 # check quality move
                 delta = self._solution.evaluate_move(move)
 
@@ -195,6 +218,11 @@ class SteepestDescent(AbstractLocalSearch):
 
                 # add to data
                 self._data_append(self.data, base_value, base_value)
+
+            else:
+                # if move is worse, change neighbourhood
+                current_neighbourhood = \
+                    (current_neighbourhood + 1) % neighbourhoods_amount
 
             self._termination_criterion.iteration_done()
 
