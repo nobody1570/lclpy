@@ -1,6 +1,7 @@
 from locsearch.solution.abstract_local_search_solution \
     import AbstractLocalSearchSolution
 import numpy
+from locsearch.aidfunc.error_func import _not_implemented
 
 
 class ArraySolution(AbstractLocalSearchSolution):
@@ -136,6 +137,11 @@ class ArraySolution(AbstractLocalSearchSolution):
         # init variables
         self._evaluation_function = evaluation_function
         self._move_function = move_function
+
+        if self._move_function.get_move_type() is not 'multi_neighbourhood':
+            self.multi_neighbourhood_size = _not_implemented
+            self.select_get_moves = _not_implemented
+            self.select_random_move = _not_implemented
 
         if order is None:
             self._order = numpy.arange(size)
@@ -382,3 +388,78 @@ class ArraySolution(AbstractLocalSearchSolution):
         """
 
         return tuple(self._order)
+
+    def multi_neighbourhood_size(self):
+        """Function to get amount of neighbourhoods in the MultiNeighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+
+        Returns
+        -------
+        int
+            The amount of neighbourhoods in the MultiNeighbourhood.
+
+        Raises
+        ------
+        NotImplementedError
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        return self._move_function.size()
+
+    def select_get_moves(self, neighbourhood_nr):
+        """Function to get all moves from a specific neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+
+        Parameters
+        ----------
+        neighbourhood_nr : int
+            Number of the neighbourhood. This number is the index of the
+            neighbourhood in the list of move functions given to the
+            constructor.
+
+        Returns
+        -------
+        generator
+            An iterable generator object that contains all the moves of the
+            specified neighbourhood.
+
+        Raises
+        ------
+        NotImplementedError
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        return self._move_function.select_get_moves(neighbourhood_nr)
+
+    def select_random_move(self, neighbourhood_nr):
+        """A method used to generate a random move from a specific neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+
+        Parameters
+        ----------
+        neighbourhood_nr : int
+            Number of the neighbourhood. This number is the index of the
+            neighbourhood in the list of move functions given to the
+            constructor.
+
+        Returns
+        -------
+        tuple of int
+            A random valid move from the specified neighbourhood.
+
+         Raises
+        ------
+        NotImplementedError
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        return self._move_function.select_random_move(neighbourhood_nr)
