@@ -36,6 +36,14 @@ locsearch.termination.min\_temperature\_termination\_criterion module
     :undoc-members:
     :show-inheritance:
 
+locsearch.termination.multi\_criterion module
+---------------------------------------------
+
+.. automodule:: locsearch.termination.multi_criterion
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 locsearch.termination.must\_improve\_termination\_criterion module
 ------------------------------------------------------------------
 

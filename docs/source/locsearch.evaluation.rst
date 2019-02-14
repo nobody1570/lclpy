@@ -1,6 +1,13 @@
 locsearch.evaluation package
 ============================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    locsearch.evaluation.deltaeval
+
 Submodules
 ----------
 

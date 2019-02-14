@@ -12,10 +12,10 @@ locsearch.solution.abstract\_local\_search\_solution module
     :undoc-members:
     :show-inheritance:
 
-locsearch.solution.tsp\_solution module
----------------------------------------
+locsearch.solution.array\_solution module
+-----------------------------------------
 
-.. automodule:: locsearch.solution.tsp_solution
+.. automodule:: locsearch.solution.array_solution
     :members:
     :undoc-members:
     :show-inheritance:

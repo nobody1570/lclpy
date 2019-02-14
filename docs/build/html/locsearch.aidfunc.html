@@ -40,6 +40,28 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-locsearch.aidfunc.add_to_data_func">
+<span id="locsearch-aidfunc-add-to-data-func-module"></span><h2>locsearch.aidfunc.add_to_data_func module<a class="headerlink" href="#module-locsearch.aidfunc.add_to_data_func" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="locsearch.aidfunc.add_to_data_func.add_to_data_func">
+<code class="descclassname">locsearch.aidfunc.add_to_data_func.</code><code class="descname">add_to_data_func</code><span class="sig-paren">(</span><em>data</em>, <em>current_value</em>, <em>best_value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.add_to_data_func.add_to_data_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to add the best and the current value to a list with a timestamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<em>list</em>) – The list one wishes to append the data to.</li>
+<li><strong>current_value</strong> (<em>int</em><em> or </em><em>float</em>) – The evaluation value of the current solution.</li>
+<li><strong>best_value</strong> (<em>int</em><em> or </em><em>float</em>) – The best evaluation value found.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
 <div class="section" id="module-locsearch.aidfunc.aid_deque">
 <span id="locsearch-aidfunc-aid-deque-module"></span><h2>locsearch.aidfunc.aid_deque module<a class="headerlink" href="#module-locsearch.aidfunc.aid_deque" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -88,6 +110,34 @@ Inserting item in an empty deque is possible.</p>
 </div>
 </dd></dl>
 
+</div>
+<div class="section" id="module-locsearch.aidfunc.convert_data">
+<span id="locsearch-aidfunc-convert-data-module"></span><h2>locsearch.aidfunc.convert_data module<a class="headerlink" href="#module-locsearch.aidfunc.convert_data" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="locsearch.aidfunc.convert_data.convert_data">
+<code class="descclassname">locsearch.aidfunc.convert_data.</code><code class="descname">convert_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.convert_data.convert_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a list made with add_to_data_func to 3 seperate lists.</p>
+<p>This is done to improve the ease of plotting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>list of tuple</em>) – A list created with add_to_data_func</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>time</strong> (<em>list of float</em>) – The timestamps taken.</li>
+<li><strong>value</strong> (<em>list of float or list of int</em>) – The values calculated for the current value at the timestamps.</li>
+<li><strong>best_value</strong> (<em>list of float or list of int</em>) – The best found value for all timestamps.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.aidfunc.error_func">
+<span id="locsearch-aidfunc-error-func-module"></span><h2>locsearch.aidfunc.error_func module<a class="headerlink" href="#module-locsearch.aidfunc.error_func" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-locsearch.aidfunc.is_improvement_func">
 <span id="locsearch-aidfunc-is-improvement-func-module"></span><h2>locsearch.aidfunc.is_improvement_func module<a class="headerlink" href="#module-locsearch.aidfunc.is_improvement_func" title="Permalink to this headline">¶</a></h2>
@@ -192,6 +242,24 @@ else returns false.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-locsearch.aidfunc.pass_func">
+<span id="locsearch-aidfunc-pass-func-module"></span><h2>locsearch.aidfunc.pass_func module<a class="headerlink" href="#module-locsearch.aidfunc.pass_func" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="locsearch.aidfunc.pass_func.pass_func">
+<code class="descclassname">locsearch.aidfunc.pass_func.</code><code class="descname">pass_func</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.pass_func.pass_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function that does nothing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – Variable length argument list, it does not matter what or how many
+parameters you use. Does not accept keyword arguments.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
 <div class="section" id="module-locsearch.aidfunc">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.aidfunc" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -221,8 +289,12 @@ else returns false.</p>
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.aidfunc package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc.add_to_data_func">locsearch.aidfunc.add_to_data_func module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc.aid_deque">locsearch.aidfunc.aid_deque module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc.convert_data">locsearch.aidfunc.convert_data module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc.error_func">locsearch.aidfunc.error_func module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc.is_improvement_func">locsearch.aidfunc.is_improvement_func module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc.pass_func">locsearch.aidfunc.pass_func module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc">Module contents</a></li>
 </ul>
 </li>

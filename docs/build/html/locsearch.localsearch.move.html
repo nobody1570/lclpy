@@ -50,6 +50,25 @@
 <p>This object is used to explore a neighbourhood and alter the state of a
 solution.</p>
 <dl class="method">
+<dt id="locsearch.localsearch.move.abstract_move.AbstractMove.get_move_type">
+<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
+<p>This function is used in the implementation of delta evaluation. If
+it’s not implemented or wanted, this method does not need to be
+implemented.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.localsearch.move.abstract_move.AbstractMove.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.abstract_move.AbstractMove.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generator used to return all valid moves in the neighbourhood.</p>
@@ -208,51 +227,19 @@ get_moves and how to perform and undo a move:</p>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.changed_distances">
-<code class="descname">changed_distances</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.changed_distances" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aid function for delta evaluation.</p>
-<p>This function returns the pairs who would have an altered evaluation
-value due to the move.</p>
+<dt id="locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type">
+<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single valid move.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this set contains a tuple with every (from,to) pair that would have
-an altered evaluation value due to the move.
-A pair (x, y) and a pair (y, x) are assumed to have different
-evaluatio0n values.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">set of tuple</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Examples</p>
-<p>Some simple examples to demonstrate the behaviour:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
-<span class="gp">... </span><span class="c1"># init</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">reverse</span> <span class="o">=</span> <span class="n">ArrayReverseOrder</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">... </span><span class="c1"># tests</span>
-<span class="gp">... </span><span class="c1"># since the order of the items in a set might be different,</span>
-<span class="gp">... </span><span class="c1"># they are compared to an equivalent set.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">reverse</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">reverse</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-<span class="gp">... </span>            <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">reverse</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">reverse</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-<span class="gp">... </span>            <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
-<span class="go">True</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -302,57 +289,6 @@ get_random_move and get_move.</li>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.transform_next_index_to_current_index">
-<em class="property">static </em><code class="descname">transform_next_index_to_current_index</code><span class="sig-paren">(</span><em>frm</em>, <em>to</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder.transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transforms frm and to depending on a move</p>
-<p>This function transforms the indices frm and to so that they can
-be used as indices in the unaltered array, yet return the value
-they would have had if the move was actually performed and they
-were used as indices.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>frm</strong> (<em>int</em>) – the from index that one wants to use in the array with if the
-move was performed.</li>
-<li><strong>to</strong> (<em>int</em>) – the to index that one wants to use in the array with if the
-move was performed.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>frm</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
-parameter frm in an array where the move was performed.</li>
-<li><strong>to</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
-parameter to in an array where the move was performed.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>Some simple examples, the move remains the same, but the indices
-change:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span> <span class="k">as</span> <span class="n">ARO</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ARO</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">(0, 10)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ARO</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">(0, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ARO</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">(7, 6)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ARO</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">(8, 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ARO</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">(4, 10)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -463,46 +399,19 @@ get_moves and how to perform and undo a move:</p>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="locsearch.localsearch.move.array_swap.ArraySwap.changed_distances">
-<code class="descname">changed_distances</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.changed_distances" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aid function for delta evaluation.</p>
-<p>This function returns the pairs who would have an altered evaluation
-value due to the move.</p>
+<dt id="locsearch.localsearch.move.array_swap.ArraySwap.get_move_type">
+<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this set contains a tuple with every (from,to) pair that would have
-an altered evaluation value due to the move.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">set of tuple</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Examples</p>
-<p>Some simple examples to demonstrate the behaviour:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
-<span class="gp">... </span><span class="c1"># init</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">ArraySwap</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">... </span><span class="c1"># tests</span>
-<span class="gp">... </span><span class="c1"># since the order of the items in a set might be different,</span>
-<span class="gp">... </span><span class="c1"># they are compared to an equivalent set.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)}</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">=</span> <span class="n">swap</span><span class="o">.</span><span class="n">changed_distances</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
-<span class="go">True</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -552,55 +461,6 @@ get_random_move and get_move.</li>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="locsearch.localsearch.move.array_swap.ArraySwap.transform_next_index_to_current_index">
-<em class="property">static </em><code class="descname">transform_next_index_to_current_index</code><span class="sig-paren">(</span><em>frm</em>, <em>to</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.array_swap.ArraySwap.transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transforms frm and to depending on a move</p>
-<p>This function transforms the indices frm and to so that they can
-be used as indices in the unaltered array, yet return the value
-they would have had if the move was actually performed and they
-were used as indices.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>frm</strong> (<em>int</em>) – the from index that one wants to use in the array with if the
-move was performed.</li>
-<li><strong>to</strong> (<em>int</em>) – the to index that one wants to use in the array with if the
-move was performed.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>frm</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
-parameter frm in an array where the move was performed.</li>
-<li><strong>to</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
-parameter to in an array where the move was performed.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>Some simple examples, the indices remain the same, but the move
-changes:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArraySwap</span> <span class="k">as</span> <span class="n">AS</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="go">(5, 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="go">(3, 5)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="go">(1, 0)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">AS</span><span class="o">.</span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="go">(1, 5)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -824,6 +684,76 @@ exactly the same as the results of the previous doctest:</p>
 <span class="go">(0, (1, 2))</span>
 </pre></div>
 </div>
+<p>Test of using delta evaluation with a multineighbourhood:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.array_reverse_order</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.multi_neighbourhood</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.quadratic_assignment_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">QuadraticAssignmentEvaluationFunction</span>
+<span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init multineighbourhood</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">ArraySwap</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reverse</span> <span class="o">=</span> <span class="n">ArrayReverseOrder</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">move_func_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">swap</span><span class="p">,</span> <span class="n">reverse</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi</span> <span class="o">=</span> <span class="n">MultiNeighbourhood</span><span class="p">(</span><span class="n">move_func_list</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># init flow matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span><span class="c1"># init evaluation function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span> <span class="o">=</span> <span class="n">QuadraticAssignmentEvaluationFunction</span><span class="p">(</span><span class="n">dist_matrix</span><span class="p">,</span>
+<span class="gp">... </span>                                                  <span class="n">flow_matrix</span><span class="p">,</span>
+<span class="gp">... </span>                                                  <span class="n">multi</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="go">44</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">52</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">delta_evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">delta_evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">54</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">delta_evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">delta_evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">38</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_func</span><span class="o">.</span><span class="n">delta_evaluate</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="go">-6</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type">
+<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves" title="Permalink to this definition">¶</a></dt>
@@ -874,6 +804,56 @@ method call.</li>
 <li><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves">
+<code class="descname">select_get_moves</code><span class="sig-paren">(</span><em>neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generator used to return all moves from a specific neighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move from the specified neighbourhood.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move">
+<code class="descname">select_random_move</code><span class="sig-paren">(</span><em>neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method used to generate a random move from a specific neighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
+neighbourhood in the list of move functions given to the
+constructor.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the specified neighbourhood.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size">
+<code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get amount of neighbourhoods in the multi neighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The amount of neighbourhoods.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
 </tr>
 </tbody>
 </table>

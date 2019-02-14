@@ -1,37 +1,20 @@
 locsearch.runner package
 ========================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    locsearch.runner.aidfunc
+
 Submodules
 ----------
 
-locsearch.runner.abstract\_runner module
-----------------------------------------
+locsearch.runner.tsp\_runner module
+-----------------------------------
 
-.. automodule:: locsearch.runner.abstract_runner
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-locsearch.runner.simulated\_annealing\_runner module
-----------------------------------------------------
-
-.. automodule:: locsearch.runner.simulated_annealing_runner
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-locsearch.runner.steepest\_descent\_runner module
--------------------------------------------------
-
-.. automodule:: locsearch.runner.steepest_descent_runner
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-locsearch.runner.tabu\_search\_runner module
---------------------------------------------
-
-.. automodule:: locsearch.runner.tabu_search_runner
+.. automodule:: locsearch.runner.tsp_runner
     :members:
     :undoc-members:
     :show-inheritance:

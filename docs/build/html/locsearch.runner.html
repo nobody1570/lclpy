@@ -17,7 +17,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="locsearch.solution package" href="locsearch.solution.html" />
+    <link rel="next" title="locsearch.runner.aidfunc package" href="locsearch.runner.aidfunc.html" />
     <link rel="prev" title="locsearch.random package" href="locsearch.random.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -37,536 +37,149 @@
             
   <div class="section" id="locsearch-runner-package">
 <h1>locsearch.runner package<a class="headerlink" href="#locsearch-runner-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="locsearch.runner.aidfunc.html">locsearch.runner.aidfunc package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc.algorithm_picker">locsearch.runner.aidfunc.algorithm_picker module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc.move_picker">locsearch.runner.aidfunc.move_picker module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-locsearch.runner.abstract_runner">
-<span id="locsearch-runner-abstract-runner-module"></span><h2>locsearch.runner.abstract_runner module<a class="headerlink" href="#module-locsearch.runner.abstract_runner" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-locsearch.runner.tsp_runner">
+<span id="locsearch-runner-tsp-runner-module"></span><h2>locsearch.runner.tsp_runner module<a class="headerlink" href="#module-locsearch.runner.tsp_runner" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner">
-<em class="property">class </em><code class="descclassname">locsearch.runner.abstract_runner.</code><code class="descname">AbstractRunner</code><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>Template to create runners.</p>
-<p>Runners are responsible for initializing and running an algorithm.
-I/O and, when needed, plotting data. Implementation can be easily done by
-inheriting from this class and implementing tha abstract methods. Use
-instance variables for data that needs to be remembered for use in other
-methods.</p>
-<dl class="attribute">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.results">
-<code class="descname">results</code><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.results" title="Permalink to this definition">¶</a></dt>
-<dd><p>The results from the execution of the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">collections.namedtuple</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.define_algorithm">
-<code class="descname">define_algorithm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.define_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising an AbstractLocalSearch instance.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.define_evaluation_function">
-<code class="descname">define_evaluation_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.define_evaluation_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising an evaluation function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.define_move_function">
-<code class="descname">define_move_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.define_move_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a move function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.define_solution">
-<code class="descname">define_solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.define_solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a solution object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.define_termination_criterion">
-<code class="descname">define_termination_criterion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.define_termination_criterion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a termination criterion, if needed.</p>
-<p>This function does not always need to be implemented.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.output">
-<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles the output.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.read">
-<code class="descname">read</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads a file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – The relative or absolute path to the file.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.run">
-<code class="descname">run</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>initializes and runs an instance of an AbstractLocalSearch class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – The relative or absolute path to the file.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.abstract_runner.AbstractRunner.run_algorithm">
-<code class="descname">run_algorithm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.abstract_runner.AbstractRunner.run_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts running the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>results</strong> – The results.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">collections.namedtuple</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-locsearch.runner.simulated_annealing_runner">
-<span id="locsearch-runner-simulated-annealing-runner-module"></span><h2>locsearch.runner.simulated_annealing_runner module<a class="headerlink" href="#module-locsearch.runner.simulated_annealing_runner" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner">
-<em class="property">class </em><code class="descclassname">locsearch.runner.simulated_annealing_runner.</code><code class="descname">SimulatedAnnealingRunner</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#locsearch.runner.abstract_runner.AbstractRunner" title="locsearch.runner.abstract_runner.AbstractRunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.runner.abstract_runner.AbstractRunner</span></code></a></p>
-<p>Loads a problem and performs simulated annealing on the problem.</p>
-<p>Note that the default implementation only works with tsp problems from
-tsplib.</p>
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._data">
-<code class="descname">_data</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._data" title="Permalink to this definition">¶</a></dt>
-<dd><p>The data read from a file.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._distance_matrix">
-<code class="descname">_distance_matrix</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._distance_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>The distance matrix for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._size">
-<code class="descname">_size</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._size" title="Permalink to this definition">¶</a></dt>
-<dd><p>The amount of points in the tsp problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._move_function">
-<code class="descname">_move_function</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._move_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>The move function that needs to be used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove">AbstractMove</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._evaluation_function">
-<code class="descname">_evaluation_function</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._evaluation_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>The evaluation function used for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">AbstractEvaluationFunction</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._solution">
-<code class="descname">_solution</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>The solution object for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._termination_criterion">
-<code class="descname">_termination_criterion</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._termination_criterion" title="Permalink to this definition">¶</a></dt>
-<dd><p>The termination criterion for the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._cooling_func">
-<code class="descname">_cooling_func</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._cooling_func" title="Permalink to this definition">¶</a></dt>
-<dd><p>The cooling function for the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">AbstractCoolingFunction</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._i_for_temp">
-<code class="descname">_i_for_temp</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._i_for_temp" title="Permalink to this definition">¶</a></dt>
-<dd><p>The amount of iterations for temperature function for the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">AbstrIterationsTempFunction</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._algorithm">
-<code class="descname">_algorithm</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner._algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>The steepest descent algorithm used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent" title="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent">SteepestDescent</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.results">
-<code class="descname">results</code><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.results" title="Permalink to this definition">¶</a></dt>
-<dd><p>The results from the localsearch.</p>
-</dd></dl>
-
-<p class="rubric">Examples</p>
-<p>Using the runner:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">locsearch.runner.simulated_annealing_runner</span> \
-    <span class="kn">import</span> <span class="n">SimulatedAnnealingRunner</span>
-<span class="n">runner</span> <span class="o">=</span> <span class="n">SimulatedAnnealingRunner</span><span class="p">()</span>
-<span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_algorithm">
-<code class="descname">define_algorithm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a steepest descent algorithm.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_cooling_function">
-<code class="descname">define_cooling_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_cooling_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a cooling function</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_evaluation_function">
-<code class="descname">define_evaluation_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_evaluation_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising an evaluation function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_iteration_temp_f">
-<code class="descname">define_iteration_temp_f</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_iteration_temp_f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and init an amount of iterations for temperature function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_move_function">
-<code class="descname">define_move_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_move_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a move function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_solution">
-<code class="descname">define_solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising the solution object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_termination_criterion">
-<code class="descname">define_termination_criterion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.define_termination_criterion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a termination criterion</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.output">
-<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles the output.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.read">
-<code class="descname">read</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads a file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – The relative or absolute path to the file.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.run">
-<code class="descname">run</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>initializes and runs an instance of the SteepestDescent class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – The relative or absolute path to the file.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.run_algorithm">
-<code class="descname">run_algorithm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.simulated_annealing_runner.SimulatedAnnealingRunner.run_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts running the algorithm.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-locsearch.runner.steepest_descent_runner">
-<span id="locsearch-runner-steepest-descent-runner-module"></span><h2>locsearch.runner.steepest_descent_runner module<a class="headerlink" href="#module-locsearch.runner.steepest_descent_runner" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner">
-<em class="property">class </em><code class="descclassname">locsearch.runner.steepest_descent_runner.</code><code class="descname">SteepestDescentRunner</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#locsearch.runner.abstract_runner.AbstractRunner" title="locsearch.runner.abstract_runner.AbstractRunner"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.runner.abstract_runner.AbstractRunner</span></code></a></p>
-<p>Loads a problem and performs a steepestdescent on said problem.</p>
-<p>Note that the default implementation only works with tsp problems from
-tsplib.</p>
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._data">
-<code class="descname">_data</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._data" title="Permalink to this definition">¶</a></dt>
-<dd><p>The data read from a file.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._distance_matrix">
-<code class="descname">_distance_matrix</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._distance_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>The distance matrix for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._size">
-<code class="descname">_size</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._size" title="Permalink to this definition">¶</a></dt>
-<dd><p>The amount of points in the tsp problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._move_function">
-<code class="descname">_move_function</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._move_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>The move function that needs to be used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove">AbstractMove</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._evaluation_function">
-<code class="descname">_evaluation_function</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._evaluation_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>The evaluation function used for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.evaluation.html#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">AbstractEvaluationFunction</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._solution">
-<code class="descname">_solution</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>The solution object for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner._algorithm">
-<code class="descname">_algorithm</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner._algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>The steepest descent algorithm used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent" title="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent">SteepestDescent</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.results">
-<code class="descname">results</code><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.results" title="Permalink to this definition">¶</a></dt>
-<dd><p>The results from the localsearch.</p>
-</dd></dl>
-
-<p class="rubric">Examples</p>
-<p>Using the runner:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">locsearch.runner.steepest_descent_runner</span> \
-    <span class="kn">import</span> <span class="n">SteepestDescentRunner</span>
-<span class="n">runner</span> <span class="o">=</span> <span class="n">SteepestDescentRunner</span><span class="p">()</span>
-<span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_algorithm">
-<code class="descname">define_algorithm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a steepest descent algorithm.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_evaluation_function">
-<code class="descname">define_evaluation_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_evaluation_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising an evaluation function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_move_function">
-<code class="descname">define_move_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_move_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising a move function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_solution">
-<code class="descname">define_solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.define_solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating and initialising the solution object.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.output">
-<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles the output.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.read">
-<code class="descname">read</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads a file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – The relative or absolute path to the file.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="locsearch.runner.steepest_descent_runner.SteepestDescentRunner.run_algorithm">
-<code class="descname">run_algorithm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.steepest_descent_runner.SteepestDescentRunner.run_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts running the algorithm.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-locsearch.runner.tabu_search_runner">
-<span id="locsearch-runner-tabu-search-runner-module"></span><h2>locsearch.runner.tabu_search_runner module<a class="headerlink" href="#module-locsearch.runner.tabu_search_runner" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="locsearch.runner.tabu_search_runner.TabuSearchRunner">
-<em class="property">class </em><code class="descclassname">locsearch.runner.tabu_search_runner.</code><code class="descname">TabuSearchRunner</code><a class="headerlink" href="#locsearch.runner.tabu_search_runner.TabuSearchRunner" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.runner.tsp_runner.TspRunner">
+<em class="property">class </em><code class="descclassname">locsearch.runner.tsp_runner.</code><code class="descname">TspRunner</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>algorithm_type='simulated_annealing'</em>, <em>move_type='array_swap'</em>, <em>minimise=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.tsp_runner.TspRunner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>docstring for TabuSearchRunner</p>
+<p>A runner class for tsp problems</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>distance_matrix</strong> – The distance matrix for the problem.</li>
+<li><strong>algorithm_type</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The type of localsearch one wishes to use.
+Currently only 3 algorithm_types are supported:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="2%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Algorithm</th>
+<th class="head">&#160;</th>
+<th class="head">algorithm_type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>simulated annealing</td>
+<td>&#160;</td>
+<td>simulated_annealing</td>
+</tr>
+<tr class="row-odd"><td>steepest descent</td>
+<td>&#160;</td>
+<td>steepest_descent</td>
+</tr>
+<tr class="row-even"><td>tabu search</td>
+<td>&#160;</td>
+<td>tabu_search</td>
+</tr>
+</tbody>
+</table>
+<p>The default is simulated_annealing.</p>
+</li>
+<li><strong>move_type</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The type of move one wishes to use.
+Currently only 3 algorithm_types are supported:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="2%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Move</th>
+<th class="head">&#160;</th>
+<th class="head">move_type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ArraySwap</td>
+<td>&#160;</td>
+<td>array_swap</td>
+</tr>
+<tr class="row-odd"><td>TspArraySwap</td>
+<td>&#160;</td>
+<td>tsp_array_swap</td>
+</tr>
+<tr class="row-even"><td>ArrayReverseOrder</td>
+<td>&#160;</td>
+<td>array_reverse_order</td>
+</tr>
+</tbody>
+</table>
+<p>The default is array_swap.</p>
+</li>
+<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes to minimise the evaluation function,
+Should be False if one wishes to maximise the evaluation function.</li>
+<li><strong>order</strong> (<em>array_like</em><em>, </em><em>optional</em>) – A one dimensional array that contains the order of the points to start
+with. All values are int, unique and are within the interval
+[0,size[. Defaultly the numbers are ordered from small to big.</li>
+<li><strong>max_seconds</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of seconds. Note that only the time over the main
+loop is measured and that the function will finish 1 loop after the
+maximal amount of time has passed. If no max_seconds, no max_iterations
+and no max_iter_no_impr is defined, the maximal amount of seconds will
+be defaultly set to 300, unless the algorithm_type is steepest_descent.
+In that case, the function will stop when a local extreme is reached.
+But, since this might take a long time, it would be wise to set a time
+limit just in case.</li>
+<li><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations allowed. One iteration of the main
+loop is considered an iteration. Defaultly there are be no restrictions
+on the amount of iterations.</li>
+<li><strong>max_iter_no_impr</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. One iteration of
+the main loop is considered an iteration. Defaultly there are be no
+restrictions on the amount of iterations without improvement.</li>
+<li><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – Only used for the algorithm type simulated_annealing. Sets the cooling
+rate of the cooling function. Should be between 0 and 1. The default is
+0,75.
+(A geometric cooling function is used.)</li>
+<li><strong>iterations_temp</strong> (<em>int</em><em>, </em><em>optional</em>) – Only used for the algorithm type simulated_annealing. Sets the amount
+of iterations for every temperature level. Default is 1000.</li>
+<li><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – Only used for the algorithm type simulated_annealing. The starting
+temperature for the simulated annealing. Default is 2000.</li>
+<li><strong>tabu_list_length</strong> (<em>int</em><em>, </em><em>optional</em>) – Only used for the algorithm type tabu_search. The length of the tabu
+list. Default is 7.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
-<dt id="locsearch.runner.tabu_search_runner.TabuSearchRunner.run">
-<code class="descname">run</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.tabu_search_runner.TabuSearchRunner.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="locsearch.runner.tsp_runner.TspRunner.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.tsp_runner.TspRunner.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</li>
+<li><strong>best_value</strong> (<em>int</em>) – The evaluation value for said order.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -604,11 +217,9 @@ tsplib.</p>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.runner package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.abstract_runner">locsearch.runner.abstract_runner module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.simulated_annealing_runner">locsearch.runner.simulated_annealing_runner module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.steepest_descent_runner">locsearch.runner.steepest_descent_runner module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.tabu_search_runner">locsearch.runner.tabu_search_runner module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.tsp_runner">locsearch.runner.tsp_runner module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner">Module contents</a></li>
 </ul>
 </li>
@@ -630,7 +241,7 @@ tsplib.</p>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
       <li>Previous: <a href="locsearch.random.html" title="previous chapter">locsearch.random package</a></li>
-      <li>Next: <a href="locsearch.solution.html" title="next chapter">locsearch.solution package</a></li>
+      <li>Next: <a href="locsearch.runner.aidfunc.html" title="next chapter">locsearch.runner.aidfunc package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

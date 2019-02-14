@@ -44,7 +44,7 @@
 <span id="locsearch-localsearch-steepestdescent-steepest-descent-module"></span><h2>locsearch.localsearch.steepestdescent.steepest_descent module<a class="headerlink" href="#module-locsearch.localsearch.steepestdescent.steepest_descent" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent">
-<em class="property">class </em><code class="descclassname">locsearch.localsearch.steepestdescent.steepest_descent.</code><code class="descname">SteepestDescent</code><span class="sig-paren">(</span><em>solution</em>, <em>minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.steepestdescent.steepest_descent.</code><code class="descname">SteepestDescent</code><span class="sig-paren">(</span><em>solution</em>, <em>minimise=True</em>, <em>termination_criterion=None</em>, <em>benchmarking=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
 <p>Performs a steepest descent algorithm on the given solution.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -56,6 +56,15 @@
 <li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
 True. If the goal is to maximise the evlauation function, this should
 be False. The default is True.</li>
+<li><strong>termination_criterion</strong> (<a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a><em>, </em><em>optional</em>) – The termination criterion that is used.
+If no termination criterion is given, this will an
+MustImproveTerminationCriterion object will be used as the termination
+criterion.
+Note that if you specify a criterion, that it should be equivalent to
+the default or more strict than the default. A less strict criterion
+might cause the main loop to pointlessly iterate.</li>
+<li><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
+one wishes no benchmarks to be made. Default is True.</li>
 </ul>
 </td>
 </tr>
@@ -83,7 +92,7 @@ be False. The default is True.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.termination.html#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion">MustImproveTerminationCriterion</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></td>
 </tr>
 </tbody>
 </table>
@@ -111,6 +120,27 @@ infinite when minimising or minus infinite when maximising.</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent.data">
+<code class="descname">data</code><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data useable for benchmarking will be None if no benchmarks are made.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._data_append">
+<code class="descname">_data_append</code><a class="headerlink" href="#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._data_append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to append new data-points to data. Will do nothing if no
+benchmarks are made.</p>
+</dd></dl>
+
 <p class="rubric">Examples</p>
 <p>An example of minimising:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
@@ -119,7 +149,7 @@ infinite when minimising or minus infinite when maximising.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.array_solution</span> <span class="kn">import</span> <span class="n">ArraySolution</span>
 <span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -129,12 +159,12 @@ infinite when minimising or minus infinite when maximising.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">ArraySolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init SteepestDescent</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span> <span class="o">=</span> <span class="n">SteepestDescent</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span> <span class="o">=</span> <span class="n">SteepestDescent</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">benchmarking</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=15)</span>
+<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)</span>
 </pre></div>
 </div>
 <p>An example of maximising, note that the distance matrix is different:</p>
@@ -144,7 +174,7 @@ infinite when minimising or minus infinite when maximising.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.tsp_solution</span> <span class="kn">import</span> <span class="n">TspSolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.array_solution</span> <span class="kn">import</span> <span class="n">ArraySolution</span>
 <span class="gp">... </span><span class="c1"># init solution</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
@@ -154,12 +184,13 @@ infinite when minimising or minus infinite when maximising.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">TspSolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">ArraySolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init SteepestDescent</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span> <span class="o">=</span> <span class="n">SteepestDescent</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span> <span class="o">=</span> <span class="n">SteepestDescent</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span>
+<span class="gp">... </span>                                   <span class="n">benchmarking</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">steepest_descent</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=21)</span>
+<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -171,10 +202,12 @@ infinite when minimising or minus infinite when maximising.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
-<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – A one dimensional numpy array that contains the order of the
-points for the best found solution.</li>
-<li><strong>best_value</strong> (<em>int or float</em>) – The best found value of the evaluation function. This should be
-the evaluation value of best_order.</li>
+<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</li>
+<li><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</li>
+<li><strong>data</strong> (<em>list of tuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
+be None. The tuples contain the following data:
+timestamp, value of solution, best value found
+Note that the timestamp’s reference point is undefined.</li>
 </ul>
 </td>
 </tr>
