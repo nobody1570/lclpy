@@ -1,18 +1,21 @@
 from time import perf_counter
 
 
-def add_to_data_func(data, current_value, best_value):
-    """A function to add the best and the current value to a list with a timestamp.
+def add_to_data_func(data, *args):
+    """A function to add values to a list with a timestamp.
+
+    The data will be kept into a tuple and added to the list.
+    Note that a timestamp is always added as the first item in the tuple. This
+    timestamp, however has no fixed epoch. So only differences in time have a
+    real meaning.
 
     Parameters
     ----------
     data : list
         The list one wishes to append the data to.
-    current_value : int or float
-        The evaluation value of the current solution.
-    best_value : int or float
-        The best evaluation value found.
+    *args
+        The data one wishes to append to data.
 
     """
 
-    data.append((perf_counter(), current_value, best_value))
+    data.append((perf_counter(),) + args)

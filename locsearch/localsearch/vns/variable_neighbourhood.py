@@ -170,7 +170,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         data : list of tuple
             Data useable for benchmarking. If no benchmarks were made, it will
             be None. The tuples contain the following data:
-            timestamp, value of solution, best value found
+            timestamp, value of solution best value found
             Note that the timestamp's reference point is undefined.
 
         """
@@ -183,8 +183,11 @@ class VariableNeighbourhood(AbstractLocalSearch):
         base_value = self._solution.evaluate()
         self._solution.set_as_best(base_value)
 
+        # init iteration (used to count the amount of iterations)
+        iteration = 0
+
         # add to data
-        self._data_append(self.data, base_value, base_value)
+        self._data_append(self.data, iteration, base_value)
 
         # init termination criterion
         self._termination_criterion.check_new_value(base_value)
@@ -217,19 +220,29 @@ class VariableNeighbourhood(AbstractLocalSearch):
                 self._solution.set_as_best(base_value)
 
                 # add to data
-                self._data_append(self.data, base_value, base_value)
+                self._data_append(self.data, iteration, base_value)
 
             else:
                 # if move is worse, change neighbourhood
                 current_neighbourhood = \
                     (current_neighbourhood + 1) % neighbourhoods_amount
 
+            iteration += 1
             self._termination_criterion.iteration_done()
 
         # if we have data:
         # convert data to something easier to plot
         if self.data is not None:
+
+            # convert to tuple of list
             data = convert_data(self.data)
+
+            # make namedtuple
+            DataAsLists = namedtuple(
+                'Data', ['time', 'iteration', 'value'])
+
+            data = DataAsLists(data[0], data[1], data[2])
+
         else:
             data = None
 

@@ -1,8 +1,8 @@
-from collections import namedtuple
+from numpy import array
 
 
 def convert_data(data):
-    """Converts a list made with add_to_data_func to 3 seperate lists.
+    """Converts a list made with add_to_data_func into seperate lists.
 
     This is done to improve the ease of plotting.
 
@@ -13,26 +13,35 @@ def convert_data(data):
 
     Returns
     -------
-    time : list of float
-        The timestamps taken.
-    value : list of float or list of int
-        The values calculated for the current value at the timestamps.
-    best_value : list of float or list of int
-        The best found value for all timestamps.
+    tuple of numpy.ndarray
+        All the data in seperate lists. The first list will always be the time
+        passed.
 
     """
 
-    time = []
-    value = []
-    best_value = []
+    size = len(data[0])
 
-    time_ref = data[0][0]
+    all_lists = []
 
+    for i in range(size):
+        all_lists.append([])
+
+    # convert to lists
     for data_point in data:
-        time.append(data_point[0] - time_ref)
-        value.append(data_point[1])
-        best_value.append(data_point[2])
+        for i in range(size):
+            all_lists[i].append(data_point[i])
 
-    Data = namedtuple('Data', ['time', 'value', 'best_value'])
 
-    return Data(time, value, best_value)
+    # convert timestamps into the time passed
+    offset = all_lists[0][0]
+    for i in range(len(all_lists[0])):
+        all_lists[0][i] -= offset
+
+    # create tuple and convert lists to ndarray
+
+    all_data = ()
+
+    for l in all_lists:
+        all_data = all_data + (array(l),)
+
+    return all_data
