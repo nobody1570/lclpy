@@ -201,11 +201,11 @@ class SimulatedAnnealing(AbstractLocalSearch):
             The best found order.
         best_value : int or float
             The evaluation value of the best found order.
-        data : list of tuple
+        data : None or collections.namedtuple
             Data useable for benchmarking. If no benchmarks were made, it will
-            be None. The tuples contain the following data:
-            timestamp, value of solution, best value found
-            Note that the timestamp's reference point is undefined.
+            be None. The namedtuple contains the following data in
+            numpy.ndarrays:
+            time, iteration, temperature, value, best_value
 
         """
 
