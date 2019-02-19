@@ -22,6 +22,9 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         The maximal amount of iterations without improvement.
     _iterations : int
         The amount of iterations with no improvement.
+    _run : bool
+        Will be True if the maximal amount of iterations without improvement
+        hasn't been reached yet, will be false if this isn't the case.
     _old_best_value : int
         The last best value. Is initialised as minus infinite
         (improvement_is_bigger = True)
@@ -168,6 +171,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         # init
         self._max_iterations = max_iterations
         self._iterations = 0
+        self._run = True
 
         # choose intial _old_best_value value + pick judge function
         if minimise:
@@ -188,7 +192,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
             iterations is bigger than max_iterations
 
         """
-        return self._iterations < self._max_iterations
+        return self._run
 
     def iteration_done(self):
         """function to be called after every iteration
@@ -198,6 +202,9 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         """
 
         self._iterations += 1
+
+        if self._iterations == self._max_iterations:
+            self._run = False
 
     def check_new_value(self, value):
         """function to be called after every improvement of the evaluation function.
