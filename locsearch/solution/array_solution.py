@@ -1,7 +1,7 @@
 from locsearch.solution.abstract_local_search_solution \
     import AbstractLocalSearchSolution
 import numpy
-from locsearch.aidfunc.error_func import _not_implemented
+from locsearch.aidfunc.error_func import not_multi_move_type
 
 
 class ArraySolution(AbstractLocalSearchSolution):
@@ -139,9 +139,13 @@ class ArraySolution(AbstractLocalSearchSolution):
         self._move_function = move_function
 
         if self._move_function.get_move_type() is not 'multi_neighbourhood':
-            self.multi_neighbourhood_size = _not_implemented
-            self.select_get_moves = _not_implemented
-            self.select_random_move = _not_implemented
+            self.next_neighbourhood = not_multi_move_type
+            self.previous_neighbourhood = not_multi_move_type
+            self.select_get_moves = not_multi_move_type
+            self.select_random_move = not_multi_move_type
+        else:
+            self.current_neighbourhood = 0
+            self.neighbourhood_size = move_function.size()
 
         if order is None:
             self._order = numpy.arange(size)
@@ -389,27 +393,45 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         return tuple(self._order)
 
-    def multi_neighbourhood_size(self):
-        """Function to get amount of neighbourhoods in the MultiNeighbourhood.
+    def next_neighbourhood(self):
+        """Changes the current neighbourhood to the next neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
-
-        Returns
-        -------
-        int
-            The amount of neighbourhoods in the MultiNeighbourhood.
+        If this function is called when the last neighbourhood is the current
+        neighbourhood, the first neighbourhood will become the current
+        neighbourhood.
 
         Raises
         ------
-        NotImplementedError
+        WrongMoveType
             If the neighbourhood isn't a MultiNeighbourhood.
 
         """
 
-        return self._move_function.size()
+        self.current_neighbourhood = \
+            (self.current_neighbourhood + 1) % self.neighbourhood_size
 
-    def select_get_moves(self, neighbourhood_nr):
+    def previous_neighbourhood(self):
+        """Changes the current neighbourhood to the previous neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+        If this function is called when the first neighbourhood is the current
+        neighbourhood, the first neighbourhood will remain the current
+        neighbourhood.
+
+        Raises
+        ------
+        WrongMoveType
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        if self.current_neighbourhood is not 0:
+            self.current_neighbourhood -= 1
+
+    def select_get_moves(self):
         """Function to get all moves from a specific neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
@@ -430,14 +452,14 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         Raises
         ------
-        NotImplementedError
+        WrongMoveType
             If the neighbourhood isn't a MultiNeighbourhood.
 
         """
 
-        return self._move_function.select_get_moves(neighbourhood_nr)
+        return self._move_function.select_get_moves(self.current_neighbourhood)
 
-    def select_random_move(self, neighbourhood_nr):
+    def select_random_move(self):
         """A method used to generate a random move from a specific neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
@@ -455,11 +477,12 @@ class ArraySolution(AbstractLocalSearchSolution):
         tuple of int
             A random valid move from the specified neighbourhood.
 
-         Raises
+        Raises
         ------
-        NotImplementedError
+        WrongMoveType
             If the neighbourhood isn't a MultiNeighbourhood.
 
         """
 
-        return self._move_function.select_random_move(neighbourhood_nr)
+        return self._move_function.select_random_move(
+            self.current_neighbourhood)

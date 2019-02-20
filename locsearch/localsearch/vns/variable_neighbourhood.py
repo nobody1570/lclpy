@@ -176,10 +176,6 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
         """
 
-        # get amount of neighbourhoods
-        neighbourhoods_amount = self._solution.multi_neighbourhood_size()
-        current_neighbourhood = 0
-
         # init solution
         base_value = self._solution.evaluate()
         self._solution.set_as_best(base_value)
@@ -200,7 +196,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
             best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
-            for move in self._solution.select_get_moves(current_neighbourhood):
+            for move in self._solution.select_get_moves():
                 # check quality move
                 delta = self._solution.evaluate_move(move)
 
@@ -225,8 +221,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
             else:
                 # if move is worse, change neighbourhood
-                current_neighbourhood = \
-                    (current_neighbourhood + 1) % neighbourhoods_amount
+                self._solution.next_neighbourhood()
 
             iteration += 1
             self._termination_criterion.iteration_done()

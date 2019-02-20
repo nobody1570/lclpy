@@ -114,3 +114,94 @@ class AbstractLocalSearchSolution(ABC):
         """
 
         raise NotImplementedError
+
+    def next_neighbourhood(self):
+        """Changes the current neighbourhood to the next neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+        If this function is called when the last neighbourhood is the current
+        neighbourhood, the first neighbourhood will become the current
+        neighbourhood.
+
+        Raises
+        ------
+        WrongMoveType
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        raise NotImplementedError
+
+    def previous_neighbourhood(self):
+        """Changes the current neighbourhood to the previous neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+        If this function is called when the first neighbourhood is the current
+        neighbourhood, the first neighbourhood will remain the current
+        neighbourhood.
+
+        Raises
+        ------
+        WrongMoveType
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        raise NotImplementedError
+
+    def select_get_moves(self):
+        """Function to get all moves from a specific neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+
+        Parameters
+        ----------
+        neighbourhood_nr : int
+            Number of the neighbourhood. This number is the index of the
+            neighbourhood in the list of move functions given to the
+            constructor.
+
+        Returns
+        -------
+        generator
+            An iterable generator object that contains all the moves of the
+            current neighbourhood.
+
+        Raises
+        ------
+        WrongMoveType
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        raise NotImplementedError
+
+    def select_random_move(self):
+        """A method used to generate a random move from a specific neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+
+        Parameters
+        ----------
+        neighbourhood_nr : int
+            Number of the neighbourhood. This number is the index of the
+            neighbourhood in the list of move functions given to the
+            constructor.
+
+        Returns
+        -------
+        tuple of int
+            A random valid move from the current neighbourhood.
+
+        Raises
+        ------
+        WrongMoveType
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        raise NotImplementedError
