@@ -2,6 +2,7 @@ from locsearch.solution.abstract_local_search_solution \
     import AbstractLocalSearchSolution
 import numpy
 from locsearch.aidfunc.error_func import not_multi_move_type
+from locsearch.aidfunc.error_func import NoNextNeighbourhood
 
 
 class ArraySolution(AbstractLocalSearchSolution):
@@ -402,8 +403,8 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
@@ -415,18 +416,24 @@ class ArraySolution(AbstractLocalSearchSolution):
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
         If this function is called when the last neighbourhood is the current
-        neighbourhood, the first neighbourhood will become the current
-        neighbourhood.
+        neighbourhood, the last neighbourhood will remain the current
+        neighbourhood and an exception will be raised.
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        NoNextNeighbourhood
+            If there is no next neighbourhood. This is simply an indication
+            that the current neighbourhood was the last neighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
-        self.current_neighbourhood = \
-            (self.current_neighbourhood + 1) % self.neighbourhood_size
+        self.current_neighbourhood += 1
+
+        if self.current_neighbourhood is self.neighbourhood_size:
+            self.current_neighbourhood -= 1
+            raise NoNextNeighbourhood('There is no next neighbourhood.')
 
     def previous_neighbourhood(self):
         """Changes the current neighbourhood to the previous neighbourhood.
@@ -439,8 +446,8 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
@@ -468,8 +475,8 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
@@ -495,8 +502,8 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 

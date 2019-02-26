@@ -18,7 +18,7 @@ def _not_implemented(*args):
     raise NotImplementedError
 
 
-class WrongMoveType(Exception):
+class WrongMoveTypeError(Exception):
     """Is raised when the wrong move type is used."""
     pass
 
@@ -39,5 +39,10 @@ def not_multi_move_type(*args):
 
     """
 
-    raise WrongMoveType('This method requires you to use an object of the '
-                        'MultiNeighbourhood class as the move_function.')
+    raise WrongMoveTypeError('This method requires you to use an object of the'
+                             ' MultiNeighbourhood class as the move_function.')
+
+
+class NoNextNeighbourhood(Exception):
+    """Is raised when there is no next neighbourhood."""
+    pass

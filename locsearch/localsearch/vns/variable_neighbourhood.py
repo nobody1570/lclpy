@@ -4,6 +4,7 @@ from locsearch.aidfunc.is_improvement_func import bigger, smaller
 from locsearch.aidfunc.pass_func import pass_func
 from locsearch.aidfunc.add_to_data_func import add_to_data_func
 from locsearch.aidfunc.convert_data import convert_data
+from locsearch.aidfunc.error_func import NoNextNeighbourhood
 
 from collections import namedtuple
 
@@ -207,7 +208,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
             # check if the best_found_move improves the delta, if this is the
             # case perform the move and set a new best solution
-            base_value = base_value + best_found_delta
+            base_value += best_found_delta
 
             self._termination_criterion.check_new_value(base_value)
 
@@ -219,12 +220,22 @@ class VariableNeighbourhood(AbstractLocalSearch):
                 # add to data
                 self._data_append(self.data, iteration, base_value)
 
-                # go beack to the first neighbourhood
+                # go back to the first neighbourhood
                 self._solution.first_neighbourhood()
 
             else:
-                # if move is worse, change neighbourhood
-                self._solution.next_neighbourhood()
+                # restore base_value to the previous found value
+                base_value -= best_found_delta
+
+                # change neighbourhood
+                try:
+                    self._solution.next_neighbourhood()
+
+                # if the function raises a NoNextNeighbourhood exception
+                # --> the current neighbourhood was the last neighbourhood
+                # --> stop iterating (break from loop)
+                except NoNextNeighbourhood:
+                    break
 
             iteration += 1
             self._termination_criterion.iteration_done()
