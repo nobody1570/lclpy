@@ -9,7 +9,7 @@ from collections import namedtuple
 
 
 class VariableNeighbourhood(AbstractLocalSearch):
-    """Performs a steepest descent algorithm on the given solution.
+    """Performs a variable neighbourhood algorithm on the given solution.
 
     Parameters
     ----------
@@ -218,6 +218,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
                 # add to data
                 self._data_append(self.data, iteration, base_value)
+
+                # go beack to the first neighbourhood
+                self._solution.first_neighbourhood()
 
             else:
                 # if move is worse, change neighbourhood

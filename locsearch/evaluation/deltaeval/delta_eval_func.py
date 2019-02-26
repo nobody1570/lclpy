@@ -16,9 +16,8 @@ def delta_eval_func(problem_eval_func, move_func):
 
     Returns
     -------
-    delta_class
-        Class containing a function called delta_evaluate to perform delta
-        evaluation.
+    object
+        A class with a function delta_evaluate to perform delta evaluation.
 
     """
 

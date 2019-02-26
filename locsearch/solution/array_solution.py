@@ -139,6 +139,7 @@ class ArraySolution(AbstractLocalSearchSolution):
         self._move_function = move_function
 
         if self._move_function.get_move_type() is not 'multi_neighbourhood':
+            self.first_neighbourhood = not_multi_move_type
             self.next_neighbourhood = not_multi_move_type
             self.previous_neighbourhood = not_multi_move_type
             self.select_get_moves = not_multi_move_type
@@ -392,6 +393,21 @@ class ArraySolution(AbstractLocalSearchSolution):
         """
 
         return tuple(self._order)
+
+    def first_neighbourhood(self):
+        """Changes the current neighbourhood to the first neighbourhood.
+
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
+
+        Raises
+        ------
+        WrongMoveType
+            If the neighbourhood isn't a MultiNeighbourhood.
+
+        """
+
+        self.current_neighbourhood = 0
 
     def next_neighbourhood(self):
         """Changes the current neighbourhood to the next neighbourhood.

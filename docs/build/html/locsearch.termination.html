@@ -481,24 +481,177 @@ or equal to the minimal temperature, else it returns false.</td>
 </dd></dl>
 
 </div>
+<div class="section" id="module-locsearch.termination.multi_and_criterion">
+<span id="locsearch-termination-multi-and-criterion-module"></span><h2>locsearch.termination.multi_and_criterion module<a class="headerlink" href="#module-locsearch.termination.multi_and_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.termination.multi_and_criterion.MultiAndCriterion">
+<em class="property">class </em><code class="descclassname">locsearch.termination.multi_and_criterion.</code><code class="descname">MultiAndCriterion</code><span class="sig-paren">(</span><em>criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_and_criterion.MultiAndCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.termination.multi_criterion.MultiCriterion" title="locsearch.termination.multi_criterion.MultiCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.termination.multi_criterion.MultiCriterion</span></code></a></p>
+<p>Class to use multiple terminationcriteria at once.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
+wishes to use.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="locsearch.termination.multi_and_criterion.MultiAndCriterion.criteria">
+<code class="descname">criteria</code><a class="headerlink" href="#locsearch.termination.multi_and_criterion.MultiAndCriterion.criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list or tuple of AbstractTerminationCriterion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>3 termination criteria are used, three tests are done to ensure that all
+three criterions are capable of stopping the iterating correctly.</p>
+<p>MaxSecondsTerminationCriterion stops the iterating:</p>
+<blockquote>
+<div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.multi_and_criterion</span> <span class="kn">import</span> <span class="n">MultiAndCriterion</span>
+<span class="gp">... </span><span class="c1"># init list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxIterationsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># init MultiCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span> <span class="o">=</span> <span class="n">MultiCriterion</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">multi_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_passed</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_passed</span> <span class="o">&lt;</span> <span class="mi">4</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>MaxIterationsTerminationCriterion stops the iterating:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.multi_and_criterion</span> <span class="kn">import</span> <span class="n">MultiAndCriterion</span>
+<span class="gp">... </span><span class="c1"># init list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxIterationsTerminationCriterion</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># init MultiCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span> <span class="o">=</span> <span class="n">MultiAndCriterion</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">multi_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">iterations</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>NoImprovementTerminationCriterion stops the iterating:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.multi_and_criterion</span> <span class="kn">import</span> <span class="n">MultiAndCriterion</span>
+<span class="gp">... </span><span class="c1"># init list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxIterationsTerminationCriterion</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># init MultiCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span> <span class="o">=</span> <span class="n">MultiAndCriterion</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># test 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">multi_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">iterations</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="locsearch.termination.multi_and_criterion.MultiAndCriterion.keep_running">
+<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_and_criterion.MultiAndCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the algorithm has to continue
+running, if the function returns false the algorithm needs to
+stop running. If all the composing termination criterions return
+False if their keep_running method is called, this method will
+return False. Else the method will return True.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-locsearch.termination.multi_criterion">
 <span id="locsearch-termination-multi-criterion-module"></span><h2>locsearch.termination.multi_criterion module<a class="headerlink" href="#module-locsearch.termination.multi_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.termination.multi_criterion.MultiCriterion">
 <em class="property">class </em><code class="descclassname">locsearch.termination.multi_criterion.</code><code class="descname">MultiCriterion</code><span class="sig-paren">(</span><em>criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
-<p>Class to use multiple terminationcriteria at once.</p>
-<p>Note that Criterions that use the check_variable function will not function
-properly when used with this class.</p>
+<p>Class to combine multiple terminationcriteria.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>criteria</strong> (<em>list of AbstractTerminationCriterion</em>) – A list containing the intialised termination criterions one wishes to
-use.Several examples of the expected behaviour:</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
+wishes to use.</td>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="locsearch.termination.multi_criterion.MultiCriterion.criteria">
+<code class="descname">criteria</code><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion.criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list or tuple of AbstractTerminationCriterion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <p class="rubric">Examples</p>
 <p>3 termination criteria are used, three tests are done to ensure that all
 three criterions are capable of stopping the iterating correctly.</p>
@@ -600,6 +753,21 @@ three criterions are capable of stopping the iterating correctly.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="locsearch.termination.multi_criterion.MultiCriterion.check_variable">
+<code class="descname">check_variable</code><span class="sig-paren">(</span><em>variable</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a variable specific to an implementation.</p>
+<p>Does not need to be used or implemented</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>variable</strong> – The value of a certain value of a specific algorithm.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.termination.multi_criterion.MultiCriterion.iteration_done">
 <code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called after every iteration.</p>
@@ -608,14 +776,16 @@ three criterions are capable of stopping the iterating correctly.</p>
 <dl class="method">
 <dt id="locsearch.termination.multi_criterion.MultiCriterion.keep_running">
 <code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to determine if the algorithm needs to continue running</p>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the algorithm has to continue
 running, if the function returns false the algorithm needs to
-stop running.</td>
+stop running. If one or more of the composing termination
+criterions returns False if its keep_running method is called, this
+method will return False. Else the method will return True.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
 </tr>
@@ -830,6 +1000,21 @@ be False. The default is True.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run">
+<code class="descname">_run</code><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will be True if the maximal amount of iterations without improvement
+hasn’t been reached yet, will be false if this isn’t the case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
 </tr>
 </tbody>
 </table>
@@ -1058,11 +1243,12 @@ iterations is bigger than max_iterations</td>
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.benchmark.html">locsearch.benchmark package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.termination package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -1070,6 +1256,7 @@ iterations is bigger than max_iterations</td>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.max_iterations_termination_criterion">locsearch.termination.max_iterations_termination_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.max_seconds_termination_criterion">locsearch.termination.max_seconds_termination_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.min_temperature_termination_criterion">locsearch.termination.min_temperature_termination_criterion module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.multi_and_criterion">locsearch.termination.multi_and_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.multi_criterion">locsearch.termination.multi_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.must_improve_termination_criterion">locsearch.termination.must_improve_termination_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.no_improvement_termination_criterion">locsearch.termination.no_improvement_termination_criterion module</a></li>

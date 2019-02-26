@@ -4,8 +4,6 @@ from numpy import array
 def convert_data(data):
     """Converts a list made with add_to_data_func into seperate lists.
 
-    This is done to improve the ease of plotting.
-
     Parameters
     ----------
     data : list of tuple

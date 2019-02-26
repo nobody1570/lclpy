@@ -17,7 +17,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="locsearch.evaluation package" href="locsearch.evaluation.html" />
+    <link rel="next" title="locsearch.benchmark package" href="locsearch.benchmark.html" />
     <link rel="prev" title="locsearch package" href="locsearch.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -44,16 +44,19 @@
 <span id="locsearch-aidfunc-add-to-data-func-module"></span><h2>locsearch.aidfunc.add_to_data_func module<a class="headerlink" href="#module-locsearch.aidfunc.add_to_data_func" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="locsearch.aidfunc.add_to_data_func.add_to_data_func">
-<code class="descclassname">locsearch.aidfunc.add_to_data_func.</code><code class="descname">add_to_data_func</code><span class="sig-paren">(</span><em>data</em>, <em>current_value</em>, <em>best_value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.add_to_data_func.add_to_data_func" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function to add the best and the current value to a list with a timestamp.</p>
+<code class="descclassname">locsearch.aidfunc.add_to_data_func.</code><code class="descname">add_to_data_func</code><span class="sig-paren">(</span><em>data</em>, <em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.add_to_data_func.add_to_data_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to add values to a list with a timestamp.</p>
+<p>The data will be kept into a tuple and added to the list.
+Note that a timestamp is always added as the first item in the tuple. This
+timestamp, however has no fixed epoch. So only differences in time have a
+real meaning.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>data</strong> (<em>list</em>) – The list one wishes to append the data to.</li>
-<li><strong>current_value</strong> (<em>int</em><em> or </em><em>float</em>) – The evaluation value of the current solution.</li>
-<li><strong>best_value</strong> (<em>int</em><em> or </em><em>float</em>) – The best evaluation value found.</li>
+<li><strong>*args</strong> – The data one wishes to append to data.</li>
 </ul>
 </td>
 </tr>
@@ -116,20 +119,17 @@ Inserting item in an empty deque is possible.</p>
 <dl class="function">
 <dt id="locsearch.aidfunc.convert_data.convert_data">
 <code class="descclassname">locsearch.aidfunc.convert_data.</code><code class="descname">convert_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.convert_data.convert_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a list made with add_to_data_func to 3 seperate lists.</p>
-<p>This is done to improve the ease of plotting.</p>
+<dd><p>Converts a list made with add_to_data_func into seperate lists.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>list of tuple</em>) – A list created with add_to_data_func</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
-<li><strong>time</strong> (<em>list of float</em>) – The timestamps taken.</li>
-<li><strong>value</strong> (<em>list of float or list of int</em>) – The values calculated for the current value at the timestamps.</li>
-<li><strong>best_value</strong> (<em>list of float or list of int</em>) – The best found value for all timestamps.</li>
-</ul>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">All the data in seperate lists. The first list will always be the time
+passed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of numpy.ndarray</td>
 </tr>
 </tbody>
 </table>
@@ -138,6 +138,30 @@ Inserting item in an empty deque is possible.</p>
 </div>
 <div class="section" id="module-locsearch.aidfunc.error_func">
 <span id="locsearch-aidfunc-error-func-module"></span><h2>locsearch.aidfunc.error_func module<a class="headerlink" href="#module-locsearch.aidfunc.error_func" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="locsearch.aidfunc.error_func.WrongMoveType">
+<em class="property">exception </em><code class="descclassname">locsearch.aidfunc.error_func.</code><code class="descname">WrongMoveType</code><a class="headerlink" href="#locsearch.aidfunc.error_func.WrongMoveType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Is raised when the wrong move type is used.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="locsearch.aidfunc.error_func.not_multi_move_type">
+<code class="descclassname">locsearch.aidfunc.error_func.</code><code class="descname">not_multi_move_type</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.aidfunc.error_func.not_multi_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>An error raising function that can take any amount of parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> – Variable length argument list, it does not matter what or how many
+parameters you use. Does not accept keyword arguments.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#locsearch.aidfunc.error_func.WrongMoveType" title="locsearch.aidfunc.error_func.WrongMoveType"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code></a> – This error will always be raised.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="module-locsearch.aidfunc.is_improvement_func">
 <span id="locsearch-aidfunc-is-improvement-func-module"></span><h2>locsearch.aidfunc.is_improvement_func module<a class="headerlink" href="#module-locsearch.aidfunc.is_improvement_func" title="Permalink to this headline">¶</a></h2>
@@ -164,6 +188,17 @@ returns false.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.aidfunc.is_improvement_func</span> <span class="kn">import</span> <span class="n">bigger</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bigger</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bigger</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bigger</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -189,6 +224,17 @@ returns false.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.aidfunc.is_improvement_func</span> <span class="kn">import</span> <span class="n">bigger_or_equal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bigger_or_equal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bigger_or_equal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bigger_or_equal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -214,6 +260,17 @@ returns false.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.aidfunc.is_improvement_func</span> <span class="kn">import</span> <span class="n">smaller</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -239,6 +296,17 @@ else returns false.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.aidfunc.is_improvement_func</span> <span class="kn">import</span> <span class="n">smaller_or_equal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller_or_equal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller_or_equal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller_or_equal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -298,11 +366,11 @@ parameters you use. Does not accept keyword arguments.</td>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.aidfunc">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.benchmark.html">locsearch.benchmark package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
 </ul>
@@ -321,7 +389,7 @@ parameters you use. Does not accept keyword arguments.</td>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
       <li>Previous: <a href="locsearch.html" title="previous chapter">locsearch package</a></li>
-      <li>Next: <a href="locsearch.evaluation.html" title="next chapter">locsearch.evaluation package</a></li>
+      <li>Next: <a href="locsearch.benchmark.html" title="next chapter">locsearch.benchmark package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

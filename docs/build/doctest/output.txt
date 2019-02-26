@@ -1,28 +1,76 @@
-Results of doctest builder run on 2018-11-22 15:36:18
+Results of doctest builder run on 2019-02-26 13:50:41
 =====================================================
 
-Document: locsearch.solution
-----------------------------
+Document: locsearch.evaluation
+------------------------------
 1 items passed all tests:
-  72 tests in default
-72 tests in 1 items.
-72 passed and 0 failed.
+  54 tests in default
+54 tests in 1 items.
+54 passed and 0 failed.
 Test passed.
 
-Document: locsearch.localsearch.simulatedannealing
---------------------------------------------------
+Document: locsearch.localsearch.steepestdescent
+-----------------------------------------------
+1 items passed all tests:
+  24 tests in default
+24 tests in 1 items.
+24 passed and 0 failed.
+Test passed.
+
+Document: locsearch.evaluation.deltaeval
+----------------------------------------
+1 items passed all tests:
+  53 tests in default
+53 tests in 1 items.
+53 passed and 0 failed.
+Test passed.
+
+Document: locsearch.localsearch.tabusearch
+------------------------------------------
 1 items passed all tests:
   42 tests in default
 42 tests in 1 items.
 42 passed and 0 failed.
 Test passed.
 
+Document: locsearch.solution
+----------------------------
+1 items passed all tests:
+  84 tests in default
+84 tests in 1 items.
+84 passed and 0 failed.
+Test passed.
+
+Document: locsearch.aidfunc
+---------------------------
+1 items passed all tests:
+  30 tests in default
+30 tests in 1 items.
+30 passed and 0 failed.
+Test passed.
+
 Document: locsearch.localsearch.move
 ------------------------------------
 1 items passed all tests:
-  44 tests in default
-44 tests in 1 items.
-44 passed and 0 failed.
+ 134 tests in default
+134 tests in 1 items.
+134 passed and 0 failed.
+Test passed.
+
+Document: locsearch.localsearch.simulatedannealing
+--------------------------------------------------
+1 items passed all tests:
+  62 tests in default
+62 tests in 1 items.
+62 passed and 0 failed.
+Test passed.
+
+Document: locsearch.termination
+-------------------------------
+1 items passed all tests:
+ 178 tests in default
+178 tests in 1 items.
+178 passed and 0 failed.
 Test passed.
 
 Document: locsearch.localsearch.acceptance
@@ -33,33 +81,9 @@ Document: locsearch.localsearch.acceptance
 9 passed and 0 failed.
 Test passed.
 
-Document: locsearch.termination
--------------------------------
-1 items passed all tests:
-  90 tests in default
-90 tests in 1 items.
-90 passed and 0 failed.
-Test passed.
-
-Document: locsearch.evaluation
-------------------------------
-1 items passed all tests:
-  30 tests in default
-30 tests in 1 items.
-30 passed and 0 failed.
-Test passed.
-
-Document: locsearch.localsearch.steepestdescent
------------------------------------------------
-1 items passed all tests:
-  12 tests in default
-12 tests in 1 items.
-12 passed and 0 failed.
-Test passed.
-
 Doctest summary
 ===============
-  299 tests
+  670 tests
     0 failures in tests
     0 failures in setup code
     0 failures in cleanup code

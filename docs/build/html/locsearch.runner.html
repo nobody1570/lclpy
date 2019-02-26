@@ -17,8 +17,6 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="locsearch.runner.aidfunc package" href="locsearch.runner.aidfunc.html" />
-    <link rel="prev" title="locsearch.random package" href="locsearch.random.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -43,9 +41,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="locsearch.runner.aidfunc.html">locsearch.runner.aidfunc package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc.algorithm_picker">locsearch.runner.aidfunc.algorithm_picker module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc.move_picker">locsearch.runner.aidfunc.move_picker module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#locsearch-runner-aidfunc-algorithm-picker-module">locsearch.runner.aidfunc.algorithm_picker module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#locsearch-runner-aidfunc-move-picker-module">locsearch.runner.aidfunc.move_picker module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locsearch.runner.aidfunc.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -54,138 +52,11 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-locsearch.runner.tsp_runner">
-<span id="locsearch-runner-tsp-runner-module"></span><h2>locsearch.runner.tsp_runner module<a class="headerlink" href="#module-locsearch.runner.tsp_runner" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="locsearch.runner.tsp_runner.TspRunner">
-<em class="property">class </em><code class="descclassname">locsearch.runner.tsp_runner.</code><code class="descname">TspRunner</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>algorithm_type='simulated_annealing'</em>, <em>move_type='array_swap'</em>, <em>minimise=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.tsp_runner.TspRunner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A runner class for tsp problems</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>distance_matrix</strong> – The distance matrix for the problem.</li>
-<li><strong>algorithm_type</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The type of localsearch one wishes to use.
-Currently only 3 algorithm_types are supported:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="2%" />
-<col width="48%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Algorithm</th>
-<th class="head">&#160;</th>
-<th class="head">algorithm_type</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>simulated annealing</td>
-<td>&#160;</td>
-<td>simulated_annealing</td>
-</tr>
-<tr class="row-odd"><td>steepest descent</td>
-<td>&#160;</td>
-<td>steepest_descent</td>
-</tr>
-<tr class="row-even"><td>tabu search</td>
-<td>&#160;</td>
-<td>tabu_search</td>
-</tr>
-</tbody>
-</table>
-<p>The default is simulated_annealing.</p>
-</li>
-<li><strong>move_type</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The type of move one wishes to use.
-Currently only 3 algorithm_types are supported:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="48%" />
-<col width="2%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Move</th>
-<th class="head">&#160;</th>
-<th class="head">move_type</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>ArraySwap</td>
-<td>&#160;</td>
-<td>array_swap</td>
-</tr>
-<tr class="row-odd"><td>TspArraySwap</td>
-<td>&#160;</td>
-<td>tsp_array_swap</td>
-</tr>
-<tr class="row-even"><td>ArrayReverseOrder</td>
-<td>&#160;</td>
-<td>array_reverse_order</td>
-</tr>
-</tbody>
-</table>
-<p>The default is array_swap.</p>
-</li>
-<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes to minimise the evaluation function,
-Should be False if one wishes to maximise the evaluation function.</li>
-<li><strong>order</strong> (<em>array_like</em><em>, </em><em>optional</em>) – A one dimensional array that contains the order of the points to start
-with. All values are int, unique and are within the interval
-[0,size[. Defaultly the numbers are ordered from small to big.</li>
-<li><strong>max_seconds</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of seconds. Note that only the time over the main
-loop is measured and that the function will finish 1 loop after the
-maximal amount of time has passed. If no max_seconds, no max_iterations
-and no max_iter_no_impr is defined, the maximal amount of seconds will
-be defaultly set to 300, unless the algorithm_type is steepest_descent.
-In that case, the function will stop when a local extreme is reached.
-But, since this might take a long time, it would be wise to set a time
-limit just in case.</li>
-<li><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations allowed. One iteration of the main
-loop is considered an iteration. Defaultly there are be no restrictions
-on the amount of iterations.</li>
-<li><strong>max_iter_no_impr</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. One iteration of
-the main loop is considered an iteration. Defaultly there are be no
-restrictions on the amount of iterations without improvement.</li>
-<li><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – Only used for the algorithm type simulated_annealing. Sets the cooling
-rate of the cooling function. Should be between 0 and 1. The default is
-0,75.
-(A geometric cooling function is used.)</li>
-<li><strong>iterations_temp</strong> (<em>int</em><em>, </em><em>optional</em>) – Only used for the algorithm type simulated_annealing. Sets the amount
-of iterations for every temperature level. Default is 1000.</li>
-<li><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – Only used for the algorithm type simulated_annealing. The starting
-temperature for the simulated annealing. Default is 2000.</li>
-<li><strong>tabu_list_length</strong> (<em>int</em><em>, </em><em>optional</em>) – Only used for the algorithm type tabu_search. The length of the tabu
-list. Default is 7.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="locsearch.runner.tsp_runner.TspRunner.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.tsp_runner.TspRunner.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runs the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
-<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</li>
-<li><strong>best_value</strong> (<em>int</em>) – The evaluation value for said order.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="locsearch-runner-tsp-runner-module">
+<h2>locsearch.runner.tsp_runner module<a class="headerlink" href="#locsearch-runner-tsp-runner-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-locsearch.runner">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.runner" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -207,43 +78,14 @@ list. Default is 7.</li>
 
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.runner package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#subpackages">Subpackages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner.tsp_runner">locsearch.runner.tsp_runner module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.runner">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="locsearch.html#module-locsearch">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">locsearch</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">locsearch</a><ul>
-  <li><a href="locsearch.html">locsearch package</a><ul>
-      <li>Previous: <a href="locsearch.random.html" title="previous chapter">locsearch.random package</a></li>
-      <li>Next: <a href="locsearch.runner.aidfunc.html" title="next chapter">locsearch.runner.aidfunc package</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>

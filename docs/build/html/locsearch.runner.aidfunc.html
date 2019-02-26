@@ -17,8 +17,6 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="locsearch.solution package" href="locsearch.solution.html" />
-    <link rel="prev" title="locsearch.runner package" href="locsearch.runner.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -40,149 +38,14 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-locsearch.runner.aidfunc.algorithm_picker">
-<span id="locsearch-runner-aidfunc-algorithm-picker-module"></span><h2>locsearch.runner.aidfunc.algorithm_picker module<a class="headerlink" href="#module-locsearch.runner.aidfunc.algorithm_picker" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="locsearch.runner.aidfunc.algorithm_picker.get_init_algorithm">
-<code class="descclassname">locsearch.runner.aidfunc.algorithm_picker.</code><code class="descname">get_init_algorithm</code><span class="sig-paren">(</span><em>algorithm_type</em>, <em>solution</em>, <em>termination_criterion</em>, <em>minimise</em>, <em>dictionary</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.aidfunc.algorithm_picker.get_init_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aid func to return initialised algorithm object.</p>
-<p>Currently only 3 algorithm_types are supported:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Algorithm</th>
-<th class="head">algorithm_type</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>simulated annealing</td>
-<td>simulated_annealing</td>
-</tr>
-<tr class="row-odd"><td>steepest descent</td>
-<td>steepest_descent</td>
-</tr>
-<tr class="row-even"><td>tabu search</td>
-<td>tabu_search</td>
-</tr>
-</tbody>
-</table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>algorithm_type</strong> (<em>str</em>) – The name of the algorithm type.</li>
-<li><strong>solution</strong> (<a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution"><em>AbstractLocalSearchSolution</em></a>) – The object that contains all problem-specific data.</li>
-<li><strong>termination_criterion</strong> (<a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – The termination criterion that should be used.</li>
-<li><strong>minimise</strong> (<em>bool</em>) – Should be True when one wishes to minimise the evaluation function,
-should be False when one wishes to maximise the evaluation function.</li>
-<li><strong>dictionary</strong> (<em>dict</em>) – <p>Contains optional parameters for the initialisation. These parameters
-differ for different algorithm types. A default value will be used if
-these parameters are absent.</p>
-<ol class="arabic">
-<li>simulated_annealing:<blockquote>
-<div><ul>
-<li><dl class="first docutils">
-<dt>alpha <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
-<dd>Cooling speed. Should be between 0 and 1.
-(A geometric cooling function is used.)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>iterations_temp <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd>Amount of iterations for a certain temperature.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>start_temperature <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd>The start temperature.</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</li>
-<li><dl class="first docutils">
-<dt>steepest_descent:</dt>
-<dd>No optional parameters exist.</dd>
-</dl>
-</li>
-<li>tabu_search:<blockquote>
-<div><ul>
-<li><dl class="first docutils">
-<dt>tabu_list_length <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd>The length of the tabu list.</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ol>
-</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The wanted localsearch object. If the type is not found, a function
-that raises an NotImplementedError will be returned.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch">AbstractLocalSearch</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="locsearch-runner-aidfunc-algorithm-picker-module">
+<h2>locsearch.runner.aidfunc.algorithm_picker module<a class="headerlink" href="#locsearch-runner-aidfunc-algorithm-picker-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-locsearch.runner.aidfunc.move_picker">
-<span id="locsearch-runner-aidfunc-move-picker-module"></span><h2>locsearch.runner.aidfunc.move_picker module<a class="headerlink" href="#module-locsearch.runner.aidfunc.move_picker" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="locsearch.runner.aidfunc.move_picker.get_move">
-<code class="descclassname">locsearch.runner.aidfunc.move_picker.</code><code class="descname">get_move</code><span class="sig-paren">(</span><em>move_type</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.runner.aidfunc.move_picker.get_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aid func to return move classes.</p>
-<p>Currently only 3 move types are supported:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="48%" />
-<col width="53%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Move</th>
-<th class="head">move_type</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>ArraySwap</td>
-<td>array_swap</td>
-</tr>
-<tr class="row-odd"><td>TspArraySwap</td>
-<td>tsp_array_swap</td>
-</tr>
-<tr class="row-even"><td>ArrayReverseOrder</td>
-<td>array_reverse_order</td>
-</tr>
-</tbody>
-</table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move_type</strong> (<em>str</em>) – The name of the algorithm type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The wanted move class. If the type is not found, a function that raises
-an NotImplementedError will be returned.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove" title="locsearch.localsearch.move.abstract_move.AbstractMove">AbstractMove</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="locsearch-runner-aidfunc-move-picker-module">
+<h2>locsearch.runner.aidfunc.move_picker module<a class="headerlink" href="#locsearch-runner-aidfunc-move-picker-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-locsearch.runner.aidfunc">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-locsearch.runner.aidfunc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -204,45 +67,14 @@ an NotImplementedError will be returned.</td>
 
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">locsearch</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a><ul class="current">
-<li class="toctree-l5 current"><a class="reference internal" href="locsearch.runner.html#subpackages">Subpackages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="locsearch.runner.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="locsearch.runner.html#locsearch-runner-tsp-runner-module">locsearch.runner.tsp_runner module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="locsearch.runner.html#module-locsearch.runner">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="locsearch.html#module-locsearch">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">locsearch</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">locsearch</a><ul>
-  <li><a href="locsearch.html">locsearch package</a><ul>
-  <li><a href="locsearch.runner.html">locsearch.runner package</a><ul>
-      <li>Previous: <a href="locsearch.runner.html" title="previous chapter">locsearch.runner package</a></li>
-      <li>Next: <a href="locsearch.solution.html" title="next chapter">locsearch.solution package</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>

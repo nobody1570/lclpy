@@ -15,10 +15,10 @@ class MultiMoveDeltaEvaluate():
 
     Attributes
     ----------
-    delta_eval_classes : list
+    delta_eval_classes : tuple or list
         Contains the classes used to perform delta evaluation for each
         move type.
-    delta_evaluation_func : list
+    delta_evaluation_func : tuple or list
         Contains the functions of the classes in delta_eval_classes that are
         called when delta-evaluation is performed.
 
@@ -34,17 +34,21 @@ class MultiMoveDeltaEvaluate():
         for move in move_func._move_func_list:
             self.delta_eval_classes.append(delta_eval_func(eval_func, move))
 
+        self.delta_eval_classes = tuple(self.delta_eval_classes)
+
         self.delta_evaluation_func = []
 
         for instance in self.delta_eval_classes:
             self.delta_evaluation_func.append(instance.delta_evaluate)
 
+        self.delta_evaluation_func = tuple(self.delta_evaluation_func)
+
     def delta_evaluate(self, current_order, move):
 
         return self.delta_evaluation_func[move[0]](current_order, move[1])
 
-# The method to return the other stuff
 
+# The method to return the class
 
 def delta_multi_neighbourhood(eval_func, move_func):
     """Returns delta-eval class for a problem with a multi-neighbourhood.
@@ -62,7 +66,7 @@ def delta_multi_neighbourhood(eval_func, move_func):
 
     Returns
     -------
-    MultiEvaluate
+    MultiMoveDeltaEvaluate
         Class useable for delta evaluation of TSP problems.
 
     """

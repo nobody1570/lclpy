@@ -39,7 +39,7 @@ class MultiAndCriterion(MultiCriterion):
         >>> criteria.append(MaxIterationsTerminationCriterion(0))
         >>> criteria.append(NoImprovementTerminationCriterion(3))
         ... # init MultiCriterion
-        >>> multi_criterion = MultiCriterion(criteria)
+        >>> multi_criterion = MultiAndCriterion(criteria)
         ... # test
         >>> start = time.time()
         >>> multi_criterion.start_timing()

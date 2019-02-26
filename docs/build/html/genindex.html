@@ -44,6 +44,7 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
@@ -56,6 +57,7 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="_">_</h2>
@@ -153,6 +155,8 @@
 
       <ul>
         <li><a href="locsearch.termination.html#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run">(locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion attribute)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion attribute)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._seconds">_seconds (locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
@@ -291,20 +295,28 @@
         <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable">check_variable() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
 
       <ul>
         <li><a href="locsearch.termination.html#locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.check_variable">(locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion method)</a>
 </li>
+        <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion.check_variable">(locsearch.termination.multi_criterion.MultiCriterion method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction">CnstIterationsTempFunction (class in locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function)</a>
 </li>
       <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList.contains">contains() (locsearch.localsearch.tabusearch.tabu_list.TabuList method)</a>
 </li>
       <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.convert_data.convert_data">convert_data() (in module locsearch.aidfunc.convert_data)</a>
 </li>
+      <li><a href="locsearch.termination.html#locsearch.termination.multi_and_criterion.MultiAndCriterion.criteria">criteria (locsearch.termination.multi_and_criterion.MultiAndCriterion attribute)</a>
+
+      <ul>
+        <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion.criteria">(locsearch.termination.multi_criterion.MultiCriterion attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -384,12 +396,18 @@
   </ul></td>
 </tr></table>
 
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.first_neighbourhood">first_neighbourhood() (locsearch.solution.array_solution.ArraySolution method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction">GeometricCoolingFunction (class in locsearch.localsearch.simulatedannealing.geometric_cooling_function)</a>
-</li>
-      <li><a href="locsearch.runner.aidfunc.html#locsearch.runner.aidfunc.algorithm_picker.get_init_algorithm">get_init_algorithm() (in module locsearch.runner.aidfunc.algorithm_picker)</a>
 </li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations">get_iterations() (locsearch.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction method)</a>
 
@@ -397,8 +415,6 @@
         <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations">(locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction method)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.runner.aidfunc.html#locsearch.runner.aidfunc.move_picker.get_move">get_move() (in module locsearch.runner.aidfunc.move_picker)</a>
-</li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove.get_move_type">get_move_type() (locsearch.localsearch.move.abstract_move.AbstractMove method)</a>
 
       <ul>
@@ -472,6 +488,10 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.plot.html#locsearch.plot.plot.iterations_plot">iterations_plot() (in module locsearch.plot.plot)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="K">K</h2>
@@ -485,6 +505,8 @@
         <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running">(locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion method)</a>
 </li>
         <li><a href="locsearch.termination.html#locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.keep_running">(locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.multi_and_criterion.MultiAndCriterion.keep_running">(locsearch.termination.multi_and_criterion.MultiAndCriterion method)</a>
 </li>
         <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion.keep_running">(locsearch.termination.multi_criterion.MultiCriterion method)</a>
 </li>
@@ -514,6 +536,10 @@
       <li><a href="locsearch.aidfunc.html#module-locsearch.aidfunc.is_improvement_func">locsearch.aidfunc.is_improvement_func (module)</a>
 </li>
       <li><a href="locsearch.aidfunc.html#module-locsearch.aidfunc.pass_func">locsearch.aidfunc.pass_func (module)</a>
+</li>
+      <li><a href="locsearch.benchmark.html#module-locsearch.benchmark">locsearch.benchmark (module)</a>
+</li>
+      <li><a href="locsearch.benchmark.html#module-locsearch.benchmark.benchmark">locsearch.benchmark.benchmark (module)</a>
 </li>
       <li><a href="locsearch.evaluation.html#module-locsearch.evaluation">locsearch.evaluation (module)</a>
 </li>
@@ -553,12 +579,12 @@
 </li>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.abstract_move">locsearch.localsearch.move.abstract_move (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.array_reverse_order">locsearch.localsearch.move.array_reverse_order (module)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.array_swap">locsearch.localsearch.move.array_swap (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.multi_neighbourhood">locsearch.localsearch.move.multi_neighbourhood (module)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.tsp_array_swap">locsearch.localsearch.move.tsp_array_swap (module)</a>
@@ -585,17 +611,9 @@
 </li>
       <li><a href="locsearch.localsearch.tabusearch.html#module-locsearch.localsearch.tabusearch.tabu_search">locsearch.localsearch.tabusearch.tabu_search (module)</a>
 </li>
-      <li><a href="locsearch.random.html#module-locsearch.random">locsearch.random (module)</a>
+      <li><a href="locsearch.plot.html#module-locsearch.plot">locsearch.plot (module)</a>
 </li>
-      <li><a href="locsearch.runner.html#module-locsearch.runner">locsearch.runner (module)</a>
-</li>
-      <li><a href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc">locsearch.runner.aidfunc (module)</a>
-</li>
-      <li><a href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc.algorithm_picker">locsearch.runner.aidfunc.algorithm_picker (module)</a>
-</li>
-      <li><a href="locsearch.runner.aidfunc.html#module-locsearch.runner.aidfunc.move_picker">locsearch.runner.aidfunc.move_picker (module)</a>
-</li>
-      <li><a href="locsearch.runner.html#module-locsearch.runner.tsp_runner">locsearch.runner.tsp_runner (module)</a>
+      <li><a href="locsearch.plot.html#module-locsearch.plot.plot">locsearch.plot.plot (module)</a>
 </li>
       <li><a href="locsearch.solution.html#module-locsearch.solution">locsearch.solution (module)</a>
 </li>
@@ -612,6 +630,8 @@
       <li><a href="locsearch.termination.html#module-locsearch.termination.max_seconds_termination_criterion">locsearch.termination.max_seconds_termination_criterion (module)</a>
 </li>
       <li><a href="locsearch.termination.html#module-locsearch.termination.min_temperature_termination_criterion">locsearch.termination.min_temperature_termination_criterion (module)</a>
+</li>
+      <li><a href="locsearch.termination.html#module-locsearch.termination.multi_and_criterion">locsearch.termination.multi_and_criterion (module)</a>
 </li>
       <li><a href="locsearch.termination.html#module-locsearch.termination.multi_criterion">locsearch.termination.multi_criterion (module)</a>
 </li>
@@ -649,7 +669,7 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.multi_neighbourhood_size">multi_neighbourhood_size() (locsearch.solution.array_solution.ArraySolution method)</a>
+      <li><a href="locsearch.termination.html#locsearch.termination.multi_and_criterion.MultiAndCriterion">MultiAndCriterion (class in locsearch.termination.multi_and_criterion)</a>
 </li>
       <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion">MultiCriterion (class in locsearch.termination.multi_criterion)</a>
 </li>
@@ -665,6 +685,12 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.next_neighbourhood">next_neighbourhood() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+
+      <ul>
+        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.next_neighbourhood">(locsearch.solution.array_solution.ArraySolution method)</a>
+</li>
+      </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature">next_temperature() (locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction method)</a>
 
       <ul>
@@ -681,6 +707,8 @@
       </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion">NoImprovementTerminationCriterion (class in locsearch.termination.no_improvement_termination_criterion)</a>
 </li>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.error_func.not_multi_move_type">not_multi_move_type() (in module locsearch.aidfunc.error_func)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -689,6 +717,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.pass_func.pass_func">pass_func() (in module locsearch.aidfunc.pass_func)</a>
 </li>
+      <li><a href="locsearch.plot.html#locsearch.plot.plot.plot">plot() (in module locsearch.plot.plot)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.previous_neighbourhood">previous_neighbourhood() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+
+      <ul>
+        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.previous_neighbourhood">(locsearch.solution.array_solution.ArraySolution method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -720,8 +758,6 @@
 </li>
         <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch.run">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch method)</a>
 </li>
-        <li><a href="locsearch.runner.html#locsearch.runner.tsp_runner.TspRunner.run">(locsearch.runner.tsp_runner.TspRunner method)</a>
-</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -732,12 +768,16 @@
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves">select_get_moves() (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 
       <ul>
+        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_get_moves">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+</li>
         <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.select_get_moves">(locsearch.solution.array_solution.ArraySolution method)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move">select_random_move() (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 
       <ul>
+        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_random_move">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+</li>
         <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.select_random_move">(locsearch.solution.array_solution.ArraySolution method)</a>
 </li>
       </ul></li>
@@ -749,10 +789,10 @@
       </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">SimulatedAnnealing (class in locsearch.localsearch.simulatedannealing.simulated_annealing)</a>
 </li>
-      <li><a href="locsearch.localsearch.acceptance.html#locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction (class in locsearch.localsearch.acceptance.simulated_annealing_acceptance_function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.localsearch.acceptance.html#locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction (class in locsearch.localsearch.acceptance.simulated_annealing_acceptance_function)</a>
+</li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size">size() (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 </li>
       <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.smaller">smaller() (in module locsearch.aidfunc.is_improvement_func)</a>
@@ -785,15 +825,13 @@
 </li>
       <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch">TabuSearch (class in locsearch.localsearch.tabusearch.tabu_search)</a>
 </li>
-      <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.tsp_array_swap.TspArraySwap">TspArraySwap (class in locsearch.localsearch.move.tsp_array_swap)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.tsp_array_swap.TspArraySwap">TspArraySwap (class in locsearch.localsearch.move.tsp_array_swap)</a>
+</li>
       <li><a href="locsearch.evaluation.deltaeval.html#locsearch.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate">TSPDeltaEvaluate (class in locsearch.evaluation.deltaeval.delta_tsp)</a>
 </li>
       <li><a href="locsearch.evaluation.html#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction">TspEvaluationFunction (class in locsearch.evaluation.tsp_evaluation_function)</a>
-</li>
-      <li><a href="locsearch.runner.html#locsearch.runner.tsp_runner.TspRunner">TspRunner (class in locsearch.runner.tsp_runner)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -815,6 +853,14 @@
         <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.undo_move">(locsearch.solution.array_solution.ArraySolution method)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.error_func.WrongMoveType">WrongMoveType</a>
+</li>
   </ul></td>
 </tr></table>
 

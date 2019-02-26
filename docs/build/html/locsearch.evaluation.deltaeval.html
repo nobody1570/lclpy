@@ -56,11 +56,10 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Class containing a function called delta_evaluate to perform delta
-evaluation.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A class with a function delta_evaluate to perform delta evaluation.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">delta_class</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object</p>
 </td>
 </tr>
 </tbody>
@@ -96,7 +95,7 @@ move type.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple or list</td>
 </tr>
 </tbody>
 </table>
@@ -111,7 +110,7 @@ called when delta-evaluation is performed.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple or list</td>
 </tr>
 </tbody>
 </table>
@@ -144,7 +143,7 @@ a NotImplementedError when called.</p>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Class useable for delta evaluation of TSP problems.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">MultiEvaluate</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#locsearch.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate" title="locsearch.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate">MultiMoveDeltaEvaluate</a></p>
 </td>
 </tr>
 </tbody>
@@ -204,16 +203,6 @@ indices in the unaltered array, yet return the value they would have
 had if the move was actually performed and they were used as indices.</p>
 </dd></dl>
 
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The difference in quality if the move would be performed.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
 <dl class="method">
 <dt id="locsearch.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.delta_evaluate">
 <code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_order</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.delta_evaluate" title="Permalink to this definition">¶</a></dt>
@@ -256,7 +245,7 @@ value due to the move.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this range contains the locations that would have an altered evaluation
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A range containing the locations that would have an altered evaluation
 value due to the move.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">range</td>
@@ -269,8 +258,6 @@ value due to the move.</td>
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">array_reverse_order_changed_locations</span> \
 <span class="gp">... </span>        <span class="k">as</span> <span class="n">changed_locations</span>
 <span class="gp">... </span><span class="c1"># tests</span>
-<span class="gp">... </span><span class="c1"># since the order of the items in a set might be different,</span>
-<span class="gp">... </span><span class="c1"># they are compared to an equivalent set.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">changed_locations</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="go">range(4, 6)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">changed_locations</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
@@ -284,12 +271,11 @@ value due to the move.</td>
 <dl class="function">
 <dt id="locsearch.evaluation.deltaeval.delta_qap.array_reverse_order_transform_next_index_to_current_index">
 <code class="descclassname">locsearch.evaluation.deltaeval.delta_qap.</code><code class="descname">array_reverse_order_transform_next_index_to_current_index</code><span class="sig-paren">(</span><em>position</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.deltaeval.delta_qap.array_reverse_order_transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transforms frm and to depending on a move</p>
+<dd><p>Transforms the position depending on the move.</p>
 <p>Works with the array_swap move type.
-This function transforms the indices frm and to so that they can
-be used as indices in the unaltered array, yet return the value
-they would have had if the move was actually performed and they
-were used as indices.</p>
+This function transforms the position so that it can be used as the indice
+in the unaltered array, yet return the value it would have had if the move
+was actually performed and the position was used as indice.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -310,11 +296,11 @@ location in an array where the move was performed.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<p>Some simple examples, the indices remain the same, but the move
-changes:</p>
+<p>Some simple examples, the move remains the same, but the position changes:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.deltaeval.delta_qap</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">array_reverse_order_transform_next_index_to_current_index</span> \
 <span class="gp">... </span>        <span class="k">as</span> <span class="n">transform_next_index_to_current_index</span>
+<span class="gp">... </span><span class="c1"># tests</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -344,10 +330,10 @@ value due to the move.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this tuple contains the locations that would have an altered evaluation
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple containing the locations that would have an altered evaluation
 value due to the move.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
 </tr>
 </tbody>
 </table>
@@ -357,8 +343,6 @@ value due to the move.</td>
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">array_swap_changed_locations</span> \
 <span class="gp">... </span>        <span class="k">as</span> <span class="n">changed_locations</span>
 <span class="gp">... </span><span class="c1"># tests</span>
-<span class="gp">... </span><span class="c1"># since the order of the items in a set might be different,</span>
-<span class="gp">... </span><span class="c1"># they are compared to an equivalent set.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">changed_locations</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="go">(4, 8)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">changed_locations</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
@@ -374,12 +358,11 @@ value due to the move.</td>
 <dl class="function">
 <dt id="locsearch.evaluation.deltaeval.delta_qap.array_swap_transform_next_index_to_current_index">
 <code class="descclassname">locsearch.evaluation.deltaeval.delta_qap.</code><code class="descname">array_swap_transform_next_index_to_current_index</code><span class="sig-paren">(</span><em>position</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.deltaeval.delta_qap.array_swap_transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transforms frm and to depending on a move</p>
+<dd><p>Transforms the position depending on the move.</p>
 <p>Works with the array_swap move type.
-This function transforms the indices frm and to so that they can
-be used as indices in the unaltered array, yet return the value
-they would have had if the move was actually performed and they
-were used as indices.</p>
+This function transforms the position so that it can be used as the indice
+in the unaltered array, yet return the value it would have had if the move
+was actually performed and the position was used as indice.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -400,11 +383,11 @@ location in an array where the move was performed.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<p>Some simple examples, the indices remain the same, but the move
-changes:</p>
+<p>Some simple examples, the move remains the same, but the position changes:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.deltaeval.delta_qap</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">array_swap_transform_next_index_to_current_index</span> \
 <span class="gp">... </span>        <span class="k">as</span> <span class="n">transform_next_index_to_current_index</span>
+<span class="gp">... </span><span class="c1"># tests</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transform_next_index_to_current_index</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -450,7 +433,7 @@ This is the current order.</li>
 <dt id="locsearch.evaluation.deltaeval.delta_qap.delta_qap">
 <code class="descclassname">locsearch.evaluation.deltaeval.delta_qap.</code><code class="descname">delta_qap</code><span class="sig-paren">(</span><em>eval_func</em>, <em>move_func</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.deltaeval.delta_qap.delta_qap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns delta-eval class for a QAP problem.</p>
-<p>Note that if no methods for the problem can be found, that a placeholder
+<p>Note that if a method for the problem can’t be found, that a placeholder
 method will be used. This method will raise a NotImplementedError when
 called.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -832,6 +815,7 @@ NotImplementedError when called.</p>
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.benchmark.html">locsearch.benchmark package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="locsearch.evaluation.html#subpackages">Subpackages</a></li>
 <li class="toctree-l5"><a class="reference internal" href="locsearch.evaluation.html#submodules">Submodules</a></li>
@@ -843,8 +827,7 @@ NotImplementedError when called.</p>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
 </ul>

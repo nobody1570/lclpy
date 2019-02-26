@@ -7,11 +7,11 @@ Subpackages
 .. toctree::
 
     locsearch.aidfunc
+    locsearch.benchmark
     locsearch.evaluation
     locsearch.io
     locsearch.localsearch
-    locsearch.random
-    locsearch.runner
+    locsearch.plot
     locsearch.solution
     locsearch.termination
 

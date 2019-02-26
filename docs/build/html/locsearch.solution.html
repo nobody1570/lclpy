@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.termination package" href="locsearch.termination.html" />
-    <link rel="prev" title="locsearch.runner.aidfunc package" href="locsearch.runner.aidfunc.html" />
+    <link rel="prev" title="locsearch.random package" href="locsearch.random.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -125,6 +125,93 @@ the move.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of a move.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.next_neighbourhood">
+<code class="descname">next_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.next_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current neighbourhood to the next neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.
+If this function is called when the last neighbourhood is the current
+neighbourhood, the first neighbourhood will become the current
+neighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.previous_neighbourhood">
+<code class="descname">previous_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.previous_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current neighbourhood to the previous neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.
+If this function is called when the first neighbourhood is the current
+neighbourhood, the first neighbourhood will remain the current
+neighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_get_moves">
+<code class="descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get all moves from a specific neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
+neighbourhood in the list of move functions given to the
+constructor.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
+current neighbourhood.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_random_move">
+<code class="descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method used to generate a random move from a specific neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
+neighbourhood in the list of move functions given to the
+constructor.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the current neighbourhood.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -425,6 +512,22 @@ function to work.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="locsearch.solution.array_solution.ArraySolution.first_neighbourhood">
+<code class="descname">first_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.first_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current neighbourhood to the first neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.solution.array_solution.ArraySolution.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>An iterable that returns all valid moves in the neighboorhood.</p>
@@ -527,20 +630,38 @@ show the behaviour of get_moves.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="locsearch.solution.array_solution.ArraySolution.multi_neighbourhood_size">
-<code class="descname">multi_neighbourhood_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.multi_neighbourhood_size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to get amount of neighbourhoods in the MultiNeighbourhood.</p>
+<dt id="locsearch.solution.array_solution.ArraySolution.next_neighbourhood">
+<code class="descname">next_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.next_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current neighbourhood to the next neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
-to the constructor is a MultiNeighbourhood.</p>
+to the constructor is a MultiNeighbourhood.
+If this function is called when the last neighbourhood is the current
+neighbourhood, the first neighbourhood will become the current
+neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The amount of neighbourhoods in the MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.solution.array_solution.ArraySolution.previous_neighbourhood">
+<code class="descname">previous_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.previous_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current neighbourhood to the previous neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.
+If this function is called when the first neighbourhood is the current
+neighbourhood, the first neighbourhood will remain the current
+neighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -548,7 +669,7 @@ to the constructor is a MultiNeighbourhood.</p>
 
 <dl class="method">
 <dt id="locsearch.solution.array_solution.ArraySolution.select_get_moves">
-<code class="descname">select_get_moves</code><span class="sig-paren">(</span><em>neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.select_get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get all moves from a specific neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
@@ -565,7 +686,7 @@ specified neighbourhood.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -573,7 +694,7 @@ specified neighbourhood.</td>
 
 <dl class="method">
 <dt id="locsearch.solution.array_solution.ArraySolution.select_random_move">
-<code class="descname">select_random_move</code><span class="sig-paren">(</span><em>neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.select_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.solution.array_solution.ArraySolution.select_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method used to generate a random move from a specific neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
@@ -585,13 +706,11 @@ to the constructor is a MultiNeighbourhood.</p>
 neighbourhood in the list of move functions given to the
 constructor.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul>
-<li><em>tuple of int</em> –    A random valid move from the specified neighbourhood.<p>Raises</p>
-</li>
-<li><em>——</em></li>
-<li><em>NotImplementedError</em> – If the neighbourhood isn’t a MultiNeighbourhood.</li>
-</ul>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the specified neighbourhood.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -703,11 +822,12 @@ evaluate(). The recalculation will take time, however.</td>
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.benchmark.html">locsearch.benchmark package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.solution package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.solution.abstract_local_search_solution">locsearch.solution.abstract_local_search_solution module</a></li>
@@ -731,7 +851,7 @@ evaluate(). The recalculation will take time, however.</td>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
-      <li>Previous: <a href="locsearch.runner.aidfunc.html" title="previous chapter">locsearch.runner.aidfunc package</a></li>
+      <li>Previous: <a href="locsearch.random.html" title="previous chapter">locsearch.random package</a></li>
       <li>Next: <a href="locsearch.termination.html" title="next chapter">locsearch.termination package</a></li>
   </ul></li>
   </ul></li>
