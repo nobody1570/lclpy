@@ -1,6 +1,5 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
-from locsearch.termination.must_improve_termination_criterion \
-    import MustImproveTerminationCriterion
+from locsearch.termination.always_true_criterion import AlwaysTrueCriterion
 
 from locsearch.aidfunc.is_improvement_func import bigger, smaller
 from locsearch.aidfunc.pass_func import pass_func
@@ -23,12 +22,6 @@ class SteepestDescent(AbstractLocalSearch):
         be False. The default is True.
     termination_criterion : AbstractTerminationCriterion, optional
         The termination criterion that is used.
-        If no termination criterion is given, this will an
-        MustImproveTerminationCriterion object will be used as the termination
-        criterion.
-        Note that if you specify a criterion, that it should be equivalent to
-        the default or more strict than the default. A less strict criterion
-        might cause the main loop to pointlessly iterate.
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
         one wishes no benchmarks to be made. Default is True.
@@ -119,8 +112,7 @@ class SteepestDescent(AbstractLocalSearch):
         self._solution = solution
 
         if termination_criterion is None:
-            self._termination_criterion = \
-                MustImproveTerminationCriterion(minimise)
+            self._termination_criterion = AlwaysTrueCriterion()
         else:
             self._termination_criterion = termination_criterion
 
@@ -193,12 +185,19 @@ class SteepestDescent(AbstractLocalSearch):
             self._termination_criterion.check_new_value(base_value)
 
             if self._function(self._solution.best_order_value, base_value):
+                # if the found value is better
 
+                # perform move and set new state as best.
                 self._solution.move(best_found_move)
                 self._solution.set_as_best(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration, base_value)
+
+            else:
+
+                # if it's worse: stop iterating by breaking from the loop
+                break
 
             iteration += 1
             self._termination_criterion.iteration_done()

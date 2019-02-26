@@ -1,4 +1,5 @@
 from locsearch.localsearch.abstract_local_search import AbstractLocalSearch
+from locsearch.termination.always_true_criterion import AlwaysTrueCriterion
 
 from locsearch.aidfunc.is_improvement_func import bigger, smaller
 from locsearch.aidfunc.pass_func import pass_func
@@ -132,18 +133,57 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
 
+    Without a specified termination criterion:
+
+    .. doctest::
+
+        >>> import numpy
+        >>> from locsearch.localsearch.vns.variable_neighbourhood \\
+        ...     import VariableNeighbourhood
+        >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+        >>> from locsearch.localsearch.move.array_reverse_order \\
+        ...     import ArrayReverseOrder
+        >>> from locsearch.localsearch.move.multi_neighbourhood \\
+        ...     import MultiNeighbourhood
+        >>> from locsearch.localsearch.vns.variable_neighbourhood \\
+        ...     import VariableNeighbourhood
+        >>> from locsearch.evaluation.tsp_evaluation_function \\
+        ...     import TspEvaluationFunction
+        >>> from locsearch.solution.array_solution import ArraySolution
+        ... # init distance matrix
+        >>> distance_matrix = numpy.array(
+        ... [[0, 2, 5, 8],
+        ...  [2, 0, 4, 1],
+        ...  [5, 4, 0, 7],
+        ...  [8, 1, 7, 0]])
+        ... # init MultiNeighbourhood
+        >>> size = distance_matrix.shape[0]
+        >>> move_1 = TspArraySwap(size)
+        >>> move_2 = ArrayReverseOrder(size)
+        >>> move = MultiNeighbourhood([move_1, move_2])
+        >>> evaluation = TspEvaluationFunction(distance_matrix, move)
+        >>> solution = ArraySolution(evaluation, move, size)
+        ... # init VariableNeighbourhood
+        >>> algorithm = VariableNeighbourhood(solution, benchmarking=False)
+        ... # run algorithm
+        >>> algorithm.run()
+        Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
+
 
 
     """
 
-    def __init__(self, solution, termination_criterion, minimise=True,
+    def __init__(self, solution, termination_criterion=None, minimise=True,
                  benchmarking=True):
 
         super().__init__()
 
         self._solution = solution
 
-        self._termination_criterion = termination_criterion
+        if termination_criterion is None:
+            self._termination_criterion = AlwaysTrueCriterion()
+        else:
+            self._termination_criterion = termination_criterion
 
         if minimise:
             self._function = smaller
