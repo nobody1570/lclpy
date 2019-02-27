@@ -223,3 +223,69 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         if self._function(self._old_best_value, value):
             self._iterations = -1
             self._old_best_value = value
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Examples
+        --------
+
+        3 iterations without improvement. Bigger values are considered
+        improvements. The dataset eval_values is hardcoded. After this, the
+        criterion is resetted and the loop is repeated:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.termination.no_improvement_termination_criterion \\
+            ...     import NoImprovementTerminationCriterion
+            ... # creation of an array that contains the values that will be
+            ... #  given to our termination criterion
+            >>> eval_values = numpy.array(
+            ...     [0, 0, 2, 1, 3, 3, 3, 4, 2, 1, 0, 12])
+            ... # init
+            >>> test = NoImprovementTerminationCriterion(3, False)
+            ... # run 1
+            ... #
+            ... # index is used to get values from the array.
+            ... # index is also used to count the amount of iterations
+            >>> index = 0
+            ... # loop
+            >>> while test.keep_running():
+            ...     pass # other code to execute
+            ...     # check next value
+            ...     test.check_new_value(eval_values[index])
+            ...     pass # other code to execute
+            ...     # counting iterations + increment index
+            ...     index += 1
+            ...     test.iteration_done()
+            >>> index # == amount of iterations.
+            11
+            >>> # reset
+            >>> test.reset()
+            ... # run 2
+            >>> index = 0
+            ... # loop
+            >>> while test.keep_running():
+            ...     pass # other code to execute
+            ...     # check next value
+            ...     test.check_new_value(eval_values[index])
+            ...     pass # other code to execute
+            ...     # counting iterations + increment index
+            ...     index += 1
+            ...     test.iteration_done()
+            >>> index # == amount of iterations.
+            11
+
+        """
+
+        self._run = True
+        self._iterations = 0
+
+        # restore old_best value
+        if self._function is smaller:
+            # if minimising
+            self._old_best_value = float("inf")
+        else:
+            # if maximising
+            self._old_best_value = float("-inf")

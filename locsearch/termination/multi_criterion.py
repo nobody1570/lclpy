@@ -175,3 +175,55 @@ class MultiCriterion(AbstractTerminationCriterion):
 
         for criterion in self.criteria:
             criterion.check_variable(variable)
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Examples
+        --------
+         MaxIterationsTerminationCriterion stops the iterating:
+
+        .. doctest::
+
+            >>> from locsearch.termination.max_seconds_termination_criterion \\
+            ...     import MaxSecondsTerminationCriterion
+            >>> from locsearch.termination.max_iterations_termination_criterion \\
+            ...     import MaxIterationsTerminationCriterion
+            >>> from locsearch.termination.no_improvement_termination_criterion \\
+            ...     import NoImprovementTerminationCriterion
+            >>> from locsearch.termination.multi_criterion \\
+            ...     import MultiCriterion
+            ... # init list
+            >>> criteria = []
+            >>> criteria.append(MaxSecondsTerminationCriterion(3))
+            >>> criteria.append(MaxIterationsTerminationCriterion(10))
+            >>> criteria.append(NoImprovementTerminationCriterion(3))
+            ... # init MultiCriterion
+            >>> multi_criterion = MultiCriterion(criteria)
+            ... # run 1
+            >>> iterations = 0
+            >>> values = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9]
+            >>> multi_criterion.start_timing()
+            >>> while multi_criterion.keep_running():
+            ...     multi_criterion.check_new_value(values[iterations])
+            ...     iterations += 1
+            ...     multi_criterion.iteration_done()
+            >>> iterations
+            10
+            >>> # reset
+            >>> multi_criterion.reset()
+            ... # run 2
+            >>> iterations = 0
+            >>> values = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9]
+            >>> multi_criterion.start_timing()
+            >>> while multi_criterion.keep_running():
+            ...     multi_criterion.check_new_value(values[iterations])
+            ...     iterations += 1
+            ...     multi_criterion.iteration_done()
+            >>> iterations
+            10
+
+        """
+
+        for criterion in self.criteria:
+            criterion.reset()

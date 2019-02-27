@@ -67,3 +67,8 @@ class AbstractTerminationCriterion(ABC):
         """
 
         pass
+
+    def reset(self):
+        """Resets the object back to it's state after init."""
+
+        raise NotImplementedError

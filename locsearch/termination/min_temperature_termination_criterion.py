@@ -100,3 +100,52 @@ class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
         """
 
         self._run = current_temperature >= self._min_temperature
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Examples:
+
+        A simple example with the default min_temperature:
+
+        .. doctest::
+
+            >>> from locsearch.termination.min_temperature_termination_criterion \\
+            ...     import MinTemperatureTerminationCriterion
+            ... # init
+            >>> test = MinTemperatureTerminationCriterion()
+            ... # run 1
+            >>> test.keep_running()
+            True
+            >>> test.check_variable(1000.0)
+            >>> test.keep_running()
+            True
+            >>> test.check_variable(10.0)
+            >>> test.keep_running()
+            True
+            >>> test.check_variable(9.0)
+            >>> test.keep_running()
+            False
+            >>> test.keep_running()
+            False
+            >>> # reset
+            >>> test.reset()
+            ... # run 2
+            >>> test.keep_running()
+            True
+            >>> test.check_variable(1000.0)
+            >>> test.keep_running()
+            True
+            >>> test.check_variable(10.0)
+            >>> test.keep_running()
+            True
+            >>> test.check_variable(9.0)
+            >>> test.keep_running()
+            False
+            >>> test.keep_running()
+            False
+
+
+        """
+
+        self._run = True

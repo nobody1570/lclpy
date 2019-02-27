@@ -67,7 +67,7 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
         self._iterations = 0
 
     def keep_running(self):
-        """function to determine if the algorithm needs to continue running
+        """function to determine if the algorithm needs to continue running.
 
         Returns
         -------
@@ -81,10 +81,50 @@ class MaxIterationsTerminationCriterion(AbstractTerminationCriterion):
         return self._iterations < self._max_iterations
 
     def iteration_done(self):
-        """function to be called after every iteration
+        """function to be called after every iteration.
 
         Increments _iterations by 1.
 
         """
 
         self._iterations += 1
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Examples
+        --------
+        Default amount of iterations:
+
+        .. doctest::
+
+            >>> from locsearch.termination.max_iterations_termination_criterion \\
+            ...     import MaxIterationsTerminationCriterion
+            ... # the variable iterations will be used to count the amount of
+            ... # iterations.
+            >>> iterations = 0
+            ... # init
+            >>> test = MaxIterationsTerminationCriterion()
+            ... # run 1
+            >>> while test.keep_running():
+            ...     pass # other code to be executed
+            ...     # counting amount of iterations
+            ...     iterations += 1
+            ...     test.iteration_done()
+            >>> iterations
+            1000
+            >>> # reset
+            >>> test.reset()
+            ... # run 2
+            >>> iterations = 0
+            >>> while test.keep_running():
+            ...     pass # other code to be executed
+            ...     # counting amount of iterations
+            ...     iterations += 1
+            ...     test.iteration_done()
+            >>> iterations
+            1000
+
+        """
+
+        self._iterations = 0

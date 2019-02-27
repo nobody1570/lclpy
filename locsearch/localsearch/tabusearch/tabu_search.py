@@ -225,6 +225,7 @@ class TabuSearch(AbstractLocalSearch):
 
             # pick the best move that doesn't lead to a state in the tabu list
 
+            # search loop
             while len(best_moves) > 0:
 
                 # get the move and alter the state

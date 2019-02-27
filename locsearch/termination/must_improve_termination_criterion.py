@@ -49,7 +49,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         ...     # check the next value
         ...     # not_used is only used to suppress the output of
         ...     # check_new_value
-        ...     not_used = test.check_new_value(eval_values[index])
+        ...     test.check_new_value(eval_values[index])
         ...     pass # other code to execute
         ...     # counting iterations + increment index
         ...     index += 1
@@ -79,7 +79,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
         ...     # check the next value
         ...     # not_used is only used to suppress the output of
         ...     # check_new_value
-        ...     not_used = test.check_new_value(eval_values[index])
+        ...     test.check_new_value(eval_values[index])
         ...     pass # more code to execute
         ...     # counting iterations + increment index
         ...     index += 1
@@ -130,3 +130,71 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
             self._old_best_value = value
         else:
             self._run = False
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Examples
+        --------
+        Smaller values are considered improvements(default). 8 iterations with
+        improvement. After that there are no more improvements. The dataset
+        eval_values is hardcoded. After this, the criterion is resetted and the
+        loop is repeated:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.termination.must_improve_termination_criterion \\
+            ...     import MustImproveTerminationCriterion
+            ... # creation of an array that contains the values that will be given
+            ... # to our termination criterion
+            >>> eval_values = numpy.array([10, 9, 8, 7, 6, 5, 4, 3, 4, 3, 5, 12])
+            ... # init
+            >>> test = MustImproveTerminationCriterion()
+            ... # run 1
+            ... #
+            ... # index is used to get values from the array.
+            ... # index is also used to count the amount of iterations
+            >>> index = 0
+            ... # loop
+            >>> while test.keep_running():
+            ...     pass # other code to execute
+            ...     # check the next value
+            ...     # not_used is only used to suppress the output of
+            ...     # check_new_value
+            ...     test.check_new_value(eval_values[index])
+            ...     pass # other code to execute
+            ...     # counting iterations + increment index
+            ...     index += 1
+            >>> index # == amount of iterations.
+            9
+            >>> # reset
+            >>> test.reset()
+            ... # run 2
+            >>> index = 0
+            ... # loop
+            >>> while test.keep_running():
+            ...     pass # other code to execute
+            ...     # check the next value
+            ...     # not_used is only used to suppress the output of
+            ...     # check_new_value
+            ...     test.check_new_value(eval_values[index])
+            ...     pass # other code to execute
+            ...     # counting iterations + increment index
+            ...     index += 1
+            >>> index # == amount of iterations.
+            9
+
+
+
+        """
+
+        self._run = True
+
+        # restore old_best value
+        if self._function is smaller:
+            # if minimising
+            self._old_best_value = float("inf")
+        else:
+            # if maximising
+            self._old_best_value = float("-inf")

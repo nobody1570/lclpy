@@ -92,6 +92,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
             time passed is bigger than max_seconds
 
         """
+
         return self._seconds < self._max_seconds
 
     def start_timing(self):
@@ -100,6 +101,7 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
         Sets _start to the current time in seconds from the epoch.
 
         """
+
         self._start = time()
 
     def iteration_done(self):
@@ -109,4 +111,54 @@ class MaxSecondsTerminationCriterion(AbstractTerminationCriterion):
         start time.
 
         """
+
         self._seconds = time() - self._start
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Examples
+        --------
+        Running for 3 seconds:
+
+        .. doctest::
+
+            >>> import time
+            >>> from locsearch.termination.max_seconds_termination_criterion \\
+            ...     import MaxSecondsTerminationCriterion
+            ... # init
+            >>> test = MaxSecondsTerminationCriterion(3)
+            ... # start and stop will be used to measure the time passed.
+            ... # run 1
+            >>> start = time.time()
+            ... # start the timing of the termination criterion
+            >>> test.start_timing()
+            ... # loop
+            >>> while test.keep_running():
+            ...     pass # code to execute
+            ...     test.iteration_done()
+            >>> stop = time.time()
+            >>> time_passed = stop - start
+            >>> time_passed < 4
+            True
+            >>> # reset
+            >>> test.reset()
+            ... # run 2
+            >>> start = time.time()
+            ... # start the timing of the termination criterion
+            >>> test.start_timing()
+            ... # loop
+            >>> while test.keep_running():
+            ...     pass # code to execute
+            ...     test.iteration_done()
+            >>> stop = time.time()
+            >>> time_passed = stop - start
+            >>> time_passed < 4
+            True
+
+
+
+        """
+
+        self._start = 0
+        self._seconds = 0

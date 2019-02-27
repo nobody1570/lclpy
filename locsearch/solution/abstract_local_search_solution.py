@@ -91,7 +91,15 @@ class AbstractLocalSearchSolution(ABC):
         Returns
         -------
         tuple
-            A representation of the current state."""
+            A representation of the current state.
+
+        """
+
+        pass
+
+    @abstractmethod
+    def reset(self):
+        """Resets the object back to it's state after init."""
 
         pass
 

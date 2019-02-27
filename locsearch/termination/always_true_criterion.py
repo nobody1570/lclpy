@@ -25,3 +25,8 @@ class AlwaysTrueCriterion(AbstractTerminationCriterion):
         """
 
         return True
+
+    def reset(self):
+        """Resets the object back to it's state after init."""
+
+        pass

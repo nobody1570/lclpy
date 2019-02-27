@@ -31,6 +31,8 @@ class ArraySolution(AbstractLocalSearchSolution):
     _order : numpy.ndarray
         A 1 dimensional array that contains the current order of the points.
         All values are int, unique and are within the interval [0,size[.
+    _starting_order : numpy.ndarray
+        The initial value of _order.
     best_order : numpy.ndarray
         Contains the order of the best found solution.
     best_order_value: int or float
@@ -153,6 +155,8 @@ class ArraySolution(AbstractLocalSearchSolution):
             self._order = numpy.arange(size)
         else:
             self._order = order
+
+        self._starting_order = numpy.array(self._order)
 
     def move(self, move):
         """Performs a move on _order.
@@ -509,3 +513,95 @@ class ArraySolution(AbstractLocalSearchSolution):
 
         return self._move_function.select_random_move(
             self.current_neighbourhood)
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        _order is replaced by a copy of _starting_order.
+
+        Examples
+        --------
+        A simple example with the default order:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.localsearch.move.tsp_array_swap \\
+            ...     import TspArraySwap
+            >>> from locsearch.evaluation.tsp_evaluation_function \\
+            ...     import TspEvaluationFunction
+            >>> from locsearch.solution.array_solution import ArraySolution
+            ... # init distance matrix
+            >>> distance_matrix = numpy.array(
+            ... [[0, 2, 5, 8],
+            ...  [2, 0, 4, 1],
+            ...  [5, 4, 0, 7],
+            ...  [8, 1, 7, 0]])
+            ... # init move function
+            >>> size = distance_matrix.shape[0]
+            >>> move_func = TspArraySwap(size)
+            ... # init evaluation function
+            >>> evaluation_func = TspEvaluationFunction(distance_matrix,
+            ...                                         move_func)
+            ... # init solution
+            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # tests
+            >>> solution.state()
+            (0, 1, 2, 3)
+            >>> solution.move((1, 3))
+            >>> solution.state()
+            (0, 3, 2, 1)
+            >>> solution.reset()
+            >>> solution.state()
+            (0, 1, 2, 3)
+            >>> solution.move((1, 3))
+            >>> solution.state()
+            (0, 3, 2, 1)
+            >>> solution.reset()
+            >>> solution.state()
+            (0, 1, 2, 3)
+
+        An example with a non-default order:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.localsearch.move.tsp_array_swap \\
+            ...     import TspArraySwap
+            >>> from locsearch.evaluation.tsp_evaluation_function \\
+            ...     import TspEvaluationFunction
+            >>> from locsearch.solution.array_solution import ArraySolution
+            ... # init distance matrix
+            >>> distance_matrix = numpy.array(
+            ... [[0, 2, 5, 8],
+            ...  [2, 0, 4, 1],
+            ...  [5, 4, 0, 7],
+            ...  [8, 1, 7, 0]])
+            ... # init move function
+            >>> size = distance_matrix.shape[0]
+            >>> move_func = TspArraySwap(size)
+            ... # init evaluation function
+            >>> evaluation_func = TspEvaluationFunction(distance_matrix,
+            ...                                         move_func)
+            ... # init solution
+            >>> solution = ArraySolution(evaluation_func, move_func,
+            ...                          size, [0, 1, 3, 2])
+            ... # tests
+            >>> solution.state()
+            (0, 1, 3, 2)
+            >>> solution.move((1, 3))
+            >>> solution.state()
+            (0, 2, 3, 1)
+            >>> solution.reset()
+            >>> solution.state()
+            (0, 1, 3, 2)
+            >>> solution.move((1, 3))
+            >>> solution.state()
+            (0, 2, 3, 1)
+            >>> solution.reset()
+            >>> solution.state()
+            (0, 1, 3, 2)
+
+        """
+
+        self._order = numpy.array(self._starting_order)
