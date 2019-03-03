@@ -25,3 +25,15 @@ class AbstractLocalSearch(ABC):
         """
 
         pass
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Raises
+        ------
+        NotImplementedError
+            Will always be raised.
+
+        """
+
+        raise NotImplementedError

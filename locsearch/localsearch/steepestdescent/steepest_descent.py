@@ -224,3 +224,70 @@ class SteepestDescent(AbstractLocalSearch):
         return Results(self._solution.best_order,
                        self._solution.best_order_value,
                        data)
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Raises
+        ------
+        NotImplementedError
+            If the solution or termination criterion have no reset method
+            implemented.
+
+        Examples
+        --------
+        An example of minimising, reset after run:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.localsearch.steepestdescent.steepest_descent \\
+            ...     import SteepestDescent
+            >>> from locsearch.localsearch.move.tsp_array_swap \\
+            ...     import TspArraySwap
+            >>> from locsearch.evaluation.tsp_evaluation_function \\
+            ...     import TspEvaluationFunction
+            >>> from locsearch.solution.array_solution import ArraySolution
+            ... # init solution
+            >>> distance_matrix = numpy.array(
+            ... [[0, 2, 5, 8],
+            ...  [2, 0, 4, 1],
+            ...  [5, 4, 0, 7],
+            ...  [8, 1, 7, 0]])
+            >>> size = distance_matrix.shape[0]
+            >>> move = TspArraySwap(size)
+            >>> evaluation = TspEvaluationFunction(distance_matrix, move)
+            >>> solution = ArraySolution(evaluation, move, size)
+            ... # init SteepestDescent
+            >>> steepest_descent = SteepestDescent(solution,
+            ...                                    benchmarking=False)
+            ... # state before running
+            >>> steepest_descent._solution._order
+            array([0, 1, 2, 3])
+            >>> steepest_descent._termination_criterion.keep_running()
+            True
+            >>> # run algorithm
+            >>> steepest_descent.run()
+            Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
+            >>> # tests reset
+            >>> # before reset
+            >>> steepest_descent._solution._order
+            array([0, 1, 3, 2])
+            >>> steepest_descent._termination_criterion.keep_running()
+            True
+            >>> # reset
+            >>> steepest_descent.reset()
+            ... # after reset
+            >>> steepest_descent._solution._order
+            array([0, 1, 2, 3])
+            >>> steepest_descent._termination_criterion.keep_running()
+            True
+
+
+        """
+
+        self._solution.reset()
+        self._termination_criterion.reset()
+
+        if self.data is not None:
+            self.data = []

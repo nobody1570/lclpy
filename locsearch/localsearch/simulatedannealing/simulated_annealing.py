@@ -47,6 +47,8 @@ class SimulatedAnnealing(AbstractLocalSearch):
     _iterations_for_temp_f : AbstrIterationsTempFunction
         Implements a function to determine the amount of iterations for a
         certain temperature.
+    _start_temperature : int
+        The start "temperature".
     _temperature : int
         The current "temperature".
     _acceptance_function : SimulatedAnnealingAcceptanceFunction
@@ -172,6 +174,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         self._termination_criterion = termination_criterion
         self._cooling_function = cooling_function
         self._iterations_for_temp_f = iterations_for_temp_f
+        self._start_temperature = start_temperature
         self._temperature = start_temperature
         self._acceptance_function = SimulatedAnnealingAcceptanceFunction()
 
@@ -313,3 +316,100 @@ class SimulatedAnnealing(AbstractLocalSearch):
         return Results(self._solution.best_order,
                        self._solution.best_order_value,
                        data)
+
+    def reset(self):
+        """Resets the object back to it's state after init.
+
+        Raises
+        ------
+        NotImplementedError
+            If the solution or termination criterion have no reset method
+            implemented.
+
+        Examples
+        --------
+        Minimising example, reset after run:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> import random
+            >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
+            >>> from locsearch.localsearch.simulatedannealing.simulated_annealing \\
+            ...     import SimulatedAnnealing
+            >>> from locsearch.localsearch.simulatedannealing.geometric_cooling_function \\
+            ...     import GeometricCoolingFunction
+            >>> from locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function \\
+            ...     import CnstIterationsTempFunction
+            >>> from locsearch.evaluation.tsp_evaluation_function \\
+            ...     import TspEvaluationFunction
+            >>> from locsearch.termination.min_temperature_termination_criterion \\
+            ...     import MinTemperatureTerminationCriterion
+            >>> from locsearch.solution.array_solution import ArraySolution
+            ... # seed random
+            ... # (used here to always get the same output, this obviously is not
+            ... #                                  needed in your implementation.)
+            >>> random.seed(0)
+            ... # init solution
+            >>> distance_matrix = numpy.array(
+            ... [[0, 2, 5, 8],
+            ...  [2, 0, 4, 1],
+            ...  [5, 4, 0, 7],
+            ...  [8, 1, 7, 0]])
+            >>> size = distance_matrix.shape[0]
+            >>> move = TspArraySwap(size)
+            >>> evaluation = TspEvaluationFunction(distance_matrix, move)
+            >>> solution = ArraySolution(evaluation, move, size)
+            ... # init termination criterion
+            >>> termination_criterion = MinTemperatureTerminationCriterion()
+            ... # init cooling function
+            >>> cooling_func = GeometricCoolingFunction()
+            ... # init CnstIterationsTempFunction
+            ... # (determines amount of itertions in function of the temperature)
+            >>> i_for_temp = CnstIterationsTempFunction()
+            ... # init SimulatedAnnealing
+            >>> algorithm = SimulatedAnnealing(solution, termination_criterion,
+            ...                                cooling_func, i_for_temp,
+            ...                                benchmarking=False)
+            ... # state before running
+            >>> algorithm._start_temperature
+            2000
+            >>> algorithm._temperature
+            2000
+            >>> algorithm._solution._order
+            array([0, 1, 2, 3])
+            >>> algorithm._termination_criterion.keep_running()
+            True
+            >>> # run algorithm
+            >>> algorithm.run()
+            Results(best_order=array([0, 2, 3, 1]), best_value=15, data=None)
+            >>> # tests reset
+            >>> # before reset
+            >>> algorithm._start_temperature
+            2000
+            >>> algorithm._temperature
+            8.456565170490649
+            >>> algorithm._solution._order
+            array([0, 2, 1, 3])
+            >>> algorithm._termination_criterion.keep_running()
+            False
+            >>> # reset
+            >>> algorithm.reset()
+            ... # after reset
+            >>> algorithm._start_temperature
+            2000
+            >>> algorithm._temperature
+            2000
+            >>> algorithm._solution._order
+            array([0, 1, 2, 3])
+            >>> algorithm._termination_criterion.keep_running()
+            True
+
+        """
+
+        self._temperature = self._start_temperature
+        self._solution.reset()
+        self._termination_criterion.reset()
+
+        if self.data is not None:
+            self.data = []
