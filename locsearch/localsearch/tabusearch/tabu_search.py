@@ -186,86 +186,69 @@ class TabuSearch(AbstractLocalSearch):
         self._termination_criterion.check_new_value(base_value)
         self._termination_criterion.start_timing()
 
-        # init deque
-        # we need to remember one move more than there are items in the
-        # tabu list, to enable us to always perform a move when it's possible.
-        # The best moves should be at the right side of the deque, the worst
-        # at the left side
-
-        best_moves = deque(maxlen=self._list_size + 1)
-
         # main loop
         while self._termination_criterion.keep_running():
 
-            # tabu implementation
             # search the neighbourhood for the best move
-            best_moves.clear()
+            best_found_delta = self._best_found_delta_base_value
+            best_found_move = None
+
+            old_state = self._solution.state()
 
             for move in self._solution.get_moves():
 
                 # check quality move
                 delta = self._solution.evaluate_move(move)
 
-                # if the move is better than those in the best_moves deque
-                # --> insert in deque
-                delta_move = (delta, move)
-
-                if len(best_moves) <= self._list_size:
-                    insert_in_sorted_deque(
-                        best_moves, self._is_better, delta_move)
-
-                elif any(self._is_better(item, delta_move)
-                         for item in best_moves):
-                    # remove the worst item (should be at the left)
-                    best_moves.popleft()
-
-                    # insert the item at the correct position
-                    insert_in_sorted_deque(
-                        best_moves, self._is_better, delta_move)
-
-            # pick the best move that doesn't lead to a state in the tabu list
-
-            # search loop
-            while len(best_moves) > 0:
-
-                # get the move and alter the state
-                (delta, move) = best_moves.pop()
-
+                # perform move
                 self._solution.move(move)
 
-                # check if state in tabu list
-                if self._tabu_list.contains(self._solution.state()):
+                # compare current state with old_state
+                diff_indices = self._solution.diff_state(old_state)
 
-                    # if it's in there --> unwanted state --> undo move
-                    self._solution.undo_move(move)
+                # if not in tabu list --> if delta better than old best move
+                # --> becomes the best move
 
-                else:
-                    # state not in tabu list --> keep state
+                if not self._tabu_list.contains(diff_indices) and \
+                        self._is_better(best_found_delta, delta):
+                    best_found_delta = delta
+                    best_found_move = move
+                    best_found_diff = diff_indices
 
-                    # update the cost value
-                    base_value = base_value + delta
-                    # add new state to tabu list
-                    self._tabu_list.add(self._solution.state())
-                    # check if best found state
-                    # --> if best found state set as new best state
-                    if self._is_better(
-                            self._solution.best_order_value, base_value):
-                        self._solution.set_as_best(base_value)
+                # undo move
+                self._solution.undo_move(move)
 
-                    # add to data
-                    self._data_append(self.data, iteration, base_value,
-                                      self._solution.best_order_value)
+            # the best found move will be used as the next move
+            # alter state solution
+            base_value = base_value + best_found_delta
 
-                    # good move found --> terminate search loop
-                    break
+            # check if a move was found
+            # if no move was found, the base_value will be the start value of
+            # best_found_delta
+            if base_value is not self._best_found_delta_base_value:
+
+                self._solution.move(best_found_move)
+
+                # if better than best found --> new best_found
+                if self._is_better(self._solution.best_order_value,
+                                   base_value):
+                    self._solution.set_as_best(base_value)
+
+                # add diff to tabu list
+                self._tabu_list.add(best_found_diff)
+
+                # add to data
+                self._data_append(self.data, iteration,
+                                  base_value, self._solution.best_order_value)
+
+                self._termination_criterion.check_new_value(base_value)
+
+                # functions _termination_criterion called
+                self._termination_criterion.check_new_value(base_value)
 
             else:
-                # no non-tabu move possible
-                # --> we're stuck --> terminate main loop
+                # no move found --> we're stuck --> break loop
                 break
-
-            # functions _termination_criterion called
-            self._termination_criterion.check_new_value(base_value)
 
             iteration += 1
             self._termination_criterion.iteration_done()

@@ -14,7 +14,7 @@ class ArraySolution(AbstractLocalSearchSolution):
         The evaluation function that needs to be used for the problem.
     move_function : AbstractMove
         The move function that needs to be used for the problem.
-    order : numpy.ndarray, optional
+    order : numpy.ndarray or list, optional
         A one dimensional array that contains the order of the points to start
         with. All values are int, unique and are within the interval
         [0,size[.
@@ -154,7 +154,7 @@ class ArraySolution(AbstractLocalSearchSolution):
         if order is None:
             self._order = numpy.arange(size)
         else:
-            self._order = order
+            self._order = numpy.array(order)
 
         self._starting_order = numpy.array(self._order)
 
@@ -605,3 +605,69 @@ class ArraySolution(AbstractLocalSearchSolution):
         """
 
         self._order = numpy.array(self._starting_order)
+
+    def diff_state(self, old_state):
+        """Gets the indices where the current_state to the old state are different.
+
+        Parameters
+        ----------
+        old_state : tuple
+            The old state.
+
+        Returns
+        -------
+        tuple of int
+            The indices where the current state and the old state are
+            different.
+
+        Examples
+        --------
+        A simple example:
+
+        .. doctest::
+
+            >>> import numpy
+            >>> from locsearch.localsearch.move.tsp_array_swap \\
+            ...     import TspArraySwap
+            >>> from locsearch.evaluation.tsp_evaluation_function \\
+            ...     import TspEvaluationFunction
+            >>> from locsearch.solution.array_solution import ArraySolution
+            ... # init distance matrix
+            >>> distance_matrix = numpy.array(
+            ... [[0, 2, 5, 8],
+            ...  [2, 0, 4, 1],
+            ...  [5, 4, 0, 7],
+            ...  [8, 1, 7, 0]])
+            ... # init move function
+            >>> size = distance_matrix.shape[0]
+            >>> move_func = TspArraySwap(size)
+            ... # init evaluation function
+            >>> evaluation_func = TspEvaluationFunction(distance_matrix,
+            ...                                         move_func)
+            ... # init solution
+            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # with default order
+            >>> solution.state()
+            (0, 1, 2, 3)
+            >>> solution.diff_state((0, 2, 1, 3))
+            (1, 2)
+            >>> solution.diff_state((0, 2, 3, 1))
+            (1, 2, 3)
+            >>> solution.diff_state((3, 1, 2, 0))
+            (0, 3)
+            >>> # with other order
+            >>> solution.move((0, 3))
+            >>> solution.move((1, 2))
+            >>> solution.state()
+            (3, 2, 1, 0)
+            >>> solution.diff_state((0, 2, 1, 3))
+            (0, 3)
+            >>> solution.diff_state((3, 2, 0, 1))
+            (2, 3)
+            >>> solution.diff_state((3, 1, 2, 0))
+            (1, 2)
+
+        """
+
+        return tuple(i for i in range(len(self._order))
+                     if self._order[i] != old_state[i])
