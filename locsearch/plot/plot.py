@@ -1,13 +1,17 @@
 import matplotlib.pyplot as plt
 
 
-def plot(data):
+def plot(data, width=20, height=10):
     """Plots the data in a time-value plot.
 
     Parameters
     ----------
     data : collections.namedtuple
         The data tuple one gets by performing a localsearch algorithm.
+    width : int, optional
+        The width of the plot.
+    height : int, optional
+        The height of the plot.
 
     """
 
@@ -15,6 +19,7 @@ def plot(data):
     time = data.time
     values = data.value
 
+    plt.figure(figsize=(width, height))
     plt.plot(time, values, label='value')
 
     if hasattr(data, 'best_value'):
@@ -32,13 +37,17 @@ def plot(data):
     plt.show()
 
 
-def iterations_plot(data):
+def iterations_plot(data, width=20, height=10):
     """Plots the data in an iterations-value plot.
 
     Parameters
     ----------
     data : collections.namedtuple
         The data tuple one gets by performing a localsearch algorithm.
+    width : int, optional
+        The width of the plot.
+    height : int, optional
+        The height of the plot.
 
     """
 
@@ -46,6 +55,7 @@ def iterations_plot(data):
     iterations = data.iteration
     values = data.value
 
+    plt.figure(figsize=(width, height))
     plt.plot(iterations, values, label='value')
 
     if hasattr(data, 'best_value'):
