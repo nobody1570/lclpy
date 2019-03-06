@@ -4,6 +4,8 @@ import numpy
 from locsearch.aidfunc.error_func import not_multi_move_type
 from locsearch.aidfunc.error_func import NoNextNeighbourhood
 
+from statistics import mean, StatisticsError
+
 
 class ArraySolution(AbstractLocalSearchSolution):
     """Contains all the data needed to handle a TSP problem.
@@ -649,25 +651,33 @@ class ArraySolution(AbstractLocalSearchSolution):
             ... # with default order
             >>> solution.state()
             (0, 1, 2, 3)
+            >>> solution.diff_state((0, 1, 2, 3))
+            0
             >>> solution.diff_state((0, 2, 1, 3))
-            (1, 2)
+            1.5
             >>> solution.diff_state((0, 2, 3, 1))
-            (1, 2, 3)
+            2
             >>> solution.diff_state((3, 1, 2, 0))
-            (0, 3)
+            1.5
             >>> # with other order
             >>> solution.move((0, 3))
             >>> solution.move((1, 2))
             >>> solution.state()
             (3, 2, 1, 0)
+            >>> solution.diff_state((3, 2, 1, 0))
+            0
             >>> solution.diff_state((0, 2, 1, 3))
-            (0, 3)
+            1.5
             >>> solution.diff_state((3, 2, 0, 1))
-            (2, 3)
+            2.5
             >>> solution.diff_state((3, 1, 2, 0))
-            (1, 2)
+            1.5
 
         """
 
-        return tuple(i for i in range(len(self._order))
-                     if self._order[i] != old_state[i])
+        try:
+            return mean(i for i in range(len(self._order))
+                        if self._order[i] != old_state[i])
+
+        except StatisticsError:
+            return 0

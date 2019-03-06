@@ -1,13 +1,15 @@
 import matplotlib.pyplot as plt
 
 
-def plot(data, width=20, height=10):
+def plot(data, title='Time - evaluation value plot.', width=20, height=10):
     """Plots the data in a time-value plot.
 
     Parameters
     ----------
     data : collections.namedtuple
         The data tuple one gets by performing a localsearch algorithm.
+    title : str, optional
+        The title of the plot. Default is 'Time - evaluation value plot.'.
     width : int, optional
         The width of the plot.
     height : int, optional
@@ -30,20 +32,24 @@ def plot(data, width=20, height=10):
     plt.xlabel('time (s)')
     plt.ylabel('evaluation value')
 
-    plt.title("Time - evaluation value plot.")
+    plt.title(title)
 
     plt.legend()
 
     plt.show()
 
 
-def iterations_plot(data, width=20, height=10):
+def iterations_plot(data, title='Iterations - evaluation value plot.',
+                    width=20, height=10):
     """Plots the data in an iterations-value plot.
 
     Parameters
     ----------
     data : collections.namedtuple
         The data tuple one gets by performing a localsearch algorithm.
+    title : str, optional
+        The title of the plot.
+        Default is 'Iterations - evaluation value plot.'.
     width : int, optional
         The width of the plot.
     height : int, optional
@@ -66,7 +72,7 @@ def iterations_plot(data, width=20, height=10):
     plt.xlabel('iterations')
     plt.ylabel('evaluation value')
 
-    plt.title("Iterations - evaluation value plot.")
+    plt.title(title)
 
     plt.legend()
 

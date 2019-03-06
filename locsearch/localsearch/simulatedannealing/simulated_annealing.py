@@ -224,7 +224,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
                           self._solution.best_order_value)
 
         # init termination criterion
-        self._termination_criterion.check_new_value(base_value)
+        self._termination_criterion.check_first_value(base_value)
         self._termination_criterion.start_timing()
 
         # main loop

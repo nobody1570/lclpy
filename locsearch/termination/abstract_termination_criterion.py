@@ -9,7 +9,7 @@ class AbstractTerminationCriterion(ABC):
 
     @abstractmethod
     def keep_running(self):
-        """function to determine if the algorithm needs to continue running
+        """Function to determine if the algorithm needs to continue running
 
         Returns
         -------
@@ -23,9 +23,21 @@ class AbstractTerminationCriterion(ABC):
         pass
 
     def iteration_done(self):
-        """function to be called after every iteration.
+        """Function to be called after every iteration.
 
         Does not need to be used or implemented.
+
+        """
+
+        pass
+
+    def check_first_value(self, value):
+        """Function that should be called once before the main loop.
+
+        Parameters
+        ----------
+        value : int or float
+            Is the evaluation value of the initial solution.
 
         """
 

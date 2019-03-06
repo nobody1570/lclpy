@@ -228,7 +228,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         self._data_append(self.data, iteration, base_value)
 
         # init termination criterion
-        self._termination_criterion.check_new_value(base_value)
+        self._termination_criterion.check_first_value(base_value)
         self._termination_criterion.start_timing()
 
         while self._termination_criterion.keep_running():

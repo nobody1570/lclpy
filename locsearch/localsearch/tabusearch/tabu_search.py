@@ -183,7 +183,7 @@ class TabuSearch(AbstractLocalSearch):
         self._data_append(self.data, iteration, base_value, base_value)
 
         # init termination criterion
-        self._termination_criterion.check_new_value(base_value)
+        self._termination_criterion.check_first_value(base_value)
         self._termination_criterion.start_timing()
 
         # main loop
@@ -225,7 +225,7 @@ class TabuSearch(AbstractLocalSearch):
             # check if a move was found
             # if no move was found, the base_value will be the start value of
             # best_found_delta
-            if base_value is not self._best_found_delta_base_value:
+            if base_value != self._best_found_delta_base_value:
 
                 self._solution.move(best_found_move)
 
@@ -337,9 +337,9 @@ class TabuSearch(AbstractLocalSearch):
             >>> tabu_search._solution._order
             array([0, 3, 2, 1])
             >>> tabu_search._termination_criterion.keep_running()
-            False
+            True
             >>> len(tabu_search._tabu_list._list)
-            5
+            3
             >>> # reset
             >>> tabu_search.reset()
             ... # after reset

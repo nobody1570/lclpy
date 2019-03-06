@@ -58,7 +58,7 @@ class TabuList(object):
 
         """
 
-        self._list.append(hash(item))
+        self._list.append(item)
 
     def contains(self, item):
         """A method that checks if an item is in the tabu list.
@@ -75,4 +75,4 @@ class TabuList(object):
             isn't in the tabu list.
 
         """
-        return hash(item) in self._list
+        return item in self._list

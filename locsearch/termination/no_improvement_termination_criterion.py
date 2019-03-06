@@ -182,7 +182,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
             self._old_best_value = float("-inf")
 
     def keep_running(self):
-        """function to determine if the algorithm needs to continue running
+        """Function to determine if the algorithm needs to continue running.
 
         Returns
         -------
@@ -195,7 +195,7 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         return self._run
 
     def iteration_done(self):
-        """function to be called after every iteration
+        """Function to be called after every iteration.
 
         Increments _iterations by 1.
 
@@ -206,8 +206,20 @@ class NoImprovementTerminationCriterion(AbstractTerminationCriterion):
         if self._iterations == self._max_iterations:
             self._run = False
 
+    def check_first_value(self, value):
+        """Function that should be called once before the main loop.
+
+        Parameters
+        ----------
+        value : int or float
+            Is the evaluation value of the initial solution.
+
+        """
+
+        self._old_best_value = value
+
     def check_new_value(self, value):
-        """function to be called after every improvement of the evaluation function.
+        """Function to be called after every improvement of the evaluation function.
 
         It's also possible to call this function every time when the
         evaluation value is calculated without ill effects.
