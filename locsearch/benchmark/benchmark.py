@@ -23,7 +23,7 @@ def benchmark(problems, algorithms, stop_criterion, runs=10, seeds=None):
 
     Returns
     -------
-    List of namedtuple
+    list of list of list of namedtuple
         A 3-dimensional list of namedtuple. These namedtuples are the results
         of the algorithms. The first indice represents an algorithm, the second
         a problem, the third a run of the algorithm-problem pair. The indices
