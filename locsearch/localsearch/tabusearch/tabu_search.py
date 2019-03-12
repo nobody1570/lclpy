@@ -253,6 +253,10 @@ class TabuSearch(AbstractLocalSearch):
             iteration += 1
             self._termination_criterion.iteration_done()
 
+        # last data point
+        self._data_append(self.data, iteration, base_value,
+                          self._problem.best_order_value)
+
         # if we have data:
         # convert data to something easier to plot
         if self.data is not None:

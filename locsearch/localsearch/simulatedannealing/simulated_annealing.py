@@ -291,6 +291,10 @@ class SimulatedAnnealing(AbstractLocalSearch):
 
             self._termination_criterion.check_variable(self._temperature)
 
+        # last data point
+        self._data_append(self.data, iteration, self._temperature,
+                          base_value, self._problem.best_order_value)
+
         # if we have data:
         # convert data to something easier to plot
         if self.data is not None:
