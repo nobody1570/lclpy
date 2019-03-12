@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
 
-class AbstractLocalSearchSolution(ABC):
-    """Template to create Solution-classes for localsearch implemenatations.
+class AbstractLocalSearchProblem(ABC):
+    """Template to create Problem-classes for localsearch implemenatations.
 
     This Class is meant to be used as a template.
     It is supposed to be used when constructing your own solution objects for a

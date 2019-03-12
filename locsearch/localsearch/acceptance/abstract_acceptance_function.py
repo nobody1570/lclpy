@@ -4,8 +4,8 @@ from abc import ABC, abstractmethod
 class AbstractAcceptanceFunction(ABC):
     """Template to create acceptance functions.
 
-    Acceptance functions determine if a worse solution than the current
-    solution is accepted as the new current solution.
+    Acceptance functions determine if a worse problem than the current
+    problem is accepted as the new current problem.
 
     """
 
@@ -27,8 +27,8 @@ class AbstractAcceptanceFunction(ABC):
         Returns
         -------
         bool
-            The function returns true if the solution is accepted,
-            the function returns false if the solution is rejected.
+            The function returns true if the problem is accepted,
+            the function returns false if the problem is rejected.
 
         """
         pass

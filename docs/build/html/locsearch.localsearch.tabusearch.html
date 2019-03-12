@@ -133,15 +133,15 @@ isn’t in the tabu list.</td>
 <span id="locsearch-localsearch-tabusearch-tabu-search-module"></span><h2>locsearch.localsearch.tabusearch.tabu_search module<a class="headerlink" href="#module-locsearch.localsearch.tabusearch.tabu_search" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch">
-<em class="property">class </em><code class="descclassname">locsearch.localsearch.tabusearch.tabu_search.</code><code class="descname">TabuSearch</code><span class="sig-paren">(</span><em>solution</em>, <em>termination_criterion</em>, <em>list_size=7</em>, <em>minimise=True</em>, <em>benchmarking=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">locsearch.localsearch.tabusearch.tabu_search.</code><code class="descname">TabuSearch</code><span class="sig-paren">(</span><em>problem</em>, <em>termination_criterion</em>, <em>list_size=7</em>, <em>minimise=True</em>, <em>benchmarking=True</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch" title="locsearch.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
-<p>Performs a tabu search on the given solution.</p>
+<p>Performs a tabu search on the given problem.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>solution</strong> (<a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution"><em>AbstractLocalSearchSolution</em></a>) – Contains all the data needed for the specific problem.</li>
+<li><strong>problem</strong> (<a class="reference internal" href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem.</li>
 <li><strong>termination_criterion</strong> (<a class="reference internal" href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</li>
 <li><strong>list_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The size of the tabu list. The default is 7.</li>
 <li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
@@ -154,14 +154,14 @@ one wishes no benchmarks to be made. Default is True.</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._solution">
-<code class="descname">_solution</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._solution" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch._problem">
+<code class="descname">_problem</code><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._problem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains all the data needed for the specific problem.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution" title="locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></td>
 </tr>
 </tbody>
 </table>
@@ -275,12 +275,12 @@ benchmarks are made.</p>
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.array_solution</span> <span class="kn">import</span> <span class="n">ArraySolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">... </span><span class="c1"># init problem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -289,11 +289,11 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">ArraySolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">problem</span> <span class="o">=</span> <span class="n">ArrayProblem</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init TabuSearch</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span>
 <span class="gp">... </span>                         <span class="n">benchmarking</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -309,12 +309,12 @@ benchmarks are made.</p>
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.solution.array_solution</span> <span class="kn">import</span> <span class="n">ArraySolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">... </span><span class="c1"># init solution</span>
+<span class="gp">... </span><span class="c1"># init problem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
 <span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
@@ -323,17 +323,93 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span> <span class="o">=</span> <span class="n">ArraySolution</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">problem</span> <span class="o">=</span> <span class="n">ArrayProblem</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init TabuSearch</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span>
 <span class="gp">... </span>                         <span class="n">benchmarking</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If the problem or termination criterion have no reset method
+implemented.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>An example of minimising, reset after run:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.tabusearch.tabu_search</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TabuSearch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.localsearch.move.tsp_array_swap</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span><span class="c1"># seed random</span>
+<span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is</span>
+<span class="gp">... </span><span class="c1">#                           not needed in your implementation.)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init problem</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<span class="gp">... </span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">move</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluation</span> <span class="o">=</span> <span class="n">TspEvaluationFunction</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">problem</span> <span class="o">=</span> <span class="n">ArrayProblem</span><span class="p">(</span><span class="n">evaluation</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span> <span class="o">=</span> <span class="n">MaxIterationsTerminationCriterion</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># init TabuSearch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="n">benchmarking</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># state before running</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_problem</span><span class="o">.</span><span class="n">_order</span>
+<span class="go">array([0, 1, 2, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_termination_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_tabu_list</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># run algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># tests reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># before reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_problem</span><span class="o">.</span><span class="n">_order</span>
+<span class="go">array([0, 3, 2, 1])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_termination_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_tabu_list</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># after reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_problem</span><span class="o">.</span><span class="n">_order</span>
+<span class="go">array([0, 1, 2, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_termination_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_tabu_list</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="method">
 <dt id="locsearch.localsearch.tabusearch.tabu_search.TabuSearch.run">
 <code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.tabusearch.tabu_search.TabuSearch.run" title="Permalink to this definition">¶</a></dt>
@@ -398,8 +474,7 @@ time, iteration, value, best_value</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.problem.html">locsearch.problem package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
 </ul>
 </li>

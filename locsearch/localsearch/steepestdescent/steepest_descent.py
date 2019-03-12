@@ -10,11 +10,11 @@ from collections import namedtuple
 
 
 class SteepestDescent(AbstractLocalSearch):
-    """Performs a steepest descent algorithm on the given solution.
+    """Performs a steepest descent algorithm on the given problem.
 
     Parameters
     ----------
-    solution : AbstractLocalSearchSolution
+    problem : AbstractLocalSearchProblem
         Contains all the data needed for the specific problem.
     minimise : bool, optional
         If the goal is to minimise the evaluation function, this should be
@@ -28,7 +28,7 @@ class SteepestDescent(AbstractLocalSearch):
 
     Attributes
     ----------
-    _solution : AbstractLocalSearchSolution
+    _problem : AbstractLocalSearchProblem
         Contains all the data needed for the specific problem.
     _termination_criterion : AbstractTerminationCriterion
         Ends the algorithm if no more improvements can be found.
@@ -56,8 +56,8 @@ class SteepestDescent(AbstractLocalSearch):
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
-        ... # init solution
+        >>> from locsearch.problem.array_problem import ArrayProblem
+        ... # init problem
         >>> distance_matrix = numpy.array(
         ... [[0, 2, 5, 8],
         ...  [2, 0, 4, 1],
@@ -66,9 +66,9 @@ class SteepestDescent(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(solution, benchmarking=False)
+        >>> steepest_descent = SteepestDescent(problem, benchmarking=False)
         ... # run algorithm
         >>> steepest_descent.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -83,8 +83,8 @@ class SteepestDescent(AbstractLocalSearch):
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
-        ... # init solution
+        >>> from locsearch.problem.array_problem import ArrayProblem
+        ... # init problem
         >>> distance_matrix = numpy.array(
         ... [[0, 8, 5, 2],
         ...  [8, 0, 4, 7],
@@ -93,9 +93,9 @@ class SteepestDescent(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(solution, False,
+        >>> steepest_descent = SteepestDescent(problem, False,
         ...                                    benchmarking=False)
         ... # run algorithm
         >>> steepest_descent.run()
@@ -105,11 +105,11 @@ class SteepestDescent(AbstractLocalSearch):
 
     """
 
-    def __init__(self, solution, minimise=True, termination_criterion=None,
+    def __init__(self, problem, minimise=True, termination_criterion=None,
                  benchmarking=True):
         super().__init__()
 
-        self._solution = solution
+        self._problem = problem
 
         if termination_criterion is None:
             self._termination_criterion = AlwaysTrueCriterion()
@@ -148,9 +148,9 @@ class SteepestDescent(AbstractLocalSearch):
 
         """
 
-        # init solution
-        base_value = self._solution.evaluate()
-        self._solution.set_as_best(base_value)
+        # init problem
+        base_value = self._problem.evaluate()
+        self._problem.set_as_best(base_value)
 
         # init iteration (used to vount the amount of iterations)
         iteration = 0
@@ -168,10 +168,10 @@ class SteepestDescent(AbstractLocalSearch):
             best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
-            for move in self._solution.get_moves():
+            for move in self._problem.get_moves():
 
                 # check quality move
-                delta = self._solution.evaluate_move(move)
+                delta = self._problem.evaluate_move(move)
 
                 # keep data best move
                 if self._function(best_found_delta, delta):
@@ -179,17 +179,17 @@ class SteepestDescent(AbstractLocalSearch):
                     best_found_move = move
 
             # check if the best_found_move improves the delta, if this is the
-            # case perform the move and set a new best solution
+            # case perform the move and set a new best problem
             base_value = base_value + best_found_delta
 
             self._termination_criterion.check_new_value(base_value)
 
-            if self._function(self._solution.best_order_value, base_value):
+            if self._function(self._problem.best_order_value, base_value):
                 # if the found value is better
 
                 # perform move and set new state as best.
-                self._solution.move(best_found_move)
-                self._solution.set_as_best(base_value)
+                self._problem.move(best_found_move)
+                self._problem.set_as_best(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration, base_value)
@@ -221,8 +221,8 @@ class SteepestDescent(AbstractLocalSearch):
 
         Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
-        return Results(self._solution.best_order,
-                       self._solution.best_order_value,
+        return Results(self._problem.best_order,
+                       self._problem.best_order_value,
                        data)
 
     def reset(self):
@@ -231,7 +231,7 @@ class SteepestDescent(AbstractLocalSearch):
         Raises
         ------
         NotImplementedError
-            If the solution or termination criterion have no reset method
+            If the problem or termination criterion have no reset method
             implemented.
 
         Examples
@@ -247,8 +247,8 @@ class SteepestDescent(AbstractLocalSearch):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
-            ... # init solution
+            >>> from locsearch.problem.array_problem import ArrayProblem
+            ... # init problem
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
             ...  [2, 0, 4, 1],
@@ -257,12 +257,12 @@ class SteepestDescent(AbstractLocalSearch):
             >>> size = distance_matrix.shape[0]
             >>> move = TspArraySwap(size)
             >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-            >>> solution = ArraySolution(evaluation, move, size)
+            >>> problem = ArrayProblem(evaluation, move, size)
             ... # init SteepestDescent
-            >>> steepest_descent = SteepestDescent(solution,
+            >>> steepest_descent = SteepestDescent(problem,
             ...                                    benchmarking=False)
             ... # state before running
-            >>> steepest_descent._solution._order
+            >>> steepest_descent._problem._order
             array([0, 1, 2, 3])
             >>> steepest_descent._termination_criterion.keep_running()
             True
@@ -271,14 +271,14 @@ class SteepestDescent(AbstractLocalSearch):
             Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
             >>> # tests reset
             >>> # before reset
-            >>> steepest_descent._solution._order
+            >>> steepest_descent._problem._order
             array([0, 1, 3, 2])
             >>> steepest_descent._termination_criterion.keep_running()
             True
             >>> # reset
             >>> steepest_descent.reset()
             ... # after reset
-            >>> steepest_descent._solution._order
+            >>> steepest_descent._problem._order
             array([0, 1, 2, 3])
             >>> steepest_descent._termination_criterion.keep_running()
             True
@@ -286,7 +286,7 @@ class SteepestDescent(AbstractLocalSearch):
 
         """
 
-        self._solution.reset()
+        self._problem.reset()
         self._termination_criterion.reset()
 
         if self.data is not None:

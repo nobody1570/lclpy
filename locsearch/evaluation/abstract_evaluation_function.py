@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class AbstractEvaluationFunction(ABC):
     """Template to create evaluation functions.
 
-    Evaluationfunctions are used to determine the quality of a solution.
+    Evaluationfunctions are used to determine the quality of a problem.
 
     """
 
@@ -43,7 +43,7 @@ class AbstractEvaluationFunction(ABC):
     def delta_evaluate(self, current_data, move):
         """Evaluates the difference in quality between two solutions.
 
-        The two compared solutions are the current solution and the solution
+        The two compared solutions are the current problem and the problem
         if the move was performed. The move is not actually performed.
 
         For this function to work, get_problem_type needs to be implemented,

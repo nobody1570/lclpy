@@ -1,5 +1,5 @@
-from locsearch.solution.abstract_local_search_solution \
-    import AbstractLocalSearchSolution
+from locsearch.problem.abstract_local_search_problem \
+    import AbstractLocalSearchProblem
 import numpy
 from locsearch.aidfunc.error_func import not_multi_move_type
 from locsearch.aidfunc.error_func import NoNextNeighbourhood
@@ -7,7 +7,7 @@ from locsearch.aidfunc.error_func import NoNextNeighbourhood
 from statistics import mean, StatisticsError
 
 
-class ArraySolution(AbstractLocalSearchSolution):
+class ArrayProblem(AbstractLocalSearchProblem):
     """Contains all the data needed to handle a TSP problem.
 
     Parameters
@@ -36,15 +36,15 @@ class ArraySolution(AbstractLocalSearchSolution):
     _starting_order : numpy.ndarray
         The initial value of _order.
     best_order : numpy.ndarray
-        Contains the order of the best found solution.
+        Contains the order of the best found problem.
     best_order_value: int or float
-        The evaluation value of the best found solution.
+        The evaluation value of the best found problem.
 
     Examples
     --------
 
     A simple example, demonstrates the use of move, undo_move, evaluate and
-    set_as_best. Note that solution.set_as_best_order does NOT check if the
+    set_as_best. Note that problem.set_as_best_order does NOT check if the
     value actually belongs to the order NOR does it check if the value is
     better than the previous best value:
 
@@ -54,7 +54,7 @@ class ArraySolution(AbstractLocalSearchSolution):
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         ... # init distance matrix
         >>> distance_matrix = numpy.array(
         ... [[0, 2, 5, 8],
@@ -66,43 +66,43 @@ class ArraySolution(AbstractLocalSearchSolution):
         >>> move_func = TspArraySwap(size)
         ... # init evaluation function
         >>> evaluation_func = TspEvaluationFunction(distance_matrix)
-        ... # init solution
-        >>> solution = ArraySolution(evaluation_func, move_func, size)
+        ... # init problem
+        >>> problem = ArrayProblem(evaluation_func, move_func, size)
         ... # default generated order
-        >>> solution._order
+        >>> problem._order
         array([0, 1, 2, 3])
         >>> # evaluating the current order
-        >>> value = solution.evaluate()
+        >>> value = problem.evaluate()
         >>> value
         21
         >>> # saving the current order as the best order.
-        >>> solution.set_as_best(value)
+        >>> problem.set_as_best(value)
         ... # get the best order and it's value
-        >>> solution.best_order
+        >>> problem.best_order
         array([0, 1, 2, 3])
-        >>> solution.best_order_value
+        >>> problem.best_order_value
         21
         >>> # perform a move and evaluate the new order
-        >>> solution.move((2,3))
-        >>> solution._order
+        >>> problem.move((2,3))
+        >>> problem._order
         array([0, 1, 3, 2])
-        >>> value = solution.evaluate()
+        >>> value = problem.evaluate()
         >>> value
         15
         >>> # saving the current order as the best order
-        >>> solution.set_as_best(value)
-        >>> solution.best_order
+        >>> problem.set_as_best(value)
+        >>> problem.best_order
         array([0, 1, 3, 2])
-        >>> solution.best_order_value
+        >>> problem.best_order_value
         15
         >>> # undoing move and rechecking value.
         >>> # Note that best_order and best_order_value don't change.
-        >>> solution.undo_move((2,3))
-        >>> solution._order
+        >>> problem.undo_move((2,3))
+        >>> problem._order
         array([0, 1, 2, 3])
-        >>> solution.best_order
+        >>> problem.best_order
         array([0, 1, 3, 2])
-        >>> solution.best_order_value
+        >>> problem.best_order_value
         15
 
     Initialising with a non-default order:
@@ -113,7 +113,7 @@ class ArraySolution(AbstractLocalSearchSolution):
         >>> from locsearch.localsearch.move.tsp_array_swap import TspArraySwap
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         ... # init distance matrix
         >>> distance_matrix = numpy.array(
         ... [[0, 2, 5, 8],
@@ -127,11 +127,11 @@ class ArraySolution(AbstractLocalSearchSolution):
         >>> move_func = TspArraySwap(size)
         ... # init evaluation function
         >>> evaluation_func = TspEvaluationFunction(distance_matrix)
-        ... # init solution
-        >>> solution = ArraySolution(
+        ... # init problem
+        >>> problem = ArrayProblem(
         ...     evaluation_func, move_func, size, wanted_order)
-        ... # the order of the solution
-        >>> solution._order
+        ... # the order of the problem
+        >>> problem._order
         array([0, 3, 2, 1])
 
     """
@@ -190,7 +190,7 @@ class ArraySolution(AbstractLocalSearchSolution):
         Yields
         -------
         tuple of int
-            AThe next move in the neighbourhood.
+            The next move in the neighbourhood.
 
         Examples
         --------
@@ -205,7 +205,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -217,11 +217,11 @@ class ArraySolution(AbstractLocalSearchSolution):
             >>> move_func = TspArraySwap(size)
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func, size)
             ... # retrieve all moves with get_moves
             >>> all_moves = []
-            >>> for move in solution.get_moves():
+            >>> for move in problem.get_moves():
             ...     all_moves.append(move)
             >>> all_moves
             [(1, 2), (1, 3), (2, 3)]
@@ -249,7 +249,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -261,10 +261,10 @@ class ArraySolution(AbstractLocalSearchSolution):
             >>> move_func = TspArraySwap(size)
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func, size)
             ... # get a random move and check if it's in the neighboorhood.
-            >>> move = solution.get_random_move()
+            >>> move = problem.get_random_move()
             >>> move in [(1, 2), (1, 3), (2, 3)]
             True
 
@@ -303,7 +303,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -316,14 +316,14 @@ class ArraySolution(AbstractLocalSearchSolution):
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix,
             ...                                         move_func)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func, size)
             ... # tests
-            >>> solution.evaluate_move((1, 2))
+            >>> problem.evaluate_move((1, 2))
             -3
-            >>> solution.evaluate_move((1, 3))
+            >>> problem.evaluate_move((1, 3))
             0
-            >>> solution.evaluate_move((2, 3))
+            >>> problem.evaluate_move((2, 3))
             -6
 
         """
@@ -376,7 +376,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -389,12 +389,12 @@ class ArraySolution(AbstractLocalSearchSolution):
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix,
             ...                                         move_func)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func, size)
-            >>> solution.state()
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func, size)
+            >>> problem.state()
             (0, 1, 2, 3)
-            >>> solution.move((1, 3))
-            >>> solution.state()
+            >>> problem.move((1, 3))
+            >>> problem.state()
             (0, 3, 2, 1)
 
         """
@@ -532,7 +532,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -545,22 +545,22 @@ class ArraySolution(AbstractLocalSearchSolution):
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix,
             ...                                         move_func)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func, size)
             ... # tests
-            >>> solution.state()
+            >>> problem.state()
             (0, 1, 2, 3)
-            >>> solution.move((1, 3))
-            >>> solution.state()
+            >>> problem.move((1, 3))
+            >>> problem.state()
             (0, 3, 2, 1)
-            >>> solution.reset()
-            >>> solution.state()
+            >>> problem.reset()
+            >>> problem.state()
             (0, 1, 2, 3)
-            >>> solution.move((1, 3))
-            >>> solution.state()
+            >>> problem.move((1, 3))
+            >>> problem.state()
             (0, 3, 2, 1)
-            >>> solution.reset()
-            >>> solution.state()
+            >>> problem.reset()
+            >>> problem.state()
             (0, 1, 2, 3)
 
         An example with a non-default order:
@@ -572,7 +572,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -585,23 +585,23 @@ class ArraySolution(AbstractLocalSearchSolution):
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix,
             ...                                         move_func)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func,
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func,
             ...                          size, [0, 1, 3, 2])
             ... # tests
-            >>> solution.state()
+            >>> problem.state()
             (0, 1, 3, 2)
-            >>> solution.move((1, 3))
-            >>> solution.state()
+            >>> problem.move((1, 3))
+            >>> problem.state()
             (0, 2, 3, 1)
-            >>> solution.reset()
-            >>> solution.state()
+            >>> problem.reset()
+            >>> problem.state()
             (0, 1, 3, 2)
-            >>> solution.move((1, 3))
-            >>> solution.state()
+            >>> problem.move((1, 3))
+            >>> problem.state()
             (0, 2, 3, 1)
-            >>> solution.reset()
-            >>> solution.state()
+            >>> problem.reset()
+            >>> problem.state()
             (0, 1, 3, 2)
 
         """
@@ -633,7 +633,7 @@ class ArraySolution(AbstractLocalSearchSolution):
             ...     import TspArraySwap
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # init distance matrix
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
@@ -646,31 +646,31 @@ class ArraySolution(AbstractLocalSearchSolution):
             ... # init evaluation function
             >>> evaluation_func = TspEvaluationFunction(distance_matrix,
             ...                                         move_func)
-            ... # init solution
-            >>> solution = ArraySolution(evaluation_func, move_func, size)
+            ... # init problem
+            >>> problem = ArrayProblem(evaluation_func, move_func, size)
             ... # with default order
-            >>> solution.state()
+            >>> problem.state()
             (0, 1, 2, 3)
-            >>> solution.diff_state((0, 1, 2, 3))
+            >>> problem.diff_state((0, 1, 2, 3))
             0
-            >>> solution.diff_state((0, 2, 1, 3))
+            >>> problem.diff_state((0, 2, 1, 3))
             1.5
-            >>> solution.diff_state((0, 2, 3, 1))
+            >>> problem.diff_state((0, 2, 3, 1))
             2
-            >>> solution.diff_state((3, 1, 2, 0))
+            >>> problem.diff_state((3, 1, 2, 0))
             1.5
             >>> # with other order
-            >>> solution.move((0, 3))
-            >>> solution.move((1, 2))
-            >>> solution.state()
+            >>> problem.move((0, 3))
+            >>> problem.move((1, 2))
+            >>> problem.state()
             (3, 2, 1, 0)
-            >>> solution.diff_state((3, 2, 1, 0))
+            >>> problem.diff_state((3, 2, 1, 0))
             0
-            >>> solution.diff_state((0, 2, 1, 3))
+            >>> problem.diff_state((0, 2, 1, 3))
             1.5
-            >>> solution.diff_state((3, 2, 0, 1))
+            >>> problem.diff_state((3, 2, 0, 1))
             2.5
-            >>> solution.diff_state((3, 1, 2, 0))
+            >>> problem.diff_state((3, 1, 2, 0))
             1.5
 
         """

@@ -47,8 +47,8 @@
 <em class="property">class </em><code class="descclassname">locsearch.localsearch.acceptance.abstract_acceptance_function.</code><code class="descname">AbstractAcceptanceFunction</code><a class="headerlink" href="#locsearch.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create acceptance functions.</p>
-<p>Acceptance functions determine if a worse solution than the current
-solution is accepted as the new current solution.</p>
+<p>Acceptance functions determine if a worse problem than the current
+problem is accepted as the new current problem.</p>
 <dl class="method">
 <dt id="locsearch.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction.accept">
 <code class="descname">accept</code><span class="sig-paren">(</span><em>delta_value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction.accept" title="Permalink to this definition">¶</a></dt>
@@ -62,8 +62,8 @@ potential new state. This can be calculated by substracting the
 quality of the current state from the quality of the potential new
 state.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the solution is accepted,
-the function returns false if the solution is rejected.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the problem is accepted,
+the function returns false if the problem is rejected.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
 </tr>
@@ -221,6 +221,7 @@ accepted.</p>
 <li class="toctree-l2 current"><a class="reference internal" href="locsearch.html">locsearch package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="locsearch.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="locsearch.aidfunc.html">locsearch.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.benchmark.html">locsearch.benchmark package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.evaluation.html">locsearch.evaluation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a><ul class="current">
@@ -230,9 +231,8 @@ accepted.</p>
 <li class="toctree-l5"><a class="reference internal" href="locsearch.localsearch.html#module-locsearch.localsearch">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.runner.html">locsearch.runner package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.problem.html">locsearch.problem package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
 </ul>
 </li>

@@ -139,8 +139,15 @@ passed.</td>
 <div class="section" id="module-locsearch.aidfunc.error_func">
 <span id="locsearch-aidfunc-error-func-module"></span><h2>locsearch.aidfunc.error_func module<a class="headerlink" href="#module-locsearch.aidfunc.error_func" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
-<dt id="locsearch.aidfunc.error_func.WrongMoveType">
-<em class="property">exception </em><code class="descclassname">locsearch.aidfunc.error_func.</code><code class="descname">WrongMoveType</code><a class="headerlink" href="#locsearch.aidfunc.error_func.WrongMoveType" title="Permalink to this definition">¶</a></dt>
+<dt id="locsearch.aidfunc.error_func.NoNextNeighbourhood">
+<em class="property">exception </em><code class="descclassname">locsearch.aidfunc.error_func.</code><code class="descname">NoNextNeighbourhood</code><a class="headerlink" href="#locsearch.aidfunc.error_func.NoNextNeighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Is raised when there is no next neighbourhood.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="locsearch.aidfunc.error_func.WrongMoveTypeError">
+<em class="property">exception </em><code class="descclassname">locsearch.aidfunc.error_func.</code><code class="descname">WrongMoveTypeError</code><a class="headerlink" href="#locsearch.aidfunc.error_func.WrongMoveTypeError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Is raised when the wrong move type is used.</p>
 </dd></dl>
@@ -156,7 +163,7 @@ passed.</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> – Variable length argument list, it does not matter what or how many
 parameters you use. Does not accept keyword arguments.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#locsearch.aidfunc.error_func.WrongMoveType" title="locsearch.aidfunc.error_func.WrongMoveType"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code></a> – This error will always be raised.</td>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – This error will always be raised.</td>
 </tr>
 </tbody>
 </table>
@@ -371,7 +378,7 @@ parameters you use. Does not accept keyword arguments.</td>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.problem.html">locsearch.problem package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
 </ul>
 </li>

@@ -12,6 +12,14 @@ locsearch.termination.abstract\_termination\_criterion module
     :undoc-members:
     :show-inheritance:
 
+locsearch.termination.always\_true\_criterion module
+----------------------------------------------------
+
+.. automodule:: locsearch.termination.always_true_criterion
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 locsearch.termination.max\_iterations\_termination\_criterion module
 --------------------------------------------------------------------
 

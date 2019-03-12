@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="locsearch.evaluation.deltaeval package" href="locsearch.evaluation.deltaeval.html" />
-    <link rel="prev" title="locsearch.benchmark package" href="locsearch.benchmark.html" />
+    <link rel="prev" title="locsearch.benchmark.statistics package" href="locsearch.benchmark.statistics.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -63,12 +63,12 @@
 <em class="property">class </em><code class="descclassname">locsearch.evaluation.abstract_evaluation_function.</code><code class="descname">AbstractEvaluationFunction</code><a class="headerlink" href="#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create evaluation functions.</p>
-<p>Evaluationfunctions are used to determine the quality of a solution.</p>
+<p>Evaluationfunctions are used to determine the quality of a problem.</p>
 <dl class="method">
 <dt id="locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate">
 <code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the difference in quality between two solutions.</p>
-<p>The two compared solutions are the current solution and the solution
+<p>The two compared solutions are the current problem and the problem
 if the move was performed. The move is not actually performed.</p>
 <p>For this function to work, get_problem_type needs to be implemented,
 the move-object(s) need to have get_move_type implemented and the
@@ -590,7 +590,7 @@ value, the better the quality.</td>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.problem.html">locsearch.problem package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.termination.html">locsearch.termination package</a></li>
 </ul>
 </li>
@@ -607,7 +607,7 @@ value, the better the quality.</td>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
-      <li>Previous: <a href="locsearch.benchmark.html" title="previous chapter">locsearch.benchmark package</a></li>
+      <li>Previous: <a href="locsearch.benchmark.statistics.html" title="previous chapter">locsearch.benchmark.statistics package</a></li>
       <li>Next: <a href="locsearch.evaluation.deltaeval.html" title="next chapter">locsearch.evaluation.deltaeval package</a></li>
   </ul></li>
   </ul></li>

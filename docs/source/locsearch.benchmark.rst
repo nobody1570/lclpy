@@ -1,6 +1,13 @@
 locsearch.benchmark package
 ===========================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    locsearch.benchmark.statistics
+
 Submodules
 ----------
 

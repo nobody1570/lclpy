@@ -91,7 +91,7 @@
         <li><a href="locsearch.evaluation.html#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction._distance_matrix">(locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction attribute)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution._evaluation_function">_evaluation_function (locsearch.solution.array_solution.ArraySolution attribute)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem._evaluation_function">_evaluation_function (locsearch.problem.array_problem.ArrayProblem attribute)</a>
 </li>
       <li><a href="locsearch.evaluation.html#locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._flow_matrix">_flow_matrix (locsearch.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction attribute)</a>
 </li>
@@ -131,15 +131,15 @@
         <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">_max_seconds (locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._minimise">_minimise (locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list">_move_func_list (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood attribute)</a>
 </li>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution._move_function">_move_function (locsearch.solution.array_solution.ArraySolution attribute)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem._move_function">_move_function (locsearch.problem.array_problem.ArrayProblem attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.acceptance.html#locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction._multiplier">_multiplier (locsearch.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction attribute)</a>
 </li>
@@ -149,8 +149,16 @@
         <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion attribute)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution._order">_order (locsearch.solution.array_solution.ArraySolution attribute)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem._order">_order (locsearch.problem.array_problem.ArrayProblem attribute)</a>
 </li>
+      <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._problem">_problem (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
+
+      <ul>
+        <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._problem">(locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent attribute)</a>
+</li>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._problem">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
+      </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion._run">_run (locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion attribute)</a>
 
       <ul>
@@ -175,15 +183,11 @@
         <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.tsp_array_swap.TspArraySwap._size">(locsearch.localsearch.move.tsp_array_swap.TspArraySwap attribute)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._solution">_solution (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
-
-      <ul>
-        <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent._solution">(locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent attribute)</a>
-</li>
-        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._solution">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
-</li>
-      </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start">_start (locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
+</li>
+      <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._start_temperature">_start_temperature (locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing attribute)</a>
+</li>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem._starting_order">_starting_order (locsearch.problem.array_problem.ArrayProblem attribute)</a>
 </li>
       <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch._tabu_list">_tabu_list (locsearch.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
 </li>
@@ -213,7 +217,7 @@
 </li>
       <li><a href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch">AbstractLocalSearch (class in locsearch.localsearch.abstract_local_search)</a>
 </li>
-      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution">AbstractLocalSearchSolution (class in locsearch.solution.abstract_local_search_solution)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem (class in locsearch.problem.abstract_local_search_problem)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.abstract_move.AbstractMove">AbstractMove (class in locsearch.localsearch.move.abstract_move)</a>
 </li>
@@ -229,9 +233,11 @@
       </ul></li>
       <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList.add">add() (locsearch.localsearch.tabusearch.tabu_list.TabuList method)</a>
 </li>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.add_to_data_func.add_to_data_func">add_to_data_func() (in module locsearch.aidfunc.add_to_data_func)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.add_to_data_func.add_to_data_func">add_to_data_func() (in module locsearch.aidfunc.add_to_data_func)</a>
+      <li><a href="locsearch.termination.html#locsearch.termination.always_true_criterion.AlwaysTrueCriterion">AlwaysTrueCriterion (class in locsearch.termination.always_true_criterion)</a>
 </li>
       <li><a href="locsearch.evaluation.deltaeval.html#locsearch.evaluation.deltaeval.delta_tsp.array_reverse_order_changed_distances">array_reverse_order_changed_distances() (in module locsearch.evaluation.deltaeval.delta_tsp)</a>
 </li>
@@ -253,9 +259,9 @@
         <li><a href="locsearch.evaluation.deltaeval.html#locsearch.evaluation.deltaeval.delta_tsp.array_swap_transform_next_index_to_current_index">(in module locsearch.evaluation.deltaeval.delta_tsp)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder">ArrayReverseOrder (class in locsearch.localsearch.move.array_reverse_order)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem">ArrayProblem (class in locsearch.problem.array_problem)</a>
 </li>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution">ArraySolution (class in locsearch.solution.array_solution)</a>
+      <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.array_reverse_order.ArrayReverseOrder">ArrayReverseOrder (class in locsearch.localsearch.move.array_reverse_order)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.array_swap.ArraySwap">ArraySwap (class in locsearch.localsearch.move.array_swap)</a>
 </li>
@@ -265,12 +271,14 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.best_order">best_order (locsearch.solution.array_solution.ArraySolution attribute)</a>
+      <li><a href="locsearch.benchmark.html#locsearch.benchmark.benchmark.benchmark">benchmark() (in module locsearch.benchmark.benchmark)</a>
 </li>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.best_order_value">best_order_value (locsearch.solution.array_solution.ArraySolution attribute)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.best_order">best_order (locsearch.problem.array_problem.ArrayProblem attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.best_order_value">best_order_value (locsearch.problem.array_problem.ArrayProblem attribute)</a>
+</li>
       <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.bigger">bigger() (in module locsearch.aidfunc.is_improvement_func)</a>
 </li>
       <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.is_improvement_func.bigger_or_equal">bigger_or_equal() (in module locsearch.aidfunc.is_improvement_func)</a>
@@ -285,6 +293,12 @@
 </li>
       <li><a href="locsearch.evaluation.deltaeval.html#locsearch.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.changed_locations">changed_locations (locsearch.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate attribute)</a>
 </li>
+      <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value">check_first_value() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
+
+      <ul>
+        <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion method)</a>
+</li>
+      </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value">check_new_value() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
 
       <ul>
@@ -295,6 +309,8 @@
         <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable">check_variable() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
 
       <ul>
@@ -303,8 +319,6 @@
         <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion.check_variable">(locsearch.termination.multi_criterion.MultiCriterion method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction">CnstIterationsTempFunction (class in locsearch.localsearch.simulatedannealing.cnst_iterations_temp_function)</a>
 </li>
       <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_list.TabuList.contains">contains() (locsearch.localsearch.tabusearch.tabu_list.TabuList method)</a>
@@ -361,6 +375,8 @@
 </li>
       <li><a href="locsearch.evaluation.deltaeval.html#locsearch.evaluation.deltaeval.delta_tsp.delta_tsp">delta_tsp() (in module locsearch.evaluation.deltaeval.delta_tsp)</a>
 </li>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.diff_state">diff_state() (locsearch.problem.array_problem.ArrayProblem method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -380,17 +396,17 @@
 </li>
         <li><a href="locsearch.evaluation.html#locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate">(locsearch.evaluation.tsp_evaluation_function.TspEvaluationFunction method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.evaluate">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.evaluate">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.evaluate_move">evaluate_move() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate_move">evaluate_move() (locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.evaluate_move">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.evaluate_move">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -399,7 +415,7 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.first_neighbourhood">first_neighbourhood() (locsearch.solution.array_solution.ArraySolution method)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.first_neighbourhood">first_neighbourhood() (locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -436,9 +452,9 @@
 </li>
         <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.tsp_array_swap.TspArraySwap.get_moves">(locsearch.localsearch.move.tsp_array_swap.TspArraySwap method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.get_moves">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_moves">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.get_moves">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.get_moves">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -462,9 +478,9 @@
 </li>
         <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move">(locsearch.localsearch.move.tsp_array_swap.TspArraySwap method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.get_random_move">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_random_move">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.get_random_move">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.get_random_move">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -500,6 +516,8 @@
       <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running">keep_running() (locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
 
       <ul>
+        <li><a href="locsearch.termination.html#locsearch.termination.always_true_criterion.AlwaysTrueCriterion.keep_running">(locsearch.termination.always_true_criterion.AlwaysTrueCriterion method)</a>
+</li>
         <li><a href="locsearch.termination.html#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running">(locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion method)</a>
 </li>
         <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running">(locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion method)</a>
@@ -541,6 +559,10 @@
 </li>
       <li><a href="locsearch.benchmark.html#module-locsearch.benchmark.benchmark">locsearch.benchmark.benchmark (module)</a>
 </li>
+      <li><a href="locsearch.benchmark.statistics.html#module-locsearch.benchmark.statistics">locsearch.benchmark.statistics (module)</a>
+</li>
+      <li><a href="locsearch.benchmark.statistics.html#module-locsearch.benchmark.statistics.statistics">locsearch.benchmark.statistics.statistics (module)</a>
+</li>
       <li><a href="locsearch.evaluation.html#module-locsearch.evaluation">locsearch.evaluation (module)</a>
 </li>
       <li><a href="locsearch.evaluation.html#module-locsearch.evaluation.abstract_evaluation_function">locsearch.evaluation.abstract_evaluation_function (module)</a>
@@ -561,6 +583,8 @@
 </li>
       <li><a href="locsearch.io.html#module-locsearch.io">locsearch.io (module)</a>
 </li>
+      <li><a href="locsearch.io.html#module-locsearch.io.csv">locsearch.io.csv (module)</a>
+</li>
       <li><a href="locsearch.io.html#module-locsearch.io.qaplib">locsearch.io.qaplib (module)</a>
 </li>
       <li><a href="locsearch.io.html#module-locsearch.io.tsplib">locsearch.io.tsplib (module)</a>
@@ -577,10 +601,10 @@
 </li>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move">locsearch.localsearch.move (module)</a>
 </li>
-      <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.abstract_move">locsearch.localsearch.move.abstract_move (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.abstract_move">locsearch.localsearch.move.abstract_move (module)</a>
+</li>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.array_reverse_order">locsearch.localsearch.move.array_reverse_order (module)</a>
 </li>
       <li><a href="locsearch.localsearch.move.html#module-locsearch.localsearch.move.array_swap">locsearch.localsearch.move.array_swap (module)</a>
@@ -615,15 +639,17 @@
 </li>
       <li><a href="locsearch.plot.html#module-locsearch.plot.plot">locsearch.plot.plot (module)</a>
 </li>
-      <li><a href="locsearch.solution.html#module-locsearch.solution">locsearch.solution (module)</a>
+      <li><a href="locsearch.problem.html#module-locsearch.problem">locsearch.problem (module)</a>
 </li>
-      <li><a href="locsearch.solution.html#module-locsearch.solution.abstract_local_search_solution">locsearch.solution.abstract_local_search_solution (module)</a>
+      <li><a href="locsearch.problem.html#module-locsearch.problem.abstract_local_search_problem">locsearch.problem.abstract_local_search_problem (module)</a>
 </li>
-      <li><a href="locsearch.solution.html#module-locsearch.solution.array_solution">locsearch.solution.array_solution (module)</a>
+      <li><a href="locsearch.problem.html#module-locsearch.problem.array_problem">locsearch.problem.array_problem (module)</a>
 </li>
       <li><a href="locsearch.termination.html#module-locsearch.termination">locsearch.termination (module)</a>
 </li>
       <li><a href="locsearch.termination.html#module-locsearch.termination.abstract_termination_criterion">locsearch.termination.abstract_termination_criterion (module)</a>
+</li>
+      <li><a href="locsearch.termination.html#module-locsearch.termination.always_true_criterion">locsearch.termination.always_true_criterion (module)</a>
 </li>
       <li><a href="locsearch.termination.html#module-locsearch.termination.max_iterations_termination_criterion">locsearch.termination.max_iterations_termination_criterion (module)</a>
 </li>
@@ -662,9 +688,9 @@
 </li>
         <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.move">(locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.move">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.move">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.move">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.move">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -685,10 +711,10 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.next_neighbourhood">next_neighbourhood() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.next_neighbourhood">next_neighbourhood() (locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.next_neighbourhood">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.next_neighbourhood">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature">next_temperature() (locsearch.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction method)</a>
@@ -707,6 +733,8 @@
       </ul></li>
       <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion">NoImprovementTerminationCriterion (class in locsearch.termination.no_improvement_termination_criterion)</a>
 </li>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.error_func.NoNextNeighbourhood">NoNextNeighbourhood</a>
+</li>
       <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.error_func.not_multi_move_type">not_multi_move_type() (in module locsearch.aidfunc.error_func)</a>
 </li>
   </ul></td>
@@ -721,10 +749,10 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.previous_neighbourhood">previous_neighbourhood() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.previous_neighbourhood">previous_neighbourhood() (locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.previous_neighbourhood">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.previous_neighbourhood">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -749,6 +777,38 @@
 </li>
       <li><a href="locsearch.io.html#locsearch.io.tsplib.read_tsplib">read_tsplib() (in module locsearch.io.tsplib)</a>
 </li>
+      <li><a href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch.reset">reset() (locsearch.localsearch.abstract_local_search.AbstractLocalSearch method)</a>
+
+      <ul>
+        <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.reset">(locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing method)</a>
+</li>
+        <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent.reset">(locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent method)</a>
+</li>
+        <li><a href="locsearch.localsearch.tabusearch.html#locsearch.localsearch.tabusearch.tabu_search.TabuSearch.reset">(locsearch.localsearch.tabusearch.tabu_search.TabuSearch method)</a>
+</li>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.reset">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
+</li>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.reset">(locsearch.problem.array_problem.ArrayProblem method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset">(locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.always_true_criterion.AlwaysTrueCriterion.reset">(locsearch.termination.always_true_criterion.AlwaysTrueCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset">(locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset">(locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset">(locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion.reset">(locsearch.termination.multi_criterion.MultiCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset">(locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion method)</a>
+</li>
+        <li><a href="locsearch.termination.html#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset">(locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="locsearch.localsearch.html#locsearch.localsearch.abstract_local_search.AbstractLocalSearch.run">run() (locsearch.localsearch.abstract_local_search.AbstractLocalSearch method)</a>
 
       <ul>
@@ -768,23 +828,23 @@
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves">select_get_moves() (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_get_moves">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_get_moves">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.select_get_moves">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.select_get_moves">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move">select_random_move() (locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.select_random_move">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_random_move">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.select_random_move">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.select_random_move">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.set_as_best">set_as_best() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.set_as_best">set_as_best() (locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.set_as_best">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.set_as_best">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.simulatedannealing.html#locsearch.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">SimulatedAnnealing (class in locsearch.localsearch.simulatedannealing.simulated_annealing)</a>
@@ -807,10 +867,10 @@
         <li><a href="locsearch.termination.html#locsearch.termination.multi_criterion.MultiCriterion.start_timing">(locsearch.termination.multi_criterion.MultiCriterion method)</a>
 </li>
       </ul></li>
-      <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.state">state() (locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+      <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.state">state() (locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 
       <ul>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.state">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.state">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
       <li><a href="locsearch.localsearch.steepestdescent.html#locsearch.localsearch.steepestdescent.steepest_descent.SteepestDescent">SteepestDescent (class in locsearch.localsearch.steepestdescent.steepest_descent)</a>
@@ -848,9 +908,9 @@
 </li>
         <li><a href="locsearch.localsearch.move.html#locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood.undo_move">(locsearch.localsearch.move.multi_neighbourhood.MultiNeighbourhood method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution.undo_move">(locsearch.solution.abstract_local_search_solution.AbstractLocalSearchSolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem.undo_move">(locsearch.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
 </li>
-        <li><a href="locsearch.solution.html#locsearch.solution.array_solution.ArraySolution.undo_move">(locsearch.solution.array_solution.ArraySolution method)</a>
+        <li><a href="locsearch.problem.html#locsearch.problem.array_problem.ArrayProblem.undo_move">(locsearch.problem.array_problem.ArrayProblem method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -859,7 +919,11 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.error_func.WrongMoveType">WrongMoveType</a>
+      <li><a href="locsearch.io.html#locsearch.io.csv.write_csv">write_csv() (in module locsearch.io.csv)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="locsearch.aidfunc.html#locsearch.aidfunc.error_func.WrongMoveTypeError">WrongMoveTypeError</a>
 </li>
   </ul></td>
 </tr></table>

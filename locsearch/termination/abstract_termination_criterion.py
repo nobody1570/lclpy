@@ -37,7 +37,7 @@ class AbstractTerminationCriterion(ABC):
         Parameters
         ----------
         value : int or float
-            Is the evaluation value of the initial solution.
+            Is the evaluation value of the initial problem.
 
         """
 

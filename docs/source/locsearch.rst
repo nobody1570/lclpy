@@ -12,7 +12,7 @@ Subpackages
     locsearch.io
     locsearch.localsearch
     locsearch.plot
-    locsearch.solution
+    locsearch.problem
     locsearch.termination
 
 Module contents

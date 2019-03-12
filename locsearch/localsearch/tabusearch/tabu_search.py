@@ -12,11 +12,11 @@ from collections import deque, namedtuple
 
 
 class TabuSearch(AbstractLocalSearch):
-    """Performs a tabu search on the given solution.
+    """Performs a tabu search on the given problem.
 
     Parameters
     ----------
-    solution : AbstractLocalSearchSolution
+    problem : AbstractLocalSearchProblem
         Contains all the data needed for the specific problem.
     termination_criterion : AbstractTerminationCriterion
         Implements a termination criterion to terminate the algorithm.
@@ -31,7 +31,7 @@ class TabuSearch(AbstractLocalSearch):
 
     Attributes
     ----------
-    _solution : AbstractLocalSearchSolution
+    _problem : AbstractLocalSearchProblem
         Contains all the data needed for the specific problem.
     _termination_criterion : AbstractTerminationCriterion
         Implements a termination criterion to terminate the algorithm.
@@ -66,12 +66,12 @@ class TabuSearch(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from locsearch.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
         ... #                                  needed in your implementation.)
         >>> random.seed(0)
-        ... # init solution
+        ... # init problem
         >>> distance_matrix = numpy.array(
         ... [[0, 2, 5, 8],
         ...  [2, 0, 4, 1],
@@ -80,11 +80,11 @@ class TabuSearch(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(solution, termination, 5, True,
+        >>> tabu_search = TabuSearch(problem, termination, 5, True,
         ...                          benchmarking=False)
         ... # run algorithm
         >>> tabu_search.run()
@@ -102,12 +102,12 @@ class TabuSearch(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from locsearch.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
         ... #                                  needed in your implementation.)
         >>> random.seed(0)
-        ... # init solution
+        ... # init problem
         >>> distance_matrix = numpy.array(
         ... [[0, 8, 5, 2],
         ...  [8, 0, 4, 7],
@@ -116,11 +116,11 @@ class TabuSearch(AbstractLocalSearch):
         >>> size = distance_matrix.shape[0]
         >>> move = TspArraySwap(size)
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(solution, termination, 5, False,
+        >>> tabu_search = TabuSearch(problem, termination, 5, False,
         ...                          benchmarking=False)
         ... # run algorithm
         >>> tabu_search.run()
@@ -129,12 +129,12 @@ class TabuSearch(AbstractLocalSearch):
 
     """
 
-    def __init__(self, solution, termination_criterion, list_size=7,
+    def __init__(self, problem, termination_criterion, list_size=7,
                  minimise=True, benchmarking=True):
 
         super().__init__()
 
-        self._solution = solution
+        self._problem = problem
         self._termination_criterion = termination_criterion
         self._list_size = list_size
         self._tabu_list = TabuList(list_size)
@@ -173,8 +173,8 @@ class TabuSearch(AbstractLocalSearch):
         """
 
         # init
-        base_value = self._solution.evaluate()
-        self._solution.set_as_best(base_value)
+        base_value = self._problem.evaluate()
+        self._problem.set_as_best(base_value)
 
         # init iteration (used to count the amount of iterations)
         iteration = 0
@@ -193,18 +193,18 @@ class TabuSearch(AbstractLocalSearch):
             best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
-            old_state = self._solution.state()
+            old_state = self._problem.state()
 
-            for move in self._solution.get_moves():
+            for move in self._problem.get_moves():
 
                 # check quality move
-                delta = self._solution.evaluate_move(move)
+                delta = self._problem.evaluate_move(move)
 
                 # perform move
-                self._solution.move(move)
+                self._problem.move(move)
 
                 # compare current state with old_state
-                diff_indices = self._solution.diff_state(old_state)
+                diff_indices = self._problem.diff_state(old_state)
 
                 # if not in tabu list --> if delta better than old best move
                 # --> becomes the best move
@@ -216,10 +216,10 @@ class TabuSearch(AbstractLocalSearch):
                     best_found_diff = diff_indices
 
                 # undo move
-                self._solution.undo_move(move)
+                self._problem.undo_move(move)
 
             # the best found move will be used as the next move
-            # alter state solution
+            # alter state problem
             base_value = base_value + best_found_delta
 
             # check if a move was found
@@ -227,19 +227,19 @@ class TabuSearch(AbstractLocalSearch):
             # best_found_delta
             if base_value != self._best_found_delta_base_value:
 
-                self._solution.move(best_found_move)
+                self._problem.move(best_found_move)
 
                 # if better than best found --> new best_found
-                if self._is_better(self._solution.best_order_value,
+                if self._is_better(self._problem.best_order_value,
                                    base_value):
-                    self._solution.set_as_best(base_value)
+                    self._problem.set_as_best(base_value)
 
                 # add diff to tabu list
                 self._tabu_list.add(best_found_diff)
 
                 # add to data
                 self._data_append(self.data, iteration,
-                                  base_value, self._solution.best_order_value)
+                                  base_value, self._problem.best_order_value)
 
                 self._termination_criterion.check_new_value(base_value)
 
@@ -273,8 +273,8 @@ class TabuSearch(AbstractLocalSearch):
 
         Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
-        return Results(self._solution.best_order,
-                       self._solution.best_order_value,
+        return Results(self._problem.best_order,
+                       self._problem.best_order_value,
                        data)
 
     def reset(self):
@@ -283,7 +283,7 @@ class TabuSearch(AbstractLocalSearch):
         Raises
         ------
         NotImplementedError
-            If the solution or termination criterion have no reset method
+            If the problem or termination criterion have no reset method
             implemented.
 
         Examples
@@ -302,12 +302,12 @@ class TabuSearch(AbstractLocalSearch):
             ...     import TspEvaluationFunction
             >>> from locsearch.termination.max_iterations_termination_criterion \\
             ...     import MaxIterationsTerminationCriterion
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             ... # seed random
             ... # (used here to always get the same output, this obviously is
             ... #                           not needed in your implementation.)
             >>> random.seed(0)
-            ... # init solution
+            ... # init problem
             >>> distance_matrix = numpy.array(
             ... [[0, 2, 5, 8],
             ...  [2, 0, 4, 1],
@@ -316,14 +316,14 @@ class TabuSearch(AbstractLocalSearch):
             >>> size = distance_matrix.shape[0]
             >>> move = TspArraySwap(size)
             >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-            >>> solution = ArraySolution(evaluation, move, size)
+            >>> problem = ArrayProblem(evaluation, move, size)
             ... # init termination criterion
             >>> termination = MaxIterationsTerminationCriterion(5)
             ... # init TabuSearch
-            >>> tabu_search = TabuSearch(solution, termination, 5, True,
+            >>> tabu_search = TabuSearch(problem, termination, 5, True,
             ...                          benchmarking=False)
             ... # state before running
-            >>> tabu_search._solution._order
+            >>> tabu_search._problem._order
             array([0, 1, 2, 3])
             >>> tabu_search._termination_criterion.keep_running()
             True
@@ -334,7 +334,7 @@ class TabuSearch(AbstractLocalSearch):
             Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
             >>> # tests reset
             >>> # before reset
-            >>> tabu_search._solution._order
+            >>> tabu_search._problem._order
             array([0, 3, 2, 1])
             >>> tabu_search._termination_criterion.keep_running()
             True
@@ -343,7 +343,7 @@ class TabuSearch(AbstractLocalSearch):
             >>> # reset
             >>> tabu_search.reset()
             ... # after reset
-            >>> tabu_search._solution._order
+            >>> tabu_search._problem._order
             array([0, 1, 2, 3])
             >>> tabu_search._termination_criterion.keep_running()
             True
@@ -353,7 +353,7 @@ class TabuSearch(AbstractLocalSearch):
 
         """
 
-        self._solution.reset()
+        self._problem.reset()
         self._termination_criterion.reset()
 
         self._tabu_list = TabuList(self._list_size)

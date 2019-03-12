@@ -4,6 +4,14 @@ locsearch.io package
 Submodules
 ----------
 
+locsearch.io.csv module
+-----------------------
+
+.. automodule:: locsearch.io.csv
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 locsearch.io.qaplib module
 --------------------------
 

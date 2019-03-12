@@ -17,7 +17,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="locsearch.solution package" href="locsearch.solution.html" />
+    <link rel="prev" title="locsearch.problem package" href="locsearch.problem.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,6 +46,20 @@
 <em class="property">class </em><code class="descclassname">locsearch.termination.abstract_termination_criterion.</code><code class="descname">AbstractTerminationCriterion</code><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create terminationcriterions.</p>
+<dl class="method">
+<dt id="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value">
+<code class="descname">check_first_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that should be called once before the main loop.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial problem.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value">
 <code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
@@ -79,14 +93,14 @@
 <dl class="method">
 <dt id="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done">
 <code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to be called after every iteration.</p>
+<dd><p>Function to be called after every iteration.</p>
 <p>Does not need to be used or implemented.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running">
 <code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to determine if the algorithm needs to continue running</p>
+<dd><p>Function to determine if the algorithm needs to continue running</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -102,10 +116,51 @@ stop running.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing">
 <code class="descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts an internal timer if needed.</p>
 <p>Does not need to be used or implemented.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-locsearch.termination.always_true_criterion">
+<span id="locsearch-termination-always-true-criterion-module"></span><h2>locsearch.termination.always_true_criterion module<a class="headerlink" href="#module-locsearch.termination.always_true_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="locsearch.termination.always_true_criterion.AlwaysTrueCriterion">
+<em class="property">class </em><code class="descclassname">locsearch.termination.always_true_criterion.</code><code class="descname">AlwaysTrueCriterion</code><a class="headerlink" href="#locsearch.termination.always_true_criterion.AlwaysTrueCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">locsearch.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Termination criterion that will never terminate an algorithm.</p>
+<p>This criterion is only meant to be used as a default termination criterion
+in algorithms that will stop iterating when no improvement is found. It’s
+not advised to use it in any other case.</p>
+<dl class="method">
+<dt id="locsearch.termination.always_true_criterion.AlwaysTrueCriterion.keep_running">
+<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.always_true_criterion.AlwaysTrueCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Will always be True.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.termination.always_true_criterion.AlwaysTrueCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.always_true_criterion.AlwaysTrueCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
 </dd></dl>
 
 </dd></dl>
@@ -194,14 +249,14 @@ stop running.</td>
 <dl class="method">
 <dt id="locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done">
 <code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to be called after every iteration</p>
+<dd><p>function to be called after every iteration.</p>
 <p>Increments _iterations by 1.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running">
 <code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to determine if the algorithm needs to continue running</p>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -214,6 +269,42 @@ iterations is bigger than max_iterations</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>Default amount of iterations:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span><span class="c1"># the variable iterations will be used to count the amount of</span>
+<span class="gp">... </span><span class="c1"># iterations.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MaxIterationsTerminationCriterion</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to be executed</span>
+<span class="gp">... </span>    <span class="c1"># counting amount of iterations</span>
+<span class="gp">... </span>    <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span>
+<span class="go">1000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to be executed</span>
+<span class="gp">... </span>    <span class="c1"># counting amount of iterations</span>
+<span class="gp">... </span>    <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span>
+<span class="go">1000</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -350,6 +441,48 @@ time passed is bigger than max_seconds</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>Running for 3 seconds:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># start and stop will be used to measure the time passed.</span>
+<span class="gp">... </span><span class="c1"># run 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># start the timing of the termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_passed</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_passed</span> <span class="o">&lt;</span> <span class="mi">4</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># start the timing of the termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># code to execute</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_passed</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_passed</span> <span class="o">&lt;</span> <span class="mi">4</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing">
 <code class="descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called before the iterations</p>
@@ -478,6 +611,50 @@ or equal to the minimal temperature, else it returns false.</td>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p>Examples:</p>
+<p>A simple example with the default min_temperature:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.min_temperature_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MinTemperatureTerminationCriterion</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span><span class="mf">9.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span><span class="mf">9.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -531,7 +708,7 @@ three criterions are capable of stopping the iterating correctly.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxIterationsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">... </span><span class="c1"># init MultiCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span> <span class="o">=</span> <span class="n">MultiCriterion</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span> <span class="o">=</span> <span class="n">MultiAndCriterion</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># test</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
@@ -794,6 +971,53 @@ method will return False. Else the method will return True.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="locsearch.termination.multi_criterion.MultiCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>MaxIterationsTerminationCriterion stops the iterating:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.multi_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiCriterion</span>
+<span class="gp">... </span><span class="c1"># init list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxIterationsTerminationCriterion</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># init MultiCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span> <span class="o">=</span> <span class="n">MultiCriterion</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">multi_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">iterations</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_criterion</span><span class="o">.</span><span class="n">start_timing</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">multi_criterion</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">iterations</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">multi_criterion</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.termination.multi_criterion.MultiCriterion.start_timing">
 <code class="descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.multi_criterion.MultiCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts an internal timer if needed.</p>
@@ -884,7 +1108,7 @@ eval_values is hardcoded:</p>
 <span class="gp">... </span>    <span class="c1"># check the next value</span>
 <span class="gp">... </span>    <span class="c1"># not_used is only used to suppress the output of</span>
 <span class="gp">... </span>    <span class="c1"># check_new_value</span>
-<span class="gp">... </span>    <span class="n">not_used</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
 <span class="gp">... </span>    <span class="c1"># counting iterations + increment index</span>
 <span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -912,7 +1136,7 @@ eval_values is hardcoded:</p>
 <span class="gp">... </span>    <span class="c1"># check the next value</span>
 <span class="gp">... </span>    <span class="c1"># not_used is only used to suppress the output of</span>
 <span class="gp">... </span>    <span class="c1"># check_new_value</span>
-<span class="gp">... </span>    <span class="n">not_used</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># more code to execute</span>
 <span class="gp">... </span>    <span class="c1"># counting iterations + increment index</span>
 <span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -950,6 +1174,60 @@ value is encountered.</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>Smaller values are considered improvements(default). 8 iterations with
+improvement. After that there are no more improvements. The dataset
+eval_values is hardcoded. After this, the criterion is resetted and the
+loop is repeated:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.must_improve_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MustImproveTerminationCriterion</span>
+<span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
+<span class="gp">... </span><span class="c1"># to our termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MustImproveTerminationCriterion</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 1</span>
+<span class="gp">... </span><span class="c1">#</span>
+<span class="gp">... </span><span class="c1"># index is used to get values from the array.</span>
+<span class="gp">... </span><span class="c1"># index is also used to count the amount of iterations</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span><span class="c1"># loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># check the next value</span>
+<span class="gp">... </span>    <span class="c1"># not_used is only used to suppress the output of</span>
+<span class="gp">... </span>    <span class="c1"># check_new_value</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># counting iterations + increment index</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># == amount of iterations.</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span><span class="c1"># loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># check the next value</span>
+<span class="gp">... </span>    <span class="c1"># not_used is only used to suppress the output of</span>
+<span class="gp">... </span>    <span class="c1"># check_new_value</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># counting iterations + increment index</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># == amount of iterations.</span>
+<span class="go">9</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1170,9 +1448,23 @@ improvements. The dataset eval_values is hardcoded:</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value">
+<code class="descname">check_first_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that should be called once before the main loop.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial solution.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value">
 <code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to be called after every improvement of the evaluation function.</p>
+<dd><p>Function to be called after every improvement of the evaluation function.</p>
 <p>It’s also possible to call this function every time when the
 evaluation value is calculated without ill effects.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1190,14 +1482,14 @@ used.</td>
 <dl class="method">
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done">
 <code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to be called after every iteration</p>
+<dd><p>Function to be called after every iteration.</p>
 <p>Increments _iterations by 1.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running">
 <code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to determine if the algorithm needs to continue running</p>
+<dd><p>Function to determine if the algorithm needs to continue running.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1210,6 +1502,58 @@ iterations is bigger than max_iterations</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#locsearch.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>3 iterations without improvement. Bigger values are considered
+improvements. The dataset eval_values is hardcoded. After this, the
+criterion is resetted and the loop is repeated:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.termination.no_improvement_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be</span>
+<span class="gp">... </span><span class="c1">#  given to our termination criterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># run 1</span>
+<span class="gp">... </span><span class="c1">#</span>
+<span class="gp">... </span><span class="c1"># index is used to get values from the array.</span>
+<span class="gp">... </span><span class="c1"># index is also used to count the amount of iterations</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span><span class="c1"># loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># check next value</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># counting iterations + increment index</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># == amount of iterations.</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># reset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="gp">... </span><span class="c1"># run 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span><span class="c1"># loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># check next value</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">check_new_value</span><span class="p">(</span><span class="n">eval_values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
+<span class="gp">... </span>    <span class="c1"># counting iterations + increment index</span>
+<span class="gp">... </span>    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">.</span><span class="n">iteration_done</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="c1"># == amount of iterations.</span>
+<span class="go">11</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1248,11 +1592,11 @@ iterations is bigger than max_iterations</td>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.io.html">locsearch.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.localsearch.html">locsearch.localsearch package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="locsearch.plot.html">locsearch.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.random.html">locsearch.random package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="locsearch.solution.html">locsearch.solution package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locsearch.problem.html">locsearch.problem package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">locsearch.termination package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.abstract_termination_criterion">locsearch.termination.abstract_termination_criterion module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.always_true_criterion">locsearch.termination.always_true_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.max_iterations_termination_criterion">locsearch.termination.max_iterations_termination_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.max_seconds_termination_criterion">locsearch.termination.max_seconds_termination_criterion module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-locsearch.termination.min_temperature_termination_criterion">locsearch.termination.min_temperature_termination_criterion module</a></li>
@@ -1278,7 +1622,7 @@ iterations is bigger than max_iterations</td>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">locsearch</a><ul>
   <li><a href="locsearch.html">locsearch package</a><ul>
-      <li>Previous: <a href="locsearch.solution.html" title="previous chapter">locsearch.solution package</a></li>
+      <li>Previous: <a href="locsearch.problem.html" title="previous chapter">locsearch.problem package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
