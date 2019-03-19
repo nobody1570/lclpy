@@ -1,6 +1,7 @@
 from operator import itemgetter
 import numpy
 import statistics
+from collections import namedtuple
 
 
 def _func_on_best_values(benchmark_result, func):
@@ -407,3 +408,97 @@ def iterations_min(benchmark_result):
     """
 
     return _func_on_data(benchmark_result, min, 1)
+
+
+def stat(benchmark_result, algorithm_names=None, problem_names=None):
+    """A function to get some common characteristics from a benchmark.
+
+    Parameters
+    ----------
+    benchmark_result : list of list of list of namedtuple
+        The result from a benchmark.
+    print : bool, optional
+        If True, the results will be printed to the command line.
+        If False the results will not be printed to the command line.
+
+    Returns
+    -------
+    namedtuple of namedtuple of numpy.ndarray
+        The result is divided in 3 main parts: best_value, time and iterations.
+        Every main part contains the results of different statistics:
+
+        - mean
+        - median
+        - stdev
+        - max
+        - min
+
+        The reult for each of those are kept in a 2D array. Note that the
+        indices of a certain algorithm-problem pair in the benchmark_result
+        will be the same as the indices one needs to get the results for that
+        pair.
+
+    """
+
+    # get the data
+    # best_value
+
+    best_value_tuple_class = namedtuple('best_value_statistics', (
+        'mean', 'median', 'stdev', 'max', 'min'))
+
+    _mean = mean(benchmark_result)
+
+    _median = median(benchmark_result)
+
+    _stdev = stdev(benchmark_result)
+
+    _biggest = biggest(benchmark_result)
+
+    _smallest = smallest(benchmark_result)
+
+    best_value_tuple = best_value_tuple_class(
+        _mean, _median, _stdev, _biggest, _smallest)
+
+    # time
+
+    time_tuple_class = namedtuple('time_statistics', (
+        'mean', 'median', 'stdev', 'max', 'min'))
+
+    _time_mean = time_mean(benchmark_result)
+
+    _time_median = time_median(benchmark_result)
+
+    _time_stdev = time_stdev(benchmark_result)
+
+    _time_max = time_max(benchmark_result)
+
+    _time_min = time_min(benchmark_result)
+
+    time_tuple = time_tuple_class(
+        _time_mean, _time_median, _time_stdev, _time_max, _time_min)
+
+    # iterations
+
+    iterations_tuple_class = namedtuple('iterations_statistics', (
+        'mean', 'median', 'stdev', 'max', 'min'))
+
+    _iterations_mean = iterations_mean(benchmark_result)
+
+    _iterations_median = iterations_median(benchmark_result)
+
+    _iterations_stdev = iterations_stdev(benchmark_result)
+
+    _iterations_max = iterations_max(benchmark_result)
+
+    _iterations_min = iterations_min(benchmark_result)
+
+    iterations_tuple = iterations_tuple_class(
+        _iterations_mean, _iterations_median,
+        _iterations_stdev, _iterations_max, _iterations_min)
+
+    # combine namedtuples
+
+    combined_tuple_class = namedtuple(
+        'benchmark_statistics', ('best_value', 'time', 'iterations'))
+
+    return combined_tuple_class(best_value_tuple, time_tuple, iterations_tuple)
