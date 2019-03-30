@@ -24,7 +24,7 @@ class SteepestDescent(AbstractLocalSearch):
         The termination criterion that is used.
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
-        one wishes no benchmarks to be made. Default is True.
+        one wishes no benchmarks to be made. Default is False.
 
     Attributes
     ----------
@@ -68,7 +68,7 @@ class SteepestDescent(AbstractLocalSearch):
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(problem, benchmarking=False)
+        >>> steepest_descent = SteepestDescent(problem)
         ... # run algorithm
         >>> steepest_descent.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -95,8 +95,7 @@ class SteepestDescent(AbstractLocalSearch):
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(problem, False,
-        ...                                    benchmarking=False)
+        >>> steepest_descent = SteepestDescent(problem, False)
         ... # run algorithm
         >>> steepest_descent.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -106,7 +105,7 @@ class SteepestDescent(AbstractLocalSearch):
     """
 
     def __init__(self, problem, minimise=True, termination_criterion=None,
-                 benchmarking=True):
+                 benchmarking=False):
         super().__init__()
 
         self._problem = problem
@@ -262,8 +261,7 @@ class SteepestDescent(AbstractLocalSearch):
             >>> evaluation = TspEvaluationFunction(distance_matrix, move)
             >>> problem = ArrayProblem(evaluation, move, size)
             ... # init SteepestDescent
-            >>> steepest_descent = SteepestDescent(problem,
-            ...                                    benchmarking=False)
+            >>> steepest_descent = SteepestDescent(problem)
             ... # state before running
             >>> steepest_descent._problem._order
             array([0, 1, 2, 3])

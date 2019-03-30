@@ -34,7 +34,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         The default is True.
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
-        one wishes no benchmarks to be made. Default is True.
+        one wishes no benchmarks to be made. Default is False.
 
     Attributes
     ----------
@@ -107,8 +107,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         >>> i_for_temp = CnstIterationsTempFunction()
         ... # init SimulatedAnnealing
         >>> algorithm = SimulatedAnnealing(problem, termination_criterion,
-        ...                                cooling_func, i_for_temp,
-        ...                                benchmarking=False)
+        ...                                cooling_func, i_for_temp)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 2, 3, 1]), best_value=15, data=None)
@@ -155,8 +154,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         ... # init SimulatedAnnealing
         >>> algorithm = SimulatedAnnealing(
         ...     problem, termination_criterion,
-        ...     cooling_func, i_for_temp, minimise=False,
-        ...     benchmarking=False)
+        ...     cooling_func, i_for_temp, minimise=False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 2, 3, 1]), best_value=21, data=None)
@@ -166,7 +164,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
     def __init__(self, problem, termination_criterion,
                  cooling_function, iterations_for_temp_f,
                  start_temperature=2000, minimise=True,
-                 benchmarking=True):
+                 benchmarking=False):
 
         super().__init__()
 
@@ -373,8 +371,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
             >>> i_for_temp = CnstIterationsTempFunction()
             ... # init SimulatedAnnealing
             >>> algorithm = SimulatedAnnealing(problem, termination_criterion,
-            ...                                cooling_func, i_for_temp,
-            ...                                benchmarking=False)
+            ...                                cooling_func, i_for_temp)
             ... # state before running
             >>> algorithm._start_temperature
             2000

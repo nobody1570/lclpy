@@ -27,7 +27,7 @@ class TabuSearch(AbstractLocalSearch):
         The default is True.
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
-        one wishes no benchmarks to be made. Default is True.
+        one wishes no benchmarks to be made. Default is False.
 
     Attributes
     ----------
@@ -84,8 +84,7 @@ class TabuSearch(AbstractLocalSearch):
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(problem, termination, 5, True,
-        ...                          benchmarking=False)
+        >>> tabu_search = TabuSearch(problem, termination, 5, True)
         ... # run algorithm
         >>> tabu_search.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -120,8 +119,7 @@ class TabuSearch(AbstractLocalSearch):
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(problem, termination, 5, False,
-        ...                          benchmarking=False)
+        >>> tabu_search = TabuSearch(problem, termination, 5, False)
         ... # run algorithm
         >>> tabu_search.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -130,7 +128,7 @@ class TabuSearch(AbstractLocalSearch):
     """
 
     def __init__(self, problem, termination_criterion, list_size=7,
-                 minimise=True, benchmarking=True):
+                 minimise=True, benchmarking=False):
 
         super().__init__()
 
@@ -324,8 +322,7 @@ class TabuSearch(AbstractLocalSearch):
             ... # init termination criterion
             >>> termination = MaxIterationsTerminationCriterion(5)
             ... # init TabuSearch
-            >>> tabu_search = TabuSearch(problem, termination, 5, True,
-            ...                          benchmarking=False)
+            >>> tabu_search = TabuSearch(problem, termination, 5, True)
             ... # state before running
             >>> tabu_search._problem._order
             array([0, 1, 2, 3])

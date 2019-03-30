@@ -11,12 +11,12 @@ from collections import namedtuple
 
 
 class VariableNeighbourhood(AbstractLocalSearch):
-    """Performs a variable neighbourhood algorithm on the given solution.
+    """Performs a variable neighbourhood algorithm on the given problem.
 
     Parameters
     ----------
-    solution : AbstractLocalSearchSolution
-        Contains all the data needed for the specific problem. This solution
+    problem : AbstractLocalSearchProblem
+        Contains all the data needed for the specific problem. This problem
         must have been initialed a move_function class of the type
         MultiNeighbourhood. This MultiNeighbourhood needs to contain multiple
         move function classes.
@@ -28,11 +28,11 @@ class VariableNeighbourhood(AbstractLocalSearch):
         The termination criterion that is used.
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
-        one wishes no benchmarks to be made. Default is True.
+        one wishes no benchmarks to be made. Default is False.
 
     Attributes
     ----------
-    _solution : AbstractLocalSearchSolution
+    _problem : AbstractLocalSearchProblem
         Contains all the data needed for the specific problem.
     _termination_criterion : AbstractTerminationCriterion
         Ends the algorithm if no more improvements can be found.
@@ -66,7 +66,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         ...     import VariableNeighbourhood
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         >>> from locsearch.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
         ... # init distance matrix
@@ -81,12 +81,11 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> move_2 = ArrayReverseOrder(size)
         >>> move = MultiNeighbourhood([move_1, move_2])
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(2)
         ... # init VariableNeighbourhood
-        >>> algorithm = VariableNeighbourhood(solution, termination,
-        ...                                   benchmarking=False)
+        >>> algorithm = VariableNeighbourhood(problem, termination)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -107,7 +106,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         ...     import VariableNeighbourhood
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         >>> from locsearch.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
         ... # init distance matrix
@@ -122,13 +121,12 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> move_2 = ArrayReverseOrder(size)
         >>> move = MultiNeighbourhood([move_1, move_2])
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(2)
         ... # init SteepestDescent
         ... # init VariableNeighbourhood
-        >>> algorithm = VariableNeighbourhood(solution, termination, False,
-        ...                                   benchmarking=False)
+        >>> algorithm = VariableNeighbourhood(problem, termination, False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -149,7 +147,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         ...     import VariableNeighbourhood
         >>> from locsearch.evaluation.tsp_evaluation_function \\
         ...     import TspEvaluationFunction
-        >>> from locsearch.solution.array_solution import ArraySolution
+        >>> from locsearch.problem.array_problem import ArrayProblem
         ... # init distance matrix
         >>> distance_matrix = numpy.array(
         ... [[0, 2, 5, 8],
@@ -162,9 +160,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> move_2 = ArrayReverseOrder(size)
         >>> move = MultiNeighbourhood([move_1, move_2])
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-        >>> solution = ArraySolution(evaluation, move, size)
+        >>> problem = ArrayProblem(evaluation, move, size)
         ... # init VariableNeighbourhood
-        >>> algorithm = VariableNeighbourhood(solution, benchmarking=False)
+        >>> algorithm = VariableNeighbourhood(problem)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -173,12 +171,12 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
     """
 
-    def __init__(self, solution, termination_criterion=None, minimise=True,
-                 benchmarking=True):
+    def __init__(self, problem, termination_criterion=None, minimise=True,
+                 benchmarking=False):
 
         super().__init__()
 
-        self._solution = solution
+        self._problem = problem
 
         if termination_criterion is None:
             self._termination_criterion = AlwaysTrueCriterion()
@@ -217,9 +215,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
         """
 
-        # init solution
-        base_value = self._solution.evaluate()
-        self._solution.set_as_best(base_value)
+        # init problem
+        base_value = self._problem.evaluate()
+        self._problem.set_as_best(base_value)
 
         # init iteration (used to count the amount of iterations)
         iteration = 0
@@ -237,9 +235,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
             best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
-            for move in self._solution.select_get_moves():
+            for move in self._problem.select_get_moves():
                 # check quality move
-                delta = self._solution.evaluate_move(move)
+                delta = self._problem.evaluate_move(move)
 
                 # keep data best move
                 if self._function(best_found_delta, delta):
@@ -247,21 +245,21 @@ class VariableNeighbourhood(AbstractLocalSearch):
                     best_found_move = move
 
             # check if the best_found_move improves the delta, if this is the
-            # case perform the move and set a new best solution
+            # case perform the move and set a new best problem
             base_value += best_found_delta
 
             self._termination_criterion.check_new_value(base_value)
 
-            if self._function(self._solution.best_order_value, base_value):
+            if self._function(self._problem.best_order_value, base_value):
 
-                self._solution.move(best_found_move)
-                self._solution.set_as_best(base_value)
+                self._problem.move(best_found_move)
+                self._problem.set_as_best(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration, base_value)
 
                 # go back to the first neighbourhood
-                self._solution.first_neighbourhood()
+                self._problem.first_neighbourhood()
 
             else:
                 # restore base_value to the previous found value
@@ -269,7 +267,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
                 # change neighbourhood
                 try:
-                    self._solution.next_neighbourhood()
+                    self._problem.next_neighbourhood()
 
                 # if the function raises a NoNextNeighbourhood exception
                 # --> the current neighbourhood was the last neighbourhood
@@ -303,8 +301,8 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
         Results = namedtuple('Results', ['best_order', 'best_value', 'data'])
 
-        return Results(self._solution.best_order,
-                       self._solution.best_order_value,
+        return Results(self._problem.best_order,
+                       self._problem.best_order_value,
                        data)
 
     def reset(self):
@@ -313,7 +311,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         Raises
         ------
         NotImplementedError
-            If the solution or termination criterion have no reset method
+            If the problem or termination criterion have no reset method
             implemented.
 
         Examples
@@ -335,7 +333,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
             ...     import VariableNeighbourhood
             >>> from locsearch.evaluation.tsp_evaluation_function \\
             ...     import TspEvaluationFunction
-            >>> from locsearch.solution.array_solution import ArraySolution
+            >>> from locsearch.problem.array_problem import ArrayProblem
             >>> from locsearch.termination.max_seconds_termination_criterion \\
             ...     import MaxSecondsTerminationCriterion
             ... # init distance matrix
@@ -350,14 +348,13 @@ class VariableNeighbourhood(AbstractLocalSearch):
             >>> move_2 = ArrayReverseOrder(size)
             >>> move = MultiNeighbourhood([move_1, move_2])
             >>> evaluation = TspEvaluationFunction(distance_matrix, move)
-            >>> solution = ArraySolution(evaluation, move, size)
+            >>> problem = ArrayProblem(evaluation, move, size)
             ... # init termination criterion
             >>> termination = MaxSecondsTerminationCriterion(2)
             ... # init VariableNeighbourhood
-            >>> algorithm = VariableNeighbourhood(solution, termination,
-            ...                                   benchmarking=False)
+            >>> algorithm = VariableNeighbourhood(problem, termination)
             ... # state before running
-            >>> algorithm._solution._order
+            >>> algorithm._problem._order
             array([0, 1, 2, 3])
             >>> algorithm._termination_criterion.keep_running()
             True
@@ -366,14 +363,14 @@ class VariableNeighbourhood(AbstractLocalSearch):
             Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
             >>> # tests reset
             >>> # before reset
-            >>> algorithm._solution._order
+            >>> algorithm._problem._order
             array([0, 1, 3, 2])
             >>> algorithm._termination_criterion.keep_running()
             True
             >>> # reset
             >>> algorithm.reset()
             ... # after reset
-            >>> algorithm._solution._order
+            >>> algorithm._problem._order
             array([0, 1, 2, 3])
             >>> algorithm._termination_criterion.keep_running()
             True
@@ -381,7 +378,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
         """
 
-        self._solution.reset()
+        self._problem.reset()
         self._termination_criterion.reset()
 
         if self.data is not None:
