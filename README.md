@@ -1,7 +1,7 @@
 # locsearch
 
 Locsearch is a localsearch library implemented in python.
-Note that the described procedure doesn't work yet, also names and such might change in future releases.
+Note that the described procedure doesn't work yet, also names and such might change the final relaease.
 
 ## Getting Started
 
@@ -64,11 +64,11 @@ If it succeeds, locsearch is installed.
 
 ## Usage
 
-If you have any questions of how to use the library, you can check the documentation in the [docs folder](docs/html).
-Further, you can check the docstrings of a module in the interactive interpreter like this:
+If you have any questions of how to use the library, you can download the project from github and check the documentation in the docs/html folder.
+You can also check the docstrings of a module in the interactive interpreter like this:
 
 ```
-print(module_name.__doc__)
+print(module_alias.__doc__)
 ```
 
 There are also several [jupyter notebooks](https://jupyter.org/) that demonstrate the use of certain classes.
@@ -95,9 +95,9 @@ If there are no failed tests, everything is fine.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/locsearch/blob/master/README.md) file for details
 
 ## Acknowledgments
 
 * Tony Wauters
-* Wim Vancroonenborg
+* Wim Vancroonenburg
