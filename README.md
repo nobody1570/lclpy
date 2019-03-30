@@ -1,7 +1,7 @@
 # locsearch
 
 Locsearch is a localsearch library implemented in python.
-Note that the described procedure doesn't work yet, also names and such might change the final relaease.
+Note that the described procedures don't work yet, also names and such might change the final release.
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ wheel
 pip install wheel
 ```
 
-You will be notified if they are already installed. This isn't a problem.
+You will be notified if they are already installed. This shouldn't be a problem.
 
 
 ### Installing
@@ -95,7 +95,7 @@ If there are no failed tests, everything is fine.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/locsearch/blob/master/README.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/locsearch/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
