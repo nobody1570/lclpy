@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'locsearch'
+project = 'lspy'
 copyright = '2018, Daan Thijs'
 author = 'Daan Thijs'
 
@@ -131,7 +131,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'locsearch.tex', 'locsearch Documentation',
+    (master_doc, 'lspy.tex', 'lspy Documentation',
      'Daan Thijs', 'manual'),
 ]
 
@@ -141,7 +141,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'locsearch', 'locsearch Documentation',
+    (master_doc, 'lspy', 'lspy Documentation',
      [author], 1)
 ]
 
@@ -152,8 +152,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'locsearch', 'locsearch Documentation',
-     author, 'locsearch', 'One line description of project.',
+    (master_doc, 'lspy', 'lspy Documentation',
+     author, 'lspy', 'One line description of project.',
      'Miscellaneous'),
 ]
 

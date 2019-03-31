@@ -1,6 +1,6 @@
-# locsearch
+# lspy
 
-Locsearch is a localsearch library implemented in python.
+Lspy is a localsearch library implemented in python.
 Note that the described procedures don't work yet, also names and such might change the final release.
 
 ## Getting Started
@@ -57,10 +57,10 @@ py
 Once inside the interpreter, try the following command:
 
 ```
-import locsearch
+import lspy
 ```
 
-If it succeeds, locsearch is installed.
+If it succeeds without errors, lspy is installed.
 
 ## Usage
 
@@ -95,7 +95,7 @@ If there are no failed tests, everything is fine.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/locsearch/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/lspy/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 

@@ -1,7 +1,7 @@
-locsearch
-=========
+lspy
+====
 
 .. toctree::
    :maxdepth: 4
 
-   locsearch
+   lspy
