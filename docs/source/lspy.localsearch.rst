@@ -11,6 +11,7 @@ Subpackages
     lspy.localsearch.simulatedannealing
     lspy.localsearch.steepestdescent
     lspy.localsearch.tabusearch
+    lspy.localsearch.vns
 
 Submodules
 ----------

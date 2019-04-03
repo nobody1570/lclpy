@@ -17,8 +17,6 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="lspy.localsearch.tabusearch package" href="lspy.localsearch.tabusearch.html" />
-    <link rel="prev" title="lspy.localsearch.simulatedannealing package" href="lspy.localsearch.simulatedannealing.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -143,7 +141,7 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init problem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -208,7 +206,7 @@ implemented.</td>
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init problem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -293,46 +291,11 @@ time, iteration, value</li>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a><ul class="current">
-<li class="toctree-l5 current"><a class="reference internal" href="lspy.localsearch.html#subpackages">Subpackages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch.abstract_local_search">lspy.localsearch.abstract_local_search module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">lspy</a><ul>
-  <li><a href="lspy.html">lspy package</a><ul>
-  <li><a href="lspy.localsearch.html">lspy.localsearch package</a><ul>
-      <li>Previous: <a href="lspy.localsearch.simulatedannealing.html" title="previous chapter">lspy.localsearch.simulatedannealing package</a></li>
-      <li>Next: <a href="lspy.localsearch.tabusearch.html" title="next chapter">lspy.localsearch.tabusearch package</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>

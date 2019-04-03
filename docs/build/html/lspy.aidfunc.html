@@ -17,8 +17,6 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="lspy.benchmark package" href="lspy.benchmark.html" />
-    <link rel="prev" title="lspy package" href="lspy.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -62,55 +60,6 @@ real meaning.</p>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-</div>
-<div class="section" id="module-lspy.aidfunc.aid_deque">
-<span id="lspy-aidfunc-aid-deque-module"></span><h2>lspy.aidfunc.aid_deque module<a class="headerlink" href="#module-lspy.aidfunc.aid_deque" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="lspy.aidfunc.aid_deque.insert_in_sorted_deque">
-<code class="descclassname">lspy.aidfunc.aid_deque.</code><code class="descname">insert_in_sorted_deque</code><span class="sig-paren">(</span><em>sorted_deque</em>, <em>function</em>, <em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.aidfunc.aid_deque.insert_in_sorted_deque" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inserts an item in the correct position of an existing sorted deque.</p>
-<p>The deque is supposed to be sorted from worst (left) to best (right).
-Inserting item in an empty deque is possible.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sorted_deque</strong> (<em>collections.deque</em>) – The deque where an item will be inserted in.</li>
-<li><strong>function</strong> – A function that returns a bool that is used to sort the list.</li>
-<li><strong>item</strong> – The item one wishes to insert.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<p>An example of inserting in a “smaller is better” deque:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.aidfunc.is_improvement_func</span> <span class="kn">import</span> <span class="n">smaller</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.aidfunc.aid_deque</span> <span class="kn">import</span> <span class="n">insert_in_sorted_deque</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span>
-<span class="go">deque([8, 6, 4, 2, 0])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">insert_in_sorted_deque</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">smaller</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span>
-<span class="go">deque([8, 6, 5, 4, 2, 0])</span>
-</pre></div>
-</div>
-<p>An example of inserting in a “bigger is better” deque:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.aidfunc.is_improvement_func</span> <span class="kn">import</span> <span class="n">bigger</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.aidfunc.aid_deque</span> <span class="kn">import</span> <span class="n">insert_in_sorted_deque</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span>
-<span class="go">deque([0, 2, 4, 6, 8])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">insert_in_sorted_deque</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">bigger</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span>
-<span class="go">deque([0, 2, 4, 5, 6, 8])</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </div>
@@ -357,48 +306,11 @@ parameters you use. Does not accept keyword arguments.</td>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">lspy.aidfunc package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.add_to_data_func">lspy.aidfunc.add_to_data_func module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.aid_deque">lspy.aidfunc.aid_deque module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.convert_data">lspy.aidfunc.convert_data module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.error_func">lspy.aidfunc.error_func module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.is_improvement_func">lspy.aidfunc.is_improvement_func module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.pass_func">lspy.aidfunc.pass_func module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">lspy</a><ul>
-  <li><a href="lspy.html">lspy package</a><ul>
-      <li>Previous: <a href="lspy.html" title="previous chapter">lspy package</a></li>
-      <li>Next: <a href="lspy.benchmark.html" title="next chapter">lspy.benchmark package</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>

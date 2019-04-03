@@ -12,14 +12,6 @@ lspy.aidfunc.add\_to\_data\_func module
     :undoc-members:
     :show-inheritance:
 
-lspy.aidfunc.aid\_deque module
-------------------------------
-
-.. automodule:: lspy.aidfunc.aid_deque
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lspy.aidfunc.convert\_data module
 ---------------------------------
 

@@ -17,8 +17,6 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="lspy.plot package" href="lspy.plot.html" />
-    <link rel="prev" title="lspy.localsearch.steepestdescent package" href="lspy.localsearch.steepestdescent.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -271,11 +269,11 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.tabusearch.tabu_search</span> <span class="kn">import</span> <span class="n">TabuSearch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.evaluation.tsp_evaluation_function</span> \
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
@@ -308,7 +306,7 @@ benchmarks are made.</p>
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">locsearch.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
@@ -454,46 +452,11 @@ time, iteration, value, best_value</li>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a><ul class="current">
-<li class="toctree-l5 current"><a class="reference internal" href="lspy.localsearch.html#subpackages">Subpackages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch.abstract_local_search">lspy.localsearch.abstract_local_search module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">lspy</a><ul>
-  <li><a href="lspy.html">lspy package</a><ul>
-  <li><a href="lspy.localsearch.html">lspy.localsearch package</a><ul>
-      <li>Previous: <a href="lspy.localsearch.steepestdescent.html" title="previous chapter">lspy.localsearch.steepestdescent package</a></li>
-      <li>Next: <a href="lspy.plot.html" title="next chapter">lspy.plot package</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>

@@ -1,28 +1,12 @@
-Results of doctest builder run on 2019-03-31 12:11:27
+Results of doctest builder run on 2019-04-03 16:08:51
 =====================================================
 
 Document: lspy.aidfunc
 ----------------------
 1 items passed all tests:
-  30 tests in default
-30 tests in 1 items.
-30 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.simulatedannealing
----------------------------------------------
-1 items passed all tests:
-  95 tests in default
-95 tests in 1 items.
-95 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.acceptance
--------------------------------------
-1 items passed all tests:
-   9 tests in default
-9 tests in 1 items.
-9 passed and 0 failed.
+  16 tests in default
+16 tests in 1 items.
+16 passed and 0 failed.
 Test passed.
 
 Document: lspy.localsearch.move
@@ -33,28 +17,12 @@ Document: lspy.localsearch.move
 134 passed and 0 failed.
 Test passed.
 
-Document: lspy.evaluation
--------------------------
+Document: lspy.localsearch.simulatedannealing
+---------------------------------------------
 1 items passed all tests:
-  54 tests in default
-54 tests in 1 items.
-54 passed and 0 failed.
-Test passed.
-
-Document: lspy.evaluation.deltaeval
------------------------------------
-1 items passed all tests:
-  53 tests in default
-53 tests in 1 items.
-53 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.steepestdescent
-------------------------------------------
-1 items passed all tests:
-  43 tests in default
-43 tests in 1 items.
-43 passed and 0 failed.
+  95 tests in default
+95 tests in 1 items.
+95 passed and 0 failed.
 Test passed.
 
 Document: lspy.localsearch.tabusearch
@@ -65,12 +33,12 @@ Document: lspy.localsearch.tabusearch
 68 passed and 0 failed.
 Test passed.
 
-Document: lspy.problem
-----------------------
+Document: lspy.evaluation
+-------------------------
 1 items passed all tests:
- 141 tests in default
-141 tests in 1 items.
-141 passed and 0 failed.
+  54 tests in default
+54 tests in 1 items.
+54 passed and 0 failed.
 Test passed.
 
 Document: lspy.termination
@@ -81,9 +49,49 @@ Document: lspy.termination
 264 passed and 0 failed.
 Test passed.
 
+Document: lspy.localsearch.steepestdescent
+------------------------------------------
+1 items passed all tests:
+  43 tests in default
+43 tests in 1 items.
+43 passed and 0 failed.
+Test passed.
+
+Document: lspy.localsearch.vns
+------------------------------
+1 items passed all tests:
+  81 tests in default
+81 tests in 1 items.
+81 passed and 0 failed.
+Test passed.
+
+Document: lspy.localsearch.acceptance
+-------------------------------------
+1 items passed all tests:
+   9 tests in default
+9 tests in 1 items.
+9 passed and 0 failed.
+Test passed.
+
+Document: lspy.problem
+----------------------
+1 items passed all tests:
+ 141 tests in default
+141 tests in 1 items.
+141 passed and 0 failed.
+Test passed.
+
+Document: lspy.evaluation.deltaeval
+-----------------------------------
+1 items passed all tests:
+  53 tests in default
+53 tests in 1 items.
+53 passed and 0 failed.
+Test passed.
+
 Doctest summary
 ===============
-  891 tests
+  958 tests
     0 failures in tests
     0 failures in setup code
     0 failures in cleanup code
