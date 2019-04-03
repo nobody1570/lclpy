@@ -8,7 +8,7 @@ from statistics import mean, StatisticsError
 
 
 class ArrayProblem(AbstractLocalSearchProblem):
-    """Contains all the data needed to handle a TSP problem.
+    """Contains all the data needed to handle a problem.
 
     Parameters
     ----------
