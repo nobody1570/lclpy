@@ -98,7 +98,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> from lspy.localsearch.vns.variable_neighbourhood \\
         ...     import VariableNeighbourhood
         >>> from lspy.localsearch.move.tsp_array_swap import TspArraySwap
-        >>> from locsearch.localsearch.move.array_reverse_order \\
+        >>> from lspy.localsearch.move.array_reverse_order \\
         ...     import ArrayReverseOrder
         >>> from lspy.localsearch.move.multi_neighbourhood \\
         ...     import MultiNeighbourhood
