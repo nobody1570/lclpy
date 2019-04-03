@@ -1,14 +1,13 @@
 from lspy.localsearch.abstract_local_search import AbstractLocalSearch
 
 from lspy.aidfunc.is_improvement_func import bigger, smaller
-from lspy.aidfunc.aid_deque import insert_in_sorted_deque
 from lspy.aidfunc.pass_func import pass_func
 from lspy.aidfunc.add_to_data_func import add_to_data_func
 from lspy.aidfunc.convert_data import convert_data
 
 from lspy.localsearch.tabusearch.tabu_list import TabuList
 
-from collections import deque, namedtuple
+from collections import namedtuple
 
 
 class TabuSearch(AbstractLocalSearch):
