@@ -1,6 +1,7 @@
 import csv
 import numpy
 import collections
+import os
 
 
 def read_csv(filename, dtype="int"):
@@ -110,3 +111,46 @@ def write_csv(result, filename):
                     data_row.append(result[2][j][i])
 
                 writer.writerow(data_row)
+
+
+def write_benchmark_csv(benchmark_result, pathname,
+                        algorithm_names=None, problem_names=None):
+    """Writes the result of a benchmark to a csv file.
+
+    Parameters
+    ----------
+    result : list of list of list of collections.namedtuple
+        The result from a benchmark.
+    pathname : str
+        Absolute or relative path to the map that one wishes to write too.
+        It doesn't need to exist.
+    algorithm_names : list of str or tuple of str, optional
+        Must be the same length as the algorithm list given to the original
+        benchmark. The indices of a name corresponds with the indices of the
+        algorithms given to the original benchmark.
+    problem_names : list of str or tuple of str, optional
+        Must be the same length as the problem list given to the original
+        benchmark. The indices of a name corresponds with the indices of the
+        problems given to the original benchmark.
+
+    """
+
+    if algorithm_names is None:
+        algorithm_names = tuple(range(len(benchmark_result)))
+
+    if problem_names is None:
+        problem_names = tuple(range(len(benchmark_result[0])))
+
+    os.makedirs(pathname, exist_ok=True)
+
+    for i in range(len(benchmark_result)):
+        for j in range(len(benchmark_result[0])):
+            for k in range(len(benchmark_result[0][0])):
+
+                filename = 'alg_' + str(algorithm_names[i]) + \
+                    '_problem_' + \
+                    str(problem_names[j]) + '_run_' + str(k) + '.csv'
+
+                path = os.path.join(pathname, filename)
+
+                write_csv(benchmark_result[i][j][k], path)
