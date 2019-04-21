@@ -10,7 +10,7 @@ class MustImproveTerminationCriterion(AbstractTerminationCriterion):
     ----------
     minimise : bool, optional
         If the goal is to minimise the evaluation function, this should be
-        True. If the goal is to maximise the evlauation function, this should
+        True. If the goal is to maximise the evaluation function, this should
         be False. The default is True.
 
     Attributes

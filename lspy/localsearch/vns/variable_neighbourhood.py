@@ -17,12 +17,12 @@ class VariableNeighbourhood(AbstractLocalSearch):
     ----------
     problem : AbstractLocalSearchProblem
         Contains all the data needed for the specific problem. This problem
-        must have been initialed a move_function class of the type
+        must have been initialised with move_function of the class
         MultiNeighbourhood. This MultiNeighbourhood needs to contain multiple
         move function classes.
     minimise : bool, optional
         If the goal is to minimise the evaluation function, this  should be
-        True. If the goal is to maximise the evlauation function, this should
+        True. If the goal is to maximise the evaluation function, this should
         be False. The default is True.
     termination_criterion : AbstractTerminationCriterion, optional
         The termination criterion that is used.

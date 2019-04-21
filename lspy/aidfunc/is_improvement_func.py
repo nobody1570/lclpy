@@ -1,3 +1,4 @@
+"""This module contains functions to check if a value is an improvement."""
 
 
 def bigger(old_value, value):

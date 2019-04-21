@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.benchmark package" href="lspy.benchmark.html" />
+    <link rel="prev" title="lspy package" href="lspy.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -87,6 +89,8 @@ passed.</td>
 </div>
 <div class="section" id="module-lspy.aidfunc.error_func">
 <span id="lspy-aidfunc-error-func-module"></span><h2>lspy.aidfunc.error_func module<a class="headerlink" href="#module-lspy.aidfunc.error_func" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all package specific Exceptions of lspy.</p>
+<p>The module also contains functions to raise Exceptions.</p>
 <dl class="exception">
 <dt id="lspy.aidfunc.error_func.NoNextNeighbourhood">
 <em class="property">exception </em><code class="descclassname">lspy.aidfunc.error_func.</code><code class="descname">NoNextNeighbourhood</code><a class="headerlink" href="#lspy.aidfunc.error_func.NoNextNeighbourhood" title="Permalink to this definition">¶</a></dt>
@@ -98,13 +102,16 @@ passed.</td>
 <dt id="lspy.aidfunc.error_func.WrongMoveTypeError">
 <em class="property">exception </em><code class="descclassname">lspy.aidfunc.error_func.</code><code class="descname">WrongMoveTypeError</code><a class="headerlink" href="#lspy.aidfunc.error_func.WrongMoveTypeError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Is raised when the wrong move type is used.</p>
+<p>Is raised when the wrong move type is used with a certain class.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.aidfunc.error_func.not_multi_move_type">
 <code class="descclassname">lspy.aidfunc.error_func.</code><code class="descname">not_multi_move_type</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.aidfunc.error_func.not_multi_move_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>An error raising function that can take any amount of parameters.</p>
+<p>This function is meant to be called when someone uses a different move type
+than MultiNeighbourhood when one needs to use an instance of the
+MultiNeighbourhood class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -121,6 +128,7 @@ parameters you use. Does not accept keyword arguments.</td>
 </div>
 <div class="section" id="module-lspy.aidfunc.is_improvement_func">
 <span id="lspy-aidfunc-is-improvement-func-module"></span><h2>lspy.aidfunc.is_improvement_func module<a class="headerlink" href="#module-lspy.aidfunc.is_improvement_func" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions to check if a value is an improvement.</p>
 <dl class="function">
 <dt id="lspy.aidfunc.is_improvement_func.bigger">
 <code class="descclassname">lspy.aidfunc.is_improvement_func.</code><code class="descname">bigger</code><span class="sig-paren">(</span><em>old_value</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.aidfunc.is_improvement_func.bigger" title="Permalink to this definition">¶</a></dt>
@@ -286,6 +294,8 @@ parameters you use. Does not accept keyword arguments.</td>
 </div>
 <div class="section" id="module-lspy.aidfunc">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.aidfunc" title="Permalink to this headline">¶</a></h2>
+<p>This package contains multiple aid functions.</p>
+<p>The functions should only be used by other functions and methods in lspy.</p>
 </div>
 </div>
 
@@ -306,11 +316,47 @@ parameters you use. Does not accept keyword arguments.</td>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lspy.aidfunc package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.add_to_data_func">lspy.aidfunc.add_to_data_func module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.convert_data">lspy.aidfunc.convert_data module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.error_func">lspy.aidfunc.error_func module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.is_improvement_func">lspy.aidfunc.is_improvement_func module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc.pass_func">lspy.aidfunc.pass_func module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.aidfunc">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+      <li>Previous: <a href="lspy.html" title="previous chapter">lspy package</a></li>
+      <li>Next: <a href="lspy.benchmark.html" title="next chapter">lspy.benchmark package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -339,7 +385,7 @@ parameters you use. Does not accept keyword arguments.</td>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

@@ -4,8 +4,11 @@ from lspy.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
 class TspEvaluationFunction(AbstractEvaluationFunction):
-    """This class contains the methods to evaluate the quality of a tsp-solution
+    """A class to evaluate TSP problems.
 
+    This class contains the methods to evaluate the quality of a solution for a
+    travelling salesman problem (TSP). The distance matrix is allowed to be
+    asymmetric.
 
     Parameters
     ----------
@@ -20,8 +23,7 @@ class TspEvaluationFunction(AbstractEvaluationFunction):
     _distance_matrix : numpy.ndarray
         The distance matrix of the tsp-problem.
     _size : int
-        the amount of points to visit, is equal to the amount of columns and
-        is also equal to the amount of rows of the distance matrix.
+        the amount of points to visit, is derived from the distance matrix.
 
     Examples
     --------

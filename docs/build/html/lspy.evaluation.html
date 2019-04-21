@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.evaluation.deltaeval package" href="lspy.evaluation.deltaeval.html" />
+    <link rel="prev" title="lspy.benchmark package" href="lspy.benchmark.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -60,7 +62,7 @@
 <dt id="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">
 <em class="property">class </em><code class="descclassname">lspy.evaluation.abstract_evaluation_function.</code><code class="descname">AbstractEvaluationFunction</code><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>Template to create evaluation functions.</p>
+<p>A template to create evaluation functions.</p>
 <p>Evaluationfunctions are used to determine the quality of a problem.</p>
 <dl class="method">
 <dt id="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate">
@@ -140,7 +142,7 @@ of an AbstractLocalSearchSolution.</td>
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction">
 <em class="property">class </em><code class="descclassname">lspy.evaluation.quadratic_assignment_evaluation_function.</code><code class="descname">QuadraticAssignmentEvaluationFunction</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>flow_matrix</em>, <em>move_function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction</span></code></a></p>
-<p>Template to create evaluation functions.</p>
+<p>A class to evaluate QAP problems.</p>
 <p>This class contains the methods to evaluate the quality of a solution for a
 quadratic assignment problem (QAP). In the implementation, it was assumed
 that both the distance and the flow matrix are symmetric.</p>
@@ -150,7 +152,7 @@ that both the distance and the flow matrix are symmetric.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix of the problem. Should be symmetric.</li>
-<li><strong>flow_matrix</strong> (<em>numpy.ndarray</em>) – The flow matrix for the problem. Should ne symmetric.</li>
+<li><strong>flow_matrix</strong> (<em>numpy.ndarray</em>) – The flow matrix for the problem. Should be symmetric.</li>
 <li><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a><em>, </em><em>optional</em>) – Only needs to be passed if one wishes to use delta evaluation.</li>
 </ul>
 </td>
@@ -350,7 +352,10 @@ a facility.</td>
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction">
 <em class="property">class </em><code class="descclassname">lspy.evaluation.tsp_evaluation_function.</code><code class="descname">TspEvaluationFunction</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>move_function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction</span></code></a></p>
-<p>This class contains the methods to evaluate the quality of a tsp-solution</p>
+<p>A class to evaluate TSP problems.</p>
+<p>This class contains the methods to evaluate the quality of a solution for a
+travelling salesman problem (TSP). The distance matrix is allowed to be
+asymmetric.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -381,8 +386,7 @@ not need to be equal to the weight from B to A.</li>
 <dl class="attribute">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._size">
 <code class="descname">_size</code><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._size" title="Permalink to this definition">¶</a></dt>
-<dd><p>the amount of points to visit, is equal to the amount of columns and
-is also equal to the amount of rows of the distance matrix.</p>
+<dd><p>the amount of points to visit, is derived from the distance matrix.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -549,6 +553,10 @@ value, the better the quality.</td>
 </div>
 <div class="section" id="module-lspy.evaluation">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.evaluation" title="Permalink to this headline">¶</a></h2>
+<p>This package contains the classes and functions used to evaluate the state
+of a solution.</p>
+<p>Note that the classes and functions to make delta-evaluation possible are in
+submodule deltaeval.</p>
 </div>
 </div>
 
@@ -569,11 +577,46 @@ value, the better the quality.</td>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lspy.evaluation package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.evaluation.abstract_evaluation_function">lspy.evaluation.abstract_evaluation_function module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.evaluation.quadratic_assignment_evaluation_function">lspy.evaluation.quadratic_assignment_evaluation_function module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.evaluation.tsp_evaluation_function">lspy.evaluation.tsp_evaluation_function module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.evaluation">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+      <li>Previous: <a href="lspy.benchmark.html" title="previous chapter">lspy.benchmark package</a></li>
+      <li>Next: <a href="lspy.evaluation.deltaeval.html" title="next chapter">lspy.evaluation.deltaeval package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -602,7 +645,7 @@ value, the better the quality.</td>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

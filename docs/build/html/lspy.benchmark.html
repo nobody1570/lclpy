@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.evaluation package" href="lspy.evaluation.html" />
+    <link rel="prev" title="lspy.aidfunc package" href="lspy.aidfunc.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -53,11 +55,12 @@
 <li><strong>algorithms</strong> (<em>iterable object</em>) – Contains all the algorithms. Note that the algorithms can be
 initialised with None as solution and None as termination_criterion.</li>
 <li><strong>stop_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – The termination criterion that will be used for all combinations of
-algorithms and solutions.</li>
+algorithms and problems.</li>
 <li><strong>runs</strong> (<em>int</em><em>, </em><em>optional</em>) – The amount of runs that will be performed for a single
-algorithm-solution pair.</li>
+algorithm-problem pair.</li>
 <li><strong>seeds</strong> (<em>list of int</em><em> or </em><em>tuple of int</em>) – The seeds that will be used in the runs. Note that the length of the
-tuple or array needs to be equal to the amount of runs.</li>
+tuple or array needs to be equal to the amount of runs. If no seeds are
+given the seeds will be the number of the run.</li>
 </ul>
 </td>
 </tr>
@@ -67,7 +70,7 @@ a problem, the third a run of the algorithm-problem pair. The indices
 that should be used are the same as in algorithms and solutions
 respectively for the first 2 indices. The third indice is used to
 choose between the runs. The possible indices for runs are always in
-the interval [0, runs-1].</p>
+the interval [0, #runs-1].</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of list of list of namedtuple</p>
@@ -80,6 +83,8 @@ the interval [0, runs-1].</p>
 </div>
 <div class="section" id="module-lspy.benchmark.statistics">
 <span id="lspy-benchmark-statistics-module"></span><h2>lspy.benchmark.statistics module<a class="headerlink" href="#module-lspy.benchmark.statistics" title="Permalink to this headline">¶</a></h2>
+<p>This module contains several functions to get statistical data from the
+results of the function benchmark.</p>
 <dl class="function">
 <dt id="lspy.benchmark.statistics.biggest">
 <code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">biggest</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.biggest" title="Permalink to this definition">¶</a></dt>
@@ -436,6 +441,15 @@ indices one needs to get the results for that pair.</td>
 </div>
 <div class="section" id="module-lspy.benchmark">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.benchmark" title="Permalink to this headline">¶</a></h2>
+<p>The package benchmark is designed to benchmark.</p>
+<p>The package contains:</p>
+<ul class="simple">
+<li>The function benchmark in the module benchmark.
+This function can be used to run multiple algorithms on multiple problems for
+multiple runs</li>
+<li>The module statistics. This module contains several functions to get
+statistical data from the results of the function benchmark.</li>
+</ul>
 </div>
 </div>
 
@@ -456,11 +470,44 @@ indices one needs to get the results for that pair.</td>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lspy.benchmark package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.benchmark.benchmark">lspy.benchmark.benchmark module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.benchmark.statistics">lspy.benchmark.statistics module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.benchmark">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+      <li>Previous: <a href="lspy.aidfunc.html" title="previous chapter">lspy.aidfunc package</a></li>
+      <li>Next: <a href="lspy.evaluation.html" title="next chapter">lspy.evaluation package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -489,7 +536,7 @@ indices one needs to get the results for that pair.</td>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

@@ -1,4 +1,7 @@
-# from lspy.evaluation.deltaeval.delta_eval_func import delta_eval_func
+"""This module contains the classes and functions for delta-evaluation with a
+MultiNeighbourhood.
+
+"""
 
 
 # class for multi neighbourhood delta evaluation

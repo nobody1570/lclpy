@@ -5,7 +5,7 @@ from lspy.evaluation.deltaeval.delta_qap import delta_qap
 
 
 def delta_eval_func(problem_eval_func, move_func):
-    """A function to retrieve the functions needed for delta evaluation.
+    """A function to retrieve classes and functions needed for delta evaluation.
 
     Parameters
     ----------

@@ -6,7 +6,8 @@ class CnstIterationsTempFunction(AbstrIterationsTempFunction):
     """Class for determining the number of iterations for a temperature.
 
     This class is meant to be used in a simulated annealing algorithm.
-    It is used to determine the amount of iterations for a certain temperature.
+    The amount of iterations is constant and is not influenced by the
+    temperature.
 
     Parameters
     ----------

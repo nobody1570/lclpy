@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class AbstractTerminationCriterion(ABC):
-    """Template to create terminationcriterions."""
+    """Template to create termination criterions."""
 
     def __init__(self):
         super().__init__()

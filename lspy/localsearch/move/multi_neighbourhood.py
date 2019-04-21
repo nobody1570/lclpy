@@ -8,32 +8,31 @@ from lspy.localsearch.move.abstract_move \
 class MultiNeighbourhood(AbstractMove):
     """Implements a class that can be used to combine different move functions.
 
-    Moves are represeted in the following way:
-    (index move function, a representation of a move from said move function).
-    Note that all move functions must work on a single type of data structure.
-    Combining move functions meant for different data structures won't work
-    well.
+    Moves are represented in the following way: \n
+    (index move function, a representation of a move from said move function)\n
+    Note that all move functions must work on the same type of data structure.
+    Combining move functions meant for different data structures won't work.
 
     Parameters
     ----------
-    move_func_list : list of AbstractMove
-        A list that contains the move functions one wishes to combine.
-    weights : list of int, optional
-        A list that contains weights to increase or decrease the chance of a
-        move function being used to generate a random move. The weight for a
-        function must have the same index as the function. Weights are positive
-        numbers and need to be defined for every move function.
-        In the default case, every function will have the same weight.
-        Note that it's perfectly possible to pass the probabilities instead of
-        the weights.
+    move_func_list : list of AbstractMove or tuple of AbstractMove
+        A list or tuple that contains the move functions one wishes to combine.
+    weights : list of int or tuple of int, optional
+        A list or tuple that contains weights to increase or decrease the
+        chance of a move function being used to generate a random move. The
+        weight for a function must have the same index as the function.
+        Weights are positive numbers and need to be defined for every move
+        function. In the default case, every function will have the same
+        weight. Note that it's perfectly possible to pass the probabilities
+        instead of the weights.
 
     Attributes
     ----------
-    _move_func_list : list of AbstractMove
+    _move_func_list : tuple of AbstractMove
         Contains all used move functions.
     _size : int
         The size of _move_func_list.
-    _tresholds : list of float
+    _tresholds : tuple of float
         Tresholds associated with the move functions.
 
     Examples
@@ -108,7 +107,7 @@ class MultiNeighbourhood(AbstractMove):
         (0, (3, 8))
 
     An example of generating some random moves with get_random_move with
-    defined weights (swap 1, reverse 3):
+    defined weights (swap weight: 1, reverse weight: 3):
 
     .. doctest::
 
@@ -140,8 +139,9 @@ class MultiNeighbourhood(AbstractMove):
         (0, (1, 2))
 
     An example of generating some random moves with get_random_move with
-    defined probabilities (swap 0.25, reverse 0.75). Note that the results are
-    exactly the same as the results of the previous doctest:
+    defined probabilities (swap probability: 0.25, reverse probability: 0.75).
+    Note that the results are exactly the same as the results of the previous
+    doctest:
 
     .. doctest::
 
@@ -234,7 +234,7 @@ class MultiNeighbourhood(AbstractMove):
         super().__init__()
 
         # init
-        self._move_func_list = move_func_list
+        self._move_func_list = tuple(move_func_list)
 
         self._size = len(move_func_list)
 
@@ -295,7 +295,7 @@ class MultiNeighbourhood(AbstractMove):
             The dataset that is being explored. It will be altered after the
             method call.
         move : tuple of int
-            A representation of the move one wishes to undo
+            A representation of the move one wishes to undo.
 
         """
 

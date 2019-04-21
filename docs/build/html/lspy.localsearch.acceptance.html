@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.localsearch.move package" href="lspy.localsearch.move.html" />
+    <link rel="prev" title="lspy.localsearch package" href="lspy.localsearch.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -45,12 +47,12 @@
 <em class="property">class </em><code class="descclassname">lspy.localsearch.acceptance.abstract_acceptance_function.</code><code class="descname">AbstractAcceptanceFunction</code><a class="headerlink" href="#lspy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create acceptance functions.</p>
-<p>Acceptance functions determine if a worse problem than the current
-problem is accepted as the new current problem.</p>
+<p>Acceptance functions determine if a worse state than the current
+state is accepted as the new current state.</p>
 <dl class="method">
 <dt id="lspy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction.accept">
 <code class="descname">accept</code><span class="sig-paren">(</span><em>delta_value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction.accept" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if the current_solution will be accepted</p>
+<dd><p>Checks if the worse state will be accepted</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -87,14 +89,15 @@ the function returns false if the problem is rejected.</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>diff_multiplier</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The delta_value will be multiplied by this multiplier. A bigger value
 leads to more solutions being accepted, while a smaller value will
-lead to less solutions being accepted. Using a negative value is
-possible, but this should only be attempted when you know what you’re
-doing. The default value is 1.</li>
+lead to less solutions being accepted.
+Positive values will initialise the class for minising, negative values
+will intialise the function for maximising.
+The default value is 1.</li>
 <li><strong>multiplier</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – Will be multiplied with the whole probability. Must be positive.
 Should be in the interval ]0,1]. This multiplier can be used to
 decrease the odds of values being accepted. While it is possible to use
-a multiplier greater than 1, don’t do this if you don’t know what
-you’re doing. The default value is 1.</li>
+a multiplier greater than 1, this might cause weird behaviour.
+The default value is 1.</li>
 </ul>
 </td>
 </tr>
@@ -158,7 +161,10 @@ this example:</p>
 <dt id="lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction.accept">
 <code class="descname">accept</code><span class="sig-paren">(</span><em>delta_value</em>, <em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction.accept" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to reject or accept certain potential solutions.</p>
-<p>The chance of a solution being accepted is equal to:</p>
+<p>In most cases, a value better than the current value will always be
+accepted. When this is the case, it might be wise to use an
+if-statement to handle those instead of passing them to this method.</p>
+<p>The chance of a state being accepted is equal to:</p>
 <div class="math notranslate nohighlight">
 \[\_multiplier*e^{\dfrac{\_diff\_multiplier*delta\_value}{temperature}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
@@ -166,12 +172,8 @@ this example:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>delta_value</strong> (<em>int</em><em> or </em><em>float</em>) – The difference in quality between 2 possible solutions. This value
-should be positive. While working with negative numbers is
-possible, you’ll probably will just be wasting processing power
-when making use of this class; Solutions will be always accepted
-after all. Only do it when you know what you’re doing.</li>
-<li><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – A value that determines the chance of a solution being accepted.
+<li><strong>delta_value</strong> (<em>int</em><em> or </em><em>float</em>) – The difference in quality between 2 possible solutions.</li>
+<li><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – A value that determines the chance of a state being accepted.
 How bigger this value, how higher the chance of a solution being
 accepted.</li>
 </ul>
@@ -193,6 +195,7 @@ accepted.</p>
 </div>
 <div class="section" id="module-lspy.localsearch.acceptance">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.localsearch.acceptance" title="Permalink to this headline">¶</a></h2>
+<p>This package contains everything related to acceptance functions.</p>
 </div>
 </div>
 
@@ -213,11 +216,46 @@ accepted.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="lspy.localsearch.html#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch.abstract_local_search">lspy.localsearch.abstract_local_search module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+  <li><a href="lspy.localsearch.html">lspy.localsearch package</a><ul>
+      <li>Previous: <a href="lspy.localsearch.html" title="previous chapter">lspy.localsearch package</a></li>
+      <li>Next: <a href="lspy.localsearch.move.html" title="next chapter">lspy.localsearch.move package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -246,7 +284,7 @@ accepted.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

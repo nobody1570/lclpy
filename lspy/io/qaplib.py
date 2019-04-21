@@ -17,12 +17,11 @@ def read_qaplib(filename):
     -------
     distance_matrix : numpy.ndarray
         The distance matrix for the problem.
+    flow_matrix : numpy.ndarray
+        The flow matrix for the problem.
     dictionary : {int : int}
         A dictionary that can convert a position the distance matrix to the
         name given in the data. This dict can be useful when generating output.
-    metadata : list of str
-        Contains the metadata of the problem. The last entry will always be
-        EOF.
 
     Examples
     --------

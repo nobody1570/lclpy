@@ -6,8 +6,8 @@ class AlwaysTrueCriterion(AbstractTerminationCriterion):
     """Termination criterion that will never terminate an algorithm.
 
     This criterion is only meant to be used as a default termination criterion
-    in algorithms that will stop iterating when no improvement is found. It's
-    not advised to use it in any other case.
+    in algorithms that will stop iterating when no improvement is found. Don't
+    use it in any other case.
 
     """
 

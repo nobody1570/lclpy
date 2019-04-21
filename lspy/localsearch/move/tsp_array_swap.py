@@ -5,7 +5,7 @@ import random
 class TspArraySwap(ArraySwap):
     """Implements a swap move for 1 dimensional numpy arrays for tsp problems.
 
-    In TSP problems swapping the first location for another is pointless. This
+    In TSP problems swapping the first location with another is pointless. This
     class does not generate swaps with the first location from the
     neighbourhood. In all other respects this class is identical to it's base
     class Arrayswap.
@@ -89,7 +89,7 @@ class TspArraySwap(ArraySwap):
         """This is a generator used to return all valid moves.
 
         Note that the swaps with the first position aren't included. When
-        solving TSP problems, the start position doesn't matter, after all.
+        solving TSP problems, the start position doesn't matter.
 
         Yields
         ------
@@ -106,7 +106,7 @@ class TspArraySwap(ArraySwap):
         """This method is used to generate one random move.
 
         Note that the swaps with the first position aren't included. When
-        solving TSP problems, the start position doesn't matter, after all.
+        solving TSP problems, the start position doesn't matter.
 
         Returns
         -------

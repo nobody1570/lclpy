@@ -10,6 +10,7 @@ class ArrayReverseOrder(AbstractMove):
     values in an interval of a one-dimensional array. Note that a move is
     represented as a tuple of int. The move (x, y) represents reversing of the
     order of the values in the interval of indices [x, y] of the array.
+    Note that the moves are equivalent to 2-opt.
 
     Parameters
     ----------
@@ -103,7 +104,7 @@ class ArrayReverseOrder(AbstractMove):
         Parameters
         ----------
         array : numpy.ndarray
-            The array where items will be swapped.
+            The array that will be altered.
         move : tuple of int
             Represents 1 unique move. Valid moves can be retrieved by using
             get_random_move and get_move.
@@ -130,7 +131,7 @@ class ArrayReverseOrder(AbstractMove):
         Parameters
         ----------
         array : numpy.ndarray
-            The array where items will be swapped.
+            The array that will be altered.
         move : tuple of int
             Represents 1 unique move. Valid moves can be retrieved by using
             get_random_move and get_move.
@@ -160,6 +161,7 @@ class ArrayReverseOrder(AbstractMove):
         -------
         tuple of int
             A random valid move.
+
         """
 
         # It's possible to simply generate an i and then generate a bigger j,

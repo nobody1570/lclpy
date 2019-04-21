@@ -7,7 +7,7 @@ import os
 def read_csv(filename, dtype="int"):
     """Converts the csv file format to useable data structures.
 
-    Note that the csv file should only contain the distance matrixes.
+    Note that the csv file should only contain the cost matrixes.
     Different matrixes should be seperated with an empty line. A maximum of 2
     distance matrixes can be read.
 
@@ -31,7 +31,7 @@ def read_csv(filename, dtype="int"):
 
     Examples
     --------
-    Read "testfile.csv" from the map "data" in the current working directory:
+    Read "testfile.csv" from the map "data" in the current directory:
 
     .. code-block:: python
 
@@ -115,7 +115,13 @@ def write_csv(result, filename):
 
 def write_benchmark_csv(benchmark_result, pathname,
                         algorithm_names=None, problem_names=None):
-    """Writes the result of a benchmark to a csv file.
+    """Writes the result of a benchmark to several csv files in a single map.
+
+    Note that the name of the map can be chosen, but the csv files will always
+    be named as follows: \n
+    "alg\_" + algorithm_name + "_problem_" + problem_name + _run_ + run +
+    ".csv" \n
+    The runs always start from 0.
 
     Parameters
     ----------

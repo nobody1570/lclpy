@@ -4,7 +4,7 @@ from lspy.evaluation.deltaeval.delta_eval_func import delta_eval_func
 
 
 class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
-    """Template to create evaluation functions.
+    """A class to evaluate QAP problems.
 
     This class contains the methods to evaluate the quality of a solution for a
     quadratic assignment problem (QAP). In the implementation, it was assumed
@@ -15,7 +15,7 @@ class QuadraticAssignmentEvaluationFunction(AbstractEvaluationFunction):
     distance_matrix : numpy.ndarray
         The distance matrix of the problem. Should be symmetric.
     flow_matrix : numpy.ndarray
-        The flow matrix for the problem. Should ne symmetric.
+        The flow matrix for the problem. Should be symmetric.
     move_function : AbstractMove, optional
         Only needs to be passed if one wishes to use delta evaluation.
 

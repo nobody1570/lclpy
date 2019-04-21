@@ -4,10 +4,10 @@ lspy.io package
 Submodules
 ----------
 
-lspy.io.csv module
-------------------
+lspy.io.csv\_io module
+----------------------
 
-.. automodule:: lspy.io.csv
+.. automodule:: lspy.io.csv_io
     :members:
     :undoc-members:
     :show-inheritance:

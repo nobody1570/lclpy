@@ -185,7 +185,7 @@ class ArrayProblem(AbstractLocalSearchProblem):
         self._move_function.undo_move(self._order, move)
 
     def get_moves(self):
-        """An iterable that returns all valid moves in the neighboorhood.
+        """An iterable that returns all valid moves in the complete neighbourhood.
 
         Yields
         -------
@@ -231,7 +231,7 @@ class ArrayProblem(AbstractLocalSearchProblem):
         return self._move_function.get_moves()
 
     def get_random_move(self):
-        """A function to generate and return a random move from the neighbourhood.
+        """A function to return a random move from the complete neighbourhood.
 
         Returns
         -------
@@ -275,12 +275,10 @@ class ArrayProblem(AbstractLocalSearchProblem):
     def evaluate_move(self, move):
         """Evaluates the quality gained or lost by a potential move.
 
-        Does not need to be implemented, but can lead to considerable
-        speedups. Is equivalent to a delta evaluation between _order and
-        _order after the move is performed. The passed move function that is
-        passed to the constructor needs to have changed_distances and
-        transform_next_index_to_current_index properly implemented for this
-        function to work.
+        Can lead to considerable speedups. Is equivalent to a delta evaluation
+        between _order and _order after the move is performed. Note that
+        delta-evaluation needs to be implemented for the evaluation function
+        and the move type for this method to work.
 
         Parameters
         ----------
@@ -336,7 +334,7 @@ class ArrayProblem(AbstractLocalSearchProblem):
         Returns
         -------
         int or float
-            The calculated distance between the points.
+            An evaluation of the current state of _order.
 
         """
 
@@ -358,7 +356,7 @@ class ArrayProblem(AbstractLocalSearchProblem):
         self.best_order_value = evaluation_value
 
     def state(self):
-        """Returns an immutable hashable object that identifies the current state.
+        """Returns an immutable hashable object that describes the current state.
 
         Returns
         -------
@@ -461,23 +459,16 @@ class ArrayProblem(AbstractLocalSearchProblem):
             self.current_neighbourhood -= 1
 
     def select_get_moves(self):
-        """Function to get all moves from a specific neighbourhood.
+        """Function to get all moves from the current neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
-
-        Parameters
-        ----------
-        neighbourhood_nr : int
-            Number of the neighbourhood. This number is the index of the
-            neighbourhood in the list of move functions given to the
-            constructor.
 
         Returns
         -------
         generator
             An iterable generator object that contains all the moves of the
-            specified neighbourhood.
+            current neighbourhood.
 
         Raises
         ------
@@ -489,22 +480,15 @@ class ArrayProblem(AbstractLocalSearchProblem):
         return self._move_function.select_get_moves(self.current_neighbourhood)
 
     def select_random_move(self):
-        """A method used to generate a random move from a specific neighbourhood.
+        """A method used to generate a random move from the current neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
 
-        Parameters
-        ----------
-        neighbourhood_nr : int
-            Number of the neighbourhood. This number is the index of the
-            neighbourhood in the list of move functions given to the
-            constructor.
-
         Returns
         -------
         tuple of int
-            A random valid move from the specified neighbourhood.
+            A random valid move from the current neighbourhood.
 
         Raises
         ------
@@ -609,7 +593,7 @@ class ArrayProblem(AbstractLocalSearchProblem):
         self._order = numpy.array(self._starting_order)
 
     def diff_state(self, old_state):
-        """Gets the indices where the current_state to the old state are different.
+        """Gets the indices where the current_state and the old state are different.
 
         Parameters
         ----------

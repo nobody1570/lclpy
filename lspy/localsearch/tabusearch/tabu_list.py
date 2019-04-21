@@ -4,9 +4,7 @@ from collections import deque
 class TabuList(object):
     """Implements a tabu list for use with TabuSearch.
 
-    Note that only hashes of the items are kept in the tabu list. This is done
-    to save memory. This means that two different items with the same hash will
-    be considered to be the same item.
+    When using big items, it would be wise to save space by hashing them.
 
     Parameters
     ----------

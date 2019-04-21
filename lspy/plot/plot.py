@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from itertools import chain
 
 
 def plot(data, title='Time - evaluation value plot.', width=20, height=10):
@@ -10,7 +9,8 @@ def plot(data, title='Time - evaluation value plot.', width=20, height=10):
     data : collections.namedtuple
         The data tuple one gets by performing a localsearch algorithm.
     title : str, optional
-        The title of the plot. Default is 'Time - evaluation value plot.'.
+        The title of the plot. \n
+        Default is 'Time - evaluation value plot.'.
     width : int, optional
         The width of the plot.
     height : int, optional
@@ -49,7 +49,7 @@ def iterations_plot(data, title='Iterations - evaluation value plot.',
     data : collections.namedtuple
         The data tuple one gets by performing a localsearch algorithm.
     title : str, optional
-        The title of the plot.
+        The title of the plot. \n
         Default is 'Iterations - evaluation value plot.'.
     width : int, optional
         The width of the plot.

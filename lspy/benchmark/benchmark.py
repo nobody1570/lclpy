@@ -13,13 +13,14 @@ def benchmark(problems, algorithms, stop_criterion, runs=10, seeds=None):
         initialised with None as solution and None as termination_criterion.
     stop_criterion : AbstractTerminationCriterion
         The termination criterion that will be used for all combinations of
-        algorithms and solutions.
+        algorithms and problems.
     runs : int, optional
         The amount of runs that will be performed for a single
-        algorithm-solution pair.
+        algorithm-problem pair.
     seeds : list of int or tuple of int
         The seeds that will be used in the runs. Note that the length of the
-        tuple or array needs to be equal to the amount of runs.
+        tuple or array needs to be equal to the amount of runs. If no seeds are
+        given the seeds will be the number of the run.
 
     Returns
     -------
@@ -30,7 +31,7 @@ def benchmark(problems, algorithms, stop_criterion, runs=10, seeds=None):
         that should be used are the same as in algorithms and solutions
         respectively for the first 2 indices. The third indice is used to
         choose between the runs. The possible indices for runs are always in
-        the interval [0, runs-1].
+        the interval [0, #runs-1].
 
     """
 

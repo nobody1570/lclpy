@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class AbstractEvaluationFunction(ABC):
-    """Template to create evaluation functions.
+    """A template to create evaluation functions.
 
     Evaluationfunctions are used to determine the quality of a problem.
 

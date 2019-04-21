@@ -14,15 +14,16 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
     diff_multiplier : int or float, optional
         The delta_value will be multiplied by this multiplier. A bigger value
         leads to more solutions being accepted, while a smaller value will
-        lead to less solutions being accepted. Using a negative value is
-        possible, but this should only be attempted when you know what you're
-        doing. The default value is 1.
+        lead to less solutions being accepted.
+        Positive values will initialise the class for minising, negative values
+        will intialise the function for maximising.
+        The default value is 1.
     multiplier : int or float, optional
         Will be multiplied with the whole probability. Must be positive.
         Should be in the interval ]0,1]. This multiplier can be used to
         decrease the odds of values being accepted. While it is possible to use
-        a multiplier greater than 1, don't do this if you don't know what
-        you're doing. The default value is 1.
+        a multiplier greater than 1, this might cause weird behaviour.
+        The default value is 1.
 
     Attributes
     ----------
@@ -71,7 +72,11 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
     def accept(self, delta_value, temperature):
         """Function to reject or accept certain potential solutions.
 
-        The chance of a solution being accepted is equal to:
+        In most cases, a value better than the current value will always be
+        accepted. When this is the case, it might be wise to use an
+        if-statement to handle those instead of passing them to this method.
+
+        The chance of a state being accepted is equal to:
 
         .. math::
 
@@ -83,13 +88,9 @@ class SimulatedAnnealingAcceptanceFunction(AbstractAcceptanceFunction):
         Parameters
         ----------
         delta_value : int or float
-            The difference in quality between 2 possible solutions. This value
-            should be positive. While working with negative numbers is
-            possible, you'll probably will just be wasting processing power
-            when making use of this class; Solutions will be always accepted
-            after all. Only do it when you know what you're doing.
+            The difference in quality between 2 possible solutions.
         temperature : int or float
-            A value that determines the chance of a solution being accepted.
+            A value that determines the chance of a state being accepted.
             How bigger this value, how higher the chance of a solution being
             accepted.
 

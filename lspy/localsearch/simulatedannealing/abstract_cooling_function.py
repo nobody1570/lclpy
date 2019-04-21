@@ -2,7 +2,12 @@ from abc import ABC, abstractmethod
 
 
 class AbstractCoolingFunction(ABC):
-    """A class that implements a cooling function for simulated annealing."""
+    """A template class to implement a cooling function for simulated annealing.
+
+    Implementations of this class are meant to be used in a simulated annealing
+    algorithm. Implementations are supposed to implement the cooling function.
+
+    """
 
     def __init__(self):
         super().__init__()

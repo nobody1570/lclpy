@@ -99,7 +99,8 @@ class MinTemperatureTerminationCriterion(AbstractTerminationCriterion):
 
         """
 
-        self._run = current_temperature >= self._min_temperature
+        if self._run:
+            self._run = current_temperature >= self._min_temperature
 
     def reset(self):
         """Resets the object back to it's state after init.

@@ -59,7 +59,7 @@ class GeometricCoolingFunction(AbstractCoolingFunction):
         self._alpha = alpha
 
     def next_temperature(self, old_temperature):
-        """Function to get the next temperature
+        """Function to get the next temperature.
 
         Parameters
         ----------

@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.localsearch.simulatedannealing package" href="lspy.localsearch.simulatedannealing.html" />
+    <link rel="prev" title="lspy.localsearch.acceptance package" href="lspy.localsearch.acceptance.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,13 +48,13 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create Move-objects.</p>
 <p>This object is used to explore a neighbourhood and alter the state of a
-solution.</p>
+solution. It can also be used to generate valid moves in the neighbourhood.</p>
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.get_move_type">
 <code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_move_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the move type.</p>
 <p>This function is used in the implementation of delta evaluation. If
-it’s not implemented or wanted, this method does not need to be
+this is not implemented or wanted, this method does not need to be
 implemented.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -83,7 +85,7 @@ implemented.</p>
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.get_random_move">
 <code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method used to generate a random move in the neighbourhood..</p>
+<dd><p>A method used to generate a random move in the neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -148,7 +150,8 @@ method call.</li>
 <p>The move function performs and generates moves that reverses the order of
 values in an interval of a one-dimensional array. Note that a move is
 represented as a tuple of int. The move (x, y) represents reversing of the
-order of the values in the interval of indices [x, y] of the array.</p>
+order of the values in the interval of indices [x, y] of the array.
+Note that the moves are equivalent to 2-opt.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -279,7 +282,7 @@ get_moves and how to perform and undo a move:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</li>
+<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</li>
 <li><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
 get_random_move and get_move.</li>
 </ul>
@@ -298,7 +301,7 @@ get_random_move and get_move.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</li>
+<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</li>
 <li><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
 get_random_move and get_move.</li>
 </ul>
@@ -321,8 +324,7 @@ get_random_move and get_move.</li>
 <p>The move function performs and generates moves that swap 2 values in a
 one-dimensional array. Note that a move is represented as a tuple of int.
 The move (x, y) represents the swap of the values from the indices x and y
-of the array. Equivalent to 2-opt when the array is used to keep the
-visiting order of the items.</p>
+of the array.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -490,24 +492,23 @@ get_random_move and get_move.</li>
 <em class="property">class </em><code class="descclassname">lspy.localsearch.move.multi_neighbourhood.</code><code class="descname">MultiNeighbourhood</code><span class="sig-paren">(</span><em>move_func_list</em>, <em>weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
 <p>Implements a class that can be used to combine different move functions.</p>
-<p>Moves are represeted in the following way:
-(index move function, a representation of a move from said move function).
-Note that all move functions must work on a single type of data structure.
-Combining move functions meant for different data structures won’t work
-well.</p>
+<p>Moves are represented in the following way:</p>
+<p>(index move function, a representation of a move from said move function)</p>
+<p>Note that all move functions must work on the same type of data structure.
+Combining move functions meant for different data structures won’t work.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>move_func_list</strong> (<em>list of AbstractMove</em>) – A list that contains the move functions one wishes to combine.</li>
-<li><strong>weights</strong> (<em>list of int</em><em>, </em><em>optional</em>) – A list that contains weights to increase or decrease the chance of a
-move function being used to generate a random move. The weight for a
-function must have the same index as the function. Weights are positive
-numbers and need to be defined for every move function.
-In the default case, every function will have the same weight.
-Note that it’s perfectly possible to pass the probabilities instead of
-the weights.</li>
+<li><strong>move_func_list</strong> (<em>list of AbstractMove</em><em> or </em><em>tuple of AbstractMove</em>) – A list or tuple that contains the move functions one wishes to combine.</li>
+<li><strong>weights</strong> (<em>list of int</em><em> or </em><em>tuple of int</em><em>, </em><em>optional</em>) – A list or tuple that contains weights to increase or decrease the
+chance of a move function being used to generate a random move. The
+weight for a function must have the same index as the function.
+Weights are positive numbers and need to be defined for every move
+function. In the default case, every function will have the same
+weight. Note that it’s perfectly possible to pass the probabilities
+instead of the weights.</li>
 </ul>
 </td>
 </tr>
@@ -521,7 +522,7 @@ the weights.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of AbstractMove</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple of AbstractMove</td>
 </tr>
 </tbody>
 </table>
@@ -549,7 +550,7 @@ the weights.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of float</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple of float</td>
 </tr>
 </tbody>
 </table>
@@ -622,7 +623,7 @@ default weights (every move function has the same chance of being chosen):</p>
 </pre></div>
 </div>
 <p>An example of generating some random moves with get_random_move with
-defined weights (swap 1, reverse 3):</p>
+defined weights (swap weight: 1, reverse weight: 3):</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
@@ -652,8 +653,9 @@ defined weights (swap 1, reverse 3):</p>
 </pre></div>
 </div>
 <p>An example of generating some random moves with get_random_move with
-defined probabilities (swap 0.25, reverse 0.75). Note that the results are
-exactly the same as the results of the previous doctest:</p>
+defined probabilities (swap probability: 0.25, reverse probability: 0.75).
+Note that the results are exactly the same as the results of the previous
+doctest:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
@@ -869,7 +871,7 @@ constructor.</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>data</strong> – The dataset that is being explored. It will be altered after the
 method call.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo</li>
+<li><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</li>
 </ul>
 </td>
 </tr>
@@ -887,7 +889,7 @@ method call.</li>
 <em class="property">class </em><code class="descclassname">lspy.localsearch.move.tsp_array_swap.</code><code class="descname">TspArraySwap</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.move.array_swap.ArraySwap" title="lspy.localsearch.move.array_swap.ArraySwap"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.move.array_swap.ArraySwap</span></code></a></p>
 <p>Implements a swap move for 1 dimensional numpy arrays for tsp problems.</p>
-<p>In TSP problems swapping the first location for another is pointless. This
+<p>In TSP problems swapping the first location with another is pointless. This
 class does not generate swaps with the first location from the
 neighbourhood. In all other respects this class is identical to it’s base
 class Arrayswap.</p>
@@ -974,7 +976,7 @@ get_moves and how to perform and undo a move:</p>
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is a generator used to return all valid moves.</p>
 <p>Note that the swaps with the first position aren’t included. When
-solving TSP problems, the start position doesn’t matter, after all.</p>
+solving TSP problems, the start position doesn’t matter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -990,7 +992,7 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
 <code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to generate one random move.</p>
 <p>Note that the swaps with the first position aren’t included. When
-solving TSP problems, the start position doesn’t matter, after all.</p>
+solving TSP problems, the start position doesn’t matter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1008,6 +1010,9 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
 </div>
 <div class="section" id="module-lspy.localsearch.move">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.localsearch.move" title="Permalink to this headline">¶</a></h2>
+<p>This package contains everything related to move functions, classes who
+are used to alter the state of the problems and are able to generate valid
+“moves” in the neighbourhood.</p>
 </div>
 </div>
 
@@ -1028,11 +1033,46 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="lspy.localsearch.html#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch.abstract_local_search">lspy.localsearch.abstract_local_search module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+  <li><a href="lspy.localsearch.html">lspy.localsearch package</a><ul>
+      <li>Previous: <a href="lspy.localsearch.acceptance.html" title="previous chapter">lspy.localsearch.acceptance package</a></li>
+      <li>Next: <a href="lspy.localsearch.simulatedannealing.html" title="next chapter">lspy.localsearch.simulatedannealing package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -1061,7 +1101,7 @@ solving TSP problems, the start position doesn’t matter, after all.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

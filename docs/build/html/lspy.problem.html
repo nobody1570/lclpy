@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.termination package" href="lspy.termination.html" />
+    <link rel="prev" title="lspy.plot package" href="lspy.plot.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -49,6 +51,26 @@
 It is supposed to be used when constructing your own solution objects for a
 specific problem.</p>
 <dl class="method">
+<dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.diff_state">
+<code class="descname">diff_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.diff_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to return the difference between states of the Problem.</p>
+<p>The current state will be compared to the old state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_state</strong> – The old state.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A representation of the difference between the current state and
+the old state.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate">
 <code class="descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the current state of the solution.</p>
@@ -67,16 +89,15 @@ specific problem.</p>
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate_move">
 <code class="descname">evaluate_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the effects a move would have on the evaluation of the state.</p>
+<dd><p>Evaluates the quality gained or lost by a potential move.</p>
 <p>This function does not need to be implemented.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – The move one would like to know the effects of.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – Represents a unique valid move.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An indication of the difference in quality that would be caused by
-the move.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The change in value of the eval-function if the move is performed.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
 </tr>
@@ -85,9 +106,25 @@ the move.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.first_neighbourhood">
+<code class="descname">first_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.first_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current neighbourhood to the first neighbourhood.</p>
+<p>Note that this function will only be useable if the neighbourhood given
+to the constructor is a MultiNeighbourhood.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_moves" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterable. Returns all valid moves in the neighbourhood.</p>
+<dd><p>An iterable that returns all valid moves in the complete neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -101,7 +138,7 @@ the move.</td>
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_random_move">
 <code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a random valid move from the neighbourhood.</p>
+<dd><p>A function to return a random move from the complete neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -135,13 +172,18 @@ the move.</td>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.
 If this function is called when the last neighbourhood is the current
-neighbourhood, the first neighbourhood will become the current
-neighbourhood.</p>
+neighbourhood, the last neighbourhood will remain the current
+neighbourhood and an exception will be raised.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NoNextNeighbourhood</span></code> – If there is no next neighbourhood. This is simply an indication
+that the current neighbourhood was the last neighbourhood.</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -160,7 +202,7 @@ neighbourhood.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -175,23 +217,19 @@ neighbourhood.</p>
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_get_moves">
 <code class="descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_get_moves" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to get all moves from a specific neighbourhood.</p>
+<dd><p>Function to get all moves from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
-neighbourhood in the list of move functions given to the
-constructor.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
 current neighbourhood.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -200,22 +238,18 @@ current neighbourhood.</td>
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_random_move">
 <code class="descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method used to generate a random move from a specific neighbourhood.</p>
+<dd><p>A method used to generate a random move from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
-neighbourhood in the list of move functions given to the
-constructor.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the current neighbourhood.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the current neighbourhood.</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveType</span></code> – If the neighbourhood isn’t a MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -230,7 +264,7 @@ constructor.</td>
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.state">
 <code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an immutable hashable object that identifies the current state.</p>
+<dd><p>Returns an immutable hashable object that describes the current state.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -461,7 +495,7 @@ better than the previous best value:</p>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.diff_state">
 <code class="descname">diff_state</code><span class="sig-paren">(</span><em>old_state</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.diff_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the indices where the current_state to the old state are different.</p>
+<dd><p>Gets the indices where the current_state and the old state are different.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -533,7 +567,7 @@ different.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The calculated distance between the points.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An evaluation of the current state of _order.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
 </tr>
@@ -545,12 +579,10 @@ different.</td>
 <dt id="lspy.problem.array_problem.ArrayProblem.evaluate_move">
 <code class="descname">evaluate_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.evaluate_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the quality gained or lost by a potential move.</p>
-<p>Does not need to be implemented, but can lead to considerable
-speedups. Is equivalent to a delta evaluation between _order and
-_order after the move is performed. The passed move function that is
-passed to the constructor needs to have changed_distances and
-transform_next_index_to_current_index properly implemented for this
-function to work.</p>
+<p>Can lead to considerable speedups. Is equivalent to a delta evaluation
+between _order and _order after the move is performed. Note that
+delta-evaluation needs to be implemented for the evaluation function
+and the move type for this method to work.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -615,7 +647,7 @@ to the constructor is a MultiNeighbourhood.</p>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.get_moves">
 <code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.get_moves" title="Permalink to this definition">¶</a></dt>
-<dd><p>An iterable that returns all valid moves in the neighboorhood.</p>
+<dd><p>An iterable that returns all valid moves in the complete neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -660,7 +692,7 @@ show the behaviour of get_moves.</p>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.get_random_move">
 <code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.get_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function to generate and return a random move from the neighbourhood.</p>
+<dd><p>A function to return a random move from the complete neighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -845,23 +877,19 @@ neighbourhood.</p>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.select_get_moves">
 <code class="descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.select_get_moves" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to get all moves from a specific neighbourhood.</p>
+<dd><p>Function to get all moves from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
-neighbourhood in the list of move functions given to the
-constructor.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
+current neighbourhood.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
-specified neighbourhood.</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -870,22 +898,18 @@ specified neighbourhood.</td>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.select_random_move">
 <code class="descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.select_random_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method used to generate a random move from a specific neighbourhood.</p>
+<dd><p>A method used to generate a random move from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
-neighbourhood in the list of move functions given to the
-constructor.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the current neighbourhood.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the specified neighbourhood.</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
 </tr>
 </tbody>
 </table>
@@ -910,7 +934,7 @@ evaluate(). The recalculation will take time, however.</td>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.state">
 <code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an immutable hashable object that identifies the current state.</p>
+<dd><p>Returns an immutable hashable object that describes the current state.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -971,6 +995,8 @@ evaluate(). The recalculation will take time, however.</td>
 </div>
 <div class="section" id="module-lspy.problem">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.problem" title="Permalink to this headline">¶</a></h2>
+<p>This package contains a template class for Problems and implementations of
+said class.</p>
 </div>
 </div>
 
@@ -991,11 +1017,44 @@ evaluate(). The recalculation will take time, however.</td>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lspy.problem package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.problem.abstract_local_search_problem">lspy.problem.abstract_local_search_problem module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.problem.array_problem">lspy.problem.array_problem module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-lspy.problem">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+      <li>Previous: <a href="lspy.plot.html" title="previous chapter">lspy.plot package</a></li>
+      <li>Next: <a href="lspy.termination.html" title="next chapter">lspy.termination package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -1024,7 +1083,7 @@ evaluate(). The recalculation will take time, however.</td>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

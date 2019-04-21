@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.localsearch.steepestdescent package" href="lspy.localsearch.steepestdescent.html" />
+    <link rel="prev" title="lspy.localsearch.move package" href="lspy.localsearch.move.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -44,9 +46,10 @@
 <dt id="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">
 <em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.</code><code class="descname">AbstrIterationsTempFunction</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>Class for determining the number of iterations for a temperature.</p>
-<p>This class is meant to be used in a simulated annealing algorithm.
-It is used to determine the amount of iterations for a certain temperature.</p>
+<p>Template class for determining the number of iterations for a temperature.</p>
+<p>Implementations of this class are meant to be used in a simulated annealing
+algorithm. Implementations are supposed to be used to determine the amount
+of iterations for a certain temperature.</p>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations">
 <code class="descname">get_iterations</code><span class="sig-paren">(</span><em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
@@ -70,7 +73,9 @@ It is used to determine the amount of iterations for a certain temperature.</p>
 <dt id="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">
 <em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.abstract_cooling_function.</code><code class="descname">AbstractCoolingFunction</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>A class that implements a cooling function for simulated annealing.</p>
+<p>A template class to implement a cooling function for simulated annealing.</p>
+<p>Implementations of this class are meant to be used in a simulated annealing
+algorithm. Implementations are supposed to implement the cooling function.</p>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature">
 <code class="descname">next_temperature</code><span class="sig-paren">(</span><em>old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
@@ -100,7 +105,8 @@ It is used to determine the amount of iterations for a certain temperature.</p>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction</span></code></a></p>
 <p>Class for determining the number of iterations for a temperature.</p>
 <p>This class is meant to be used in a simulated annealing algorithm.
-It is used to determine the amount of iterations for a certain temperature.</p>
+The amount of iterations is constant and is not influenced by the
+temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -238,7 +244,7 @@ number smaller than 1. Default is 0.75.</td>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature">
 <code class="descname">next_temperature</code><span class="sig-paren">(</span><em>old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to get the next temperature</p>
+<dd><p>Function to get the next temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -626,6 +632,7 @@ time, iteration, temperature, value, best_value</li>
 </div>
 <div class="section" id="module-lspy.localsearch.simulatedannealing">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing" title="Permalink to this headline">¶</a></h2>
+<p>This package contains all classes unique to simulated annealing.</p>
 </div>
 </div>
 
@@ -646,11 +653,46 @@ time, iteration, temperature, value, best_value</li>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="lspy.localsearch.html#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch.abstract_local_search">lspy.localsearch.abstract_local_search module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+  <li><a href="lspy.localsearch.html">lspy.localsearch package</a><ul>
+      <li>Previous: <a href="lspy.localsearch.move.html" title="previous chapter">lspy.localsearch.move package</a></li>
+      <li>Next: <a href="lspy.localsearch.steepestdescent.html" title="next chapter">lspy.localsearch.steepestdescent package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -679,7 +721,7 @@ time, iteration, temperature, value, best_value</li>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

@@ -1,3 +1,9 @@
+"""This module contains all package specific Exceptions of lspy.
+
+The module also contains functions to raise Exceptions.
+
+"""
+
 
 def _not_implemented(*args):
     """An error raising function that can take any amount of parameters.
@@ -19,12 +25,16 @@ def _not_implemented(*args):
 
 
 class WrongMoveTypeError(Exception):
-    """Is raised when the wrong move type is used."""
+    """Is raised when the wrong move type is used with a certain class."""
     pass
 
 
 def not_multi_move_type(*args):
     """An error raising function that can take any amount of parameters.
+
+    This function is meant to be called when someone uses a different move type
+    than MultiNeighbourhood when one needs to use an instance of the
+    MultiNeighbourhood class.
 
     Parameters
     ----------

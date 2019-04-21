@@ -4,8 +4,8 @@ from abc import ABC, abstractmethod
 class AbstractAcceptanceFunction(ABC):
     """Template to create acceptance functions.
 
-    Acceptance functions determine if a worse problem than the current
-    problem is accepted as the new current problem.
+    Acceptance functions determine if a worse state than the current
+    state is accepted as the new current state.
 
     """
 
@@ -14,7 +14,7 @@ class AbstractAcceptanceFunction(ABC):
 
     @abstractmethod
     def accept(self, delta_value):
-        """Checks if the current_solution will be accepted
+        """Checks if the worse state will be accepted
 
         Parameters
         ----------

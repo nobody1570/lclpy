@@ -1,3 +1,7 @@
+"""This module contains several functions to get statistical data from the
+results of the function benchmark.
+"""
+
 from operator import itemgetter
 import numpy
 import statistics

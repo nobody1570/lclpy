@@ -17,6 +17,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lspy.localsearch.vns package" href="lspy.localsearch.vns.html" />
+    <link rel="prev" title="lspy.localsearch.steepestdescent package" href="lspy.localsearch.steepestdescent.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -45,9 +47,7 @@
 <em class="property">class </em><code class="descclassname">lspy.localsearch.tabusearch.tabu_list.</code><code class="descname">TabuList</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.tabusearch.tabu_list.TabuList" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Implements a tabu list for use with TabuSearch.</p>
-<p>Note that only hashes of the items are kept in the tabu list. This is done
-to save memory. This means that two different items with the same hash will
-be considered to be the same item.</p>
+<p>When using big items, it would be wise to save space by hashing them.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -432,6 +432,7 @@ time, iteration, value, best_value</li>
 </div>
 <div class="section" id="module-lspy.localsearch.tabusearch">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.localsearch.tabusearch" title="Permalink to this headline">¶</a></h2>
+<p>This package contains all classes unique to tabu search.</p>
 </div>
 </div>
 
@@ -452,11 +453,46 @@ time, iteration, value, best_value</li>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lspy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lspy.html">lspy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lspy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lspy.aidfunc.html">lspy.aidfunc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.benchmark.html">lspy.benchmark package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.evaluation.html">lspy.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.io.html">lspy.io package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lspy.localsearch.html">lspy.localsearch package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="lspy.localsearch.html#subpackages">Subpackages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch.abstract_local_search">lspy.localsearch.abstract_local_search module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lspy.localsearch.html#module-lspy.localsearch">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.plot.html">lspy.plot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.problem.html">lspy.problem package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lspy.termination.html">lspy.termination package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lspy.html#module-lspy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">lspy</a><ul>
+  <li><a href="lspy.html">lspy package</a><ul>
+  <li><a href="lspy.localsearch.html">lspy.localsearch package</a><ul>
+      <li>Previous: <a href="lspy.localsearch.steepestdescent.html" title="previous chapter">lspy.localsearch.steepestdescent package</a></li>
+      <li>Next: <a href="lspy.localsearch.vns.html" title="next chapter">lspy.localsearch.vns package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -485,7 +521,7 @@ time, iteration, value, best_value</li>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Daan Thijs.
+      &copy;2019, Daan Thijs.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>

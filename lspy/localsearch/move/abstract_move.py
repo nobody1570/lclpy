@@ -5,7 +5,8 @@ class AbstractMove(ABC):
     """Template to create Move-objects.
 
     This object is used to explore a neighbourhood and alter the state of a
-    solution.
+    solution. It can also be used to generate valid moves in the neighbourhood.
+
     """
 
     def __init__(self):
@@ -15,7 +16,7 @@ class AbstractMove(ABC):
         """Returns the move type.
 
         This function is used in the implementation of delta evaluation. If
-        it's not implemented or wanted, this method does not need to be
+        this is not implemented or wanted, this method does not need to be
         implemented.
 
         Returns
@@ -76,7 +77,7 @@ class AbstractMove(ABC):
 
     @abstractmethod
     def get_random_move(self):
-        """A method used to generate a random move in the neighbourhood..
+        """A method used to generate a random move in the neighbourhood.
 
         Returns
         -------

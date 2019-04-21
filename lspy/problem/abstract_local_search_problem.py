@@ -41,7 +41,7 @@ class AbstractLocalSearchProblem(ABC):
 
     @abstractmethod
     def get_moves(self):
-        """Iterable. Returns all valid moves in the neighbourhood.
+        """An iterable that returns all valid moves in the complete neighbourhood.
 
         Yields
         ------
@@ -54,7 +54,7 @@ class AbstractLocalSearchProblem(ABC):
 
     @abstractmethod
     def get_random_move(self):
-        """Returns a random valid move from the neighbourhood.
+        """A function to return a random move from the complete neighbourhood.
 
         Returns
         -------
@@ -64,6 +64,25 @@ class AbstractLocalSearchProblem(ABC):
         """
 
         pass
+
+    def evaluate_move(self, move):
+        """Evaluates the quality gained or lost by a potential move.
+
+        This function does not need to be implemented.
+
+        Parameters
+        ----------
+        move : tuple of int
+            Represents a unique valid move.
+
+        Returns
+        -------
+        int or float
+            The change in value of the eval-function if the move is performed.
+
+        """
+
+        raise NotImplementedError
 
     @abstractmethod
     def evaluate(self):
@@ -86,7 +105,7 @@ class AbstractLocalSearchProblem(ABC):
 
     @abstractmethod
     def state(self):
-        """Returns an immutable hashable object that identifies the current state.
+        """Returns an immutable hashable object that describes the current state.
 
         Returns
         -------
@@ -97,27 +116,16 @@ class AbstractLocalSearchProblem(ABC):
 
         pass
 
-    @abstractmethod
-    def reset(self):
-        """Resets the object back to it's state after init."""
+    def first_neighbourhood(self):
+        """Changes the current neighbourhood to the first neighbourhood.
 
-        pass
+        Note that this function will only be useable if the neighbourhood given
+        to the constructor is a MultiNeighbourhood.
 
-    def evaluate_move(self, move):
-        """Calculates the effects a move would have on the evaluation of the state.
-
-        This function does not need to be implemented.
-
-        Parameters
-        ----------
-        move : tuple of int
-            The move one would like to know the effects of.
-
-        Returns
-        -------
-        int or float
-            An indication of the difference in quality that would be caused by
-            the move.
+        Raises
+        ------
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
@@ -129,13 +137,16 @@ class AbstractLocalSearchProblem(ABC):
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
         If this function is called when the last neighbourhood is the current
-        neighbourhood, the first neighbourhood will become the current
-        neighbourhood.
+        neighbourhood, the last neighbourhood will remain the current
+        neighbourhood and an exception will be raised.
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        NoNextNeighbourhood
+            If there is no next neighbourhood. This is simply an indication
+            that the current neighbourhood was the last neighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
@@ -152,25 +163,18 @@ class AbstractLocalSearchProblem(ABC):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
         raise NotImplementedError
 
     def select_get_moves(self):
-        """Function to get all moves from a specific neighbourhood.
+        """Function to get all moves from the current neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
-
-        Parameters
-        ----------
-        neighbourhood_nr : int
-            Number of the neighbourhood. This number is the index of the
-            neighbourhood in the list of move functions given to the
-            constructor.
 
         Returns
         -------
@@ -180,25 +184,18 @@ class AbstractLocalSearchProblem(ABC):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
 
         """
 
         raise NotImplementedError
 
     def select_random_move(self):
-        """A method used to generate a random move from a specific neighbourhood.
+        """A method used to generate a random move from the current neighbourhood.
 
         Note that this function will only be useable if the neighbourhood given
         to the constructor is a MultiNeighbourhood.
-
-        Parameters
-        ----------
-        neighbourhood_nr : int
-            Number of the neighbourhood. This number is the index of the
-            neighbourhood in the list of move functions given to the
-            constructor.
 
         Returns
         -------
@@ -207,8 +204,34 @@ class AbstractLocalSearchProblem(ABC):
 
         Raises
         ------
-        WrongMoveType
-            If the neighbourhood isn't a MultiNeighbourhood.
+        WrongMoveTypeError
+            If the move_function isn't a MultiNeighbourhood.
+
+        """
+
+        raise NotImplementedError
+
+    @abstractmethod
+    def reset(self):
+        """Resets the object back to it's state after init."""
+
+        pass
+
+    def diff_state(self):
+        """A method to return the difference between states of the Problem.
+
+        The current state will be compared to the old state.
+
+        Parameters
+        ----------
+        old_state
+            The old state.
+
+        Returns
+        -------
+        object
+            A representation of the difference between the current state and
+            the old state.
 
         """
 

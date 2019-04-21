@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lspy",
-    version="0.0.5",
+    version="0.0.6",
     author="Daan Thijs",
     author_email="daan.thijs@hotmail.com",
     description="A localsearch library.",
