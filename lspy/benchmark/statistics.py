@@ -437,7 +437,7 @@ def stat(benchmark_result, algorithm_names=None, problem_names=None):
         - max
         - min
 
-        The reult for each of those are kept in a 2D array. Note that the
+        The result for each of those are kept in a 2D array. Note that the
         indices of a certain algorithm-problem pair in the benchmark_result
         will be the same as the indices one needs to get the results for that
         pair.

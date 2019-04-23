@@ -4,6 +4,10 @@ from random import seed
 def benchmark(problems, algorithms, stop_criterion, runs=10, seeds=None):
     """A function to perform multiple algorithms on multiple soltions.
 
+    Note that the problems, algorithms and the stop criterion all need to have
+    the method reset method properly implemented for this function to work
+    properly.
+
     Parameters
     ----------
     problems : iterable object
