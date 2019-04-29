@@ -28,7 +28,7 @@ wheel
 pip install wheel
 ```
 
-You will be notified if they are already installed. This shouldn't be a problem.
+You will be notified if they are already installed. This isn't be a problem.
 
 
 ### Installing
@@ -71,7 +71,7 @@ You can also check the docstrings of a module in the interactive interpreter lik
 print(module_alias.__doc__)
 ```
 
-There are also several [jupyter notebooks](https://jupyter.org/) that demonstrate the use of certain classes.
+There are also several [jupyter notebooks](https://jupyter.org/) that demonstrate the use of some classes. These notebooks can be found in the project on github in the notebooks folder.
 
 
 ## Tests

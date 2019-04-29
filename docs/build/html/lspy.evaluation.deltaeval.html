@@ -793,6 +793,33 @@ NotImplementedError when called.</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.evaluation.deltaeval" title="Permalink to this headline">¶</a></h2>
 <p>This package contains all the functions and classes needed for
 delta-evaluation.</p>
+<p>The easiest and fastest way to implement delta evaluation for new classes and
+moves is to implement delta_evaluate in the evaluation function for a specific
+evaluation-move class pair. The limitations of this approach are
+obvious.</p>
+<p>Alternatively, one can define it’s own function that acts like delta_eval_func.
+Obviously, one would need to use this function in the __init__ of your
+evaluation classes instead of delta_eval_func. This means that the evaluation
+functions defined by the library would need to be subclassed and given a
+different __init__ method to be compatible with your function. The best way to
+make your function use the already existing functionality would be like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_delta_eval_func</span><span class="p">(</span><span class="n">problem_eval_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">):</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try using existing functionality</span>
+        <span class="k">return</span> <span class="n">delta_eval_func</span><span class="p">(</span><span class="n">problem_eval_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+        <span class="c1"># a NotImplementedError was raised, so we know that delta_eval_func</span>
+        <span class="c1"># couldn&#39;t find an implementation for a specific pair.</span>
+
+        <span class="c1"># return of delta evaluation class for added classes you have</span>
+        <span class="c1"># implemented</span>
+        <span class="k">return</span> <span class="n">my_other_func</span><span class="p">(</span><span class="n">problem_eval_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that it might be possible to reuse classes, functions and code from
+modules delta_qap, delta_tsp and delta_multi_neighbourhood.</p>
 </div>
 </div>
 

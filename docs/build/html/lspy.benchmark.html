@@ -46,6 +46,9 @@
 <dt id="lspy.benchmark.benchmark.benchmark">
 <code class="descclassname">lspy.benchmark.benchmark.</code><code class="descname">benchmark</code><span class="sig-paren">(</span><em>problems</em>, <em>algorithms</em>, <em>stop_criterion</em>, <em>runs=10</em>, <em>seeds=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.benchmark.benchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to perform multiple algorithms on multiple soltions.</p>
+<p>Note that the problems, algorithms and the stop criterion all need to have
+the method reset method properly implemented for this function to work
+properly.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -298,7 +301,7 @@ Every main part contains the results of different statistics:</p>
 <li>max</li>
 <li>min</li>
 </ul>
-<p>The reult for each of those are kept in a 2D array. Note that the
+<p>The result for each of those are kept in a 2D array. Note that the
 indices of a certain algorithm-problem pair in the benchmark_result
 will be the same as the indices one needs to get the results for that
 pair.</p>

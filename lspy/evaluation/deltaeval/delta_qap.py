@@ -386,4 +386,4 @@ def delta_qap(eval_func, move_func):
                                 array_reverse_order_changed_locations,
                                 array_reverse_order_transform_next_index_to_current_index)
     else:
-        return QAPDeltaEvaluate(eval_func, _not_implemented, _not_implemented)
+        raise NotImplementedError

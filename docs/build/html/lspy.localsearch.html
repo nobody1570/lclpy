@@ -142,11 +142,58 @@ case.</td>
 <ul class="simple">
 <li>acceptance : package for acceptance functions</li>
 <li>move : package for move functions</li>
+</ul>
+<p>Local search algorithms:</p>
+<ul class="simple">
 <li>simulatedannealing : package for everything unique to simulated annealing</li>
 <li>steepestdescent : package for everything unique to steepest descent</li>
 <li>tabusearch : package for everything unique to tabu search</li>
 <li>vns : package for everything unique to variable neighbourhood search (VNS)</li>
 </ul>
+<p>Note that all the local search algorithms use delta-evaluation.
+If your evaluation function does not have it implemented, errors will be
+raised.</p>
+<p>When using moves and evaluation functions implemented by this library delta
+evaluation can be easily enabled, by passing the move function as a parameter
+to the evaluation function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">move</span> <span class="o">=</span> <span class="n">ImplementedMove</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">eval_func</span> <span class="o">=</span> \
+<span class="n">ImplementedEvaluationFunction</span><span class="p">(</span><span class="n">parameter_1</span><span class="p">,</span> <span class="n">parameter_2</span><span class="p">,</span> <span class="n">move_function</span><span class="o">=</span><span class="n">move</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that the evaluation function might have less or more parameters than in
+this example.</p>
+<p>You can find information how to implement your own delta evaluation in the
+docstring of lspy.evaluation.deltaeval.__init__ or in the documentation of
+lspy.evaluation.deltaeval.</p>
+<p>If you don’t feel like implementing delta_evaluation for your own evaluation
+and or move classes, for whatever reason, you can always do the implement
+evaluate_move like this in your Problem class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">move</span><span class="p">):</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluation_function</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">undo_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluation_function</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want to use this method with an existing problem class from this
+library, it’s the best to define your own subclass that overwrites the default
+behaviour of the method and use this subclass:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyProblemClass</span><span class="p">(</span><span class="n">ImplementedProblemClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">evaluate_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">move</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+        <span class="n">new_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluation_function</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">undo_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluation_function</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Do remember not to pass a move function to the evaluation function’s
+constructor if you use these approaches.
+Also note that there will be a significant slowdown.</p>
 </div>
 </div>
 

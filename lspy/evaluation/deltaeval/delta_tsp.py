@@ -419,4 +419,4 @@ def delta_tsp(eval_func, move_func):
                                 array_reverse_order_changed_distances,
                                 array_reverse_order_transform_next_index_to_current_index)
     else:
-        return TSPDeltaEvaluate(eval_func, _not_implemented, _not_implemented)
+        raise NotImplementedError
