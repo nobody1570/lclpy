@@ -1,15 +1,15 @@
 # lspy
 
 Lspy is a localsearch library implemented in python.
-Note that the described procedures don't work yet, also names and such might change the final release.
+Note that the some of the described procedures don't work yet, also names and such might change the final release.
 
 ## Getting Started
 
-Here, you will find a simple guide to install the package on your system.
+Here, you will find a simple guide to install the library on your system.
 
 ### Prerequisites
 
-The package is intended to be installed with [pip](https://pip.pypa.io/en/stable/).
+The library is intended to be installed with [pip](https://pip.pypa.io/en/stable/).
 Make sure pip is installed on your system. 
 (It's probably included with your python implementation, but it doesn't hurt to check.)
 
@@ -22,13 +22,7 @@ setuptools
 pip install setuptools
 ```
 
-wheel 
-
-```
-pip install wheel
-```
-
-You will be notified if they are already installed. This isn't be a problem.
+You will be notified if it is already installed. This isn't be a problem.
 
 
 ### Installing
@@ -78,7 +72,7 @@ There are also several [jupyter notebooks](https://jupyter.org/) that demonstrat
 
 Most of the modules of locsearch have some [doctests](https://docs.python.org/3/library/doctest.html) included.
 
-One can perform these by importing the module and then using the following code in the interactive interpreter:
+One can perform these by importing a module and then using the following code in the interactive interpreter:
 
 ```
 import doctest
@@ -91,7 +85,7 @@ If there are no failed tests, everything is fine.
 
 ## Authors
 
-* **Daan Thijs** - *Initial work* - [nobody1570](https://github.com/nobody1570)
+* **Daan Thijs** - *Design and initial implementation* - [nobody1570](https://github.com/nobody1570)
 
 ## License
 

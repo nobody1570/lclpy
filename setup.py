@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="test-lspy",
-    version="0.0.7",
+    version="0.0.9",
     author="Daan Thijs",
     author_email="daan.thijs@hotmail.com",
     description="A localsearch library.",
@@ -17,6 +17,7 @@ setuptools.setup(
         'matplotlib>=3.0.2',
         'numpy>=1.15.4',
     ],
+    python_requires=">=3.7",
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
