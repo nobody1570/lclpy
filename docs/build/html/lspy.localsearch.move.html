@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.localsearch.move package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,97 +42,82 @@
 <span id="lspy-localsearch-move-abstract-move-module"></span><h2>lspy.localsearch.move.abstract_move module<a class="headerlink" href="#module-lspy.localsearch.move.abstract_move" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.move.abstract_move.</code><code class="descname">AbstractMove</code><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.move.abstract_move.</code><code class="sig-name descname">AbstractMove</code><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create Move-objects.</p>
 <p>This object is used to explore a neighbourhood and alter the state of a
 solution. It can also be used to generate valid moves in the neighbourhood.</p>
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.get_move_type">
-<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_move_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_move_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the move type.</p>
 <p>This function is used in the implementation of delta evaluation. If
 this is not implemented or wanted, this method does not need to be
 implemented.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_moves" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generator used to return all valid moves in the neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_random_move" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method used to generate a random move in the neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.move" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a move.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> – The dataset that is being explored. It will be altered after the
-method call.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.abstract_move.AbstractMove.undo_move">
-<code class="descname">undo_move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.undo_move" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.abstract_move.AbstractMove.undo_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undoes a move.</p>
 <p>Make sure you only undo a move after it’s has been performed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> – The dataset that is being explored. It will be altered after the
-method call.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -144,7 +127,7 @@ method call.</li>
 <span id="lspy-localsearch-move-array-reverse-order-module"></span><h2>lspy.localsearch.move.array_reverse_order module<a class="headerlink" href="#module-lspy.localsearch.move.array_reverse_order" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.move.array_reverse_order.</code><code class="descname">ArrayReverseOrder</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.move.array_reverse_order.</code><code class="sig-name descname">ArrayReverseOrder</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
 <p>Implements a reverse order move function for 1 dimensional numpy arrays.</p>
 <p>The move function performs and generates moves that reverses the order of
@@ -152,35 +135,29 @@ values in an interval of a one-dimensional array. Note that a move is
 represented as a tuple of int. The move (x, y) represents reversing of the
 order of the values in the interval of indices [x, y] of the array.
 Note that the moves are equivalent to 2-opt.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder._size">
-<code class="descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder._size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the numpy array that is altered.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Get all possible moves, you should NEVER do this. You should evaluate only
 one move at a time. This example is simply to show the behaviour of
 get_moves and how to perform and undo a move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="gp">... </span><span class="c1"># init</span>
@@ -208,9 +185,9 @@ get_moves and how to perform and undo a move:</p>
 </pre></div>
 </div>
 <p>An example of generating some random moves with get_random_move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>   <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>   <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">... </span><span class="c1"># set seed random</span>
 <span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -229,86 +206,71 @@ get_moves and how to perform and undo a move:</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type">
-<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the move type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate over all valid moves.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to generate one random move.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>array</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs the move asked.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
-get_random_move and get_move.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.undo_move">
-<code class="descname">undo_move</code><span class="sig-paren">(</span><em>array</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.undo_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_reverse_order.ArrayReverseOrder.undo_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undoes the move asked.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
-get_random_move and get_move.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -318,41 +280,35 @@ get_random_move and get_move.</li>
 <span id="lspy-localsearch-move-array-swap-module"></span><h2>lspy.localsearch.move.array_swap module<a class="headerlink" href="#module-lspy.localsearch.move.array_swap" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.move.array_swap.</code><code class="descname">ArraySwap</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.move.array_swap.</code><code class="sig-name descname">ArraySwap</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
 <p>Implements a swap move function for 1 dimensional numpy arrays.</p>
 <p>The move function performs and generates moves that swap 2 values in a
 one-dimensional array. Note that a move is represented as a tuple of int.
 The move (x, y) represents the swap of the values from the indices x and y
 of the array.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap._size">
-<code class="descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap._size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the numpy array that is altered.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Get all possible moves, you should NEVER do this. You should evaluate only
 one move at a time. This example is simply to show the behaviour of
 get_moves and how to perform and undo a move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="gp">... </span><span class="c1"># init</span>
@@ -380,8 +336,8 @@ get_moves and how to perform and undo a move:</p>
 </pre></div>
 </div>
 <p>An example of generating some random moves with get_random_move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">... </span><span class="c1"># set seed random</span>
 <span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -400,86 +356,71 @@ get_moves and how to perform and undo a move:</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap.get_move_type">
-<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.get_move_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.get_move_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the move type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate over all valid moves.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to generate one random move.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>array</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs the move asked.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
-get_random_move and get_move.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.array_swap.ArraySwap.undo_move">
-<code class="descname">undo_move</code><span class="sig-paren">(</span><em>array</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.undo_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.array_swap.ArraySwap.undo_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undoes the move asked.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
-get_random_move and get_move.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -489,83 +430,70 @@ get_random_move and get_move.</li>
 <span id="lspy-localsearch-move-multi-neighbourhood-module"></span><h2>lspy.localsearch.move.multi_neighbourhood module<a class="headerlink" href="#module-lspy.localsearch.move.multi_neighbourhood" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.move.multi_neighbourhood.</code><code class="descname">MultiNeighbourhood</code><span class="sig-paren">(</span><em>move_func_list</em>, <em>weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.move.multi_neighbourhood.</code><code class="sig-name descname">MultiNeighbourhood</code><span class="sig-paren">(</span><em class="sig-param">move_func_list</em>, <em class="sig-param">weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
 <p>Implements a class that can be used to combine different move functions.</p>
 <p>Moves are represented in the following way:</p>
 <p>(index move function, a representation of a move from said move function)</p>
 <p>Note that all move functions must work on the same type of data structure.
 Combining move functions meant for different data structures won’t work.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>move_func_list</strong> (<em>list of AbstractMove</em><em> or </em><em>tuple of AbstractMove</em>) – A list or tuple that contains the move functions one wishes to combine.</li>
-<li><strong>weights</strong> (<em>list of int</em><em> or </em><em>tuple of int</em><em>, </em><em>optional</em>) – A list or tuple that contains weights to increase or decrease the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>move_func_list</strong> (<em>list of AbstractMove</em><em> or </em><em>tuple of AbstractMove</em>) – A list or tuple that contains the move functions one wishes to combine.</p></li>
+<li><p><strong>weights</strong> (<em>list of int</em><em> or </em><em>tuple of int</em><em>, </em><em>optional</em>) – A list or tuple that contains weights to increase or decrease the
 chance of a move function being used to generate a random move. The
 weight for a function must have the same index as the function.
 Weights are positive numbers and need to be defined for every move
 function. In the default case, every function will have the same
 weight. Note that it’s perfectly possible to pass the probabilities
-instead of the weights.</li>
+instead of the weights.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list">
-<code class="descname">_move_func_list</code><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_move_func_list</code><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains all used move functions.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple of AbstractMove</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple of AbstractMove</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._size">
-<code class="descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of _move_func_list.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._tresholds">
-<code class="descname">_tresholds</code><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._tresholds" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_tresholds</code><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._tresholds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tresholds associated with the move functions.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">tuple of float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple of float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Get all possible moves, you should NEVER do this. You should evaluate only
 one move at a time. This example is simply to show the behaviour of
 get_moves and how to perform and undo a move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">... </span><span class="c1"># init</span>
@@ -597,12 +525,12 @@ get_moves and how to perform and undo a move:</p>
 </div>
 <p>An example of generating some random moves with get_random_move with
 default weights (every move function has the same chance of being chosen):</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">... </span><span class="c1"># set seed random</span>
 <span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -624,12 +552,12 @@ default weights (every move function has the same chance of being chosen):</p>
 </div>
 <p>An example of generating some random moves with get_random_move with
 defined weights (swap weight: 1, reverse weight: 3):</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">... </span><span class="c1"># set seed random</span>
 <span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -656,12 +584,12 @@ defined weights (swap weight: 1, reverse weight: 3):</p>
 defined probabilities (swap probability: 0.25, reverse probability: 0.75).
 Note that the results are exactly the same as the results of the previous
 doctest:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">... </span><span class="c1"># set seed random</span>
 <span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -685,14 +613,14 @@ doctest:</p>
 </pre></div>
 </div>
 <p>Test of using delta evaluation with a multineighbourhood:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="kn">import</span> <span class="n">ArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> <span class="k">import</span> <span class="n">ArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.quadratic_assignment_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">QuadraticAssignmentEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">QuadraticAssignmentEvaluationFunction</span>
 <span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="gp">... </span><span class="c1"># init multineighbourhood</span>
@@ -740,23 +668,21 @@ doctest:</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type">
-<code class="descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the move type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The move type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generator used to return all valid moves in the neighbourhood.</p>
 <p>Note that all moves of all neighbourhoods are included. Duplicate moves
 are possible. All moves are generated for one neighbourhood, after
@@ -764,119 +690,100 @@ which they will all be generated for next neighbourhood until no
 remain. The neighbourhoods will be visited in the order their
 move functions had in move_func_list when it was passed to the
 constructor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method used to generate a random move in the neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a move.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> – The dataset that is being explored. It will be altered after the
-method call.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves">
-<code class="descname">select_get_moves</code><span class="sig-paren">(</span><em>neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">select_get_moves</code><span class="sig-paren">(</span><em class="sig-param">neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generator used to return all moves from a specific neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move from the specified neighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move from the specified neighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move">
-<code class="descname">select_random_move</code><span class="sig-paren">(</span><em>neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">select_random_move</code><span class="sig-paren">(</span><em class="sig-param">neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method used to generate a random move from a specific neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
 neighbourhood in the list of move functions given to the
-constructor.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the specified neighbourhood.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+constructor.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A random valid move from the specified neighbourhood.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size">
-<code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get amount of neighbourhoods in the multi neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The amount of neighbourhoods.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The amount of neighbourhoods.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.undo_move">
-<code class="descname">undo_move</code><span class="sig-paren">(</span><em>data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.undo_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.undo_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undoes a move.</p>
 <p>Make sure you only undo a move after it’s has been performed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> – The dataset that is being explored. It will be altered after the
-method call.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -886,7 +793,7 @@ method call.</li>
 <span id="lspy-localsearch-move-tsp-array-swap-module"></span><h2>lspy.localsearch.move.tsp_array_swap module<a class="headerlink" href="#module-lspy.localsearch.move.tsp_array_swap" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.move.tsp_array_swap.TspArraySwap">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.move.tsp_array_swap.</code><code class="descname">TspArraySwap</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.move.tsp_array_swap.</code><code class="sig-name descname">TspArraySwap</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.move.array_swap.ArraySwap" title="lspy.localsearch.move.array_swap.ArraySwap"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.move.array_swap.ArraySwap</span></code></a></p>
 <p>Implements a swap move for 1 dimensional numpy arrays for tsp problems.</p>
 <p>In TSP problems swapping the first location with another is pointless. This
@@ -897,26 +804,20 @@ class Arrayswap.</p>
 one-dimensional array. Note that a move is represented as a tuple of int.
 The move (x, y) represents the swap of the values from the indices x and y
 of the array.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.move.tsp_array_swap.TspArraySwap._size">
-<code class="descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap._size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the numpy array that is altered.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -953,8 +854,8 @@ get_moves and how to perform and undo a move:</p>
 </pre></div>
 </div>
 <p>An example of generating some random moves with get_random_move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">... </span><span class="c1"># set seed random</span>
 <span class="gp">... </span><span class="c1"># not needed, is only used here to always get the same moves.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -973,36 +874,31 @@ get_moves and how to perform and undo a move:</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is a generator used to return all valid moves.</p>
 <p>Note that the swaps with the first position aren’t included. When
 solving TSP problems, the start position doesn’t matter.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to generate one random move.</p>
 <p>Note that the swaps with the first position aren’t included. When
 solving TSP problems, the start position doesn’t matter.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1077,13 +973,11 @@ are used to alter the state of the problems and are able to generate valid
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -1104,7 +998,7 @@ are used to alter the state of the problems and are able to generate valid
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

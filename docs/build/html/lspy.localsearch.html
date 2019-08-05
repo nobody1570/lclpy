@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.localsearch package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -76,6 +74,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lspy.localsearch.tabusearch.html">lspy.localsearch.tabusearch package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lspy.localsearch.tabusearch.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.abstract_diff_state">lspy.localsearch.tabusearch.abstract_diff_state module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.sum_diff_state">lspy.localsearch.tabusearch.sum_diff_state module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.tabu_list">lspy.localsearch.tabusearch.tabu_list module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.tabu_search">lspy.localsearch.tabusearch.tabu_search module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch">Module contents</a></li>
@@ -97,40 +97,35 @@
 <span id="lspy-localsearch-abstract-local-search-module"></span><h2>lspy.localsearch.abstract_local_search module<a class="headerlink" href="#module-lspy.localsearch.abstract_local_search" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.abstract_local_search.AbstractLocalSearch">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.abstract_local_search.</code><code class="descname">AbstractLocalSearch</code><a class="headerlink" href="#lspy.localsearch.abstract_local_search.AbstractLocalSearch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.abstract_local_search.</code><code class="sig-name descname">AbstractLocalSearch</code><a class="headerlink" href="#lspy.localsearch.abstract_local_search.AbstractLocalSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template for the implementation of local search algorithms.</p>
 <p>This class should only contain the logic needed to run the local search.
 I/O and plotting should be handled by an AbstractRunner.</p>
 <dl class="method">
 <dt id="lspy.localsearch.abstract_local_search.AbstractLocalSearch.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.abstract_local_search.AbstractLocalSearch.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.abstract_local_search.AbstractLocalSearch.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – Will always be raised.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – Will always be raised.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.localsearch.abstract_local_search.AbstractLocalSearch.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.abstract_local_search.AbstractLocalSearch.run" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.abstract_local_search.AbstractLocalSearch.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>start running the local search</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Contains the best found case and the evaluation value for said
-case.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">collections.namedtuple</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Contains the best found case and the evaluation value for said
+case.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>collections.namedtuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -140,15 +135,15 @@ case.</td>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lspy.localsearch" title="Permalink to this headline">¶</a></h2>
 <p>This package contains the classes and packages related to localsearch.</p>
 <ul class="simple">
-<li>acceptance : package for acceptance functions</li>
-<li>move : package for move functions</li>
+<li><p>acceptance : package for acceptance functions</p></li>
+<li><p>move : package for move functions</p></li>
 </ul>
 <p>Local search algorithms:</p>
 <ul class="simple">
-<li>simulatedannealing : package for everything unique to simulated annealing</li>
-<li>steepestdescent : package for everything unique to steepest descent</li>
-<li>tabusearch : package for everything unique to tabu search</li>
-<li>vns : package for everything unique to variable neighbourhood search (VNS)</li>
+<li><p>simulatedannealing : package for everything unique to simulated annealing</p></li>
+<li><p>steepestdescent : package for everything unique to steepest descent</p></li>
+<li><p>tabusearch : package for everything unique to tabu search</p></li>
+<li><p>vns : package for everything unique to variable neighbourhood search (VNS)</p></li>
 </ul>
 <p>Note that all the local search algorithms use delta-evaluation.
 If your evaluation function does not have it implemented, errors will be
@@ -256,13 +251,11 @@ Also note that there will be a significant slowdown.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -283,7 +276,7 @@ Also note that there will be a significant slowdown.</p>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

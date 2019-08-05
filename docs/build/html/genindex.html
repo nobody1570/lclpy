@@ -1,12 +1,10 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Index &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -88,6 +86,8 @@
         <li><a href="lspy.localsearch.vns.html#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._data_append">(lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood attribute)</a>
 </li>
       </ul></li>
+      <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.tabu_search.TabuSearch._diff">_diff (lspy.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
+</li>
       <li><a href="lspy.localsearch.acceptance.html#lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction._diff_multiplier">_diff_multiplier (lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction attribute)</a>
 </li>
       <li><a href="lspy.evaluation.html#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._distance_matrix">_distance_matrix (lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction attribute)</a>
@@ -138,10 +138,10 @@
         <li><a href="lspy.termination.html#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations">(lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion attribute)</a>
 </li>
       </ul></li>
-      <li><a href="lspy.termination.html#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">_max_seconds (lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="lspy.termination.html#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">_max_seconds (lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion attribute)</a>
+</li>
       <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.tabu_search.TabuSearch._minimise">_minimise (lspy.localsearch.tabusearch.tabu_search.TabuSearch attribute)</a>
 </li>
       <li><a href="lspy.localsearch.move.html#lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list">_move_func_list (lspy.localsearch.move.multi_neighbourhood.MultiNeighbourhood attribute)</a>
@@ -224,6 +224,8 @@
 </li>
       <li><a href="lspy.localsearch.simulatedannealing.html#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">AbstractCoolingFunction (class in lspy.localsearch.simulatedannealing.abstract_cooling_function)</a>
 </li>
+      <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState">AbstractDiffState (class in lspy.localsearch.tabusearch.abstract_diff_state)</a>
+</li>
       <li><a href="lspy.evaluation.html#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">AbstractEvaluationFunction (class in lspy.evaluation.abstract_evaluation_function)</a>
 </li>
       <li><a href="lspy.localsearch.html#lspy.localsearch.abstract_local_search.AbstractLocalSearch">AbstractLocalSearch (class in lspy.localsearch.abstract_local_search)</a>
@@ -244,10 +246,10 @@
       </ul></li>
       <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.tabu_list.TabuList.add">add() (lspy.localsearch.tabusearch.tabu_list.TabuList method)</a>
 </li>
-      <li><a href="lspy.aidfunc.html#lspy.aidfunc.add_to_data_func.add_to_data_func">add_to_data_func() (in module lspy.aidfunc.add_to_data_func)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="lspy.aidfunc.html#lspy.aidfunc.add_to_data_func.add_to_data_func">add_to_data_func() (in module lspy.aidfunc.add_to_data_func)</a>
+</li>
       <li><a href="lspy.termination.html#lspy.termination.always_true_criterion.AlwaysTrueCriterion">AlwaysTrueCriterion (class in lspy.termination.always_true_criterion)</a>
 </li>
       <li><a href="lspy.evaluation.deltaeval.html#lspy.evaluation.deltaeval.delta_tsp.array_reverse_order_changed_distances">array_reverse_order_changed_distances() (in module lspy.evaluation.deltaeval.delta_tsp)</a>
@@ -390,10 +392,10 @@
 </li>
       <li><a href="lspy.evaluation.deltaeval.html#lspy.evaluation.deltaeval.delta_tsp.delta_tsp">delta_tsp() (in module lspy.evaluation.deltaeval.delta_tsp)</a>
 </li>
-      <li><a href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.diff_state">diff_state() (lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem method)</a>
+      <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState.diff">diff() (lspy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState method)</a>
 
       <ul>
-        <li><a href="lspy.problem.html#lspy.problem.array_problem.ArrayProblem.diff_state">(lspy.problem.array_problem.ArrayProblem method)</a>
+        <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.sum_diff_state.SumDiffState.diff">(lspy.localsearch.tabusearch.sum_diff_state.SumDiffState method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -632,10 +634,10 @@
 </li>
       <li><a href="lspy.localsearch.move.html#module-lspy.localsearch.move.array_reverse_order">lspy.localsearch.move.array_reverse_order (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lspy.localsearch.move.html#module-lspy.localsearch.move.array_swap">lspy.localsearch.move.array_swap (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lspy.localsearch.move.html#module-lspy.localsearch.move.multi_neighbourhood">lspy.localsearch.move.multi_neighbourhood (module)</a>
 </li>
       <li><a href="lspy.localsearch.move.html#module-lspy.localsearch.move.tsp_array_swap">lspy.localsearch.move.tsp_array_swap (module)</a>
@@ -657,6 +659,10 @@
       <li><a href="lspy.localsearch.steepestdescent.html#module-lspy.localsearch.steepestdescent.steepest_descent">lspy.localsearch.steepestdescent.steepest_descent (module)</a>
 </li>
       <li><a href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch">lspy.localsearch.tabusearch (module)</a>
+</li>
+      <li><a href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.abstract_diff_state">lspy.localsearch.tabusearch.abstract_diff_state (module)</a>
+</li>
+      <li><a href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.sum_diff_state">lspy.localsearch.tabusearch.sum_diff_state (module)</a>
 </li>
       <li><a href="lspy.localsearch.tabusearch.html#module-lspy.localsearch.tabusearch.tabu_list">lspy.localsearch.tabusearch.tabu_list (module)</a>
 </li>
@@ -924,6 +930,8 @@
 </li>
       <li><a href="lspy.localsearch.steepestdescent.html#lspy.localsearch.steepestdescent.steepest_descent.SteepestDescent">SteepestDescent (class in lspy.localsearch.steepestdescent.steepest_descent)</a>
 </li>
+      <li><a href="lspy.localsearch.tabusearch.html#lspy.localsearch.tabusearch.sum_diff_state.SumDiffState">SumDiffState (class in lspy.localsearch.tabusearch.sum_diff_state)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1028,13 +1036,11 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -1055,7 +1061,7 @@
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

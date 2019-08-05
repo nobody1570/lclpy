@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.termination package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -43,87 +41,76 @@
 <span id="lspy-termination-abstract-termination-criterion-module"></span><h2>lspy.termination.abstract_termination_criterion module<a class="headerlink" href="#module-lspy.termination.abstract_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.abstract_termination_criterion.</code><code class="descname">AbstractTerminationCriterion</code><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.abstract_termination_criterion.</code><code class="sig-name descname">AbstractTerminationCriterion</code><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create termination criterions.</p>
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value">
-<code class="descname">check_first_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_first_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that should be called once before the main loop.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial problem.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial problem.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value">
-<code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks a value.</p>
 <p>Does not need to be used or implemented.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – A value from the evaluation function.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – A value from the evaluation function.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable">
-<code class="descname">check_variable</code><span class="sig-paren">(</span><em>variable</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_variable</code><span class="sig-paren">(</span><em class="sig-param">variable</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks a variable specific to an implementation.</p>
 <p>Does not need to be used or implemented</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>variable</strong> – The value of a certain value of a specific algorithm.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variable</strong> – The value of a certain value of a specific algorithm.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done">
-<code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to be called after every iteration.</p>
 <p>Does not need to be used or implemented.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to determine if the algorithm needs to continue running</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the algorithm has to continue
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the algorithm has to continue
 running, if the function returns false the algorithm needs to
-stop running.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+stop running.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing">
-<code class="descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts an internal timer if needed.</p>
 <p>Does not need to be used or implemented.</p>
 </dd></dl>
@@ -135,7 +122,7 @@ stop running.</td>
 <span id="lspy-termination-always-true-criterion-module"></span><h2>lspy.termination.always_true_criterion module<a class="headerlink" href="#module-lspy.termination.always_true_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.always_true_criterion.AlwaysTrueCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.always_true_criterion.</code><code class="descname">AlwaysTrueCriterion</code><a class="headerlink" href="#lspy.termination.always_true_criterion.AlwaysTrueCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.always_true_criterion.</code><code class="sig-name descname">AlwaysTrueCriterion</code><a class="headerlink" href="#lspy.termination.always_true_criterion.AlwaysTrueCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Termination criterion that will never terminate an algorithm.</p>
 <p>This criterion is only meant to be used as a default termination criterion
@@ -143,23 +130,21 @@ in algorithms that will stop iterating when no improvement is found. Don’t
 use it in any other case.</p>
 <dl class="method">
 <dt id="lspy.termination.always_true_criterion.AlwaysTrueCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.always_true_criterion.AlwaysTrueCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.always_true_criterion.AlwaysTrueCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if the algorithm needs to continue running.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Will always be True.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Will always be True.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.always_true_criterion.AlwaysTrueCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.always_true_criterion.AlwaysTrueCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.always_true_criterion.AlwaysTrueCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 </dd></dl>
 
@@ -170,49 +155,40 @@ use it in any other case.</p>
 <span id="lspy-termination-max-iterations-termination-criterion-module"></span><h2>lspy.termination.max_iterations_termination_criterion module<a class="headerlink" href="#module-lspy.termination.max_iterations_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.max_iterations_termination_criterion.</code><code class="descname">MaxIterationsTerminationCriterion</code><span class="sig-paren">(</span><em>max_iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.max_iterations_termination_criterion.</code><code class="sig-name descname">MaxIterationsTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">max_iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Termination criterion to terminate after a set amount of iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations. The default is 1000 iterations.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations. The default is 1000 iterations.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations">
-<code class="descname">_max_iterations</code><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_max_iterations</code><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximal amount of iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._iterations">
-<code class="descname">_iterations</code><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._iterations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_iterations</code><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The amount of iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Default amount of iterations:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># the variable iterations will be used to count the amount of</span>
 <span class="gp">... </span><span class="c1"># iterations.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
@@ -229,8 +205,8 @@ use it in any other case.</p>
 </pre></div>
 </div>
 <p>50 iterations:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># the variable iterations will be used to count the amount of</span>
 <span class="gp">... </span><span class="c1"># iterations.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
@@ -248,37 +224,35 @@ use it in any other case.</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done">
-<code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called after every iteration.</p>
 <p>Increments _iterations by 1.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if the algorithm needs to continue running.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the amount of iteration is smaller
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the amount of iteration is smaller
 than max_iterations, if the function returns false the amount of
-iterations is bigger than max_iterations</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+iterations is bigger than max_iterations</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p class="rubric">Examples</p>
 <p>Default amount of iterations:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># the variable iterations will be used to count the amount of</span>
 <span class="gp">... </span><span class="c1"># iterations.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
@@ -314,69 +288,57 @@ iterations is bigger than max_iterations</td>
 <span id="lspy-termination-max-seconds-termination-criterion-module"></span><h2>lspy.termination.max_seconds_termination_criterion module<a class="headerlink" href="#module-lspy.termination.max_seconds_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.max_seconds_termination_criterion.</code><code class="descname">MaxSecondsTerminationCriterion</code><span class="sig-paren">(</span><em>max_seconds=60</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.max_seconds_termination_criterion.</code><code class="sig-name descname">MaxSecondsTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">max_seconds=60</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Termination criterion to terminate after a set amount of seconds.</p>
 <p>Note that this terminationcriterion isn’t exact. It will only terminate
 the algorithm after iterating longer than the set time AND if an iteration
 is finished. The extra time that the algorithm will run depends on the
 duration of the last iteration.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_seconds</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The maximal amount of seconds passed. The default is 60 seconds.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_seconds</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The maximal amount of seconds passed. The default is 60 seconds.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">
-<code class="descname">_max_seconds</code><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_max_seconds</code><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximal amount of seconds passed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._seconds">
-<code class="descname">_seconds</code><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._seconds" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_seconds</code><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>The amount of seconds passed since the start of the iterations</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start">
-<code class="descname">_start</code><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_start</code><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start" title="Permalink to this definition">¶</a></dt>
 <dd><p>The moment when the time starts to be measured in seconds measured
 from the epoch.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Running for 60 seconds (default):</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># start and stop will be used to measure the time passed.</span>
@@ -395,9 +357,9 @@ from the epoch.</p>
 </pre></div>
 </div>
 <p>Running for 3 seconds:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># start and stop will be used to measure the time passed.</span>
@@ -416,7 +378,7 @@ from the epoch.</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.iteration_done">
-<code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called after every iteration</p>
 <p>Sets _seconds to be the difference between the current time and the
 start time.</p>
@@ -424,31 +386,29 @@ start time.</p>
 
 <dl class="method">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if an algorithm needs to continue running</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the amount of time passed is smaller
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the amount of time passed is smaller
 than max_seconds, if the function returns false the amount of
-time passed is bigger than max_seconds</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+time passed is bigger than max_seconds</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p class="rubric">Examples</p>
 <p>Running for 3 seconds:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># start and stop will be used to measure the time passed.</span>
@@ -484,7 +444,7 @@ time passed is bigger than max_seconds</td>
 
 <dl class="method">
 <dt id="lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing">
-<code class="descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called before the iterations</p>
 <p>Sets _start to the current time in seconds from the epoch.</p>
 </dd></dl>
@@ -496,52 +456,43 @@ time passed is bigger than max_seconds</td>
 <span id="lspy-termination-min-temperature-termination-criterion-module"></span><h2>lspy.termination.min_temperature_termination_criterion module<a class="headerlink" href="#module-lspy.termination.min_temperature_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.min_temperature_termination_criterion.</code><code class="descname">MinTemperatureTerminationCriterion</code><span class="sig-paren">(</span><em>min_temperature=10</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.min_temperature_termination_criterion.</code><code class="sig-name descname">MinTemperatureTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">min_temperature=10</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>A termination criterion for use with a simulated annealing algorithm.</p>
 <p>This termination criterion ends the algorithm if the current temperature
 is lower than the minimal temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>min_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The minimal temperature. The default is 10.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>min_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The minimal temperature. The default is 10.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.min_temperature">
-<code class="descname">min_temperature</code><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.min_temperature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">min_temperature</code><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.min_temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>The minimal temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion._run">
-<code class="descname">_run</code><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_run</code><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if no temperature lower than the minimal has been encountered,
 False if a temperature lower than the minimal has been encountered.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>A simple example of the default behaviour:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MinTemperatureTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MinTemperatureTerminationCriterion</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># tests</span>
@@ -561,8 +512,8 @@ False if a temperature lower than the minimal has been encountered.</p>
 </pre></div>
 </div>
 <p>Example with a minimal temperature of 100:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MinTemperatureTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MinTemperatureTerminationCriterion</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># tests</span>
@@ -581,44 +532,39 @@ False if a temperature lower than the minimal has been encountered.</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.check_variable">
-<code class="descname">check_variable</code><span class="sig-paren">(</span><em>current_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_variable</code><span class="sig-paren">(</span><em class="sig-param">current_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if the current temperature is lower than the minimal temperature.</p>
 <p>This function should always be called if the temperature is lowered.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>current_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature of the algorithm.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature of the algorithm.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if the algorithm needs to continue running.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the current temperature is higher than
-or equal to the minimal temperature, else it returns false.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the current temperature is higher than
+or equal to the minimal temperature, else it returns false.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p>Examples:</p>
 <p>A simple example with the default min_temperature:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MinTemperatureTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MinTemperatureTerminationCriterion</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># run 1</span>
@@ -662,31 +608,25 @@ or equal to the minimal temperature, else it returns false.</td>
 <span id="lspy-termination-multi-and-criterion-module"></span><h2>lspy.termination.multi_and_criterion module<a class="headerlink" href="#module-lspy.termination.multi_and_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.multi_and_criterion.MultiAndCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.multi_and_criterion.</code><code class="descname">MultiAndCriterion</code><span class="sig-paren">(</span><em>criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_and_criterion.MultiAndCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.multi_and_criterion.</code><code class="sig-name descname">MultiAndCriterion</code><span class="sig-paren">(</span><em class="sig-param">criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_and_criterion.MultiAndCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.multi_criterion.MultiCriterion" title="lspy.termination.multi_criterion.MultiCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.multi_criterion.MultiCriterion</span></code></a></p>
 <p>Class to use multiple terminationcriteria at once.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
-wishes to use.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.multi_and_criterion.MultiAndCriterion.criteria">
-<code class="descname">criteria</code><a class="headerlink" href="#lspy.termination.multi_and_criterion.MultiAndCriterion.criteria" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">criteria</code><a class="headerlink" href="#lspy.termination.multi_and_criterion.MultiAndCriterion.criteria" title="Permalink to this definition">¶</a></dt>
 <dd><p>An iterable object containing the intialised termination criterions one
 wishes to use.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list or tuple of AbstractTerminationCriterion</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list or tuple of AbstractTerminationCriterion</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -694,14 +634,14 @@ wishes to use.</p>
 three criterions are capable of stopping the iterating correctly.</p>
 <p>MaxSecondsTerminationCriterion stops the iterating:</p>
 <blockquote>
-<div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<div><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_and_criterion</span> <span class="kn">import</span> <span class="n">MultiAndCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_and_criterion</span> <span class="k">import</span> <span class="n">MultiAndCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
@@ -722,13 +662,13 @@ three criterions are capable of stopping the iterating correctly.</p>
 </div>
 </div></blockquote>
 <p>MaxIterationsTerminationCriterion stops the iterating:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_and_criterion</span> <span class="kn">import</span> <span class="n">MultiAndCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_and_criterion</span> <span class="k">import</span> <span class="n">MultiAndCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
@@ -749,13 +689,13 @@ three criterions are capable of stopping the iterating correctly.</p>
 </pre></div>
 </div>
 <p>NoImprovementTerminationCriterion stops the iterating:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_and_criterion</span> <span class="kn">import</span> <span class="n">MultiAndCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_and_criterion</span> <span class="k">import</span> <span class="n">MultiAndCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
@@ -777,22 +717,20 @@ three criterions are capable of stopping the iterating correctly.</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.multi_and_criterion.MultiAndCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_and_criterion.MultiAndCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_and_criterion.MultiAndCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if the algorithm needs to continue running.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the algorithm has to continue
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the algorithm has to continue
 running, if the function returns false the algorithm needs to
 stop running. If all the composing termination criterions return
 False if their keep_running method is called, this method will
-return False. Else the method will return True.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+return False. Else the method will return True.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -802,31 +740,25 @@ return False. Else the method will return True.</td>
 <span id="lspy-termination-multi-criterion-module"></span><h2>lspy.termination.multi_criterion module<a class="headerlink" href="#module-lspy.termination.multi_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.multi_criterion.MultiCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.multi_criterion.</code><code class="descname">MultiCriterion</code><span class="sig-paren">(</span><em>criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.multi_criterion.</code><code class="sig-name descname">MultiCriterion</code><span class="sig-paren">(</span><em class="sig-param">criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Class to combine multiple terminationcriteria.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
-wishes to use.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.criteria">
-<code class="descname">criteria</code><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.criteria" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">criteria</code><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.criteria" title="Permalink to this definition">¶</a></dt>
 <dd><p>An iterable object containing the intialised termination criterions one
 wishes to use.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list or tuple of AbstractTerminationCriterion</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list or tuple of AbstractTerminationCriterion</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -834,14 +766,14 @@ wishes to use.</p>
 three criterions are capable of stopping the iterating correctly.</p>
 <p>MaxSecondsTerminationCriterion stops the iterating:</p>
 <blockquote>
-<div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<div><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> <span class="kn">import</span> <span class="n">MultiCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> <span class="k">import</span> <span class="n">MultiCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -862,13 +794,13 @@ three criterions are capable of stopping the iterating correctly.</p>
 </div>
 </div></blockquote>
 <p>MaxIterationsTerminationCriterion stops the iterating:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> <span class="kn">import</span> <span class="n">MultiCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> <span class="k">import</span> <span class="n">MultiCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -889,13 +821,13 @@ three criterions are capable of stopping the iterating correctly.</p>
 </pre></div>
 </div>
 <p>NoImprovementTerminationCriterion stops the iterating:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> <span class="kn">import</span> <span class="n">MultiCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> <span class="k">import</span> <span class="n">MultiCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -917,73 +849,65 @@ three criterions are capable of stopping the iterating correctly.</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.check_new_value">
-<code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks a value.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – A value from the evaluation function.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – A value from the evaluation function.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.check_variable">
-<code class="descname">check_variable</code><span class="sig-paren">(</span><em>variable</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_variable</code><span class="sig-paren">(</span><em class="sig-param">variable</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks a variable specific to an implementation.</p>
 <p>Does not need to be used or implemented</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>variable</strong> – The value of a certain value of a specific algorithm.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variable</strong> – The value of a certain value of a specific algorithm.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.iteration_done">
-<code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called after every iteration.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if the algorithm needs to continue running.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the algorithm has to continue
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the algorithm has to continue
 running, if the function returns false the algorithm needs to
 stop running. If one or more of the composing termination
 criterions returns False if its keep_running method is called, this
-method will return False. Else the method will return True.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+method will return False. Else the method will return True.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p class="rubric">Examples</p>
 <p>MaxIterationsTerminationCriterion stops the iterating:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_iterations_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxIterationsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxIterationsTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.multi_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiCriterion</span>
 <span class="gp">... </span><span class="c1"># init list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -1019,7 +943,7 @@ method will return False. Else the method will return True.</td>
 
 <dl class="method">
 <dt id="lspy.termination.multi_criterion.MultiCriterion.start_timing">
-<code class="descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.multi_criterion.MultiCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts an internal timer if needed.</p>
 </dd></dl>
 
@@ -1030,70 +954,58 @@ method will return False. Else the method will return True.</td>
 <span id="lspy-termination-must-improve-termination-criterion-module"></span><h2>lspy.termination.must_improve_termination_criterion module<a class="headerlink" href="#module-lspy.termination.must_improve_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.must_improve_termination_criterion.</code><code class="descname">MustImproveTerminationCriterion</code><span class="sig-paren">(</span><em>minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.must_improve_termination_criterion.</code><code class="sig-name descname">MustImproveTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Criterion to terminate after an iteration without improvement.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
 True. If the goal is to maximise the evaluation function, this should
-be False. The default is True.</td>
-</tr>
-</tbody>
-</table>
+be False. The default is True.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value">
-<code class="descname">_old_best_value</code><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_old_best_value</code><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>The last value. Is initialised as infinite (minimise = True)
 or minus infinite (minimise = False)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function">
-<code class="descname">_function</code><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_function</code><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
 <dd><p>The function used to judge if a value is an improvement.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">function</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run">
-<code class="descname">_run</code><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_run</code><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if no worse value has been encountered, False if this isn’t the
 case.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Smaller values are considered improvements(default). 8 iterations with
 improvement. After that there are no more improvements. The dataset
 eval_values is hardcoded:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.must_improve_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MustImproveTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MustImproveTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
@@ -1119,9 +1031,9 @@ eval_values is hardcoded:</p>
 <p>Bigger values are considered improvements. 5 iterations with
 improvement. After that there are no more improvements. The dataset
 eval_values is hardcoded:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.must_improve_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MustImproveTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MustImproveTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
@@ -1129,7 +1041,7 @@ eval_values is hardcoded:</p>
 <span class="gp">... </span><span class="c1"># index is also used to count the amount of iterations</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">... </span><span class="c1"># init</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MustImproveTerminationCriterion</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">MustImproveTerminationCriterion</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># loop</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
@@ -1146,48 +1058,43 @@ eval_values is hardcoded:</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value">
-<code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to be called after every calculation of the evaluation function.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the new evaluation value of a solution.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the new evaluation value of a solution.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>function to determine if the algorithm needs to continue running</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns True if there hasn’t been encountered a
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns True if there hasn’t been encountered a
 non-improving value. The function returns False if a non-improving
-value is encountered.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+value is encountered.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p class="rubric">Examples</p>
 <p>Smaller values are considered improvements(default). 8 iterations with
 improvement. After that there are no more improvements. The dataset
 eval_values is hardcoded. After this, the criterion is resetted and the
 loop is repeated:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.must_improve_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MustImproveTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MustImproveTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
@@ -1237,95 +1144,76 @@ loop is repeated:</p>
 <span id="lspy-termination-no-improvement-termination-criterion-module"></span><h2>lspy.termination.no_improvement_termination_criterion module<a class="headerlink" href="#module-lspy.termination.no_improvement_termination_criterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion">
-<em class="property">class </em><code class="descclassname">lspy.termination.no_improvement_termination_criterion.</code><code class="descname">NoImprovementTerminationCriterion</code><span class="sig-paren">(</span><em>max_iterations=100</em>, <em>minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.termination.no_improvement_termination_criterion.</code><code class="sig-name descname">NoImprovementTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">max_iterations=100</em>, <em class="sig-param">minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
 <p>Criterion to terminate after a set amount of iterations without improvement.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. The default is
-100 iterations.</li>
-<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. The default is
+100 iterations.</p></li>
+<li><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
 True. If the goal is to maximise the evlauation function, this should
-be False. The default is True.</li>
+be False. The default is True.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations">
-<code class="descname">_max_iterations</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_max_iterations</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximal amount of iterations without improvement.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._iterations">
-<code class="descname">_iterations</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._iterations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_iterations</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The amount of iterations with no improvement.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run">
-<code class="descname">_run</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_run</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Will be True if the maximal amount of iterations without improvement
 hasn’t been reached yet, will be false if this isn’t the case.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value">
-<code class="descname">_old_best_value</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_old_best_value</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>The last best value. Is initialised as minus infinite
 (improvement_is_bigger = True)
 or infinite (improvement_is_bigger = False)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function">
-<code class="descname">_function</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_function</code><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
 <dd><p>The function used to judge if a value is an improvement.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">function</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -1334,9 +1222,9 @@ the new value. Smaller values are considered improvements(default). The
 dataset eval_values is generated. (1 improvement, 99 cases without
 improvement, 1 improvement, 110 cases without improvement) After this the
 iterations start:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
@@ -1363,9 +1251,9 @@ iterations start:</p>
 <p>3 iterations without improvement, only checking improved values. Smaller
 values are considered improvements(default). The dataset eval_values is
 hardcoded:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -1395,9 +1283,9 @@ hardcoded:</p>
 considered improvements. The dataset eval_values is generated.
 (1 improvement, 99 cases without improvement, 1 improvement, 110 cases
 without improvement) After this the iterations start:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
@@ -1407,7 +1295,7 @@ without improvement) After this the iterations start:</p>
 <span class="gp">... </span><span class="c1"># index is also used to count the amount of iterations</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span><span class="o">=</span><span class="mi">0</span>
 <span class="gp">... </span><span class="c1"># init</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="n">minimise</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="n">minimise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># loop</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
@@ -1423,9 +1311,9 @@ without improvement) After this the iterations start:</p>
 </div>
 <p>3 iterations without improvement. Bigger values are considered
 improvements. The dataset eval_values is hardcoded:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be given</span>
 <span class="gp">... </span><span class="c1"># to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
@@ -1433,7 +1321,7 @@ improvements. The dataset eval_values is hardcoded:</p>
 <span class="gp">... </span><span class="c1"># index is also used to count the amount of iterations</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">... </span><span class="c1"># init</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># loop</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">test</span><span class="o">.</span><span class="n">keep_running</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">pass</span> <span class="c1"># other code to execute</span>
@@ -1449,78 +1337,70 @@ improvements. The dataset eval_values is hardcoded:</p>
 </div>
 <dl class="method">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value">
-<code class="descname">check_first_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_first_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that should be called once before the main loop.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial solution.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial solution.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value">
-<code class="descname">check_new_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to be called after every improvement of the evaluation function.</p>
 <p>It’s also possible to call this function every time when the
 evaluation value is calculated without ill effects.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the best evaluation value found for a solution or the new
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the best evaluation value found for a solution or the new
 evaluation value of a solution. It does not matter which one is
-used.</td>
-</tr>
-</tbody>
-</table>
+used.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done">
-<code class="descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to be called after every iteration.</p>
 <p>Increments _iterations by 1.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running">
-<code class="descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to determine if the algorithm needs to continue running.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The function returns true if the amount of iterations is smaller
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the amount of iterations is smaller
 than _max_iterations, if the function returns false the amount of
-iterations is bigger than max_iterations</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+iterations is bigger than max_iterations</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p class="rubric">Examples</p>
 <p>3 iterations without improvement. Bigger values are considered
 improvements. The dataset eval_values is hardcoded. After this, the
 criterion is resetted and the loop is repeated:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.no_improvement_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">NoImprovementTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">NoImprovementTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># creation of an array that contains the values that will be</span>
 <span class="gp">... </span><span class="c1">#  given to our termination criterion</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eval_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
 <span class="gp">... </span><span class="c1"># init</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">NoImprovementTerminationCriterion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run 1</span>
 <span class="gp">... </span><span class="c1">#</span>
 <span class="gp">... </span><span class="c1"># index is used to get values from the array.</span>
@@ -1631,13 +1511,11 @@ implementations of said template.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -1658,7 +1536,7 @@ implementations of said template.</p>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

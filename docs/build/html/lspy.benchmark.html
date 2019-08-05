@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.benchmark package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,43 +42,39 @@
 <span id="lspy-benchmark-benchmark-module"></span><h2>lspy.benchmark.benchmark module<a class="headerlink" href="#module-lspy.benchmark.benchmark" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="lspy.benchmark.benchmark.benchmark">
-<code class="descclassname">lspy.benchmark.benchmark.</code><code class="descname">benchmark</code><span class="sig-paren">(</span><em>problems</em>, <em>algorithms</em>, <em>stop_criterion</em>, <em>runs=10</em>, <em>seeds=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.benchmark.benchmark" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.benchmark.</code><code class="sig-name descname">benchmark</code><span class="sig-paren">(</span><em class="sig-param">problems</em>, <em class="sig-param">algorithms</em>, <em class="sig-param">stop_criterion</em>, <em class="sig-param">runs=10</em>, <em class="sig-param">seeds=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.benchmark.benchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to perform multiple algorithms on multiple soltions.</p>
 <p>Note that the problems, algorithms and the stop criterion all need to have
 the method reset method properly implemented for this function to work
 properly.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>problems</strong> (<em>iterable object</em>) – Contains all the problems.</li>
-<li><strong>algorithms</strong> (<em>iterable object</em>) – Contains all the algorithms. Note that the algorithms can be
-initialised with None as solution and None as termination_criterion.</li>
-<li><strong>stop_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – The termination criterion that will be used for all combinations of
-algorithms and problems.</li>
-<li><strong>runs</strong> (<em>int</em><em>, </em><em>optional</em>) – The amount of runs that will be performed for a single
-algorithm-problem pair.</li>
-<li><strong>seeds</strong> (<em>list of int</em><em> or </em><em>tuple of int</em>) – The seeds that will be used in the runs. Note that the length of the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problems</strong> (<em>iterable object</em>) – Contains all the problems.</p></li>
+<li><p><strong>algorithms</strong> (<em>iterable object</em>) – Contains all the algorithms. Note that the algorithms can be
+initialised with None as solution and None as termination_criterion.</p></li>
+<li><p><strong>stop_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – The termination criterion that will be used for all combinations of
+algorithms and problems.</p></li>
+<li><p><strong>runs</strong> (<em>int</em><em>, </em><em>optional</em>) – The amount of runs that will be performed for a single
+algorithm-problem pair.</p></li>
+<li><p><strong>seeds</strong> (<em>list of int</em><em> or </em><em>tuple of int</em>) – The seeds that will be used in the runs. Note that the length of the
 tuple or array needs to be equal to the amount of runs. If no seeds are
-given the seeds will be the number of the run.</li>
+given the seeds will be the number of the run.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A 3-dimensional list of namedtuple. These namedtuples are the results
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 3-dimensional list of namedtuple. These namedtuples are the results
 of the algorithms. The first indice represents an algorithm, the second
 a problem, the third a run of the algorithm-problem pair. The indices
 that should be used are the same as in algorithms and solutions
 respectively for the first 2 indices. The third indice is used to
 choose between the runs. The possible indices for runs are always in
 the interval [0, #runs-1].</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of list of list of namedtuple</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of list of list of namedtuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -90,355 +84,336 @@ the interval [0, #runs-1].</p>
 results of the function benchmark.</p>
 <dl class="function">
 <dt id="lspy.benchmark.statistics.biggest">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">biggest</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.biggest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">biggest</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.biggest" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get the biggest best_values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the biggest of the best_value for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the biggest of the best_value for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.iterations_max">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">iterations_max</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_max" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">iterations_max</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get the most iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the most iterations for every algorithm-problem
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the most iterations for every algorithm-problem
 pair. Note that the indices of a certain algorithm-problem pair in the
 benchmark_result will be the same as the indices one needs to get the
-results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.iterations_mean">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">iterations_mean</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_mean" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">iterations_mean</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the mean of the amount of iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the mean of the amount of iterations for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the mean of the amount of iterations for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.iterations_median">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">iterations_median</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_median" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">iterations_median</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_median" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the median of the amount of iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the median of the amount of iterations for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the amount of iterations for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.iterations_min">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">iterations_min</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_min" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">iterations_min</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get the least iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the least iterations for every algorithm-problem
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the least iterations for every algorithm-problem
 pair. Note that the indices of a certain algorithm-problem pair in the
 benchmark_result will be the same as the indices one needs to get the
-results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.iterations_stdev">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">iterations_stdev</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_stdev" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">iterations_stdev</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.iterations_stdev" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the standard deviation of the amount of iterations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the standard deviation of the amount of
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the standard deviation of the amount of
 iterations for every algorithm-problem pair. Note that the indices of a
 certain algorithm-problem pair in the benchmark_result will be the same
-as the indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+as the indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.mean">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.mean" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">mean</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the mean of the best_values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the mean of the best_value for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the mean of the best_value for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.median">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">median</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.median" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">median</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.median" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the median of the best_values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the median of the best_value for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the best_value for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.smallest">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">smallest</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.smallest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">smallest</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.smallest" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get the smallest best_values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the smallest of the best_value for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the smallest of the best_value for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.stat">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">stat</code><span class="sig-paren">(</span><em>benchmark_result</em>, <em>algorithm_names=None</em>, <em>problem_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.stat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">stat</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em>, <em class="sig-param">algorithm_names=None</em>, <em class="sig-param">problem_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.stat" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get some common characteristics from a benchmark.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</li>
-<li><strong>print</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the results will be printed to the command line.
-If False the results will not be printed to the command line.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p></li>
+<li><p><strong>print</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the results will be printed to the command line.
+If False the results will not be printed to the command line.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>The result is divided in 3 main parts: best_value, time and iterations.
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>The result is divided in 3 main parts: best_value, time and iterations.
 Every main part contains the results of different statistics:</p>
 <ul class="simple">
-<li>mean</li>
-<li>median</li>
-<li>stdev</li>
-<li>max</li>
-<li>min</li>
+<li><p>mean</p></li>
+<li><p>median</p></li>
+<li><p>stdev</p></li>
+<li><p>max</p></li>
+<li><p>min</p></li>
 </ul>
 <p>The result for each of those are kept in a 2D array. Note that the
 indices of a certain algorithm-problem pair in the benchmark_result
 will be the same as the indices one needs to get the results for that
 pair.</p>
 </p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">namedtuple of namedtuple of numpy.ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>namedtuple of namedtuple of numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.stdev">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">stdev</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.stdev" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">stdev</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.stdev" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the standard deviation of the best_values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the median of the standard variation for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the standard variation for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.time_max">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">time_max</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_max" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">time_max</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get the longest execution time.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the longest time for every algorithm-problem
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the longest time for every algorithm-problem
 pair. Note that the indices of a certain algorithm-problem pair in the
 benchmark_result will be the same as the indices one needs to get the
-results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.time_mean">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">time_mean</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_mean" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">time_mean</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the mean of the last time-point.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the mean of the last time-point for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the mean of the last time-point for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.time_median">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">time_median</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_median" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">time_median</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_median" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the median of the last time-point.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the median of the last time-point for every
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the last time-point for every
 algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.time_min">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">time_min</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_min" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">time_min</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to get the shortest execution time.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the shortest time for every algorithm-problem
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the shortest time for every algorithm-problem
 pair. Note that the indices of a certain algorithm-problem pair in the
 benchmark_result will be the same as the indices one needs to get the
-results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="lspy.benchmark.statistics.time_stdev">
-<code class="descclassname">lspy.benchmark.statistics.</code><code class="descname">time_stdev</code><span class="sig-paren">(</span><em>benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_stdev" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">lspy.benchmark.statistics.</code><code class="sig-name descname">time_stdev</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.benchmark.statistics.time_stdev" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to calculate the standard deviation of the last time-point.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A 2D array containing the standard deviation of the last time-point for
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the standard deviation of the last time-point for
 every algorithm-problem pair. Note that the indices of a certain
 algorithm-problem pair in the benchmark_result will be the same as the
-indices one needs to get the results for that pair.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -447,11 +422,11 @@ indices one needs to get the results for that pair.</td>
 <p>The package benchmark is designed to benchmark.</p>
 <p>The package contains:</p>
 <ul class="simple">
-<li>The function benchmark in the module benchmark.
+<li><p>The function benchmark in the module benchmark.
 This function can be used to run multiple algorithms on multiple problems for
-multiple runs</li>
-<li>The module statistics. This module contains several functions to get
-statistical data from the results of the function benchmark.</li>
+multiple runs</p></li>
+<li><p>The module statistics. This module contains several functions to get
+statistical data from the results of the function benchmark.</p></li>
 </ul>
 </div>
 </div>
@@ -515,13 +490,11 @@ statistical data from the results of the function benchmark.</li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -542,7 +515,7 @@ statistical data from the results of the function benchmark.</li>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

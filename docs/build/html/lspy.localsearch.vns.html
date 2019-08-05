@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.localsearch.vns package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,117 +42,101 @@
 <span id="lspy-localsearch-vns-variable-neighbourhood-module"></span><h2>lspy.localsearch.vns.variable_neighbourhood module<a class="headerlink" href="#module-lspy.localsearch.vns.variable_neighbourhood" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.vns.variable_neighbourhood.</code><code class="descname">VariableNeighbourhood</code><span class="sig-paren">(</span><em>problem</em>, <em>termination_criterion=None</em>, <em>minimise=True</em>, <em>benchmarking=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.vns.variable_neighbourhood.</code><code class="sig-name descname">VariableNeighbourhood</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion=None</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lspy.localsearch.html#lspy.localsearch.abstract_local_search.AbstractLocalSearch" title="lspy.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
 <p>Performs a variable neighbourhood algorithm on the given problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>problem</strong> (<a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem. This problem
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem. This problem
 must have been initialised with move_function of the class
 MultiNeighbourhood. This MultiNeighbourhood needs to contain multiple
-move function classes.</li>
-<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this  should be
+move function classes.</p></li>
+<li><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this  should be
 True. If the goal is to maximise the evaluation function, this should
-be False. The default is True.</li>
-<li><strong>termination_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a><em>, </em><em>optional</em>) – The termination criterion that is used.</li>
-<li><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
-one wishes no benchmarks to be made. Default is False.</li>
+be False. The default is True.</p></li>
+<li><p><strong>termination_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a><em>, </em><em>optional</em>) – The termination criterion that is used.</p></li>
+<li><p><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
+one wishes no benchmarks to be made. Default is False.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._problem">
-<code class="descname">_problem</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._problem" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_problem</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._problem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains all the data needed for the specific problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._termination_criterion">
-<code class="descname">_termination_criterion</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_termination_criterion</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._termination_criterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ends the algorithm if no more improvements can be found.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._function">
-<code class="descname">_function</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_function</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._function" title="Permalink to this definition">¶</a></dt>
 <dd><p>The function used to determine if a delta value is better than another
 delta value.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._best_found_delta_base_value">
-<code class="descname">_best_found_delta_base_value</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._best_found_delta_base_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_best_found_delta_base_value</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._best_found_delta_base_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialisation value for the delta value of each iteration. It’s
 infinite when minimising or minus infinite when maximising.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.data">
-<code class="descname">data</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">data</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data useable for benchmarking will be None if no benchmarks are made.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of tuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._data_append">
-<code class="descname">_data_append</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._data_append" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_data_append</code><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood._data_append" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to append new data-points to data. Will do nothing if no
 benchmarks are made.</p>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>An example of minimising:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -178,21 +160,21 @@ benchmarks are made.</p>
 </pre></div>
 </div>
 <p>An example of maximising, note that the distance matrix is different:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
@@ -210,26 +192,26 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span> <span class="o">=</span> <span class="n">MaxSecondsTerminationCriterion</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># init SteepestDescent</span>
 <span class="gp">... </span><span class="c1"># init VariableNeighbourhood</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">VariableNeighbourhood</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">VariableNeighbourhood</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)</span>
 </pre></div>
 </div>
 <p>Without a specified termination criterion:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -252,35 +234,32 @@ benchmarks are made.</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If the problem or termination criterion have no reset method
-implemented.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – If the problem or termination criterion have no reset method
+    implemented.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>An example of minimising, reset after run:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_reverse_order</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArrayReverseOrder</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArrayReverseOrder</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.multi_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MultiNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MultiNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.vns.variable_neighbourhood</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">VariableNeighbourhood</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">VariableNeighbourhood</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.max_seconds_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MaxSecondsTerminationCriterion</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MaxSecondsTerminationCriterion</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -325,24 +304,21 @@ implemented.</td>
 
 <dl class="method">
 <dt id="lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.vns.variable_neighbourhood.VariableNeighbourhood.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts running the variable neighbourhood search.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
-<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</li>
-<li><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</li>
-<li><strong>data</strong> (<em>None or collections.namedtuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</p></li>
+<li><p><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</p></li>
+<li><p><strong>data</strong> (<em>None or collections.namedtuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
 be None. The namedtuple contains the following data in
 numpy.ndarrays:
-time, iteration, value</li>
+time, iteration, value</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -415,13 +391,11 @@ time, iteration, value</li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -442,7 +416,7 @@ time, iteration, value</li>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

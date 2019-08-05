@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.localsearch.simulatedannealing package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +42,7 @@
 <span id="lspy-localsearch-simulatedannealing-abstr-iterations-temp-function-module"></span><h2>lspy.localsearch.simulatedannealing.abstr_iterations_temp_function module<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing.abstr_iterations_temp_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.</code><code class="descname">AbstrIterationsTempFunction</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.</code><code class="sig-name descname">AbstrIterationsTempFunction</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template class for determining the number of iterations for a temperature.</p>
 <p>Implementations of this class are meant to be used in a simulated annealing
@@ -52,16 +50,13 @@ algorithm. Implementations are supposed to be used to determine the amount
 of iterations for a certain temperature.</p>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations">
-<code class="descname">get_iterations</code><span class="sig-paren">(</span><em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_iterations</code><span class="sig-paren">(</span><em class="sig-param">temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the amount of iterations for a certain temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>Temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -71,27 +66,26 @@ of iterations for a certain temperature.</p>
 <span id="lspy-localsearch-simulatedannealing-abstract-cooling-function-module"></span><h2>lspy.localsearch.simulatedannealing.abstract_cooling_function module<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing.abstract_cooling_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.abstract_cooling_function.</code><code class="descname">AbstractCoolingFunction</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.abstract_cooling_function.</code><code class="sig-name descname">AbstractCoolingFunction</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>A template class to implement a cooling function for simulated annealing.</p>
 <p>Implementations of this class are meant to be used in a simulated annealing
 algorithm. Implementations are supposed to implement the cooling function.</p>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature">
-<code class="descname">next_temperature</code><span class="sig-paren">(</span><em>old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">next_temperature</code><span class="sig-paren">(</span><em class="sig-param">old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get the next temperature</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The new temperature</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new temperature</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -101,38 +95,32 @@ algorithm. Implementations are supposed to implement the cooling function.</p>
 <span id="lspy-localsearch-simulatedannealing-cnst-iterations-temp-function-module"></span><h2>lspy.localsearch.simulatedannealing.cnst_iterations_temp_function module<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing.cnst_iterations_temp_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.</code><code class="descname">CnstIterationsTempFunction</code><span class="sig-paren">(</span><em>iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.</code><code class="sig-name descname">CnstIterationsTempFunction</code><span class="sig-paren">(</span><em class="sig-param">iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction</span></code></a></p>
 <p>Class for determining the number of iterations for a temperature.</p>
 <p>This class is meant to be used in a simulated annealing algorithm.
 The amount of iterations is constant and is not influenced by the
 temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>iterations</strong> (<em>int</em>) – The amount of iterations for all temperatures.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>iterations</strong> (<em>int</em>) – The amount of iterations for all temperatures.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations">
-<code class="descname">_iterations</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_iterations</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>The amount of iterations for all temperatures. Default is 1000.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Default behaviour:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">CnstIterationsTempFunction</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># tests</span>
@@ -145,8 +133,8 @@ temperature.</p>
 </pre></div>
 </div>
 <p>With 800 iterations:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">CnstIterationsTempFunction</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># tests</span>
@@ -160,21 +148,20 @@ temperature.</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations">
-<code class="descname">get_iterations</code><span class="sig-paren">(</span><em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_iterations</code><span class="sig-paren">(</span><em class="sig-param">temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the amount of iterations for a certain temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The “temperature” in the simulated annealing algorithm.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The amount of iterations for the temperature. (Here always
-_iterations)</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The “temperature” in the simulated annealing algorithm.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The amount of iterations for the temperature. (Here always
+_iterations)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -184,36 +171,30 @@ _iterations)</td>
 <span id="lspy-localsearch-simulatedannealing-geometric-cooling-function-module"></span><h2>lspy.localsearch.simulatedannealing.geometric_cooling_function module<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing.geometric_cooling_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.geometric_cooling_function.</code><code class="descname">GeometricCoolingFunction</code><span class="sig-paren">(</span><em>alpha=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.geometric_cooling_function.</code><code class="sig-name descname">GeometricCoolingFunction</code><span class="sig-paren">(</span><em class="sig-param">alpha=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction</span></code></a></p>
 <p>Implements a geometric cooling function for simulated annealing.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – A parameter that influences the cooling rate. Should be a positive
-number smaller than 1. Default is 0.75.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – A parameter that influences the cooling rate. Should be a positive
+number smaller than 1. Default is 0.75.</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha">
-<code class="descname">_alpha</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_alpha</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha" title="Permalink to this definition">¶</a></dt>
 <dd><p>A parameter that influences the cooling rate.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">()</span>
@@ -227,8 +208,8 @@ number smaller than 1. Default is 0.75.</td>
 </pre></div>
 </div>
 <p>An example with an alpha of 0.5:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
@@ -243,22 +224,22 @@ number smaller than 1. Default is 0.75.</td>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature">
-<code class="descname">next_temperature</code><span class="sig-paren">(</span><em>old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">next_temperature</code><span class="sig-paren">(</span><em class="sig-param">old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get the next temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The new temperature. This temperature is equal to:<div class="math notranslate nohighlight">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>The new temperature. This temperature is equal to:</p>
+<div class="math notranslate nohighlight">
 \[\_alpha*old\_temperature\]</div>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -268,179 +249,151 @@ number smaller than 1. Default is 0.75.</td>
 <span id="lspy-localsearch-simulatedannealing-simulated-annealing-module"></span><h2>lspy.localsearch.simulatedannealing.simulated_annealing module<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing.simulated_annealing" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">
-<em class="property">class </em><code class="descclassname">lspy.localsearch.simulatedannealing.simulated_annealing.</code><code class="descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em>problem</em>, <em>termination_criterion</em>, <em>cooling_function</em>, <em>iterations_for_temp_f</em>, <em>start_temperature=2000</em>, <em>minimise=True</em>, <em>benchmarking=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.simulated_annealing.</code><code class="sig-name descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">cooling_function</em>, <em class="sig-param">iterations_for_temp_f</em>, <em class="sig-param">start_temperature=2000</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lspy.localsearch.html#lspy.localsearch.abstract_local_search.AbstractLocalSearch" title="lspy.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
 <p>Performs a simulated annealing algorithm with the given parameters.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>problem</strong> (<a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem.</li>
-<li><strong>termination_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</li>
-<li><strong>cooling_function</strong> (<a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><em>AbstractCoolingFunction</em></a>) – Implements the cooling function for the algorithm.</li>
-<li><strong>iterations_for_temp_f</strong> (<a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><em>AbstrIterationsTempFunction</em></a>) – Implements a function to determine the amount of iterations for a
-certain temperature.</li>
-<li><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The starting temperature for the simulated annealing. The default is
-2000.</li>
-<li><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
-The default is True.</li>
-<li><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
-one wishes no benchmarks to be made. Default is False.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem.</p></li>
+<li><p><strong>termination_criterion</strong> (<a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</p></li>
+<li><p><strong>cooling_function</strong> (<a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><em>AbstractCoolingFunction</em></a>) – Implements the cooling function for the algorithm.</p></li>
+<li><p><strong>iterations_for_temp_f</strong> (<a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><em>AbstrIterationsTempFunction</em></a>) – Implements a function to determine the amount of iterations for a
+certain temperature.</p></li>
+<li><p><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The starting temperature for the simulated annealing. The default is
+2000.</p></li>
+<li><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
+The default is True.</p></li>
+<li><p><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
+one wishes no benchmarks to be made. Default is False.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._problem">
-<code class="descname">_problem</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._problem" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_problem</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._problem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains all the data needed for the specific problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.problem.html#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion">
-<code class="descname">_termination_criterion</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_termination_criterion</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements a termination criterion to terminate the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.termination.html#lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lspy.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function">
-<code class="descname">_cooling_function</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_cooling_function</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the cooling function for the algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">AbstractCoolingFunction</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lspy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">AbstractCoolingFunction</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f">
-<code class="descname">_iterations_for_temp_f</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_iterations_for_temp_f</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements a function to determine the amount of iterations for a
 certain temperature.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">AbstrIterationsTempFunction</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lspy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">AbstrIterationsTempFunction</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._start_temperature">
-<code class="descname">_start_temperature</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._start_temperature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_start_temperature</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._start_temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>The start “temperature”.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature">
-<code class="descname">_temperature</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_temperature</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current “temperature”.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function">
-<code class="descname">_acceptance_function</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_acceptance_function</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>The acceptance function used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lspy.localsearch.acceptance.html#lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction" title="lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.localsearch.acceptance.html#lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction" title="lspy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement">
-<code class="descname">_is_improvement</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_is_improvement</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function used to determine if a certain delta value is an improvement
 or equal to the current value.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better">
-<code class="descname">_is_better</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_is_better</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function used to determine if a certain value is an improvement.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.data">
-<code class="descname">data</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">data</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data useable for benchmarking. Will be None if no benchmarks are made.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of tuple</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of tuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._data_append">
-<code class="descname">_data_append</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._data_append" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_data_append</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._data_append" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to append new data-points to data. Will do nothing if no
 benchmarks are made.</p>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>Minimising example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.simulated_annealing</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">SimulatedAnnealing</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">CnstIterationsTempFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MinTemperatureTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
@@ -471,20 +424,20 @@ benchmarks are made.</p>
 </pre></div>
 </div>
 <p>Maximising example, note that the distance matrix is different:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.simulated_annealing</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">SimulatedAnnealing</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">CnstIterationsTempFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MinTemperatureTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
@@ -509,7 +462,7 @@ benchmarks are made.</p>
 <span class="gp">... </span><span class="c1"># init SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SimulatedAnnealing</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">problem</span><span class="p">,</span> <span class="n">termination_criterion</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">minimise</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">minimise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 2, 3, 1]), best_value=21, data=None)</span>
@@ -517,33 +470,30 @@ benchmarks are made.</p>
 </div>
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If the problem or termination criterion have no reset method
-implemented.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – If the problem or termination criterion have no reset method
+    implemented.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>Minimising example, reset after run:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.simulated_annealing</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">SimulatedAnnealing</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">GeometricCoolingFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.cnst_iterations_temp_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">CnstIterationsTempFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">CnstIterationsTempFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.termination.min_temperature_termination_criterion</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">MinTemperatureTerminationCriterion</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">MinTemperatureTerminationCriterion</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># seed random</span>
 <span class="gp">... </span><span class="c1"># (used here to always get the same output, this obviously is not</span>
 <span class="gp">... </span><span class="c1">#                                  needed in your implementation.)</span>
@@ -607,24 +557,21 @@ implemented.</td>
 
 <dl class="method">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts running the simulated annealing algorithm.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
-<li><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</li>
-<li><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</li>
-<li><strong>data</strong> (<em>None or collections.namedtuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</p></li>
+<li><p><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</p></li>
+<li><p><strong>data</strong> (<em>None or collections.namedtuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
 be None. The namedtuple contains the following data in
 numpy.ndarrays:
-time, iteration, temperature, value, best_value</li>
+time, iteration, temperature, value, best_value</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -697,13 +644,11 @@ time, iteration, temperature, value, best_value</li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -724,7 +669,7 @@ time, iteration, temperature, value, best_value</li>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

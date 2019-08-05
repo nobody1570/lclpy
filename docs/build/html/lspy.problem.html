@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.problem package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +42,7 @@
 <span id="lspy-problem-abstract-local-search-problem-module"></span><h2>lspy.problem.abstract_local_search_problem module<a class="headerlink" href="#module-lspy.problem.abstract_local_search_problem" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">
-<em class="property">class </em><code class="descclassname">lspy.problem.abstract_local_search_problem.</code><code class="descname">AbstractLocalSearchProblem</code><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.problem.abstract_local_search_problem.</code><code class="sig-name descname">AbstractLocalSearchProblem</code><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Template to create Problem-classes for localsearch implemenatations.</p>
 <p>This Class is meant to be used as a template.
@@ -52,243 +50,214 @@ It is supposed to be used when constructing your own solution objects for a
 specific problem.</p>
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.diff_state">
-<code class="descname">diff_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.diff_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">diff_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.diff_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method to return the difference between states of the Problem.</p>
 <p>The current state will be compared to the old state.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_state</strong> – The old state.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A representation of the difference between the current state and
-the old state.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_state</strong> – The old state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A representation of the difference between the current state and
+the old state.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate">
-<code class="descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the current state of the solution.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An indication of the quality of the current state.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An indication of the quality of the current state.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate_move">
-<code class="descname">evaluate_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate_move</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.evaluate_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the quality gained or lost by a potential move.</p>
 <p>This function does not need to be implemented.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – Represents a unique valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The change in value of the eval-function if the move is performed.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – Represents a unique valid move.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The change in value of the eval-function if the move is performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.first_neighbourhood">
-<code class="descname">first_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.first_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">first_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.first_neighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes the current neighbourhood to the first neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_moves" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>An iterable that returns all valid moves in the complete neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of the next move in the neighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A representation of the next move in the neighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_random_move" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to return a random move from the complete neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A representation of the move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A representation of the move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.move" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a move.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of a move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A representation of a move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.next_neighbourhood">
-<code class="descname">next_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.next_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">next_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.next_neighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes the current neighbourhood to the next neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.
 If this function is called when the last neighbourhood is the current
 neighbourhood, the last neighbourhood will remain the current
 neighbourhood and an exception will be raised.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
-<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NoNextNeighbourhood</span></code> – If there is no next neighbourhood. This is simply an indication
-that the current neighbourhood was the last neighbourhood.</li>
-<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.NoNextNeighbourhood" title="lspy.aidfunc.error_func.NoNextNeighbourhood"><strong>NoNextNeighbourhood</strong></a> – If there is no next neighbourhood. This is simply an indication
+    that the current neighbourhood was the last neighbourhood.</p></li>
+<li><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.previous_neighbourhood">
-<code class="descname">previous_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.previous_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">previous_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.previous_neighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes the current neighbourhood to the previous neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.
 If this function is called when the first neighbourhood is the current
 neighbourhood, the first neighbourhood will remain the current
 neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.reset" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_get_moves">
-<code class="descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get all moves from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
-current neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An iterable generator object that contains all the moves of the
+current neighbourhood.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>generator</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_random_move">
-<code class="descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.select_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method used to generate a random move from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the current neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move from the current neighbourhood.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.set_as_best">
-<code class="descname">set_as_best</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.set_as_best" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">set_as_best</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.set_as_best" title="Permalink to this definition">¶</a></dt>
 <dd><p>Saves the current state as the best found state.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.state">
-<code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.state" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an immutable hashable object that describes the current state.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A representation of the current state.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A representation of the current state.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.undo_move">
-<code class="descname">undo_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.undo_move" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem.undo_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undoes a move.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -298,110 +267,88 @@ to the constructor is a MultiNeighbourhood.</p>
 <span id="lspy-problem-array-problem-module"></span><h2>lspy.problem.array_problem module<a class="headerlink" href="#module-lspy.problem.array_problem" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.problem.array_problem.ArrayProblem">
-<em class="property">class </em><code class="descclassname">lspy.problem.array_problem.</code><code class="descname">ArrayProblem</code><span class="sig-paren">(</span><em>evaluation_function</em>, <em>move_function</em>, <em>size</em>, <em>order=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.problem.array_problem.</code><code class="sig-name descname">ArrayProblem</code><span class="sig-paren">(</span><em class="sig-param">evaluation_function</em>, <em class="sig-param">move_function</em>, <em class="sig-param">size</em>, <em class="sig-param">order=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.problem.abstract_local_search_problem.AbstractLocalSearchProblem</span></code></a></p>
 <p>Contains all the data needed to handle a problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>evaluation_function</strong> (<a class="reference internal" href="lspy.evaluation.html#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The evaluation function that needs to be used for the problem.</li>
-<li><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The move function that needs to be used for the problem.</li>
-<li><strong>order</strong> (<em>numpy.ndarray</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – A one dimensional array that contains the order of the points to start
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>evaluation_function</strong> (<a class="reference internal" href="lspy.evaluation.html#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The evaluation function that needs to be used for the problem.</p></li>
+<li><p><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The move function that needs to be used for the problem.</p></li>
+<li><p><strong>order</strong> (<em>numpy.ndarray</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – A one dimensional array that contains the order of the points to start
 with. All values are int, unique and are within the interval
 [0,size[.
 The default value is None.
 In the default case a numpy array will be generated. The generated
-array’s values will always be ordered from small to big.</li>
+array’s values will always be ordered from small to big.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.problem.array_problem.ArrayProblem._evaluation_function">
-<code class="descname">_evaluation_function</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._evaluation_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_evaluation_function</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._evaluation_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>The evaluation function that is used for the problem</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">AbstractEvaluationFunction.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>AbstractEvaluationFunction.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.problem.array_problem.ArrayProblem._move_function">
-<code class="descname">_move_function</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._move_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_move_function</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._move_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>The move function that is used for the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove">AbstractMove</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove">AbstractMove</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.problem.array_problem.ArrayProblem._order">
-<code class="descname">_order</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._order" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_order</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._order" title="Permalink to this definition">¶</a></dt>
 <dd><p>A 1 dimensional array that contains the current order of the points.
 All values are int, unique and are within the interval [0,size[.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.problem.array_problem.ArrayProblem._starting_order">
-<code class="descname">_starting_order</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._starting_order" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_starting_order</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem._starting_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>The initial value of _order.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.problem.array_problem.ArrayProblem.best_order">
-<code class="descname">best_order</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.best_order" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">best_order</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.best_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains the order of the best found problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.problem.array_problem.ArrayProblem.best_order_value">
-<code class="descname">best_order_value</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.best_order_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">best_order_value</code><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.best_order_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>The evaluation value of the best found problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
@@ -409,11 +356,11 @@ All values are int, unique and are within the interval [0,size[.</p>
 set_as_best. Note that problem.set_as_best_order does NOT check if the
 value actually belongs to the order NOR does it check if the value is
 better than the previous best value:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -466,11 +413,11 @@ better than the previous best value:</p>
 </pre></div>
 </div>
 <p>Initialising with a non-default order:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -494,29 +441,28 @@ better than the previous best value:</p>
 </div>
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.diff_state">
-<code class="descname">diff_state</code><span class="sig-paren">(</span><em>old_state</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.diff_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">diff_state</code><span class="sig-paren">(</span><em class="sig-param">old_state</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.diff_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the indices where the current_state and the old state are different.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_state</strong> (<em>tuple</em>) – The old state.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The indices where the current state and the old state are
-different.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_state</strong> (<em>tuple</em>) – The old state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The indices where the current state and the old state are
+different.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple of int</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -561,48 +507,45 @@ different.</td>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.evaluate">
-<code class="descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to evaluate the current _order.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An evaluation of the current state of _order.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An evaluation of the current state of _order.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.evaluate_move">
-<code class="descname">evaluate_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.evaluate_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate_move</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.evaluate_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the quality gained or lost by a potential move.</p>
 <p>Can lead to considerable speedups. Is equivalent to a delta evaluation
 between _order and _order after the move is performed. Note that
 delta-evaluation needs to be implemented for the evaluation function
 and the move type for this method to work.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move</strong> (<em>tuple of int</em>) – Represents a unique valid move.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The change in value of the eval-function if the move is performed.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – Represents a unique valid move.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The change in value of the eval-function if the move is performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -630,42 +573,36 @@ and the move type for this method to work.</p>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.first_neighbourhood">
-<code class="descname">first_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.first_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">first_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.first_neighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes the current neighbourhood to the first neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.get_moves">
-<code class="descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>An iterable that returns all valid moves in the complete neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>tuple of int</em> – The next move in the neighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next move in the neighbourhood.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>Gets all moves from the neigbourhood, you should NEVER do this. You
 should evaluate only one move at a time. This example is simply to
 show the behaviour of get_moves.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -691,26 +628,24 @@ show the behaviour of get_moves.</p>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.get_random_move">
-<code class="descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.get_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.get_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to return a random move from the complete neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Represents one unique valid move in the neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Represents one unique valid move in the neighbourhood.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>Get a random valid move:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -734,74 +669,64 @@ show the behaviour of get_moves.</p>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a move on _order.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move_number</strong> (<em>tuple of int</em>) – Represents a unique valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move_number</strong> (<em>tuple of int</em>) – Represents a unique valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.next_neighbourhood">
-<code class="descname">next_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.next_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">next_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.next_neighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes the current neighbourhood to the next neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.
 If this function is called when the last neighbourhood is the current
 neighbourhood, the last neighbourhood will remain the current
 neighbourhood and an exception will be raised.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
-<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NoNextNeighbourhood</span></code> – If there is no next neighbourhood. This is simply an indication
-that the current neighbourhood was the last neighbourhood.</li>
-<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.NoNextNeighbourhood" title="lspy.aidfunc.error_func.NoNextNeighbourhood"><strong>NoNextNeighbourhood</strong></a> – If there is no next neighbourhood. This is simply an indication
+    that the current neighbourhood was the last neighbourhood.</p></li>
+<li><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.previous_neighbourhood">
-<code class="descname">previous_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.previous_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">previous_neighbourhood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.previous_neighbourhood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes the current neighbourhood to the previous neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.
 If this function is called when the first neighbourhood is the current
 neighbourhood, the first neighbourhood will remain the current
 neighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the object back to it’s state after init.</p>
 <p>_order is replaced by a copy of _starting_order.</p>
 <p class="rubric">Examples</p>
 <p>A simple example with the default order:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -834,12 +759,12 @@ neighbourhood.</p>
 </pre></div>
 </div>
 <p>An example with a non-default order:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -876,83 +801,76 @@ neighbourhood.</p>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.select_get_moves">
-<code class="descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">select_get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.select_get_moves" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get all moves from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterable generator object that contains all the moves of the
-current neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">generator</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An iterable generator object that contains all the moves of the
+current neighbourhood.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>generator</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.select_random_move">
-<code class="descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.select_random_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">select_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.select_random_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method used to generate a random move from the current neighbourhood.</p>
 <p>Note that this function will only be useable if the neighbourhood given
 to the constructor is a MultiNeighbourhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A random valid move from the current neighbourhood.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of int</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WrongMoveTypeError</span></code> – If the move_function isn’t a MultiNeighbourhood.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move from the current neighbourhood.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lspy.aidfunc.html#lspy.aidfunc.error_func.WrongMoveTypeError" title="lspy.aidfunc.error_func.WrongMoveTypeError"><strong>WrongMoveTypeError</strong></a> – If the move_function isn’t a MultiNeighbourhood.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.set_as_best">
-<code class="descname">set_as_best</code><span class="sig-paren">(</span><em>evaluation_value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.set_as_best" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_as_best</code><span class="sig-paren">(</span><em class="sig-param">evaluation_value</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.set_as_best" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the current _order as the new best_order</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>evaluation_value</strong> (<em>int</em><em> or </em><em>float</em>) – The evaluation value of the current order. If you haven’t kept or
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>evaluation_value</strong> (<em>int</em><em> or </em><em>float</em>) – The evaluation value of the current order. If you haven’t kept or
 calculated said value, it can always be calculated with
-evaluate(). The recalculation will take time, however.</td>
-</tr>
-</tbody>
-</table>
+evaluate(). The recalculation will take time, however.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.state">
-<code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an immutable hashable object that describes the current state.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A hashable object associated with the current state.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A hashable object associated with the current state.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="kn">import</span> <span class="n">ArrayProblem</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.problem.array_problem</span> <span class="k">import</span> <span class="n">ArrayProblem</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
@@ -978,16 +896,13 @@ evaluate(). The recalculation will take time, however.</td>
 
 <dl class="method">
 <dt id="lspy.problem.array_problem.ArrayProblem.undo_move">
-<code class="descname">undo_move</code><span class="sig-paren">(</span><em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.undo_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.problem.array_problem.ArrayProblem.undo_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undoes a move on _order .</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>move_number</strong> (<em>tuple of int</em>) – Represents a unique valid move.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move_number</strong> (<em>tuple of int</em>) – Represents a unique valid move.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1059,13 +974,11 @@ said class.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -1086,7 +999,7 @@ said class.</p>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

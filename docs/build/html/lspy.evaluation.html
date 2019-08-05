@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>lspy.evaluation package &#8212; lspy  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -60,13 +58,13 @@
 <span id="lspy-evaluation-abstract-evaluation-function-module"></span><h2>lspy.evaluation.abstract_evaluation_function module<a class="headerlink" href="#module-lspy.evaluation.abstract_evaluation_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">
-<em class="property">class </em><code class="descclassname">lspy.evaluation.abstract_evaluation_function.</code><code class="descname">AbstractEvaluationFunction</code><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.evaluation.abstract_evaluation_function.</code><code class="sig-name descname">AbstractEvaluationFunction</code><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>A template to create evaluation functions.</p>
 <p>Evaluationfunctions are used to determine the quality of a problem.</p>
 <dl class="method">
 <dt id="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate">
-<code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_data</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the difference in quality between two solutions.</p>
 <p>The two compared solutions are the current problem and the problem
 if the move was performed. The move is not actually performed.</p>
@@ -74,63 +72,56 @@ if the move was performed. The move is not actually performed.</p>
 the move-object(s) need to have get_move_type implemented and the
 delta evaluate methods need to be properly implemented in the deltaeval
 package.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>current_data</strong> – A datastructure that contains information about the current state
-of an AbstractLocalSearchSolution.</li>
-<li><strong>move</strong> – Represents a move. The potential result of this move is evaluated
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_data</strong> – A datastructure that contains information about the current state
+of an AbstractLocalSearchSolution.</p></li>
+<li><p><strong>move</strong> – Represents a move. The potential result of this move is evaluated
 against the current state (current_data contains information about
-the current state.).</li>
+the current state.).</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the difference in quality between the current state and the
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the difference in quality between the current state and the
 potential next state.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int or float</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.evaluate">
-<code class="descname">evaluate</code><span class="sig-paren">(</span><em>current_data</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_data</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates current_solution</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>current_data</strong> – A datastructure that contains information about the current state
-of an AbstractLocalSearchSolution.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an indication of the quality of current_data</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_data</strong> – A datastructure that contains information about the current state
+of an AbstractLocalSearchSolution.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an indication of the quality of current_data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.get_problem_type">
-<code class="descname">get_problem_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.get_problem_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_problem_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction.get_problem_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the problem type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The problem type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The problem type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -140,72 +131,59 @@ of an AbstractLocalSearchSolution.</td>
 <span id="lspy-evaluation-quadratic-assignment-evaluation-function-module"></span><h2>lspy.evaluation.quadratic_assignment_evaluation_function module<a class="headerlink" href="#module-lspy.evaluation.quadratic_assignment_evaluation_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction">
-<em class="property">class </em><code class="descclassname">lspy.evaluation.quadratic_assignment_evaluation_function.</code><code class="descname">QuadraticAssignmentEvaluationFunction</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>flow_matrix</em>, <em>move_function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.evaluation.quadratic_assignment_evaluation_function.</code><code class="sig-name descname">QuadraticAssignmentEvaluationFunction</code><span class="sig-paren">(</span><em class="sig-param">distance_matrix</em>, <em class="sig-param">flow_matrix</em>, <em class="sig-param">move_function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction</span></code></a></p>
 <p>A class to evaluate QAP problems.</p>
 <p>This class contains the methods to evaluate the quality of a solution for a
 quadratic assignment problem (QAP). In the implementation, it was assumed
 that both the distance and the flow matrix are symmetric.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix of the problem. Should be symmetric.</li>
-<li><strong>flow_matrix</strong> (<em>numpy.ndarray</em>) – The flow matrix for the problem. Should be symmetric.</li>
-<li><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a><em>, </em><em>optional</em>) – Only needs to be passed if one wishes to use delta evaluation.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix of the problem. Should be symmetric.</p></li>
+<li><p><strong>flow_matrix</strong> (<em>numpy.ndarray</em>) – The flow matrix for the problem. Should be symmetric.</p></li>
+<li><p><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a><em>, </em><em>optional</em>) – Only needs to be passed if one wishes to use delta evaluation.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._distance_matrix">
-<code class="descname">_distance_matrix</code><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._distance_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_distance_matrix</code><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._distance_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>The distance matrix of the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._flow_matrix">
-<code class="descname">_flow_matrix</code><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._flow_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_flow_matrix</code><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._flow_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>The flow matrix of the problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._size">
-<code class="descname">_size</code><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The amount of locations, derived from the distance matrix.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.quadratic_assignment_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">QuadraticAssignmentEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">QuadraticAssignmentEvaluationFunction</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
@@ -235,7 +213,7 @@ that both the distance and the flow matrix are symmetric.</p>
 </div>
 <dl class="method">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.delta_evaluate">
-<code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_order</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_order</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the difference in quality between two solutions.</p>
 <p>The two compared solutions are the current solution and the solution
 if the move was performed. The move is not actually performed.</p>
@@ -243,37 +221,33 @@ if the move was performed. The move is not actually performed.</p>
 consider to implement and use it if a delta evaluation is faster than
 the regular evaluate function or if it needs to be implemented to work
 with existing code.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that maps facilities on locations. The
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that maps facilities on locations. The
 index respresents a location, the corresponding value represents
-a facility.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</li>
+a facility.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The difference in quality if the move would be performed.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">int or float</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If no move_function was given in the constructor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The difference in quality if the move would be performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – If no move_function was given in the constructor.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>A simple example to demonstrate the working of delta_evaluate.
 Note that other move types than array_swap can be used:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.quadratic_assignment_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">QuadraticAssignmentEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">QuadraticAssignmentEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArraySwap</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">53</span><span class="p">],</span>
@@ -309,38 +283,35 @@ Note that other move types than array_swap can be used:</p>
 
 <dl class="method">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.evaluate">
-<code class="descname">evaluate</code><span class="sig-paren">(</span><em>order</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">order</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates an evaluation value for the function.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that maps facilities on locations. The
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that maps facilities on locations. The
 index respresents a location, the corresponding value represents
-a facility.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an indication of the quality of current_data</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int or float</td>
-</tr>
-</tbody>
-</table>
+a facility.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an indication of the quality of current_data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.get_problem_type">
-<code class="descname">get_problem_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.get_problem_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_problem_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.quadratic_assignment_evaluation_function.QuadraticAssignmentEvaluationFunction.get_problem_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the problem type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The problem type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The problem type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -350,58 +321,48 @@ a facility.</td>
 <span id="lspy-evaluation-tsp-evaluation-function-module"></span><h2>lspy.evaluation.tsp_evaluation_function module<a class="headerlink" href="#module-lspy.evaluation.tsp_evaluation_function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction">
-<em class="property">class </em><code class="descclassname">lspy.evaluation.tsp_evaluation_function.</code><code class="descname">TspEvaluationFunction</code><span class="sig-paren">(</span><em>distance_matrix</em>, <em>move_function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.evaluation.tsp_evaluation_function.</code><code class="sig-name descname">TspEvaluationFunction</code><span class="sig-paren">(</span><em class="sig-param">distance_matrix</em>, <em class="sig-param">move_function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction</span></code></a></p>
 <p>A class to evaluate TSP problems.</p>
 <p>This class contains the methods to evaluate the quality of a solution for a
 travelling salesman problem (TSP). The distance matrix is allowed to be
 asymmetric.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix of the tsp-problem. The weight from A to B does
-not need to be equal to the weight from B to A.</li>
-<li><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a><em>, </em><em>optional</em>) – Only needs to be passed if one wishes to use delta evaluation.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix of the tsp-problem. The weight from A to B does
+not need to be equal to the weight from B to A.</p></li>
+<li><p><strong>move_function</strong> (<a class="reference internal" href="lspy.localsearch.move.html#lspy.localsearch.move.abstract_move.AbstractMove" title="lspy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a><em>, </em><em>optional</em>) – Only needs to be passed if one wishes to use delta evaluation.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._distance_matrix">
-<code class="descname">_distance_matrix</code><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._distance_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_distance_matrix</code><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._distance_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>The distance matrix of the tsp-problem.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy.ndarray</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._size">
-<code class="descname">_size</code><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction._size" title="Permalink to this definition">¶</a></dt>
 <dd><p>the amount of points to visit, is derived from the distance matrix.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Examples</p>
 <p>A simple example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
@@ -423,43 +384,39 @@ not need to be equal to the weight from B to A.</li>
 </div>
 <dl class="method">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate">
-<code class="descname">delta_evaluate</code><span class="sig-paren">(</span><em>current_order</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_order</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.delta_evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the difference in quality if the move would be performed.</p>
 <p>Note that a move function needs to be passed to the constructor of
 evaluation function for the delta_evaluate to work. The move
 function also needs to have changed_distances and
 transform_next_index_to_current_index properly implemented:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
 visit. All values are unique and are within the interval [0,size[.
-This is the current order.</li>
-<li><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</li>
+This is the current order.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The difference in quality if the move would be performed.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">int or float</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If no move_function was given in the constructor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The difference in quality if the move would be performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – If no move_function was given in the constructor.</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <p>A simple example to demonstrate the working of delta_evaluate.
 Note that other move types than array_swap can be used:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.tsp_array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspArraySwap</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
@@ -482,11 +439,11 @@ Note that other move types than array_swap can be used:</p>
 </pre></div>
 </div>
 <p>A more elaborate example:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.evaluation.tsp_evaluation_function</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">TspEvaluationFunction</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">TspEvaluationFunction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.move.array_swap</span> \
-<span class="gp">... </span>    <span class="kn">import</span> <span class="n">ArraySwap</span>
+<span class="gp">... </span>    <span class="kn">import</span> <span class="nn">ArraySwap</span>
 <span class="gp">... </span><span class="c1"># init distance matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -514,38 +471,35 @@ Note that other move types than array_swap can be used:</p>
 
 <dl class="method">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate">
-<code class="descname">evaluate</code><span class="sig-paren">(</span><em>order</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">order</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates an evaluation value for the function.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
-visit. All values are unique and are within the interval [0,size[.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An indication of the quality of the solution, the lower this
-value, the better the quality.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int, float</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
+visit. All values are unique and are within the interval [0,size[.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An indication of the quality of the solution, the lower this
+value, the better the quality.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int, float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.get_problem_type">
-<code class="descname">get_problem_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.get_problem_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_problem_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lspy.evaluation.tsp_evaluation_function.TspEvaluationFunction.get_problem_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the problem type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The problem type.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The problem type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -621,13 +575,11 @@ submodule deltaeval.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -648,7 +600,7 @@ submodule deltaeval.</p>
       &copy;2019, Daan Thijs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
