@@ -24,7 +24,6 @@ class GeometricCoolingFunction(AbstractCoolingFunction):
 
         >>> from lspy.localsearch.simulatedannealing.geometric_cooling_function \\
         ...     import GeometricCoolingFunction
-        >>> import math
         ... # init
         >>> test = GeometricCoolingFunction()
         ... # tests
@@ -41,7 +40,6 @@ class GeometricCoolingFunction(AbstractCoolingFunction):
 
         >>> from lspy.localsearch.simulatedannealing.geometric_cooling_function \\
         ...     import GeometricCoolingFunction
-        >>> import math
         ... # init
         >>> test = GeometricCoolingFunction(0.5)
         ... # tests
