@@ -19,6 +19,8 @@ class TabuSearch(AbstractLocalSearch):
         Contains all the data needed for the specific problem.
     termination_criterion : AbstractTerminationCriterion
         Implements a termination criterion to terminate the algorithm.
+    diff_state_func : AbstractDiffState
+        A class that implement a diff_state_func for tabu search.
     list_size : int, optional
         The size of the tabu list. The default is 7.
     minimise : bool, optional
@@ -34,6 +36,9 @@ class TabuSearch(AbstractLocalSearch):
         Contains all the data needed for the specific problem.
     _termination_criterion : AbstractTerminationCriterion
         Implements a termination criterion to terminate the algorithm.
+    _diff : method
+        A method of a AbstractDiffState class to indicate how a move alters the
+        state
     _list_size : int
         Size of the tabu list.
     _tabu_list : TabuList
@@ -65,6 +70,8 @@ class TabuSearch(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from lspy.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
+        >>> from lspy.localsearch.tabusearch.sum_diff_state \\
+        ...     import SumDiffState
         >>> from lspy.problem.array_problem import ArrayProblem
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
@@ -82,8 +89,10 @@ class TabuSearch(AbstractLocalSearch):
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
+        ... # init diff_state_func
+        >>> diff_state_func = SumDiffState()
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(problem, termination, 5, True)
+        >>> tabu_search = TabuSearch(problem, termination, diff_state_func, 5)
         ... # run algorithm
         >>> tabu_search.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -100,6 +109,8 @@ class TabuSearch(AbstractLocalSearch):
         ...     import TspEvaluationFunction
         >>> from lspy.termination.max_seconds_termination_criterion \\
         ...     import MaxSecondsTerminationCriterion
+        >>> from lspy.localsearch.tabusearch.sum_diff_state \\
+        ...     import SumDiffState
         >>> from lspy.problem.array_problem import ArrayProblem
         ... # seed random
         ... # (used here to always get the same output, this obviously is not
@@ -117,8 +128,11 @@ class TabuSearch(AbstractLocalSearch):
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(10)
+        ... # init diff_state_func
+        >>> diff_state_func = SumDiffState()
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(problem, termination, 5, False)
+        >>> tabu_search = TabuSearch(problem, termination, diff_state_func, 5,
+        ...                          False)
         ... # run algorithm
         >>> tabu_search.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -126,13 +140,14 @@ class TabuSearch(AbstractLocalSearch):
 
     """
 
-    def __init__(self, problem, termination_criterion, list_size=7,
-                 minimise=True, benchmarking=False):
+    def __init__(self, problem, termination_criterion, diff_state_func,
+                 list_size=7, minimise=True, benchmarking=False):
 
         super().__init__()
 
         self._problem = problem
         self._termination_criterion = termination_criterion
+        self._diff = diff_state_func.diff
         self._list_size = list_size
         self._tabu_list = TabuList(list_size)
         self._minimise = minimise
@@ -190,30 +205,23 @@ class TabuSearch(AbstractLocalSearch):
             best_found_delta = self._best_found_delta_base_value
             best_found_move = None
 
-            old_state = self._problem.state()
-
             for move in self._problem.get_moves():
 
                 # check quality move
                 delta = self._problem.evaluate_move(move)
 
-                # perform move
-                self._problem.move(move)
+                # checks how the move alters the current state
+                diff = self._diff(move)
 
-                # compare current state with old_state
-                diff_indices = self._problem.diff_state(old_state)
-
-                # if not in tabu list --> if delta better than old best move
+                # if not in tabu list --> not similar to earlier performed
+                # moves --> if delta better than old best move
                 # --> becomes the best move
 
-                if not self._tabu_list.contains(diff_indices) and \
+                if not self._tabu_list.contains(diff) and \
                         self._is_better(best_found_delta, delta):
                     best_found_delta = delta
                     best_found_move = move
-                    best_found_diff = diff_indices
-
-                # undo move
-                self._problem.undo_move(move)
+                    best_found_diff = diff
 
             # the best found move will be used as the next move
             # alter state problem
@@ -303,6 +311,8 @@ class TabuSearch(AbstractLocalSearch):
             ...     import TspEvaluationFunction
             >>> from lspy.termination.max_iterations_termination_criterion \\
             ...     import MaxIterationsTerminationCriterion
+            >>> from lspy.localsearch.tabusearch.sum_diff_state \\
+            ...     import SumDiffState
             >>> from lspy.problem.array_problem import ArrayProblem
             ... # seed random
             ... # (used here to always get the same output, this obviously is
@@ -321,7 +331,11 @@ class TabuSearch(AbstractLocalSearch):
             ... # init termination criterion
             >>> termination = MaxIterationsTerminationCriterion(5)
             ... # init TabuSearch
-            >>> tabu_search = TabuSearch(problem, termination, 5, True)
+            ... # init diff_state_func
+            >>> diff_state_func = SumDiffState()
+            ... # init TabuSearch
+            >>> tabu_search = TabuSearch(problem, termination, diff_state_func,
+            ...                          5, True)
             ... # state before running
             >>> tabu_search._problem._order
             array([0, 1, 2, 3])

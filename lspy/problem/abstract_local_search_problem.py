@@ -216,23 +216,3 @@ class AbstractLocalSearchProblem(ABC):
         """Resets the object back to it's state after init."""
 
         pass
-
-    def diff_state(self):
-        """A method to return the difference between states of the Problem.
-
-        The current state will be compared to the old state.
-
-        Parameters
-        ----------
-        old_state
-            The old state.
-
-        Returns
-        -------
-        object
-            A representation of the difference between the current state and
-            the old state.
-
-        """
-
-        raise NotImplementedError
