@@ -202,7 +202,7 @@ class SteepestDescent(AbstractLocalSearch):
                 self._problem.move(best_found_move)
                 self._problem.set_as_best(base_value)
 
-                # log the data if needed
+                # log if needed
                 self._log_improvement(base_value)
 
                 # add to data

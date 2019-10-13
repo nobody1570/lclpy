@@ -6,6 +6,7 @@ from lspy.aidfunc.pass_func import pass_func
 from lspy.aidfunc.add_to_data_func import add_to_data_func
 from lspy.aidfunc.convert_data import convert_data
 from lspy.aidfunc.error_func import NoNextNeighbourhood
+from lspy.aidfunc.logging import log_improvement
 
 from collections import namedtuple
 
@@ -29,6 +30,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
         one wishes no benchmarks to be made. Default is False.
+    logging: bool, optional
+        Improvements will be logged to the command line if this variable is
+        True. Default is True.
 
     Attributes
     ----------
@@ -47,6 +51,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
     _data_append
         Function to append new data-points to data. Will do nothing if no
         benchmarks are made.
+    _log_improvement
+        Function to write logs to the command line. Will do nothing if no logs
+        are made.
 
     Examples
     --------
@@ -85,7 +92,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         ... # init termination criterion
         >>> termination = MaxSecondsTerminationCriterion(2)
         ... # init VariableNeighbourhood
-        >>> algorithm = VariableNeighbourhood(problem, termination)
+        >>> algorithm = VariableNeighbourhood(problem, termination, logging=False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -126,7 +133,8 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> termination = MaxSecondsTerminationCriterion(2)
         ... # init SteepestDescent
         ... # init VariableNeighbourhood
-        >>> algorithm = VariableNeighbourhood(problem, termination, False)
+        >>> algorithm = VariableNeighbourhood(problem, termination, False, \\
+        ...                                   logging=False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -162,7 +170,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init VariableNeighbourhood
-        >>> algorithm = VariableNeighbourhood(problem)
+        >>> algorithm = VariableNeighbourhood(problem, logging=False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -172,7 +180,7 @@ class VariableNeighbourhood(AbstractLocalSearch):
     """
 
     def __init__(self, problem, termination_criterion=None, minimise=True,
-                 benchmarking=False):
+                 benchmarking=False, logging=True):
 
         super().__init__()
 
@@ -196,6 +204,11 @@ class VariableNeighbourhood(AbstractLocalSearch):
         else:
             self.data = None
             self._data_append = pass_func
+
+        if logging:
+            self._log_improvement = log_improvement
+        else:
+            self._log_improvement = pass_func
 
     def run(self):
         """Starts running the variable neighbourhood search.
@@ -254,6 +267,9 @@ class VariableNeighbourhood(AbstractLocalSearch):
 
                 self._problem.move(best_found_move)
                 self._problem.set_as_best(base_value)
+
+                # log if needed
+                self._log_improvement(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration, base_value)
@@ -352,7 +368,8 @@ class VariableNeighbourhood(AbstractLocalSearch):
             ... # init termination criterion
             >>> termination = MaxSecondsTerminationCriterion(2)
             ... # init VariableNeighbourhood
-            >>> algorithm = VariableNeighbourhood(problem, termination)
+            >>> algorithm = VariableNeighbourhood(problem, termination, \\
+            ...                                   logging=False)
             ... # state before running
             >>> algorithm._problem._order
             array([0, 1, 2, 3])

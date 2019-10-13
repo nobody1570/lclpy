@@ -6,7 +6,10 @@ def benchmark(problems, algorithms, stop_criterion, runs=10, seeds=None):
 
     Note that the problems, algorithms and the stop criterion all need to have
     the method reset method properly implemented for this function to work
-    properly.
+    properly. The logging of algorithms is determined by the logging parameter
+    that was given to them at their construction. If it was True (default), the
+    algorithm will log it's improvements and worse passed solutions. If logging
+    is False, no logging will be shown for that particular algorithm.
 
     Parameters
     ----------
@@ -39,29 +42,51 @@ def benchmark(problems, algorithms, stop_criterion, runs=10, seeds=None):
 
     """
 
+    # set seeds if needed
     if seeds is None:
         seeds = range(runs)
 
     results = []
 
+    algorithm_number = 0
+    problem_number = 0
+    seed_number = 0
+
+    print('____Benchmark started___')
+    # run everything
     for algorithm in algorithms:
 
         results_single_algorithm = []
 
+        print('|---  Starting runs for algorithm ' + str(algorithm_number))
+
         for problem in problems:
 
+            # setting problems and termination criterions
             algorithm._problem = problem
             algorithm._termination_criterion = stop_criterion
 
             different_seed_results = []
 
+            print('--|---  Starting runs for problem ' + str(problem_number))
+
             for i in seeds:
+                print('----|---  Starting run for seed ' + str(i))
                 seed(i)
                 algorithm.reset()
                 different_seed_results.append(algorithm.run())
+                print('----|--- Completed run for seed ' + str(i))
+                seed_number += 1
 
             results_single_algorithm.append(different_seed_results)
 
+            print('--|--- Completed runs for problem ' + str(problem_number))
+            problem_number += 1
+
         results.append(results_single_algorithm)
+        print('|--- Completed runs for algorithm ' + str(algorithm_number))
+        algorithm_number += 1
+
+    print('____Benchmark ended___')
 
     return results

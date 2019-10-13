@@ -4,6 +4,7 @@ from lspy.aidfunc.is_improvement_func import bigger, smaller
 from lspy.aidfunc.pass_func import pass_func
 from lspy.aidfunc.add_to_data_func import add_to_data_func
 from lspy.aidfunc.convert_data import convert_data
+from lspy.aidfunc.logging import log_improvement
 
 from lspy.localsearch.tabusearch.tabu_list import TabuList
 
@@ -29,6 +30,9 @@ class TabuSearch(AbstractLocalSearch):
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
         one wishes no benchmarks to be made. Default is False.
+    logging: bool, optional
+        Improvements will be logged to the command line if this variable is
+        True. Default is True.
 
     Attributes
     ----------
@@ -55,6 +59,9 @@ class TabuSearch(AbstractLocalSearch):
     _data_append
         Function to append new data-points to data. Will do nothing if no
         benchmarks are made.
+    _log_improvement
+        Function to write logs to the command line. Will do nothing if no logs
+        are made.
 
     Examples
     --------
@@ -92,7 +99,7 @@ class TabuSearch(AbstractLocalSearch):
         ... # init diff_state_func
         >>> diff_state_func = SumDiffState()
         ... # init TabuSearch
-        >>> tabu_search = TabuSearch(problem, termination, diff_state_func, 5)
+        >>> tabu_search = TabuSearch(problem, termination, diff_state_func, 5, logging=False)
         ... # run algorithm
         >>> tabu_search.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -132,7 +139,7 @@ class TabuSearch(AbstractLocalSearch):
         >>> diff_state_func = SumDiffState()
         ... # init TabuSearch
         >>> tabu_search = TabuSearch(problem, termination, diff_state_func, 5,
-        ...                          False)
+        ...                          False, logging=False)
         ... # run algorithm
         >>> tabu_search.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -141,7 +148,7 @@ class TabuSearch(AbstractLocalSearch):
     """
 
     def __init__(self, problem, termination_criterion, diff_state_func,
-                 list_size=7, minimise=True, benchmarking=False):
+                 list_size=7, minimise=True, benchmarking=False, logging=True):
 
         super().__init__()
 
@@ -165,6 +172,11 @@ class TabuSearch(AbstractLocalSearch):
         else:
             self.data = None
             self._data_append = pass_func
+
+        if logging:
+            self._log_improvement = log_improvement
+        else:
+            self._log_improvement = pass_func
 
     def run(self):
         """Starts running the tabu search.
@@ -228,9 +240,7 @@ class TabuSearch(AbstractLocalSearch):
             base_value = base_value + best_found_delta
 
             # check if a move was found
-            # if no move was found, the base_value will be the start value of
-            # best_found_delta
-            if base_value != self._best_found_delta_base_value:
+            if best_found_move is not None:
 
                 self._problem.move(best_found_move)
 
@@ -241,6 +251,9 @@ class TabuSearch(AbstractLocalSearch):
 
                 # add diff to tabu list
                 self._tabu_list.add(best_found_diff)
+
+                # log if needed
+                self._log_improvement(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration,
@@ -335,7 +348,7 @@ class TabuSearch(AbstractLocalSearch):
             >>> diff_state_func = SumDiffState()
             ... # init TabuSearch
             >>> tabu_search = TabuSearch(problem, termination, diff_state_func,
-            ...                          5, True)
+            ...                          5, True, logging=False)
             ... # state before running
             >>> tabu_search._problem._order
             array([0, 1, 2, 3])
