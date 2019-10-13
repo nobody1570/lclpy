@@ -5,6 +5,7 @@ from lspy.aidfunc.is_improvement_func import bigger, smaller
 from lspy.aidfunc.pass_func import pass_func
 from lspy.aidfunc.add_to_data_func import add_to_data_func
 from lspy.aidfunc.convert_data import convert_data
+from lspy.aidfunc.logging import log_improvement
 
 from collections import namedtuple
 
@@ -25,6 +26,9 @@ class SteepestDescent(AbstractLocalSearch):
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
         one wishes no benchmarks to be made. Default is False.
+    logging: bool, optional
+        Improvements will be logged to the command line if this variable is
+        True. Default is True.
 
     Attributes
     ----------
@@ -43,6 +47,9 @@ class SteepestDescent(AbstractLocalSearch):
     _data_append
         Function to append new data-points to data. Will do nothing if no
         benchmarks are made.
+    _log_improvement
+        Function to write logs to the command line. Will do nothing if no logs
+        are made.
 
     Examples
     --------
@@ -68,7 +75,7 @@ class SteepestDescent(AbstractLocalSearch):
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(problem)
+        >>> steepest_descent = SteepestDescent(problem, logging=False)
         ... # run algorithm
         >>> steepest_descent.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)
@@ -95,7 +102,7 @@ class SteepestDescent(AbstractLocalSearch):
         >>> evaluation = TspEvaluationFunction(distance_matrix, move)
         >>> problem = ArrayProblem(evaluation, move, size)
         ... # init SteepestDescent
-        >>> steepest_descent = SteepestDescent(problem, False)
+        >>> steepest_descent = SteepestDescent(problem, False, logging=False)
         ... # run algorithm
         >>> steepest_descent.run()
         Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)
@@ -105,7 +112,7 @@ class SteepestDescent(AbstractLocalSearch):
     """
 
     def __init__(self, problem, minimise=True, termination_criterion=None,
-                 benchmarking=False):
+                 benchmarking=False, logging=True):
         super().__init__()
 
         self._problem = problem
@@ -128,6 +135,11 @@ class SteepestDescent(AbstractLocalSearch):
         else:
             self.data = None
             self._data_append = pass_func
+
+        if logging:
+            self._log_improvement = log_improvement
+        else:
+            self._log_improvement = pass_func
 
     def run(self):
         """Starts running the steepest descent.
@@ -189,6 +201,9 @@ class SteepestDescent(AbstractLocalSearch):
                 # perform move and set new state as best.
                 self._problem.move(best_found_move)
                 self._problem.set_as_best(base_value)
+
+                # log the data if needed
+                self._log_improvement(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration, base_value)
@@ -261,7 +276,7 @@ class SteepestDescent(AbstractLocalSearch):
             >>> evaluation = TspEvaluationFunction(distance_matrix, move)
             >>> problem = ArrayProblem(evaluation, move, size)
             ... # init SteepestDescent
-            >>> steepest_descent = SteepestDescent(problem)
+            >>> steepest_descent = SteepestDescent(problem, logging=False)
             ... # state before running
             >>> steepest_descent._problem._order
             array([0, 1, 2, 3])

@@ -10,7 +10,7 @@ def log_improvement(value):
 
     """
 
-    print("Improvement:  " + str(value))
+    print("Improvement : " + str(value))
 
 
 def log_passed_worse(value):
