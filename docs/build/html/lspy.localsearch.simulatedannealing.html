@@ -195,7 +195,6 @@ number smaller than 1. Default is 0.75.</p>
 <p>A simple example:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># tests</span>
@@ -210,7 +209,6 @@ number smaller than 1. Default is 0.75.</p>
 <p>An example with an alpha of 0.5:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lspy.localsearch.simulatedannealing.geometric_cooling_function</span> \
 <span class="gp">... </span>    <span class="kn">import</span> <span class="nn">GeometricCoolingFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="gp">... </span><span class="c1"># init</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">GeometricCoolingFunction</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># tests</span>
@@ -249,7 +247,7 @@ number smaller than 1. Default is 0.75.</p>
 <span id="lspy-localsearch-simulatedannealing-simulated-annealing-module"></span><h2>lspy.localsearch.simulatedannealing.simulated_annealing module<a class="headerlink" href="#module-lspy.localsearch.simulatedannealing.simulated_annealing" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">
-<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.simulated_annealing.</code><code class="sig-name descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">cooling_function</em>, <em class="sig-param">iterations_for_temp_f</em>, <em class="sig-param">start_temperature=2000</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.simulatedannealing.simulated_annealing.</code><code class="sig-name descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">cooling_function</em>, <em class="sig-param">iterations_for_temp_f</em>, <em class="sig-param">start_temperature=2000</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em>, <em class="sig-param">logging=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lspy.localsearch.html#lspy.localsearch.abstract_local_search.AbstractLocalSearch" title="lspy.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
 <p>Performs a simulated annealing algorithm with the given parameters.</p>
 <dl class="field-list simple">
@@ -266,6 +264,8 @@ certain temperature.</p></li>
 The default is True.</p></li>
 <li><p><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
 one wishes no benchmarks to be made. Default is False.</p></li>
+<li><p><strong>logging</strong> (<em>bool</em><em>, </em><em>optional</em>) – Improvements and passed worse solutions will be logged to the command
+line if this variable is True. Default is True.</p></li>
 </ul>
 </dd>
 </dl>
@@ -378,6 +378,20 @@ or equal to the current value.</p>
 benchmarks are made.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_improvement">
+<code class="sig-name descname">_log_improvement</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to write logs to the command line. Will do nothing if no logs
+are made.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_passed_worse">
+<code class="sig-name descname">_log_passed_worse</code><a class="headerlink" href="#lspy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_passed_worse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to write logs to the command line. Will do nothing if no logs
+are made.</p>
+</dd></dl>
+
 <p class="rubric">Examples</p>
 <p>Minimising example:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
@@ -417,7 +431,7 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i_for_temp</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># init SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SimulatedAnnealing</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination_criterion</span><span class="p">,</span>
-<span class="gp">... </span>                               <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">)</span>
+<span class="gp">... </span>                               <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 2, 3, 1]), best_value=15, data=None)</span>
@@ -462,7 +476,7 @@ benchmarks are made.</p>
 <span class="gp">... </span><span class="c1"># init SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SimulatedAnnealing</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">problem</span><span class="p">,</span> <span class="n">termination_criterion</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">minimise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">minimise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 2, 3, 1]), best_value=21, data=None)</span>
@@ -517,7 +531,7 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i_for_temp</span> <span class="o">=</span> <span class="n">CnstIterationsTempFunction</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># init SimulatedAnnealing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">SimulatedAnnealing</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination_criterion</span><span class="p">,</span>
-<span class="gp">... </span>                               <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">)</span>
+<span class="gp">... </span>                               <span class="n">cooling_func</span><span class="p">,</span> <span class="n">i_for_temp</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># state before running</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">algorithm</span><span class="o">.</span><span class="n">_start_temperature</span>
 <span class="go">2000</span>

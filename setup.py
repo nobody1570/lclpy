@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="test-lspy",
-    version="0.0.9",
+    name="lspy",
+    version="1.0.0",
     author="Daan Thijs",
     author_email="daan.thijs@hotmail.com",
     description="A localsearch library.",

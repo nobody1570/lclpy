@@ -1,7 +1,6 @@
 # lspy
 
 Lspy is a localsearch library implemented in python.
-Note that the some of the described procedures don't work yet, also names and such might change the final release.
 
 ## Getting Started
 

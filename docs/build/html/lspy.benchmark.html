@@ -46,7 +46,10 @@
 <dd><p>A function to perform multiple algorithms on multiple soltions.</p>
 <p>Note that the problems, algorithms and the stop criterion all need to have
 the method reset method properly implemented for this function to work
-properly.</p>
+properly. The logging of algorithms is determined by the logging parameter
+that was given to them at their construction. If it was True (default), the
+algorithm will log it’s improvements and worse passed solutions. If logging
+is False, no logging will be shown for that particular algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

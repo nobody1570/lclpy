@@ -36,6 +36,14 @@ lspy.aidfunc.is\_improvement\_func module
    :undoc-members:
    :show-inheritance:
 
+lspy.aidfunc.logging module
+---------------------------
+
+.. automodule:: lspy.aidfunc.logging
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 lspy.aidfunc.pass\_func module
 ------------------------------
 

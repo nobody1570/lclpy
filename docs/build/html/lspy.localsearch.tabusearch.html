@@ -191,7 +191,7 @@ isn’t in the tabu list.</p>
 <span id="lspy-localsearch-tabusearch-tabu-search-module"></span><h2>lspy.localsearch.tabusearch.tabu_search module<a class="headerlink" href="#module-lspy.localsearch.tabusearch.tabu_search" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lspy.localsearch.tabusearch.tabu_search.TabuSearch">
-<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.tabusearch.tabu_search.</code><code class="sig-name descname">TabuSearch</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">diff_state_func</em>, <em class="sig-param">list_size=7</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.tabusearch.tabu_search.TabuSearch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">lspy.localsearch.tabusearch.tabu_search.</code><code class="sig-name descname">TabuSearch</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">diff_state_func</em>, <em class="sig-param">list_size=7</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em>, <em class="sig-param">logging=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lspy.localsearch.tabusearch.tabu_search.TabuSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lspy.localsearch.html#lspy.localsearch.abstract_local_search.AbstractLocalSearch" title="lspy.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">lspy.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
 <p>Performs a tabu search on the given problem.</p>
 <dl class="field-list simple">
@@ -205,6 +205,8 @@ isn’t in the tabu list.</p>
 The default is True.</p></li>
 <li><p><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
 one wishes no benchmarks to be made. Default is False.</p></li>
+<li><p><strong>logging</strong> (<em>bool</em><em>, </em><em>optional</em>) – Improvements will be logged to the command line if this variable is
+True. Default is True.</p></li>
 </ul>
 </dd>
 </dl>
@@ -311,6 +313,13 @@ infinite when minimising or minus infinite when maximising.</p>
 benchmarks are made.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="lspy.localsearch.tabusearch.tabu_search.TabuSearch._log_improvement">
+<code class="sig-name descname">_log_improvement</code><a class="headerlink" href="#lspy.localsearch.tabusearch.tabu_search.TabuSearch._log_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to write logs to the command line. Will do nothing if no logs
+are made.</p>
+</dd></dl>
+
 <p class="rubric">Examples</p>
 <p>An example of minimising:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
@@ -343,7 +352,7 @@ benchmarks are made.</p>
 <span class="gp">... </span><span class="c1"># init diff_state_func</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diff_state_func</span> <span class="o">=</span> <span class="n">SumDiffState</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># init TabuSearch</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">diff_state_func</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">diff_state_func</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=15, data=None)</span>
@@ -381,7 +390,7 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diff_state_func</span> <span class="o">=</span> <span class="n">SumDiffState</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># init TabuSearch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">diff_state_func</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
-<span class="gp">... </span>                         <span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>                         <span class="kc">False</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># run algorithm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="go">Results(best_order=array([0, 1, 3, 2]), best_value=21, data=None)</span>
@@ -433,7 +442,7 @@ benchmarks are made.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diff_state_func</span> <span class="o">=</span> <span class="n">SumDiffState</span><span class="p">()</span>
 <span class="gp">... </span><span class="c1"># init TabuSearch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span> <span class="o">=</span> <span class="n">TabuSearch</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">diff_state_func</span><span class="p">,</span>
-<span class="gp">... </span>                         <span class="mi">5</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>                         <span class="mi">5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">logging</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># state before running</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tabu_search</span><span class="o">.</span><span class="n">_problem</span><span class="o">.</span><span class="n">_order</span>
 <span class="go">array([0, 1, 2, 3])</span>
