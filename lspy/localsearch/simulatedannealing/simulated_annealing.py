@@ -8,6 +8,7 @@ from lspy.aidfunc.is_improvement_func \
 from lspy.aidfunc.pass_func import pass_func
 from lspy.aidfunc.add_to_data_func import add_to_data_func
 from lspy.aidfunc.convert_data import convert_data
+from lspy.aidfunc.logging import log_improvement, log_passed_worse
 
 from collections import namedtuple
 
@@ -35,6 +36,9 @@ class SimulatedAnnealing(AbstractLocalSearch):
     benchmarking : bool, optional
         Should be True if one wishes benchmarks to be kept, should be False if
         one wishes no benchmarks to be made. Default is False.
+    logging: bool, optional
+        Improvements and passed worse solutions will be logged to the command
+        line if this variable is True. Default is True.
 
     Attributes
     ----------
@@ -63,6 +67,12 @@ class SimulatedAnnealing(AbstractLocalSearch):
     _data_append
         Function to append new data-points to data. Will do nothing if no
         benchmarks are made.
+    _log_improvement
+        Function to write logs to the command line. Will do nothing if no logs
+        are made.
+    _log_passed_worse
+        Function to write logs to the command line. Will do nothing if no logs
+        are made.
 
     Examples
     --------
@@ -107,7 +117,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         >>> i_for_temp = CnstIterationsTempFunction()
         ... # init SimulatedAnnealing
         >>> algorithm = SimulatedAnnealing(problem, termination_criterion,
-        ...                                cooling_func, i_for_temp)
+        ...                                cooling_func, i_for_temp, logging=False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 2, 3, 1]), best_value=15, data=None)
@@ -154,7 +164,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
         ... # init SimulatedAnnealing
         >>> algorithm = SimulatedAnnealing(
         ...     problem, termination_criterion,
-        ...     cooling_func, i_for_temp, minimise=False)
+        ...     cooling_func, i_for_temp, minimise=False, logging=False)
         ... # run algorithm
         >>> algorithm.run()
         Results(best_order=array([0, 2, 3, 1]), best_value=21, data=None)
@@ -164,7 +174,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
     def __init__(self, problem, termination_criterion,
                  cooling_function, iterations_for_temp_f,
                  start_temperature=2000, minimise=True,
-                 benchmarking=False):
+                 benchmarking=False, logging=True):
 
         super().__init__()
 
@@ -192,6 +202,13 @@ class SimulatedAnnealing(AbstractLocalSearch):
         else:
             self.data = None
             self._data_append = pass_func
+
+        if logging:
+            self._log_improvement = log_improvement
+            self._log_passed_worse = log_passed_worse
+        else:
+            self._log_improvement = pass_func
+            self._log_passed_worse = pass_func
 
     def run(self):
         """Starts running the simulated annealing algorithm.
@@ -250,6 +267,10 @@ class SimulatedAnnealing(AbstractLocalSearch):
                     self._problem.move(move)
                     base_value = base_value + delta
 
+                    # log if necessary
+                    if delta is not 0:
+                        self._log_improvement(base_value)
+
                     # check if best state
                     if self._is_better(
                             self._problem.best_order_value, base_value):
@@ -270,6 +291,9 @@ class SimulatedAnnealing(AbstractLocalSearch):
                             delta, self._temperature):
                         self._problem.move(move)
                         base_value = base_value + delta
+
+                        # log if necessary
+                        self._log_passed_worse(base_value)
 
                         # let termination criterion check the new value
                         self._termination_criterion.check_new_value(base_value)
@@ -371,7 +395,7 @@ class SimulatedAnnealing(AbstractLocalSearch):
             >>> i_for_temp = CnstIterationsTempFunction()
             ... # init SimulatedAnnealing
             >>> algorithm = SimulatedAnnealing(problem, termination_criterion,
-            ...                                cooling_func, i_for_temp)
+            ...                                cooling_func, i_for_temp, logging=False)
             ... # state before running
             >>> algorithm._start_temperature
             2000
