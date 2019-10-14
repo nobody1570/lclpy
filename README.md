@@ -1,6 +1,6 @@
-# lspy
+# lclpy
 
-Lspy is a localsearch library implemented in python.
+Lclpy is a localsearch library implemented in python.
 
 ## Getting Started
 
@@ -88,7 +88,7 @@ If there are no failed tests, everything is fine.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/lspy/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/nobody1570/lclpy/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
