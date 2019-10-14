@@ -1,7 +1,7 @@
-lspy
-====
+lclpy
+=====
 
 .. toctree::
    :maxdepth: 4
 
-   lspy
+   lclpy

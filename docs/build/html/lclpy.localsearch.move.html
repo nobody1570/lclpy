@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.localsearch.move package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-localsearch-move-package">
+<h1>lclpy.localsearch.move package<a class="headerlink" href="#lclpy-localsearch-move-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.localsearch.move.abstract_move">
+<span id="lclpy-localsearch-move-abstract-move-module"></span><h2>lclpy.localsearch.move.abstract_move module<a class="headerlink" href="#module-lclpy.localsearch.move.abstract_move" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.move.abstract_move.AbstractMove">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.move.abstract_move.</code><code class="sig-name descname">AbstractMove</code><a class="headerlink" href="#lclpy.localsearch.move.abstract_move.AbstractMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Template to create Move-objects.</p>
+<p>This object is used to explore a neighbourhood and alter the state of a
+solution. It can also be used to generate valid moves in the neighbourhood.</p>
+<dl class="method">
+<dt id="lclpy.localsearch.move.abstract_move.AbstractMove.get_move_type">
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.abstract_move.AbstractMove.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
+<p>This function is used in the implementation of delta evaluation. If
+this is not implemented or wanted, this method does not need to be
+implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.abstract_move.AbstractMove.get_moves">
+<em class="property">abstract </em><code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.abstract_move.AbstractMove.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generator used to return all valid moves in the neighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.abstract_move.AbstractMove.get_random_move">
+<em class="property">abstract </em><code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.abstract_move.AbstractMove.get_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method used to generate a random move in the neighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.abstract_move.AbstractMove.move">
+<em class="property">abstract </em><code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.abstract_move.AbstractMove.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.abstract_move.AbstractMove.undo_move">
+<em class="property">abstract </em><code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.abstract_move.AbstractMove.undo_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undoes a move.</p>
+<p>Make sure you only undo a move after it’s has been performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.move.array_reverse_order">
+<span id="lclpy-localsearch-move-array-reverse-order-module"></span><h2>lclpy.localsearch.move.array_reverse_order module<a class="headerlink" href="#module-lclpy.localsearch.move.array_reverse_order" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.move.array_reverse_order.</code><code class="sig-name descname">ArrayReverseOrder</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
+<p>Implements a reverse order move function for 1 dimensional numpy arrays.</p>
+<p>The move function performs and generates moves that reverses the order of
+values in an interval of a one-dimensional array. Note that a move is
+represented as a tuple of int. The move (x, y) represents reversing of the
+order of the values in the interval of indices [x, y] of the array.
+Note that the moves are equivalent to 2-opt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder._size">
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder._size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the numpy array that is altered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Get all possible moves, you should NEVER do this. You should evaluate only
+one move at a time. This example is simply to show the behaviour of
+get_moves and how to perform and undo a move:</p>
+<p>An example of generating some random moves with get_random_move:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type">
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_moves">
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all valid moves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_random_move">
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.get_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to generate one random move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the move asked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.undo_move">
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_reverse_order.ArrayReverseOrder.undo_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undoes the move asked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array that will be altered.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.move.array_swap">
+<span id="lclpy-localsearch-move-array-swap-module"></span><h2>lclpy.localsearch.move.array_swap module<a class="headerlink" href="#module-lclpy.localsearch.move.array_swap" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.move.array_swap.</code><code class="sig-name descname">ArraySwap</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
+<p>Implements a swap move function for 1 dimensional numpy arrays.</p>
+<p>The move function performs and generates moves that swap 2 values in a
+one-dimensional array. Note that a move is represented as a tuple of int.
+The move (x, y) represents the swap of the values from the indices x and y
+of the array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap._size">
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap._size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the numpy array that is altered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Get all possible moves, you should NEVER do this. You should evaluate only
+one move at a time. This example is simply to show the behaviour of
+get_moves and how to perform and undo a move:</p>
+<p>An example of generating some random moves with get_random_move:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap.get_move_type">
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap.get_moves">
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all valid moves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap.get_random_move">
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to generate one random move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the move asked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.array_swap.ArraySwap.undo_move">
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.array_swap.ArraySwap.undo_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undoes the move asked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – The array where items will be swapped.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Represents 1 unique move. Valid moves can be retrieved by using
+get_random_move and get_move.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.move.multi_neighbourhood">
+<span id="lclpy-localsearch-move-multi-neighbourhood-module"></span><h2>lclpy.localsearch.move.multi_neighbourhood module<a class="headerlink" href="#module-lclpy.localsearch.move.multi_neighbourhood" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.move.multi_neighbourhood.</code><code class="sig-name descname">MultiNeighbourhood</code><span class="sig-paren">(</span><em class="sig-param">move_func_list</em>, <em class="sig-param">weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.move.abstract_move.AbstractMove</span></code></a></p>
+<p>Implements a class that can be used to combine different move functions.</p>
+<p>Moves are represented in the following way:</p>
+<p>(index move function, a representation of a move from said move function)</p>
+<p>Note that all move functions must work on the same type of data structure.
+Combining move functions meant for different data structures won’t work.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>move_func_list</strong> (<em>list of AbstractMove</em><em> or </em><em>tuple of AbstractMove</em>) – A list or tuple that contains the move functions one wishes to combine.</p></li>
+<li><p><strong>weights</strong> (<em>list of int</em><em> or </em><em>tuple of int</em><em>, </em><em>optional</em>) – A list or tuple that contains weights to increase or decrease the
+chance of a move function being used to generate a random move. The
+weight for a function must have the same index as the function.
+Weights are positive numbers and need to be defined for every move
+function. In the default case, every function will have the same
+weight. Note that it’s perfectly possible to pass the probabilities
+instead of the weights.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list">
+<code class="sig-name descname">_move_func_list</code><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._move_func_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all used move functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple of AbstractMove</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._size">
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of _move_func_list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._tresholds">
+<code class="sig-name descname">_tresholds</code><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood._tresholds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tresholds associated with the move functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Get all possible moves, you should NEVER do this. You should evaluate only
+one move at a time. This example is simply to show the behaviour of
+get_moves and how to perform and undo a move:</p>
+<p>An example of generating some random moves with get_random_move with
+default weights (every move function has the same chance of being chosen):</p>
+<p>An example of generating some random moves with get_random_move with
+defined weights (swap weight: 1, reverse weight: 3):</p>
+<p>An example of generating some random moves with get_random_move with
+defined probabilities (swap probability: 0.25, reverse probability: 0.75).
+Note that the results are exactly the same as the results of the previous
+doctest:</p>
+<p>Test of using delta evaluation with a multineighbourhood:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type">
+<code class="sig-name descname">get_move_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the move type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The move type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves">
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generator used to return all valid moves in the neighbourhood.</p>
+<p>Note that all moves of all neighbourhoods are included. Duplicate moves
+are possible. All moves are generated for one neighbourhood, after
+which they will all be generated for next neighbourhood until no
+remain. The neighbourhoods will be visited in the order their
+move functions had in move_func_list when it was passed to the
+constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_random_move">
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.get_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method used to generate a random move in the neighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of a valid move.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves">
+<code class="sig-name descname">select_get_moves</code><span class="sig-paren">(</span><em class="sig-param">neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generator used to return all moves from a specific neighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move from the specified neighbourhood.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move">
+<code class="sig-name descname">select_random_move</code><span class="sig-paren">(</span><em class="sig-param">neighbourhood_nr</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.select_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method used to generate a random move from a specific neighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>neighbourhood_nr</strong> (<em>int</em>) – Number of the neighbourhood. This number is the index of the
+neighbourhood in the list of move functions given to the
+constructor.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A random valid move from the specified neighbourhood.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size">
+<code class="sig-name descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get amount of neighbourhoods in the multi neighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The amount of neighbourhoods.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.undo_move">
+<code class="sig-name descname">undo_move</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood.undo_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undoes a move.</p>
+<p>Make sure you only undo a move after it’s has been performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The dataset that is being explored. It will be altered after the
+method call.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A representation of the move one wishes to undo.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.move.tsp_array_swap">
+<span id="lclpy-localsearch-move-tsp-array-swap-module"></span><h2>lclpy.localsearch.move.tsp_array_swap module<a class="headerlink" href="#module-lclpy.localsearch.move.tsp_array_swap" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.move.tsp_array_swap.TspArraySwap">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.move.tsp_array_swap.</code><code class="sig-name descname">TspArraySwap</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.tsp_array_swap.TspArraySwap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.move.array_swap.ArraySwap" title="lclpy.localsearch.move.array_swap.ArraySwap"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.move.array_swap.ArraySwap</span></code></a></p>
+<p>Implements a swap move for 1 dimensional numpy arrays for tsp problems.</p>
+<p>In TSP problems swapping the first location with another is pointless. This
+class does not generate swaps with the first location from the
+neighbourhood. In all other respects this class is identical to it’s base
+class Arrayswap.</p>
+<p>The move function performs and generates moves that swap 2 values in a
+one-dimensional array. Note that a move is represented as a tuple of int.
+The move (x, y) represents the swap of the values from the indices x and y
+of the array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – The size of the numpy array that will be altered.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.move.tsp_array_swap.TspArraySwap._size">
+<code class="sig-name descname">_size</code><a class="headerlink" href="#lclpy.localsearch.move.tsp_array_swap.TspArraySwap._size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the numpy array that is altered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Get all possible moves, you should NEVER do this. You should evaluate only
+one move at a time. This example is simply to show the behaviour of
+get_moves and how to perform and undo a move:</p>
+<p>..doctest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lclpy.localsearch.move.tsp_array_swap</span> <span class="k">import</span> <span class="n">TspArraySwap</span>
+<span class="gp">... </span><span class="c1"># init array, a move will be performed on this array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">... </span><span class="c1"># init</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span> <span class="o">=</span> <span class="n">TspArraySwap</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+<span class="gp">... </span><span class="c1"># get all possible moves in all_moves</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">swap</span><span class="o">.</span><span class="n">get_moves</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">all_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_moves</span>
+<span class="go">[(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># picking an arbitrary move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Never pick a move like this yourself. It only is done here for</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the sake of showing you a clear example.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span> <span class="o">=</span> <span class="n">all_moves</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_move</span>
+<span class="go">(1, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># performing the move on the array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span>
+<span class="go">array([0, 3, 2, 1, 4])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># undoing the move on the array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swap</span><span class="o">.</span><span class="n">undo_move</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">a_move</span><span class="p">)</span> <span class="c1"># undoes the move</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span>
+<span class="go">array([0, 1, 2, 3, 4])</span>
+</pre></div>
+</div>
+<p>An example of generating some random moves with get_random_move:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.move.tsp_array_swap.TspArraySwap.get_moves">
+<code class="sig-name descname">get_moves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.tsp_array_swap.TspArraySwap.get_moves" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a generator used to return all valid moves.</p>
+<p>Note that the swaps with the first position aren’t included. When
+solving TSP problems, the start position doesn’t matter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>tuple of int</em> – The next valid move.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move">
+<code class="sig-name descname">get_random_move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.move.tsp_array_swap.TspArraySwap.get_random_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to generate one random move.</p>
+<p>Note that the swaps with the first position aren’t included. When
+solving TSP problems, the start position doesn’t matter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A random valid move.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.move">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.localsearch.move" title="Permalink to this headline">¶</a></h2>
+<p>This package contains everything related to move functions, classes who
+are used to alter the state of the problems and are able to generate valid
+“moves” in the neighbourhood.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.localsearch.move.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

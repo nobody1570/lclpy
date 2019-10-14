@@ -1,97 +1,97 @@
-Results of doctest builder run on 2019-08-05 21:10:13
+Results of doctest builder run on 2019-10-13 19:27:37
 =====================================================
 
-Document: lspy.problem
-----------------------
-1 items passed all tests:
- 120 tests in default
-120 tests in 1 items.
-120 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.tabusearch
--------------------------------------
-1 items passed all tests:
-  74 tests in default
-74 tests in 1 items.
-74 passed and 0 failed.
-Test passed.
-
-Document: lspy.evaluation
--------------------------
-1 items passed all tests:
-  54 tests in default
-54 tests in 1 items.
-54 passed and 0 failed.
-Test passed.
-
-Document: lspy.aidfunc
-----------------------
-1 items passed all tests:
-  16 tests in default
-16 tests in 1 items.
-16 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.simulatedannealing
----------------------------------------------
-1 items passed all tests:
-  93 tests in default
-93 tests in 1 items.
-93 passed and 0 failed.
-Test passed.
-
-Document: lspy.evaluation.deltaeval
------------------------------------
-1 items passed all tests:
-  53 tests in default
-53 tests in 1 items.
-53 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.vns
-------------------------------
-1 items passed all tests:
-  81 tests in default
-81 tests in 1 items.
-81 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.acceptance
--------------------------------------
-1 items passed all tests:
-   9 tests in default
-9 tests in 1 items.
-9 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.move
--------------------------------
-1 items passed all tests:
- 134 tests in default
-134 tests in 1 items.
-134 passed and 0 failed.
-Test passed.
-
-Document: lspy.localsearch.steepestdescent
-------------------------------------------
-1 items passed all tests:
-  43 tests in default
-43 tests in 1 items.
-43 passed and 0 failed.
-Test passed.
-
-Document: lspy.termination
---------------------------
+Document: lclpy.termination
+---------------------------
 1 items passed all tests:
  264 tests in default
 264 tests in 1 items.
 264 passed and 0 failed.
 Test passed.
 
+Document: lclpy.localsearch.simulatedannealing
+----------------------------------------------
+1 items passed all tests:
+  93 tests in default
+93 tests in 1 items.
+93 passed and 0 failed.
+Test passed.
+
+Document: lclpy.localsearch.acceptance
+--------------------------------------
+1 items passed all tests:
+   9 tests in default
+9 tests in 1 items.
+9 passed and 0 failed.
+Test passed.
+
+Document: lclpy.evaluation.deltaeval
+------------------------------------
+1 items passed all tests:
+  53 tests in default
+53 tests in 1 items.
+53 passed and 0 failed.
+Test passed.
+
+Document: lclpy.localsearch.tabusearch
+--------------------------------------
+1 items passed all tests:
+  79 tests in default
+79 tests in 1 items.
+79 passed and 0 failed.
+Test passed.
+
+Document: lclpy.localsearch.vns
+-------------------------------
+1 items passed all tests:
+  81 tests in default
+81 tests in 1 items.
+81 passed and 0 failed.
+Test passed.
+
+Document: lclpy.aidfunc
+-----------------------
+1 items passed all tests:
+  16 tests in default
+16 tests in 1 items.
+16 passed and 0 failed.
+Test passed.
+
+Document: lclpy.localsearch.move
+--------------------------------
+1 items passed all tests:
+ 134 tests in default
+134 tests in 1 items.
+134 passed and 0 failed.
+Test passed.
+
+Document: lclpy.evaluation
+--------------------------
+1 items passed all tests:
+  54 tests in default
+54 tests in 1 items.
+54 passed and 0 failed.
+Test passed.
+
+Document: lclpy.localsearch.steepestdescent
+-------------------------------------------
+1 items passed all tests:
+  43 tests in default
+43 tests in 1 items.
+43 passed and 0 failed.
+Test passed.
+
+Document: lclpy.problem
+-----------------------
+1 items passed all tests:
+ 120 tests in default
+120 tests in 1 items.
+120 passed and 0 failed.
+Test passed.
+
 Doctest summary
 ===============
-  941 tests
+  946 tests
     0 failures in tests
     0 failures in setup code
     0 failures in cleanup code

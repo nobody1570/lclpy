@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.benchmark package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-benchmark-package">
+<h1>lclpy.benchmark package<a class="headerlink" href="#lclpy-benchmark-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.benchmark.benchmark">
+<span id="lclpy-benchmark-benchmark-module"></span><h2>lclpy.benchmark.benchmark module<a class="headerlink" href="#module-lclpy.benchmark.benchmark" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.benchmark.benchmark.benchmark">
+<code class="sig-prename descclassname">lclpy.benchmark.benchmark.</code><code class="sig-name descname">benchmark</code><span class="sig-paren">(</span><em class="sig-param">problems</em>, <em class="sig-param">algorithms</em>, <em class="sig-param">stop_criterion</em>, <em class="sig-param">runs=10</em>, <em class="sig-param">seeds=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.benchmark.benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to perform multiple algorithms on multiple soltions.</p>
+<p>Note that the problems, algorithms and the stop criterion all need to have
+the method reset method properly implemented for this function to work
+properly. The logging of algorithms is determined by the logging parameter
+that was given to them at their construction. If it was True (default), the
+algorithm will log it’s improvements and worse passed solutions. If logging
+is False, no logging will be shown for that particular algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problems</strong> (<em>iterable object</em>) – Contains all the problems.</p></li>
+<li><p><strong>algorithms</strong> (<em>iterable object</em>) – Contains all the algorithms. Note that the algorithms can be
+initialised with None as solution and None as termination_criterion.</p></li>
+<li><p><strong>stop_criterion</strong> (<a class="reference internal" href="lclpy.termination.html#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – The termination criterion that will be used for all combinations of
+algorithms and problems.</p></li>
+<li><p><strong>runs</strong> (<em>int</em><em>, </em><em>optional</em>) – The amount of runs that will be performed for a single
+algorithm-problem pair.</p></li>
+<li><p><strong>seeds</strong> (<em>list of int</em><em> or </em><em>tuple of int</em>) – The seeds that will be used in the runs. Note that the length of the
+tuple or array needs to be equal to the amount of runs. If no seeds are
+given the seeds will be the number of the run.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 3-dimensional list of namedtuple. These namedtuples are the results
+of the algorithms. The first indice represents an algorithm, the second
+a problem, the third a run of the algorithm-problem pair. The indices
+that should be used are the same as in algorithms and solutions
+respectively for the first 2 indices. The third indice is used to
+choose between the runs. The possible indices for runs are always in
+the interval [0, #runs-1].</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of list of list of namedtuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.benchmark.statistics">
+<span id="lclpy-benchmark-statistics-module"></span><h2>lclpy.benchmark.statistics module<a class="headerlink" href="#module-lclpy.benchmark.statistics" title="Permalink to this headline">¶</a></h2>
+<p>This module contains several functions to get statistical data from the
+results of the function benchmark.</p>
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.biggest">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">biggest</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.biggest" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get the biggest best_values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the biggest of the best_value for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.iterations_max">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">iterations_max</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.iterations_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get the most iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the most iterations for every algorithm-problem
+pair. Note that the indices of a certain algorithm-problem pair in the
+benchmark_result will be the same as the indices one needs to get the
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.iterations_mean">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">iterations_mean</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.iterations_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the mean of the amount of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the mean of the amount of iterations for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.iterations_median">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">iterations_median</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.iterations_median" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the median of the amount of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the amount of iterations for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.iterations_min">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">iterations_min</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.iterations_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get the least iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the least iterations for every algorithm-problem
+pair. Note that the indices of a certain algorithm-problem pair in the
+benchmark_result will be the same as the indices one needs to get the
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.iterations_stdev">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">iterations_stdev</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.iterations_stdev" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the standard deviation of the amount of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the standard deviation of the amount of
+iterations for every algorithm-problem pair. Note that the indices of a
+certain algorithm-problem pair in the benchmark_result will be the same
+as the indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.mean">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">mean</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the mean of the best_values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the mean of the best_value for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.median">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">median</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.median" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the median of the best_values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the best_value for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.smallest">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">smallest</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.smallest" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get the smallest best_values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the smallest of the best_value for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.stat">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">stat</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em>, <em class="sig-param">algorithm_names=None</em>, <em class="sig-param">problem_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get some common characteristics from a benchmark.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p></li>
+<li><p><strong>print</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the results will be printed to the command line.
+If False the results will not be printed to the command line.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>The result is divided in 3 main parts: best_value, time and iterations.
+Every main part contains the results of different statistics:</p>
+<ul class="simple">
+<li><p>mean</p></li>
+<li><p>median</p></li>
+<li><p>stdev</p></li>
+<li><p>max</p></li>
+<li><p>min</p></li>
+</ul>
+<p>The result for each of those are kept in a 2D array. Note that the
+indices of a certain algorithm-problem pair in the benchmark_result
+will be the same as the indices one needs to get the results for that
+pair.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>namedtuple of namedtuple of numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.stdev">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">stdev</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.stdev" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the standard deviation of the best_values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the standard variation for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.time_max">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">time_max</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.time_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get the longest execution time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the longest time for every algorithm-problem
+pair. Note that the indices of a certain algorithm-problem pair in the
+benchmark_result will be the same as the indices one needs to get the
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.time_mean">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">time_mean</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.time_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the mean of the last time-point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the mean of the last time-point for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.time_median">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">time_median</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.time_median" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the median of the last time-point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the median of the last time-point for every
+algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.time_min">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">time_min</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.time_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to get the shortest execution time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the shortest time for every algorithm-problem
+pair. Note that the indices of a certain algorithm-problem pair in the
+benchmark_result will be the same as the indices one needs to get the
+results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.benchmark.statistics.time_stdev">
+<code class="sig-prename descclassname">lclpy.benchmark.statistics.</code><code class="sig-name descname">time_stdev</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.benchmark.statistics.time_stdev" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to calculate the standard deviation of the last time-point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>benchmark_result</strong> (<em>list of list of list of namedtuple</em>) – The result from a benchmark.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2D array containing the standard deviation of the last time-point for
+every algorithm-problem pair. Note that the indices of a certain
+algorithm-problem pair in the benchmark_result will be the same as the
+indices one needs to get the results for that pair.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.benchmark">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.benchmark" title="Permalink to this headline">¶</a></h2>
+<p>The package benchmark is designed to benchmark.</p>
+<p>The package contains:</p>
+<ul class="simple">
+<li><p>The function benchmark in the module benchmark.
+This function can be used to run multiple algorithms on multiple problems for
+multiple runs</p></li>
+<li><p>The module statistics. This module contains several functions to get
+statistical data from the results of the function benchmark.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.benchmark.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

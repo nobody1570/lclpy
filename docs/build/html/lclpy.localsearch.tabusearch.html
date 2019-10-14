@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.localsearch.tabusearch package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-localsearch-tabusearch-package">
+<h1>lclpy.localsearch.tabusearch package<a class="headerlink" href="#lclpy-localsearch-tabusearch-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.localsearch.tabusearch.abstract_diff_state">
+<span id="lclpy-localsearch-tabusearch-abstract-diff-state-module"></span><h2>lclpy.localsearch.tabusearch.abstract_diff_state module<a class="headerlink" href="#module-lclpy.localsearch.tabusearch.abstract_diff_state" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.tabusearch.abstract_diff_state.</code><code class="sig-name descname">AbstractDiffState</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>A template class to implement a diff_state_func for tabu search.</p>
+<p>Implementations of this class are meant to be used in a tabu search
+algorithm. Implementations are supposed to implement the diff function.
+A specific implementation might be needed for different move types.</p>
+<dl class="method">
+<dt id="lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState.diff">
+<em class="property">abstract </em><code class="sig-name descname">diff</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState.diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates how the move would alter the state if it was performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A representation of a move.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An indication of how the move alters the state.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.tabusearch.sum_diff_state">
+<span id="lclpy-localsearch-tabusearch-sum-diff-state-module"></span><h2>lclpy.localsearch.tabusearch.sum_diff_state module<a class="headerlink" href="#module-lclpy.localsearch.tabusearch.sum_diff_state" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.tabusearch.sum_diff_state.SumDiffState">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.tabusearch.sum_diff_state.</code><code class="sig-name descname">SumDiffState</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.sum_diff_state.SumDiffState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState" title="lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState</span></code></a></p>
+<p>A class that implement a diff_state_func for tabu search.</p>
+<p class="rubric">Examples</p>
+<p>A simple example:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.tabusearch.sum_diff_state.SumDiffState.diff">
+<code class="sig-name descname">diff</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.sum_diff_state.SumDiffState.diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates how the move would alter the state if it was performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sum of the values of the tuple.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.tabusearch.tabu_list">
+<span id="lclpy-localsearch-tabusearch-tabu-list-module"></span><h2>lclpy.localsearch.tabusearch.tabu_list module<a class="headerlink" href="#module-lclpy.localsearch.tabusearch.tabu_list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.tabusearch.tabu_list.TabuList">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.tabusearch.tabu_list.</code><code class="sig-name descname">TabuList</code><span class="sig-paren">(</span><em class="sig-param">length</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_list.TabuList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implements a tabu list for use with TabuSearch.</p>
+<p>When using big items, it would be wise to save space by hashing them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>length</strong> (<em>int</em>) – The maximal amount of items in the tabu list.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_list.TabuList._list">
+<code class="sig-name descname">_list</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_list.TabuList._list" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list that contains hashes of all the items that are considered part
+of the tabu list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>deque</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example, the lists are converted to tuples, because they’re
+mutable objects and thus can’t be hashed with the default implementation of
+hash:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.tabusearch.tabu_list.TabuList.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_list.TabuList.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an item to the tabu list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> – A hashable, immutable object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.tabusearch.tabu_list.TabuList.contains">
+<code class="sig-name descname">contains</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_list.TabuList.contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that checks if an item is in the tabu list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> – A hashable, immutable object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Will return true if the item is in the tabu list, false if it
+isn’t in the tabu list.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.tabusearch.tabu_search">
+<span id="lclpy-localsearch-tabusearch-tabu-search-module"></span><h2>lclpy.localsearch.tabusearch.tabu_search module<a class="headerlink" href="#module-lclpy.localsearch.tabusearch.tabu_search" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.tabusearch.tabu_search.</code><code class="sig-name descname">TabuSearch</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">diff_state_func</em>, <em class="sig-param">list_size=7</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em>, <em class="sig-param">logging=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lclpy.localsearch.html#lclpy.localsearch.abstract_local_search.AbstractLocalSearch" title="lclpy.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
+<p>Performs a tabu search on the given problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="lclpy.problem.html#lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem.</p></li>
+<li><p><strong>termination_criterion</strong> (<a class="reference internal" href="lclpy.termination.html#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</p></li>
+<li><p><strong>diff_state_func</strong> (<a class="reference internal" href="#lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState" title="lclpy.localsearch.tabusearch.abstract_diff_state.AbstractDiffState"><em>AbstractDiffState</em></a>) – A class that implement a diff_state_func for tabu search.</p></li>
+<li><p><strong>list_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The size of the tabu list. The default is 7.</p></li>
+<li><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
+The default is True.</p></li>
+<li><p><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
+one wishes no benchmarks to be made. Default is False.</p></li>
+<li><p><strong>logging</strong> (<em>bool</em><em>, </em><em>optional</em>) – Improvements will be logged to the command line if this variable is
+True. Default is True.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._problem">
+<code class="sig-name descname">_problem</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._problem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all the data needed for the specific problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.problem.html#lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._termination_criterion">
+<code class="sig-name descname">_termination_criterion</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a termination criterion to terminate the algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.termination.html#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._diff">
+<code class="sig-name descname">_diff</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method of a AbstractDiffState class to indicate how a move alters the
+state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>method</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._list_size">
+<code class="sig-name descname">_list_size</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._list_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of the tabu list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._tabu_list">
+<code class="sig-name descname">_tabu_list</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._tabu_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>The used tabu list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lclpy.localsearch.tabusearch.tabu_list.TabuList" title="lclpy.localsearch.tabusearch.tabu_list.TabuList">TabuList</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._is_better">
+<code class="sig-name descname">_is_better</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._is_better" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to determine if a certain value is an improvement.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._minimise">
+<code class="sig-name descname">_minimise</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._minimise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Variable that indicates if the function is maximising or minimising.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._best_found_delta_base_value">
+<code class="sig-name descname">_best_found_delta_base_value</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._best_found_delta_base_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialisation value for the delta value of each iteration. It’s
+infinite when minimising or minus infinite when maximising.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch.data">
+<code class="sig-name descname">data</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data useable for benchmarking. Will be None if no benchmarks are made.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._data_append">
+<code class="sig-name descname">_data_append</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._data_append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to append new data-points to data. Will do nothing if no
+benchmarks are made.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch._log_improvement">
+<code class="sig-name descname">_log_improvement</code><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch._log_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to write logs to the command line. Will do nothing if no logs
+are made.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>An example of minimising:</p>
+<p>An example of maximising, note that the distance matrix is different:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – If the problem or termination criterion have no reset method
+    implemented.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>An example of minimising, reset after run:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.tabusearch.tabu_search.TabuSearch.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.tabusearch.tabu_search.TabuSearch.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts running the tabu search.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</p></li>
+<li><p><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</p></li>
+<li><p><strong>data</strong> (<em>None or collections.namedtuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
+be None. The namedtuple contains the following data in
+numpy.ndarrays:
+time, iteration, value, best_value</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.tabusearch">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.localsearch.tabusearch" title="Permalink to this headline">¶</a></h2>
+<p>This package contains all classes unique to tabu search.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.localsearch.tabusearch.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

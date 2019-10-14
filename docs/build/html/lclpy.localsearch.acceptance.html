@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.localsearch.acceptance package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-localsearch-acceptance-package">
+<h1>lclpy.localsearch.acceptance package<a class="headerlink" href="#lclpy-localsearch-acceptance-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.localsearch.acceptance.abstract_acceptance_function">
+<span id="lclpy-localsearch-acceptance-abstract-acceptance-function-module"></span><h2>lclpy.localsearch.acceptance.abstract_acceptance_function module<a class="headerlink" href="#module-lclpy.localsearch.acceptance.abstract_acceptance_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.acceptance.abstract_acceptance_function.</code><code class="sig-name descname">AbstractAcceptanceFunction</code><a class="headerlink" href="#lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Template to create acceptance functions.</p>
+<p>Acceptance functions determine if a worse state than the current
+state is accepted as the new current state.</p>
+<dl class="method">
+<dt id="lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction.accept">
+<em class="property">abstract </em><code class="sig-name descname">accept</code><span class="sig-paren">(</span><em class="sig-param">delta_value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction.accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the worse state will be accepted</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>delta_value</strong> (<em>int</em><em> or </em><em>float</em>) – The difference in quality between the current state and the
+potential new state. This can be calculated by substracting the
+quality of the current state from the quality of the potential new
+state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns true if the problem is accepted,
+the function returns false if the problem is rejected.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.acceptance.simulated_annealing_acceptance_function">
+<span id="lclpy-localsearch-acceptance-simulated-annealing-acceptance-function-module"></span><h2>lclpy.localsearch.acceptance.simulated_annealing_acceptance_function module<a class="headerlink" href="#module-lclpy.localsearch.acceptance.simulated_annealing_acceptance_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.</code><code class="sig-name descname">SimulatedAnnealingAcceptanceFunction</code><span class="sig-paren">(</span><em class="sig-param">diff_multiplier=1</em>, <em class="sig-param">multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction" title="lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.acceptance.abstract_acceptance_function.AbstractAcceptanceFunction</span></code></a></p>
+<p>An acceptance function for simulated annealing.</p>
+<p>A smaller quality value is assumed to be better than a bigger one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diff_multiplier</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The delta_value will be multiplied by this multiplier. A bigger value
+leads to more solutions being accepted, while a smaller value will
+lead to less solutions being accepted.
+Positive values will initialise the class for minising, negative values
+will intialise the function for maximising.
+The default value is 1.</p></li>
+<li><p><strong>multiplier</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – Will be multiplied with the whole probability. Must be positive.
+Should be in the interval ]0,1]. This multiplier can be used to
+decrease the odds of values being accepted. While it is possible to use
+a multiplier greater than 1, this might cause weird behaviour.
+The default value is 1.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction._diff_multiplier">
+<code class="sig-name descname">_diff_multiplier</code><a class="headerlink" href="#lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction._diff_multiplier" title="Permalink to this definition">¶</a></dt>
+<dd><p>The delta_value will be multiplied by this multiplier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction._multiplier">
+<code class="sig-name descname">_multiplier</code><a class="headerlink" href="#lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction._multiplier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is multiplied with the whole probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example of the default behaviour, delta (200) and
+temperature (1000) are arbitrarily chosen, they have little meaning in
+this example:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction.accept">
+<code class="sig-name descname">accept</code><span class="sig-paren">(</span><em class="sig-param">delta_value</em>, <em class="sig-param">temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction.accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to reject or accept certain potential solutions.</p>
+<p>In most cases, a value better than the current value will always be
+accepted. When this is the case, it might be wise to use an
+if-statement to handle those instead of passing them to this method.</p>
+<p>The chance of a state being accepted is equal to:</p>
+<div class="math notranslate nohighlight">
+\[\_multiplier*e^{\dfrac{\_diff\_multiplier*delta\_value}{temperature}}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta_value</strong> (<em>int</em><em> or </em><em>float</em>) – The difference in quality between 2 possible solutions.</p></li>
+<li><p><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – A value that determines the chance of a state being accepted.
+How bigger this value, how higher the chance of a solution being
+accepted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the solution is accepted, False if the solution isn’t
+accepted.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.acceptance">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.localsearch.acceptance" title="Permalink to this headline">¶</a></h2>
+<p>This package contains everything related to acceptance functions.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.localsearch.acceptance.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

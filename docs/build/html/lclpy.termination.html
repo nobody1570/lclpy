@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.termination package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-termination-package">
+<h1>lclpy.termination package<a class="headerlink" href="#lclpy-termination-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.termination.abstract_termination_criterion">
+<span id="lclpy-termination-abstract-termination-criterion-module"></span><h2>lclpy.termination.abstract_termination_criterion module<a class="headerlink" href="#module-lclpy.termination.abstract_termination_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.abstract_termination_criterion.</code><code class="sig-name descname">AbstractTerminationCriterion</code><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Template to create termination criterions.</p>
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value">
+<code class="sig-name descname">check_first_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that should be called once before the main loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial problem.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value">
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a value.</p>
+<p>Does not need to be used or implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – A value from the evaluation function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable">
+<code class="sig-name descname">check_variable</code><span class="sig-paren">(</span><em class="sig-param">variable</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a variable specific to an implementation.</p>
+<p>Does not need to be used or implemented</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variable</strong> – The value of a certain value of a specific algorithm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done">
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be called after every iteration.</p>
+<p>Does not need to be used or implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running">
+<em class="property">abstract </em><code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to determine if the algorithm needs to continue running</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the algorithm has to continue
+running, if the function returns false the algorithm needs to
+stop running.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing">
+<code class="sig-name descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts an internal timer if needed.</p>
+<p>Does not need to be used or implemented.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.always_true_criterion">
+<span id="lclpy-termination-always-true-criterion-module"></span><h2>lclpy.termination.always_true_criterion module<a class="headerlink" href="#module-lclpy.termination.always_true_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.always_true_criterion.AlwaysTrueCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.always_true_criterion.</code><code class="sig-name descname">AlwaysTrueCriterion</code><a class="headerlink" href="#lclpy.termination.always_true_criterion.AlwaysTrueCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Termination criterion that will never terminate an algorithm.</p>
+<p>This criterion is only meant to be used as a default termination criterion
+in algorithms that will stop iterating when no improvement is found. Don’t
+use it in any other case.</p>
+<dl class="method">
+<dt id="lclpy.termination.always_true_criterion.AlwaysTrueCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.always_true_criterion.AlwaysTrueCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Will always be True.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.always_true_criterion.AlwaysTrueCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.always_true_criterion.AlwaysTrueCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.max_iterations_termination_criterion">
+<span id="lclpy-termination-max-iterations-termination-criterion-module"></span><h2>lclpy.termination.max_iterations_termination_criterion module<a class="headerlink" href="#module-lclpy.termination.max_iterations_termination_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.max_iterations_termination_criterion.</code><code class="sig-name descname">MaxIterationsTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">max_iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Termination criterion to terminate after a set amount of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations. The default is 1000 iterations.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations">
+<code class="sig-name descname">_max_iterations</code><a class="headerlink" href="#lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximal amount of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._iterations">
+<code class="sig-name descname">_iterations</code><a class="headerlink" href="#lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion._iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Default amount of iterations:</p>
+<p>50 iterations:</p>
+<dl class="method">
+<dt id="lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done">
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to be called after every iteration.</p>
+<p>Increments _iterations by 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the amount of iteration is smaller
+than max_iterations, if the function returns false the amount of
+iterations is bigger than max_iterations</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_iterations_termination_criterion.MaxIterationsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>Default amount of iterations:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.max_seconds_termination_criterion">
+<span id="lclpy-termination-max-seconds-termination-criterion-module"></span><h2>lclpy.termination.max_seconds_termination_criterion module<a class="headerlink" href="#module-lclpy.termination.max_seconds_termination_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.max_seconds_termination_criterion.</code><code class="sig-name descname">MaxSecondsTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">max_seconds=60</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Termination criterion to terminate after a set amount of seconds.</p>
+<p>Note that this terminationcriterion isn’t exact. It will only terminate
+the algorithm after iterating longer than the set time AND if an iteration
+is finished. The extra time that the algorithm will run depends on the
+duration of the last iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_seconds</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The maximal amount of seconds passed. The default is 60 seconds.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds">
+<code class="sig-name descname">_max_seconds</code><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._max_seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximal amount of seconds passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._seconds">
+<code class="sig-name descname">_seconds</code><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of seconds passed since the start of the iterations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start">
+<code class="sig-name descname">_start</code><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>The moment when the time starts to be measured in seconds measured
+from the epoch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Running for 60 seconds (default):</p>
+<p>Running for 3 seconds:</p>
+<dl class="method">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.iteration_done">
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to be called after every iteration</p>
+<p>Sets _seconds to be the difference between the current time and the
+start time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if an algorithm needs to continue running</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the amount of time passed is smaller
+than max_seconds, if the function returns false the amount of
+time passed is bigger than max_seconds</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>Running for 3 seconds:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing">
+<code class="sig-name descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.max_seconds_termination_criterion.MaxSecondsTerminationCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to be called before the iterations</p>
+<p>Sets _start to the current time in seconds from the epoch.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.min_temperature_termination_criterion">
+<span id="lclpy-termination-min-temperature-termination-criterion-module"></span><h2>lclpy.termination.min_temperature_termination_criterion module<a class="headerlink" href="#module-lclpy.termination.min_temperature_termination_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.min_temperature_termination_criterion.</code><code class="sig-name descname">MinTemperatureTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">min_temperature=10</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>A termination criterion for use with a simulated annealing algorithm.</p>
+<p>This termination criterion ends the algorithm if the current temperature
+is lower than the minimal temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>min_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The minimal temperature. The default is 10.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.min_temperature">
+<code class="sig-name descname">min_temperature</code><a class="headerlink" href="#lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.min_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimal temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion._run">
+<code class="sig-name descname">_run</code><a class="headerlink" href="#lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if no temperature lower than the minimal has been encountered,
+False if a temperature lower than the minimal has been encountered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example of the default behaviour:</p>
+<p>Example with a minimal temperature of 100:</p>
+<dl class="method">
+<dt id="lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.check_variable">
+<code class="sig-name descname">check_variable</code><span class="sig-paren">(</span><em class="sig-param">current_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the current temperature is lower than the minimal temperature.</p>
+<p>This function should always be called if the temperature is lowered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature of the algorithm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the current temperature is higher than
+or equal to the minimal temperature, else it returns false.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.min_temperature_termination_criterion.MinTemperatureTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p>Examples:</p>
+<p>A simple example with the default min_temperature:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.multi_and_criterion">
+<span id="lclpy-termination-multi-and-criterion-module"></span><h2>lclpy.termination.multi_and_criterion module<a class="headerlink" href="#module-lclpy.termination.multi_and_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.multi_and_criterion.MultiAndCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.multi_and_criterion.</code><code class="sig-name descname">MultiAndCriterion</code><span class="sig-paren">(</span><em class="sig-param">criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_and_criterion.MultiAndCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.multi_criterion.MultiCriterion" title="lclpy.termination.multi_criterion.MultiCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.multi_criterion.MultiCriterion</span></code></a></p>
+<p>Class to use multiple terminationcriteria at once.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.multi_and_criterion.MultiAndCriterion.criteria">
+<code class="sig-name descname">criteria</code><a class="headerlink" href="#lclpy.termination.multi_and_criterion.MultiAndCriterion.criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list or tuple of AbstractTerminationCriterion</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>3 termination criteria are used, three tests are done to ensure that all
+three criterions are capable of stopping the iterating correctly.</p>
+<p>MaxSecondsTerminationCriterion stops the iterating:</p>
+<blockquote>
+<div></div></blockquote>
+<p>MaxIterationsTerminationCriterion stops the iterating:</p>
+<p>NoImprovementTerminationCriterion stops the iterating:</p>
+<dl class="method">
+<dt id="lclpy.termination.multi_and_criterion.MultiAndCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_and_criterion.MultiAndCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the algorithm has to continue
+running, if the function returns false the algorithm needs to
+stop running. If all the composing termination criterions return
+False if their keep_running method is called, this method will
+return False. Else the method will return True.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.multi_criterion">
+<span id="lclpy-termination-multi-criterion-module"></span><h2>lclpy.termination.multi_criterion module<a class="headerlink" href="#module-lclpy.termination.multi_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.multi_criterion.</code><code class="sig-name descname">MultiCriterion</code><span class="sig-paren">(</span><em class="sig-param">criteria</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Class to combine multiple terminationcriteria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>criteria</strong> (<em>list</em><em> or </em><em>tuple of AbstractTerminationCriterion</em>) – An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.criteria">
+<code class="sig-name descname">criteria</code><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.criteria" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterable object containing the intialised termination criterions one
+wishes to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list or tuple of AbstractTerminationCriterion</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>3 termination criteria are used, three tests are done to ensure that all
+three criterions are capable of stopping the iterating correctly.</p>
+<p>MaxSecondsTerminationCriterion stops the iterating:</p>
+<blockquote>
+<div></div></blockquote>
+<p>MaxIterationsTerminationCriterion stops the iterating:</p>
+<p>NoImprovementTerminationCriterion stops the iterating:</p>
+<dl class="method">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.check_new_value">
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – A value from the evaluation function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.check_variable">
+<code class="sig-name descname">check_variable</code><span class="sig-paren">(</span><em class="sig-param">variable</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.check_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a variable specific to an implementation.</p>
+<p>Does not need to be used or implemented</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variable</strong> – The value of a certain value of a specific algorithm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.iteration_done">
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to be called after every iteration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the algorithm has to continue
+running, if the function returns false the algorithm needs to
+stop running. If one or more of the composing termination
+criterions returns False if its keep_running method is called, this
+method will return False. Else the method will return True.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>MaxIterationsTerminationCriterion stops the iterating:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.multi_criterion.MultiCriterion.start_timing">
+<code class="sig-name descname">start_timing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.multi_criterion.MultiCriterion.start_timing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts an internal timer if needed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.must_improve_termination_criterion">
+<span id="lclpy-termination-must-improve-termination-criterion-module"></span><h2>lclpy.termination.must_improve_termination_criterion module<a class="headerlink" href="#module-lclpy.termination.must_improve_termination_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.must_improve_termination_criterion.</code><code class="sig-name descname">MustImproveTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Criterion to terminate after an iteration without improvement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
+True. If the goal is to maximise the evaluation function, this should
+be False. The default is True.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value">
+<code class="sig-name descname">_old_best_value</code><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The last value. Is initialised as infinite (minimise = True)
+or minus infinite (minimise = False)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function">
+<code class="sig-name descname">_function</code><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function used to judge if a value is an improvement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run">
+<code class="sig-name descname">_run</code><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if no worse value has been encountered, False if this isn’t the
+case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Smaller values are considered improvements(default). 8 iterations with
+improvement. After that there are no more improvements. The dataset
+eval_values is hardcoded:</p>
+<p>Bigger values are considered improvements. 5 iterations with
+improvement. After that there are no more improvements. The dataset
+eval_values is hardcoded:</p>
+<dl class="method">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value">
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to be called after every calculation of the evaluation function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>long</em><em> or </em><em>float</em>) – Is the new evaluation value of a solution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to determine if the algorithm needs to continue running</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns True if there hasn’t been encountered a
+non-improving value. The function returns False if a non-improving
+value is encountered.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.must_improve_termination_criterion.MustImproveTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>Smaller values are considered improvements(default). 8 iterations with
+improvement. After that there are no more improvements. The dataset
+eval_values is hardcoded. After this, the criterion is resetted and the
+loop is repeated:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination.no_improvement_termination_criterion">
+<span id="lclpy-termination-no-improvement-termination-criterion-module"></span><h2>lclpy.termination.no_improvement_termination_criterion module<a class="headerlink" href="#module-lclpy.termination.no_improvement_termination_criterion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.termination.no_improvement_termination_criterion.</code><code class="sig-name descname">NoImprovementTerminationCriterion</code><span class="sig-paren">(</span><em class="sig-param">max_iterations=100</em>, <em class="sig-param">minimise=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion</span></code></a></p>
+<p>Criterion to terminate after a set amount of iterations without improvement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_iterations</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximal amount of iterations without improvement. The default is
+100 iterations.</p></li>
+<li><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the goal is to minimise the evaluation function, this should be
+True. If the goal is to maximise the evlauation function, this should
+be False. The default is True.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations">
+<code class="sig-name descname">_max_iterations</code><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._max_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximal amount of iterations without improvement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._iterations">
+<code class="sig-name descname">_iterations</code><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of iterations with no improvement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run">
+<code class="sig-name descname">_run</code><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will be True if the maximal amount of iterations without improvement
+hasn’t been reached yet, will be false if this isn’t the case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value">
+<code class="sig-name descname">_old_best_value</code><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._old_best_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The last best value. Is initialised as minus infinite
+(improvement_is_bigger = True)
+or infinite (improvement_is_bigger = False)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function">
+<code class="sig-name descname">_function</code><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion._function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function used to judge if a value is an improvement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Default amount of iterations without improvement (100), always checking
+the new value. Smaller values are considered improvements(default). The
+dataset eval_values is generated. (1 improvement, 99 cases without
+improvement, 1 improvement, 110 cases without improvement) After this the
+iterations start:</p>
+<p>3 iterations without improvement, only checking improved values. Smaller
+values are considered improvements(default). The dataset eval_values is
+hardcoded:</p>
+<p>Default amount of iterations without improvement (100). Bigger values are
+considered improvements. The dataset eval_values is generated.
+(1 improvement, 99 cases without improvement, 1 improvement, 110 cases
+without improvement) After this the iterations start:</p>
+<p>3 iterations without improvement. Bigger values are considered
+improvements. The dataset eval_values is hardcoded:</p>
+<dl class="method">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value">
+<code class="sig-name descname">check_first_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_first_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that should be called once before the main loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the evaluation value of the initial solution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value">
+<code class="sig-name descname">check_new_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.check_new_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be called after every improvement of the evaluation function.</p>
+<p>It’s also possible to call this function every time when the
+evaluation value is calculated without ill effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Is the best evaluation value found for a solution or the new
+evaluation value of a solution. It does not matter which one is
+used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done">
+<code class="sig-name descname">iteration_done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.iteration_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to be called after every iteration.</p>
+<p>Increments _iterations by 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running">
+<code class="sig-name descname">keep_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.keep_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to determine if the algorithm needs to continue running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The function returns true if the amount of iterations is smaller
+than _max_iterations, if the function returns false the amount of
+iterations is bigger than max_iterations</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.termination.no_improvement_termination_criterion.NoImprovementTerminationCriterion.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<p class="rubric">Examples</p>
+<p>3 iterations without improvement. Bigger values are considered
+improvements. The dataset eval_values is hardcoded. After this, the
+criterion is resetted and the loop is repeated:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.termination">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.termination" title="Permalink to this headline">¶</a></h2>
+<p>This package contains a template for termination criterions and
+implementations of said template.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.termination.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

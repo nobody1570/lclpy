@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.evaluation.deltaeval package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-evaluation-deltaeval-package">
+<h1>lclpy.evaluation.deltaeval package<a class="headerlink" href="#lclpy-evaluation-deltaeval-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.evaluation.deltaeval.delta_eval_func">
+<span id="lclpy-evaluation-deltaeval-delta-eval-func-module"></span><h2>lclpy.evaluation.deltaeval.delta_eval_func module<a class="headerlink" href="#module-lclpy.evaluation.deltaeval.delta_eval_func" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_eval_func.delta_eval_func">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_eval_func.</code><code class="sig-name descname">delta_eval_func</code><span class="sig-paren">(</span><em class="sig-param">problem_eval_func</em>, <em class="sig-param">move_func</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_eval_func.delta_eval_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to retrieve classes and functions needed for delta evaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem_eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function object.</p></li>
+<li><p><strong>move_type</strong> (<a class="reference internal" href="lclpy.localsearch.move.html#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The used move object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A class with a function delta_evaluate to perform delta evaluation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.evaluation.deltaeval.delta_multi_neighbourhood">
+<span id="lclpy-evaluation-deltaeval-delta-multi-neighbourhood-module"></span><h2>lclpy.evaluation.deltaeval.delta_multi_neighbourhood module<a class="headerlink" href="#module-lclpy.evaluation.deltaeval.delta_multi_neighbourhood" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the classes and functions for delta-evaluation with a
+MultiNeighbourhood.</p>
+<dl class="class">
+<dt id="lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_multi_neighbourhood.</code><code class="sig-name descname">MultiMoveDeltaEvaluate</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">move_func</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to perform delta evaluation with a MultiNeighbourhood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem_eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function object.</p></li>
+<li><p><strong>move_type</strong> (<a class="reference internal" href="lclpy.localsearch.move.html#lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood" title="lclpy.localsearch.move.multi_neighbourhood.MultiNeighbourhood"><em>MultiNeighbourhood</em></a>) – The used move object.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate.delta_eval_classes">
+<code class="sig-name descname">delta_eval_classes</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate.delta_eval_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the classes used to perform delta evaluation for each
+move type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple or list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate.delta_evaluation_func">
+<code class="sig-name descname">delta_evaluation_func</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate.delta_evaluation_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the functions of the classes in delta_eval_classes that are
+called when delta-evaluation is performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple or list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate.delta_evaluate">
+<code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_order</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_multi_neighbourhood.delta_multi_neighbourhood">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_multi_neighbourhood.</code><code class="sig-name descname">delta_multi_neighbourhood</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">move_func</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_multi_neighbourhood.delta_multi_neighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns delta-eval class for a problem with a multi-neighbourhood.</p>
+<p>Note that if no methods for a move or the evaluation function can be found,
+that a placeholder method will be used. The placeholder methods will raise
+a NotImplementedError when called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function.</p></li>
+<li><p><strong>move_func</strong> (<a class="reference internal" href="lclpy.localsearch.move.html#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The used move function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Class useable for delta evaluation of TSP problems.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate" title="lclpy.evaluation.deltaeval.delta_multi_neighbourhood.MultiMoveDeltaEvaluate">MultiMoveDeltaEvaluate</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.evaluation.deltaeval.delta_qap">
+<span id="lclpy-evaluation-deltaeval-delta-qap-module"></span><h2>lclpy.evaluation.deltaeval.delta_qap module<a class="headerlink" href="#module-lclpy.evaluation.deltaeval.delta_qap" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">QAPDeltaEvaluate</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">changed_locations</em>, <em class="sig-param">next_to_current</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to perform delta-evaluation for QAP problems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function</p></li>
+<li><p><strong>changed_points</strong> – This function returns the pairs who would have an altered evaluation
+value due to the move.</p></li>
+<li><p><strong>next_to_current</strong> – This function transforms the indices so that they can be used as
+indices in the unaltered array, yet return the value they would have
+had if the move was actually performed and they were used as indices.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.eval_func">
+<code class="sig-name descname">eval_func</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.eval_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The used evaluation function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">AbstractEvaluationFunction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.changed_locations">
+<code class="sig-name descname">changed_locations</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.changed_locations" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the locations who would have an altered
+evaluation value due to the move.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.next_to_current">
+<code class="sig-name descname">next_to_current</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.next_to_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function transforms the indices so that they can be used as
+indices in the unaltered array, yet return the value they would have
+had if the move was actually performed and they were used as indices.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.delta_evaluate">
+<code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_order</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the difference in quality if the move would be performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The object the delta-evaluation is calculated for.</p></li>
+<li><p><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
+visit. All values are unique and are within the interval [0,size[.
+This is the current order.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The difference in quality if the move would be performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.array_reverse_order_changed_locations">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">array_reverse_order_changed_locations</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.array_reverse_order_changed_locations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aid function for delta evaluation.</p>
+<p>Works with the array_swap move type.
+This function returns the locations who would have an altered evaluation
+value due to the move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A range containing the locations that would have an altered evaluation
+value due to the move.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>range</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples to demonstrate the behaviour:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.array_reverse_order_transform_next_index_to_current_index">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">array_reverse_order_transform_next_index_to_current_index</code><span class="sig-paren">(</span><em class="sig-param">position</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.array_reverse_order_transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the position depending on the move.</p>
+<p>Works with the array_swap move type.
+This function transforms the position so that it can be used as the indice
+in the unaltered array, yet return the value it would have had if the move
+was actually performed and the position was used as indice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>int</em>) – The index that one wants to use in the array if the move was performed.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The index in the unaltered array that has the same value as the
+location in an array where the move was performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples, the move remains the same, but the position changes:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.array_swap_changed_locations">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">array_swap_changed_locations</code><span class="sig-paren">(</span><em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.array_swap_changed_locations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aid function for delta evaluation.</p>
+<p>Works with the array_swap move type.
+This function returns the locations who would have an altered evaluation
+value due to the move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple containing the locations that would have an altered evaluation
+value due to the move.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple of int</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples to demonstrate the behaviour:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.array_swap_transform_next_index_to_current_index">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">array_swap_transform_next_index_to_current_index</code><span class="sig-paren">(</span><em class="sig-param">position</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.array_swap_transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the position depending on the move.</p>
+<p>Works with the array_swap move type.
+This function transforms the position so that it can be used as the indice
+in the unaltered array, yet return the value it would have had if the move
+was actually performed and the position was used as indice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>int</em>) – The index that one wants to use in the array if the move was performed.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The index in the unaltered array that has the same value as the
+location in an array where the move was performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples, the move remains the same, but the position changes:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.delta_evaluate">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">current_order</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the difference in quality if the move would be performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The object the delta-evaluation is calculated for.</p></li>
+<li><p><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
+visit. All values are unique and are within the interval [0,size[.
+This is the current order.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The difference in quality if the move would be performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_qap.delta_qap">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_qap.</code><code class="sig-name descname">delta_qap</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">move_func</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_qap.delta_qap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns delta-eval class for a QAP problem.</p>
+<p>Note that if a method for the problem can’t be found, that a placeholder
+method will be used. This method will raise a NotImplementedError when
+called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function object.</p></li>
+<li><p><strong>move_func</strong> (<a class="reference internal" href="lclpy.localsearch.move.html#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The used move object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Class useable for delta evaluation of TSP problems.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate" title="lclpy.evaluation.deltaeval.delta_qap.QAPDeltaEvaluate">QAPDeltaEvaluate</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.evaluation.deltaeval.delta_tsp">
+<span id="lclpy-evaluation-deltaeval-delta-tsp-module"></span><h2>lclpy.evaluation.deltaeval.delta_tsp module<a class="headerlink" href="#module-lclpy.evaluation.deltaeval.delta_tsp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_tsp.</code><code class="sig-name descname">TSPDeltaEvaluate</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">changed_distances</em>, <em class="sig-param">next_to_current</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to perform delta-evaluation for TSP problems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function</p></li>
+<li><p><strong>changed_distances</strong> – This function returns the pairs who would have an altered evaluation
+value due to the move.</p></li>
+<li><p><strong>next_to_current</strong> – This function transforms the indices so that they can be used as
+indices in the unaltered array, yet return the value they would have
+had if the move was actually performed and they were used as indices.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.eval_func">
+<code class="sig-name descname">eval_func</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.eval_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The used evaluation function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction">AbstractEvaluationFunction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.changed_distances">
+<code class="sig-name descname">changed_distances</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.changed_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the pairs who would have an altered evaluation
+value due to the move.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.next_to_current">
+<code class="sig-name descname">next_to_current</code><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.next_to_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function transforms the indices so that they can be used as
+indices in the unaltered array, yet return the value they would have
+had if the move was actually performed and they were used as indices.</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The difference in quality if the move would be performed.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int or float</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.delta_evaluate">
+<code class="sig-name descname">delta_evaluate</code><span class="sig-paren">(</span><em class="sig-param">current_order</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate.delta_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the difference in quality if the move would be performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_order</strong> (<em>numpy.ndarray</em>) – A 1 dimensional array that contains the order of the points to
+visit. All values are unique and are within the interval [0,size[.
+This is the current order.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – Contains the move one wishes to know the effects on the quality of.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The difference in quality if the move would be performed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.array_reverse_order_changed_distances">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_tsp.</code><code class="sig-name descname">array_reverse_order_changed_distances</code><span class="sig-paren">(</span><em class="sig-param">size</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.array_reverse_order_changed_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aid function for delta evaluation.</p>
+<p>Works with the array_reverse_order move type.
+This function returns the pairs who would have an altered evaluation
+value due to the move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – The size of the array.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single valid move.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>this set contains a tuple with every (from,to) pair that would have
+an altered evaluation value due to the move.
+A pair (x, y) and a pair (y, x) are assumed to have different
+evaluation values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>set of tuple</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples to demonstrate the behaviour:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.array_reverse_order_transform_next_index_to_current_index">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_tsp.</code><code class="sig-name descname">array_reverse_order_transform_next_index_to_current_index</code><span class="sig-paren">(</span><em class="sig-param">frm</em>, <em class="sig-param">to</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.array_reverse_order_transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms frm and to depending on a move</p>
+<p>Works with the array_reverse_order move type.
+This function transforms the indices frm and to so that they can
+be used as indices in the unaltered array, yet return the value
+they would have had if the move was actually performed and they
+were used as indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frm</strong> (<em>int</em>) – The from index that one wants to use in the array if the move was
+performed.</p></li>
+<li><p><strong>to</strong> (<em>int</em>) – The to index that one wants to use in the array if the move was
+performed.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>frm</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
+parameter frm in an array where the move was performed.</p></li>
+<li><p><strong>to</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
+parameter to in an array where the move was performed.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples, the move remains the same, but the indices
+change:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.array_swap_changed_distances">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_tsp.</code><code class="sig-name descname">array_swap_changed_distances</code><span class="sig-paren">(</span><em class="sig-param">size</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.array_swap_changed_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aid function for delta evaluation.</p>
+<p>Works with the array_swap move type.
+This function returns the pairs who would have an altered evaluation
+value due to the move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – The size of the array.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A tuple of 2 ints that represents a single unique move.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>this set contains a tuple with every (from,to) pair that would have
+an altered evaluation value due to the move.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>set of tuple</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples to demonstrate the behaviour:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.array_swap_transform_next_index_to_current_index">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_tsp.</code><code class="sig-name descname">array_swap_transform_next_index_to_current_index</code><span class="sig-paren">(</span><em class="sig-param">frm</em>, <em class="sig-param">to</em>, <em class="sig-param">move</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.array_swap_transform_next_index_to_current_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms frm and to depending on a move</p>
+<p>Works with the array_swap move type.
+This function transforms the indices frm and to so that they can
+be used as indices in the unaltered array, yet return the value
+they would have had if the move was actually performed and they
+were used as indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frm</strong> (<em>int</em>) – The from index that one wants to use in the array if the move was
+performed.</p></li>
+<li><p><strong>to</strong> (<em>int</em>) – The to index that one wants to use in the array if the move was
+performed.</p></li>
+<li><p><strong>move</strong> (<em>tuple of int</em>) – A tuple with that represents a single, unique move.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>frm</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
+parameter frm in an array where the move was performed.</p></li>
+<li><p><strong>to</strong> (<em>int</em>) – The index in the unaltered array that has the same value as the
+parameter to in an array where the move was performed.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple examples, the indices remain the same, but the move
+changes:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.evaluation.deltaeval.delta_tsp.delta_tsp">
+<code class="sig-prename descclassname">lclpy.evaluation.deltaeval.delta_tsp.</code><code class="sig-name descname">delta_tsp</code><span class="sig-paren">(</span><em class="sig-param">eval_func</em>, <em class="sig-param">move_func</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.evaluation.deltaeval.delta_tsp.delta_tsp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns delta-eval class for a TSP problem.</p>
+<p>Note that if no methods for the problem can be found, that a placeholder
+method will be used. The placeholder methods will raise a
+NotImplementedError when called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_func</strong> (<a class="reference internal" href="lclpy.evaluation.html#lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction" title="lclpy.evaluation.abstract_evaluation_function.AbstractEvaluationFunction"><em>AbstractEvaluationFunction</em></a>) – The used evaluation function object.</p></li>
+<li><p><strong>move_func</strong> (<a class="reference internal" href="lclpy.localsearch.move.html#lclpy.localsearch.move.abstract_move.AbstractMove" title="lclpy.localsearch.move.abstract_move.AbstractMove"><em>AbstractMove</em></a>) – The used move object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Class useable for delta evaluation of TSP problems.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate" title="lclpy.evaluation.deltaeval.delta_tsp.TSPDeltaEvaluate">TSPDeltaEvaluate</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.evaluation.deltaeval">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.evaluation.deltaeval" title="Permalink to this headline">¶</a></h2>
+<p>This package contains all the functions and classes needed for
+delta-evaluation.</p>
+<p>The easiest and fastest way to implement delta evaluation for new classes and
+moves is to implement delta_evaluate in the evaluation function for a specific
+evaluation-move class pair. The limitations of this approach are
+obvious.</p>
+<p>Alternatively, one can define it’s own function that acts like delta_eval_func.
+Obviously, one would need to use this function in the __init__ of your
+evaluation classes instead of delta_eval_func. This means that the evaluation
+functions defined by the library would need to be subclassed and given a
+different __init__ method to be compatible with your function. The best way to
+make your function use the already existing functionality would be like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_delta_eval_func</span><span class="p">(</span><span class="n">problem_eval_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">):</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try using existing functionality</span>
+        <span class="k">return</span> <span class="n">delta_eval_func</span><span class="p">(</span><span class="n">problem_eval_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+        <span class="c1"># a NotImplementedError was raised, so we know that delta_eval_func</span>
+        <span class="c1"># couldn&#39;t find an implementation for a specific pair.</span>
+
+        <span class="c1"># return of delta evaluation class for added classes you have</span>
+        <span class="c1"># implemented</span>
+        <span class="k">return</span> <span class="n">my_other_func</span><span class="p">(</span><span class="n">problem_eval_func</span><span class="p">,</span> <span class="n">move_func</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that it might be possible to reuse classes, functions and code from
+modules delta_qap, delta_tsp and delta_multi_neighbourhood.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.evaluation.deltaeval.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

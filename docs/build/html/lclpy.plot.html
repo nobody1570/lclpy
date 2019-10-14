@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.plot package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-plot-package">
+<h1>lclpy.plot package<a class="headerlink" href="#lclpy-plot-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.plot.plot">
+<span id="lclpy-plot-plot-module"></span><h2>lclpy.plot.plot module<a class="headerlink" href="#module-lclpy.plot.plot" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.plot.plot.iterations_plot">
+<code class="sig-prename descclassname">lclpy.plot.plot.</code><code class="sig-name descname">iterations_plot</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">title='Iterations - evaluation value plot.'</em>, <em class="sig-param">width=20</em>, <em class="sig-param">height=10</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.plot.plot.iterations_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the data in an iterations-value plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>collections.namedtuple</em>) – The data tuple one gets by performing a localsearch algorithm.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The title of the plot.</p>
+<p>Default is ‘Iterations - evaluation value plot.’.</p>
+</p></li>
+<li><p><strong>width</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the plot.</p></li>
+<li><p><strong>height</strong> (<em>int</em><em>, </em><em>optional</em>) – The height of the plot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.plot.plot.plot">
+<code class="sig-prename descclassname">lclpy.plot.plot.</code><code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">title='Time - evaluation value plot.'</em>, <em class="sig-param">width=20</em>, <em class="sig-param">height=10</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.plot.plot.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the data in a time-value plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>collections.namedtuple</em>) – The data tuple one gets by performing a localsearch algorithm.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>The title of the plot.</p>
+<p>Default is ‘Time - evaluation value plot.’.</p>
+</p></li>
+<li><p><strong>width</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the plot.</p></li>
+<li><p><strong>height</strong> (<em>int</em><em>, </em><em>optional</em>) – The height of the plot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.plot.plot.plot_single_stat">
+<code class="sig-prename descclassname">lclpy.plot.plot.</code><code class="sig-name descname">plot_single_stat</code><span class="sig-paren">(</span><em class="sig-param">benchmark_single_stat</em>, <em class="sig-param">title='Single stat table'</em>, <em class="sig-param">algorithm_names=None</em>, <em class="sig-param">problem_names=None</em>, <em class="sig-param">width=10</em>, <em class="sig-param">height=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.plot.plot.plot_single_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a single statistic of a benchmark.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>benchmark_single_stat</strong> (<em>numpy.ndarray</em>) – A single 2D array that is the result from a function in
+“lclpy.benchmark.statistics”.</p></li>
+<li><p><strong>algorithm_names</strong> (<em>list of str</em><em> or </em><em>tuple of str</em><em>, </em><em>optional</em>) – Must be the same length as the algorithm list given to the original
+benchmark. The indices of a name corresponds with the indices of the
+algorithms given to the original benchmark.</p></li>
+<li><p><strong>problem_names</strong> (<em>list of str</em><em> or </em><em>tuple of str</em><em>, </em><em>optional</em>) – Must be the same length as the problem list given to the original
+benchmark. The indices of a name corresponds with the indices of the
+problems given to the original benchmark.</p></li>
+<li><p><strong>width</strong> (<em>float</em><em>, </em><em>optional</em>) – The width of the table in inches. Default is 10.</p></li>
+<li><p><strong>height</strong> (<em>float</em><em>, </em><em>optional</em>) – The height of the table in inches. The default scales with the amount
+of items in the table.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.plot">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.plot" title="Permalink to this headline">¶</a></h2>
+<p>Contains functions to plot the results of localsearch algorithms.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.plot.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

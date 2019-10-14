@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.io package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-io-package">
+<h1>lclpy.io package<a class="headerlink" href="#lclpy-io-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.io.csv_io">
+<span id="lclpy-io-csv-io-module"></span><h2>lclpy.io.csv_io module<a class="headerlink" href="#module-lclpy.io.csv_io" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.io.csv_io.read_csv">
+<code class="sig-prename descclassname">lclpy.io.csv_io.</code><code class="sig-name descname">read_csv</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">dtype='int'</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.io.csv_io.read_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the csv file format to useable data structures.</p>
+<p>Note that the csv file should only contain the cost matrixes.
+Different matrixes should be seperated with an empty line. A maximum of 2
+distance matrixes can be read.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Absolute or relative path to the file that contains the data.</p></li>
+<li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Determines the data type of the returned matrix(es).
+At the time, 2 datatypes are supported “float” and “int”.
+The default float and int are respectively used if one of this
+parameter is used. The default is “int”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>matrix_1</strong> (<em>numpy.ndarray</em>) – A matrix for the problem.</p></li>
+<li><p><strong>matrix_2</strong> (<em>numpy.ndarray</em>) – A matrix for the problem, note that this matriw won’t always be
+returned.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Read “testfile.csv” from the map “data” in the current directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lclpy.io.csv_io</span> <span class="kn">import</span> <span class="n">read_csv</span>
+<span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/testfile.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.io.csv_io.write_benchmark_csv">
+<code class="sig-prename descclassname">lclpy.io.csv_io.</code><code class="sig-name descname">write_benchmark_csv</code><span class="sig-paren">(</span><em class="sig-param">benchmark_result</em>, <em class="sig-param">pathname</em>, <em class="sig-param">algorithm_names=None</em>, <em class="sig-param">problem_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.io.csv_io.write_benchmark_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the result of a benchmark to several csv files in a single map.</p>
+<p>Note that the name of the map can be chosen, but the csv files will always
+be named as follows:</p>
+<p>“alg_” + algorithm_name + “_problem_” + problem_name + _run_ + run +
+“.csv”</p>
+<p>The runs always start from 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result</strong> (<em>list of list of list of collections.namedtuple</em>) – The result from a benchmark.</p></li>
+<li><p><strong>pathname</strong> (<em>str</em>) – Absolute or relative path to the map that one wishes to write too.
+It doesn’t need to exist.</p></li>
+<li><p><strong>algorithm_names</strong> (<em>list of str</em><em> or </em><em>tuple of str</em><em>, </em><em>optional</em>) – Must be the same length as the algorithm list given to the original
+benchmark. The indices of a name corresponds with the indices of the
+algorithms given to the original benchmark.</p></li>
+<li><p><strong>problem_names</strong> (<em>list of str</em><em> or </em><em>tuple of str</em><em>, </em><em>optional</em>) – Must be the same length as the problem list given to the original
+benchmark. The indices of a name corresponds with the indices of the
+problems given to the original benchmark.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.io.csv_io.write_csv">
+<code class="sig-prename descclassname">lclpy.io.csv_io.</code><code class="sig-name descname">write_csv</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.io.csv_io.write_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the result of an algorithm to a csv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result</strong> (<em>collections.namedtuple</em>) – The result from a localsearch algorithm</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Absolute or relative path to the file that one wishes to write too.
+It doesn’t need to exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.io.qaplib">
+<span id="lclpy-io-qaplib-module"></span><h2>lclpy.io.qaplib module<a class="headerlink" href="#module-lclpy.io.qaplib" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.io.qaplib.read_qaplib">
+<code class="sig-prename descclassname">lclpy.io.qaplib.</code><code class="sig-name descname">read_qaplib</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.io.qaplib.read_qaplib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the qaplib file format to useable data structures.</p>
+<p>This function can be used to convert files in the qaplib format to useable
+data structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – absolute or relative path to the file that contains the data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix for the problem.</p></li>
+<li><p><strong>flow_matrix</strong> (<em>numpy.ndarray</em>) – The flow matrix for the problem.</p></li>
+<li><p><strong>dictionary</strong> (<em>{int : int}</em>) – A dictionary that can convert a position the distance matrix to the
+name given in the data. This dict can be useful when generating output.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Read “testfile.tsp” from the map “data” in the current working directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lclpy.io.qaplib</span> <span class="kn">import</span> <span class="n">read_qaplib</span>
+<span class="n">read_tsplib</span><span class="p">(</span><span class="s1">&#39;data/testfile.tsp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.io.tsplib">
+<span id="lclpy-io-tsplib-module"></span><h2>lclpy.io.tsplib module<a class="headerlink" href="#module-lclpy.io.tsplib" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.io.tsplib.read_tsplib">
+<code class="sig-prename descclassname">lclpy.io.tsplib.</code><code class="sig-name descname">read_tsplib</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.io.tsplib.read_tsplib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the tsplib file format to useable data structures.</p>
+<p>Currently this function only works for TSP problems. The crystallography
+problems can’t be parsed with this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – absolute or relative path to the file that contains the data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – The distance matrix for the problem.</p></li>
+<li><p><strong>dictionary</strong> (<em>{int : int}</em>) – A dictionary that can convert a position the distance matrix to the
+name given in the data. This dict can be useful when generating output.</p></li>
+<li><p><strong>metadata</strong> (<em>list of str</em>) – Contains the metadata of the problem. The last entry will always be
+EOF.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Read “testfile.tsp” from the map “data” in the current working directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lclpy.io.tsplib</span> <span class="kn">import</span> <span class="n">read_tsplib</span>
+<span class="n">read_tsplib</span><span class="p">(</span><span class="s1">&#39;data/testfile.tsp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.io">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.io" title="Permalink to this headline">¶</a></h2>
+<p>This package conatains functions for the input and output of data.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.io.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

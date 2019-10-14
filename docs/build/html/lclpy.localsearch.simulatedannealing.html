@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.localsearch.simulatedannealing package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-localsearch-simulatedannealing-package">
+<h1>lclpy.localsearch.simulatedannealing package<a class="headerlink" href="#lclpy-localsearch-simulatedannealing-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function">
+<span id="lclpy-localsearch-simulatedannealing-abstr-iterations-temp-function-module"></span><h2>lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function module<a class="headerlink" href="#module-lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.</code><code class="sig-name descname">AbstrIterationsTempFunction</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Template class for determining the number of iterations for a temperature.</p>
+<p>Implementations of this class are meant to be used in a simulated annealing
+algorithm. Implementations are supposed to be used to determine the amount
+of iterations for a certain temperature.</p>
+<dl class="method">
+<dt id="lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations">
+<em class="property">abstract </em><code class="sig-name descname">get_iterations</code><span class="sig-paren">(</span><em class="sig-param">temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of iterations for a certain temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The current temperature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.simulatedannealing.abstract_cooling_function">
+<span id="lclpy-localsearch-simulatedannealing-abstract-cooling-function-module"></span><h2>lclpy.localsearch.simulatedannealing.abstract_cooling_function module<a class="headerlink" href="#module-lclpy.localsearch.simulatedannealing.abstract_cooling_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.simulatedannealing.abstract_cooling_function.</code><code class="sig-name descname">AbstractCoolingFunction</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>A template class to implement a cooling function for simulated annealing.</p>
+<p>Implementations of this class are meant to be used in a simulated annealing
+algorithm. Implementations are supposed to implement the cooling function.</p>
+<dl class="method">
+<dt id="lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature">
+<em class="property">abstract </em><code class="sig-name descname">next_temperature</code><span class="sig-paren">(</span><em class="sig-param">old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get the next temperature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new temperature</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function">
+<span id="lclpy-localsearch-simulatedannealing-cnst-iterations-temp-function-module"></span><h2>lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function module<a class="headerlink" href="#module-lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.</code><code class="sig-name descname">CnstIterationsTempFunction</code><span class="sig-paren">(</span><em class="sig-param">iterations=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction</span></code></a></p>
+<p>Class for determining the number of iterations for a temperature.</p>
+<p>This class is meant to be used in a simulated annealing algorithm.
+The amount of iterations is constant and is not influenced by the
+temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>iterations</strong> (<em>int</em>) – The amount of iterations for all temperatures.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations">
+<code class="sig-name descname">_iterations</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction._iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of iterations for all temperatures. Default is 1000.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Default behaviour:</p>
+<p>With 800 iterations:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations">
+<code class="sig-name descname">get_iterations</code><span class="sig-paren">(</span><em class="sig-param">temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.cnst_iterations_temp_function.CnstIterationsTempFunction.get_iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of iterations for a certain temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The “temperature” in the simulated annealing algorithm.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The amount of iterations for the temperature. (Here always
+_iterations)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.simulatedannealing.geometric_cooling_function">
+<span id="lclpy-localsearch-simulatedannealing-geometric-cooling-function-module"></span><h2>lclpy.localsearch.simulatedannealing.geometric_cooling_function module<a class="headerlink" href="#module-lclpy.localsearch.simulatedannealing.geometric_cooling_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.simulatedannealing.geometric_cooling_function.</code><code class="sig-name descname">GeometricCoolingFunction</code><span class="sig-paren">(</span><em class="sig-param">alpha=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction</span></code></a></p>
+<p>Implements a geometric cooling function for simulated annealing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – A parameter that influences the cooling rate. Should be a positive
+number smaller than 1. Default is 0.75.</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha">
+<code class="sig-name descname">_alpha</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction._alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>A parameter that influences the cooling rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>A simple example:</p>
+<p>An example with an alpha of 0.5:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature">
+<code class="sig-name descname">next_temperature</code><span class="sig-paren">(</span><em class="sig-param">old_temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.geometric_cooling_function.GeometricCoolingFunction.next_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get the next temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_temperature</strong> (<em>int</em><em> or </em><em>float</em>) – The old temperature.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>The new temperature. This temperature is equal to:</p>
+<div class="math notranslate nohighlight">
+\[\_alpha*old\_temperature\]</div>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.simulatedannealing.simulated_annealing">
+<span id="lclpy-localsearch-simulatedannealing-simulated-annealing-module"></span><h2>lclpy.localsearch.simulatedannealing.simulated_annealing module<a class="headerlink" href="#module-lclpy.localsearch.simulatedannealing.simulated_annealing" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing">
+<em class="property">class </em><code class="sig-prename descclassname">lclpy.localsearch.simulatedannealing.simulated_annealing.</code><code class="sig-name descname">SimulatedAnnealing</code><span class="sig-paren">(</span><em class="sig-param">problem</em>, <em class="sig-param">termination_criterion</em>, <em class="sig-param">cooling_function</em>, <em class="sig-param">iterations_for_temp_f</em>, <em class="sig-param">start_temperature=2000</em>, <em class="sig-param">minimise=True</em>, <em class="sig-param">benchmarking=False</em>, <em class="sig-param">logging=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lclpy.localsearch.html#lclpy.localsearch.abstract_local_search.AbstractLocalSearch" title="lclpy.localsearch.abstract_local_search.AbstractLocalSearch"><code class="xref py py-class docutils literal notranslate"><span class="pre">lclpy.localsearch.abstract_local_search.AbstractLocalSearch</span></code></a></p>
+<p>Performs a simulated annealing algorithm with the given parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>problem</strong> (<a class="reference internal" href="lclpy.problem.html#lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem"><em>AbstractLocalSearchProblem</em></a>) – Contains all the data needed for the specific problem.</p></li>
+<li><p><strong>termination_criterion</strong> (<a class="reference internal" href="lclpy.termination.html#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion"><em>AbstractTerminationCriterion</em></a>) – Implements a termination criterion to terminate the algorithm.</p></li>
+<li><p><strong>cooling_function</strong> (<a class="reference internal" href="#lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction"><em>AbstractCoolingFunction</em></a>) – Implements the cooling function for the algorithm.</p></li>
+<li><p><strong>iterations_for_temp_f</strong> (<a class="reference internal" href="#lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction"><em>AbstrIterationsTempFunction</em></a>) – Implements a function to determine the amount of iterations for a
+certain temperature.</p></li>
+<li><p><strong>start_temperature</strong> (<em>int</em><em>, </em><em>optional</em>) – The starting temperature for the simulated annealing. The default is
+2000.</p></li>
+<li><p><strong>minimise</strong> (<em>bool</em><em>, </em><em>optional</em>) – Will minimise if this parameter is True, maximise if it is False.
+The default is True.</p></li>
+<li><p><strong>benchmarking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should be True if one wishes benchmarks to be kept, should be False if
+one wishes no benchmarks to be made. Default is False.</p></li>
+<li><p><strong>logging</strong> (<em>bool</em><em>, </em><em>optional</em>) – Improvements and passed worse solutions will be logged to the command
+line if this variable is True. Default is True.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._problem">
+<code class="sig-name descname">_problem</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._problem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all the data needed for the specific problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.problem.html#lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem" title="lclpy.problem.abstract_local_search_problem.AbstractLocalSearchProblem">AbstractLocalSearchProblem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion">
+<code class="sig-name descname">_termination_criterion</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._termination_criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a termination criterion to terminate the algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.termination.html#lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion" title="lclpy.termination.abstract_termination_criterion.AbstractTerminationCriterion">AbstractTerminationCriterion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function">
+<code class="sig-name descname">_cooling_function</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._cooling_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the cooling function for the algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction" title="lclpy.localsearch.simulatedannealing.abstract_cooling_function.AbstractCoolingFunction">AbstractCoolingFunction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f">
+<code class="sig-name descname">_iterations_for_temp_f</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._iterations_for_temp_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a function to determine the amount of iterations for a
+certain temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction" title="lclpy.localsearch.simulatedannealing.abstr_iterations_temp_function.AbstrIterationsTempFunction">AbstrIterationsTempFunction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._start_temperature">
+<code class="sig-name descname">_start_temperature</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._start_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The start “temperature”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature">
+<code class="sig-name descname">_temperature</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current “temperature”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function">
+<code class="sig-name descname">_acceptance_function</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._acceptance_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The acceptance function used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="lclpy.localsearch.acceptance.html#lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction" title="lclpy.localsearch.acceptance.simulated_annealing_acceptance_function.SimulatedAnnealingAcceptanceFunction">SimulatedAnnealingAcceptanceFunction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement">
+<code class="sig-name descname">_is_improvement</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to determine if a certain delta value is an improvement
+or equal to the current value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better">
+<code class="sig-name descname">_is_better</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._is_better" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to determine if a certain value is an improvement.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.data">
+<code class="sig-name descname">data</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data useable for benchmarking. Will be None if no benchmarks are made.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._data_append">
+<code class="sig-name descname">_data_append</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._data_append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to append new data-points to data. Will do nothing if no
+benchmarks are made.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_improvement">
+<code class="sig-name descname">_log_improvement</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to write logs to the command line. Will do nothing if no logs
+are made.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_passed_worse">
+<code class="sig-name descname">_log_passed_worse</code><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing._log_passed_worse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to write logs to the command line. Will do nothing if no logs
+are made.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>Minimising example:</p>
+<p>Maximising example, note that the distance matrix is different:</p>
+<dl class="method">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the object back to it’s state after init.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – If the problem or termination criterion have no reset method
+    implemented.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Minimising example, reset after run:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.localsearch.simulatedannealing.simulated_annealing.SimulatedAnnealing.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts running the simulated annealing algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>best_order</strong> (<em>numpy.ndarray</em>) – The best found order.</p></li>
+<li><p><strong>best_value</strong> (<em>int or float</em>) – The evaluation value of the best found order.</p></li>
+<li><p><strong>data</strong> (<em>None or collections.namedtuple</em>) – Data useable for benchmarking. If no benchmarks were made, it will
+be None. The namedtuple contains the following data in
+numpy.ndarrays:
+time, iteration, temperature, value, best_value</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.localsearch.simulatedannealing">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.localsearch.simulatedannealing" title="Permalink to this headline">¶</a></h2>
+<p>This package contains all classes unique to simulated annealing.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.localsearch.simulatedannealing.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

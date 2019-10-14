@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>lclpy.aidfunc package &#8212; lclpy  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="lclpy-aidfunc-package">
+<h1>lclpy.aidfunc package<a class="headerlink" href="#lclpy-aidfunc-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lclpy.aidfunc.add_to_data_func">
+<span id="lclpy-aidfunc-add-to-data-func-module"></span><h2>lclpy.aidfunc.add_to_data_func module<a class="headerlink" href="#module-lclpy.aidfunc.add_to_data_func" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.aidfunc.add_to_data_func.add_to_data_func">
+<code class="sig-prename descclassname">lclpy.aidfunc.add_to_data_func.</code><code class="sig-name descname">add_to_data_func</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.add_to_data_func.add_to_data_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function to add values to a list with a timestamp.</p>
+<p>The data will be kept into a tuple and added to the list.
+Note that a timestamp is always added as the first item in the tuple. This
+timestamp, however has no fixed epoch. So only differences in time have a
+real meaning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>list</em>) – The list one wishes to append the data to.</p></li>
+<li><p><strong>*args</strong> – The data one wishes to append to data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.aidfunc.convert_data">
+<span id="lclpy-aidfunc-convert-data-module"></span><h2>lclpy.aidfunc.convert_data module<a class="headerlink" href="#module-lclpy.aidfunc.convert_data" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.aidfunc.convert_data.convert_data">
+<code class="sig-prename descclassname">lclpy.aidfunc.convert_data.</code><code class="sig-name descname">convert_data</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.convert_data.convert_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a list made with add_to_data_func into seperate lists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list of tuple</em>) – A list created with add_to_data_func</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>All the data in seperate lists. The first list will always be the time
+passed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple of numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.aidfunc.error_func">
+<span id="lclpy-aidfunc-error-func-module"></span><h2>lclpy.aidfunc.error_func module<a class="headerlink" href="#module-lclpy.aidfunc.error_func" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all package specific Exceptions of lclpy.</p>
+<p>The module also contains functions to raise Exceptions.</p>
+<dl class="exception">
+<dt id="lclpy.aidfunc.error_func.NoNextNeighbourhood">
+<em class="property">exception </em><code class="sig-prename descclassname">lclpy.aidfunc.error_func.</code><code class="sig-name descname">NoNextNeighbourhood</code><a class="headerlink" href="#lclpy.aidfunc.error_func.NoNextNeighbourhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Is raised when there is no next neighbourhood.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lclpy.aidfunc.error_func.WrongMoveTypeError">
+<em class="property">exception </em><code class="sig-prename descclassname">lclpy.aidfunc.error_func.</code><code class="sig-name descname">WrongMoveTypeError</code><a class="headerlink" href="#lclpy.aidfunc.error_func.WrongMoveTypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Is raised when the wrong move type is used with a certain class.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.aidfunc.error_func.not_multi_move_type">
+<code class="sig-prename descclassname">lclpy.aidfunc.error_func.</code><code class="sig-name descname">not_multi_move_type</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.error_func.not_multi_move_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>An error raising function that can take any amount of parameters.</p>
+<p>This function is meant to be called when someone uses a different move type
+than MultiNeighbourhood when one needs to use an instance of the
+MultiNeighbourhood class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*args</strong> – Variable length argument list, it does not matter what or how many
+parameters you use. Does not accept keyword arguments.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>WrongMoveType</strong> – This error will always be raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.aidfunc.is_improvement_func">
+<span id="lclpy-aidfunc-is-improvement-func-module"></span><h2>lclpy.aidfunc.is_improvement_func module<a class="headerlink" href="#module-lclpy.aidfunc.is_improvement_func" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions to check if a value is an improvement.</p>
+<dl class="function">
+<dt id="lclpy.aidfunc.is_improvement_func.bigger">
+<code class="sig-prename descclassname">lclpy.aidfunc.is_improvement_func.</code><code class="sig-name descname">bigger</code><span class="sig-paren">(</span><em class="sig-param">old_value</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.is_improvement_func.bigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is an improvement. Bigger values are improvements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_value</strong> (<em>int</em><em> or </em><em>float</em>) – The old value.</p></li>
+<li><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – The new value that is checked.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if the new value is bigger than the old value, else
+returns false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.aidfunc.is_improvement_func.bigger_or_equal">
+<code class="sig-prename descclassname">lclpy.aidfunc.is_improvement_func.</code><code class="sig-name descname">bigger_or_equal</code><span class="sig-paren">(</span><em class="sig-param">old_value</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.is_improvement_func.bigger_or_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is an improvement. Bigger values are improvements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_value</strong> (<em>int</em><em> or </em><em>float</em>) – The old value.</p></li>
+<li><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – The new value that is checked.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if the new value is bigger or equal to the old value, else
+returns false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.aidfunc.is_improvement_func.smaller">
+<code class="sig-prename descclassname">lclpy.aidfunc.is_improvement_func.</code><code class="sig-name descname">smaller</code><span class="sig-paren">(</span><em class="sig-param">old_value</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.is_improvement_func.smaller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is an improvement. Smaller values are improvements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_value</strong> (<em>int</em><em> or </em><em>float</em>) – The old value.</p></li>
+<li><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – The new value that is checked.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if the new value is smaller than the old value, else
+returns false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.aidfunc.is_improvement_func.smaller_or_equal">
+<code class="sig-prename descclassname">lclpy.aidfunc.is_improvement_func.</code><code class="sig-name descname">smaller_or_equal</code><span class="sig-paren">(</span><em class="sig-param">old_value</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.is_improvement_func.smaller_or_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is an improvement. Smaller values are improvements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_value</strong> (<em>int</em><em> or </em><em>float</em>) – The old value.</p></li>
+<li><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – The new value that is checked.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if the new value is smaller or equal to the old value,
+else returns false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Some simple tests:</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.aidfunc.logging">
+<span id="lclpy-aidfunc-logging-module"></span><h2>lclpy.aidfunc.logging module<a class="headerlink" href="#module-lclpy.aidfunc.logging" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.aidfunc.logging.log_improvement">
+<code class="sig-prename descclassname">lclpy.aidfunc.logging.</code><code class="sig-name descname">log_improvement</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.logging.log_improvement" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to log improvements to the command line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – The value for the improvement</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lclpy.aidfunc.logging.log_passed_worse">
+<code class="sig-prename descclassname">lclpy.aidfunc.logging.</code><code class="sig-name descname">log_passed_worse</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.logging.log_passed_worse" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to log the passing of worse solutions to the command line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – The value for the improvement</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.aidfunc.pass_func">
+<span id="lclpy-aidfunc-pass-func-module"></span><h2>lclpy.aidfunc.pass_func module<a class="headerlink" href="#module-lclpy.aidfunc.pass_func" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lclpy.aidfunc.pass_func.pass_func">
+<code class="sig-prename descclassname">lclpy.aidfunc.pass_func.</code><code class="sig-name descname">pass_func</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#lclpy.aidfunc.pass_func.pass_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function that does nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – Variable length argument list, it does not matter what or how many
+parameters you use. Does not accept keyword arguments.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lclpy.aidfunc">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lclpy.aidfunc" title="Permalink to this headline">¶</a></h2>
+<p>This package contains multiple aid functions.</p>
+<p>The functions should only be used by other functions and methods in lclpy.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lclpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daan Thijs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lclpy.aidfunc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
