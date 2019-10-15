@@ -26,11 +26,11 @@ You will be notified if it is already installed. This isn't be a problem.
 
 ### Installing
 
-After the prequisites have been properly installed, it's time to install locsearch.
+After the prequisites have been properly installed, it's time to install lclpy.
 Do not worry about dependencies and such, setuptools should take care of those.
 
 ```
-pip install locsearch
+pip install lclpy
 ```
 
 You can easily test if it's installed by using the [interactive interpreter](https://docs.python.org/3/tutorial/interpreter.html#interactive-mode).
@@ -50,10 +50,10 @@ py
 Once inside the interpreter, try the following command:
 
 ```
-import lspy
+import lclpy
 ```
 
-If it succeeds without errors, lspy is installed.
+If it succeeds without errors, lclpy is installed.
 
 ## Usage
 
@@ -69,7 +69,7 @@ There are also several [jupyter notebooks](https://jupyter.org/) that demonstrat
 
 ## Tests
 
-Most of the modules of locsearch have some [doctests](https://docs.python.org/3/library/doctest.html) included.
+Most of the modules of lclpy have some [doctests](https://docs.python.org/3/library/doctest.html) included.
 
 One can perform these by importing a module and then using the following code in the interactive interpreter:
 
