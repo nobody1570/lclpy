@@ -8,7 +8,7 @@ from lclpy.aidfunc.is_improvement_func \
 from lclpy.aidfunc.pass_func import pass_func
 from lclpy.aidfunc.add_to_data_func import add_to_data_func
 from lclpy.aidfunc.convert_data import convert_data
-from lclpy.aidfunc.logging import log_improvement, log_passed_worse
+from lclpy.aidfunc.logging import log_improvement
 
 from collections import namedtuple
 
@@ -68,9 +68,6 @@ class SimulatedAnnealing(AbstractLocalSearch):
         Function to append new data-points to data. Will do nothing if no
         benchmarks are made.
     _log_improvement
-        Function to write logs to the command line. Will do nothing if no logs
-        are made.
-    _log_passed_worse
         Function to write logs to the command line. Will do nothing if no logs
         are made.
 
@@ -205,10 +202,8 @@ class SimulatedAnnealing(AbstractLocalSearch):
 
         if logging:
             self._log_improvement = log_improvement
-            self._log_passed_worse = log_passed_worse
         else:
             self._log_improvement = pass_func
-            self._log_passed_worse = pass_func
 
     def run(self):
         """Starts running the simulated annealing algorithm.
@@ -267,14 +262,12 @@ class SimulatedAnnealing(AbstractLocalSearch):
                     self._problem.move(move)
                     base_value = base_value + delta
 
-                    # log if necessary
-                    if delta is not 0:
-                        self._log_improvement(base_value)
-
                     # check if best state
                     if self._is_better(
                             self._problem.best_order_value, base_value):
                         self._problem.set_as_best(base_value)
+                        # log the better solution
+                        self._log_improvement(base_value)
 
                     # let termination criterion check the new value
                     self._termination_criterion.check_new_value(base_value)
@@ -291,9 +284,6 @@ class SimulatedAnnealing(AbstractLocalSearch):
                             delta, self._temperature):
                         self._problem.move(move)
                         base_value = base_value + delta
-
-                        # log if necessary
-                        self._log_passed_worse(base_value)
 
                         # let termination criterion check the new value
                         self._termination_criterion.check_new_value(base_value)

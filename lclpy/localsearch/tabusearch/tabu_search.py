@@ -248,12 +248,11 @@ class TabuSearch(AbstractLocalSearch):
                 if self._is_better(self._problem.best_order_value,
                                    base_value):
                     self._problem.set_as_best(base_value)
+                    # log the better solution
+                    self._log_improvement(base_value)
 
                 # add diff to tabu list
                 self._tabu_list.add(best_found_diff)
-
-                # log if needed
-                self._log_improvement(base_value)
 
                 # add to data
                 self._data_append(self.data, iteration,
